@@ -10,7 +10,6 @@
 		//Fonction appeler par défaut
 		public function index ( $name = '' ){
 			
-			
 		}
 		
 		
