@@ -1,0 +1,13 @@
+-est ce qu'il garde les ancients stagiaire
+-quel niveau de sécurité pour sqlite(bd)
+- quel format veut rapport/évaluation pour stage/stagiaire
+- est ce qu'il faut une date d'inscription pour Users
+-quand refus de projet ou de compte envoi courriel a la personne refusé pour dire pourquoi
+-est ce quon doit mettre DA pour user
+
+
+-OPTIONAL
+
+-remember me
+-notification pour waiting projet pi compte
+- peut mettre demande de projet avec pdf
