@@ -7,14 +7,14 @@
 			session_start();
 		}
 		
-		//Fonction appeler par défaut
+		//Fonction appeler par dÃ©faut
 		public function index ( $name = '' ){
 			
 			
 		}
 		
 		//Fonction qui permet de se connecter au serveur
-		public LogIn(){
+		public function LogIn(){
 			
 			
 		}
