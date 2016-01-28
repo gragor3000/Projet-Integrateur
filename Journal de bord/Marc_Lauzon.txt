@@ -1,6 +1,8 @@
 Journal de Bord
 
 2016-01-27
++Installation de Apache, MySQL et PHP.
++Configuration du serveur de developpement.
 +Amélioration de la page d'acceuil pour inclure connexion + création projet.
 +Conception de la base de données.
 +Définir les questions pour le client.
