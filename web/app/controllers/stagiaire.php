@@ -11,11 +11,13 @@
 		public function index ( $name = '' ){
 			
 			//Cherche le stage affecter à l'étudiant
-			$TblResultat = parent::BDExecute(/*Sql trouver le stage affecter*/);
+			$TblResultat = parent::BDExecute("Select ID, Title, Desc, SupID, Address, Postal from projects where InternID =".SESSION['ID']);
+			
 			//Si le stagiaire n'est pas affecter à un stage, liste tous les stages
 			if (count($TblResultat) = 0){
-				//Récupère les bonnes information
-				$TblResultat = parent::BDRecherche(/*Sql trouver toute les informations*/);
+				//Récupère les bonnes information de tous les stages
+				$TblResultat = parent::BDRecherche("Select ID, Title, Score, Desc, SupID, Address, Postal from projects inner join 
+													ratings on projects.ID = ratings.ProjectID Where ratings.InternID=".SESSION['ID']);
 			}
 			
 			//Ouvre l'index du stagiaire en envoyant un tableau d'information
@@ -25,9 +27,15 @@
 		
 		//Fonction permettant de donner une nouvelle note a un stage
 		public function NoterStage (int $Note, int $Stage){
-			
-			parent::BDExecute(/*Sql trouver le stage affecter*/);
+			parent::BDExecute("UPDATE ratings SET Score=".$Note."Where ProjectID=".$Stage." and InternID=".SESSION['ID']);
 		}
+		
+		//Fonction permenttant de récupérer la description du stage (Pour faire le Ajax sur les stages)
+		/*
+		public function DescrStage (int $Stage){
+			return parent::BDExecute("Select Desc, SupID, Address, Postal from projects Where ID=".$Stage);
+		}
+		*/
 		
 		
 		//Met à jour le journal de bord des étudiant
