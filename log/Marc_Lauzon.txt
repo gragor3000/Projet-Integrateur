@@ -1,4 +1,7 @@
 Journal de Bord
+
+2016-01-28
++Configuration du serveur de developpement. [Fonctionnel]
 +Installation de phpMySQL.
 +Modification des noms de fichiers et dossiers.
 
