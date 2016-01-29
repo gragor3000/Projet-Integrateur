@@ -1,0 +1,28 @@
+-mettre à jour les tables des bd
+-faire les pages web pour stagiaire, coordonateur et superviseur
+-faire le php pour stagiaire, corrdonateur et superviseur
+-faire la connexion 
+-ajouter les entreprises a la bd pour les superviseurs
+-ajouter le path vers le fichier de journal de bord dans la table projet
+-ajouter le champs token dans la table user
+-ajouter la table de path de tous les fichiers qui pointe vers l'étudiant
+-faire les fichiers en JSON
+-ajouter foreign key dans projet vers entreprise
+
+
+
+Ordre des processus d'aquisition et d'exécution de stage
+
+-le superviseur s'inscrit
+-le superviseur ajoute l'entreprise
+-le superviseur fait une proposition de projet *lier au superviseur et à l'entreprise (état par défault attente)
+-un coordonateur valide ou refuse le projet
+-un stagiaire donne son rating sur les projets
+-le superviseur rempli un formulaire d'évaluation d'entrevue(*seulement lier au stagiaire pas le projet)
+-les coordonateurs affecte un coordonateur et/ou un stagiaire a un projet avant le 1er mars
+-le stagiaire remplit son journal à chaque jour
+-le coordonateur fait une évaluation de mi-session(compte pas)
+-le surperviseur fait une éval de fin
+-le coordonateur fait une éval de fin de session
+-le stagiaire fait un oral et est évaluer par tous prof (additionne toute les notes pi divise par 5)
+-le stagiaire passe(sauf pour baker) 
