@@ -1,4 +1,6 @@
 Journal de Bord
++Installation de phpMySQL.
++Modification des noms de fichiers et dossiers.
 
 2016-01-27
 +Installation de Apache, MySQL et PHP.
