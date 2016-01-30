@@ -7,7 +7,7 @@
 			session_start();
 		}
 		
-		//Fonction appeler par défaut
+		//Fonction appeler par dÃ©faut
 		public function index ( $name = '' ){
 			
 		}

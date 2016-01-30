@@ -2,12 +2,12 @@
 -faire les pages web pour stagiaire, coordonateur et superviseur
 -faire le php pour stagiaire, corrdonateur et superviseur
 -faire la connexion 
--ajouter les entreprises a la bd pour les superviseurs
--ajouter le path vers le fichier de journal de bord dans la table projet
--ajouter le champs token dans la table user
--ajouter la table de path de tous les fichiers qui pointe vers l'étudiant
+-ajouter les entreprises a la bd pour les superviseurs(*done)
+-ajouter le path vers le fichier de journal de bord dans la table projet(*not to do?)
+-ajouter le champs token dans la table user(*done)
+-ajouter la table de path de tous les fichiers qui pointe vers l'étudiant(*done)
 -faire les fichiers en JSON
--ajouter foreign key dans projet vers entreprise
+-ajouter foreign key dans projet vers entreprise(*done)
 
 
 
