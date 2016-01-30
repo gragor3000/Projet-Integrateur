@@ -19,7 +19,8 @@ class Controller{
 		
 		return $BD;		
 	}
-	
+
+	//deplacer vers le modele
 	//Fonction qui permet de récupérer toute les informations d'une recherche
 	protected function BDRecherche($Commande){
 		
