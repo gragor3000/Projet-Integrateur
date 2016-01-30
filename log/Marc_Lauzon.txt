@@ -1,5 +1,10 @@
 Journal de Bord
 
+2016-01-29
++Discussion d'équipe.
++Clarification des besoin du client.
++Bousiller MySQL sur le serveur de développement.
+
 2016-01-28
 +Configuration du serveur de developpement. [Fonctionnel]
 +Installation de phpMySQL.
