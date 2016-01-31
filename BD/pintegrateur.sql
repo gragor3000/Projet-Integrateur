@@ -111,8 +111,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(32) NOT NULL COMMENT 'Mot de passe',
   `Email` varchar(64) NOT NULL COMMENT 'Courriel',
   `Tel` varchar(10) NOT NULL COMMENT 'numéro de téléphone',
-  `Type` int(11) DEFAULT NULL COMMENT '0=stagiaire,1=superviseur,2=Coordonateur ',
-  `ValDate` datetime NOT NULL COMMENT 'date de validation',
+  `Type` int(11) NOT NULL COMMENT '0=stagiaire,1=superviseur,2=Coordonateur ',
+  `ValDate` datetime COMMENT 'date de validation',
   `Access` tinyint(1) NOT NULL DEFAULT '0',
   `Token` varchar(32) NOT NULL COMMENT 'Token d''identification de l''utilsateur',
   PRIMARY KEY (`ID`)
