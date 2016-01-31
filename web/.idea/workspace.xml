@@ -66,13 +66,8 @@
         <entry file="file://$PROJECT_DIR$/app/models/models.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-80.5">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding>
-                <marker date="1454204622527" expanded="true" signature="1199:1235" placeholder="SELECT Token... users" />
-                <marker date="1454204622527" expanded="true" signature="1636:1710" placeholder="INSERT INTO users... " />
-                <marker date="1454204622527" expanded="true" signature="2036:2078" placeholder="SELECT Type,... users" />
-                <marker date="1454204622527" expanded="true" signature="2511:2547" placeholder="SELECT Type users" />
-              </folding>
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -425,13 +420,8 @@
     <entry file="file://$PROJECT_DIR$/app/models/models.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-80.5">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding>
-            <marker date="1454204622527" expanded="true" signature="1199:1235" placeholder="SELECT Token... users" />
-            <marker date="1454204622527" expanded="true" signature="1636:1710" placeholder="INSERT INTO users... " />
-            <marker date="1454204622527" expanded="true" signature="2036:2078" placeholder="SELECT Type,... users" />
-            <marker date="1454204622527" expanded="true" signature="2511:2547" placeholder="SELECT Type users" />
-          </folding>
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
