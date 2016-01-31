@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f66ce10-fe64-452b-9a3c-afda212f1e50" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/app/models/models.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/core/Controller.php" afterPath="$PROJECT_DIR$/web/app/core/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/Samuel Baker.docx" afterPath="$PROJECT_DIR$/log/Samuel Baker.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/models.php" afterPath="$PROJECT_DIR$/web/app/models/models.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Projet-Integrateur.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +29,8 @@
       <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/core/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0377358">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+            <state vertical-scroll-proportion="-8.5">
+              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -38,15 +39,16 @@
       <file leaf-file-name="models.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/models/models.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39732888">
-              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.68833333">
+              <caret line="90" column="68" selection-start-line="90" selection-start-column="68" selection-end-line="90" selection-end-column="68" />
               <folding>
-                <marker date="1454194374391" expanded="true" signature="1195:1231" placeholder="SELECT Token..users..." />
-                <marker date="1454194374391" expanded="true" signature="1631:1705" placeholder="INSERT INTO ..." />
-                <marker date="1454194374391" expanded="true" signature="2031:2067" placeholder="SELECT Email..users..." />
-                <marker date="1454194374391" expanded="true" signature="2031:2073" placeholder="SELECT Type,..users..." />
-                <marker date="1454194374391" expanded="true" signature="2031:2077" placeholder="SELECT Email..users..." />
-                <marker date="1454194374391" expanded="true" signature="2506:2542" placeholder="SELECT Email..users..." />
+                <marker date="1454204484761" expanded="true" signature="1457:1493" placeholder="SELECT Token..users..." />
+                <marker date="1454204484761" expanded="true" signature="1892:1966" placeholder="INSERT INTO ..." />
+                <marker date="1454204484761" expanded="true" signature="2292:2328" placeholder="SELECT Email..users..." />
+                <marker date="1454204484761" expanded="true" signature="2292:2334" placeholder="SELECT Type,..users..." />
+                <marker date="1454204484761" expanded="true" signature="2292:2338" placeholder="SELECT Email..users..." />
+                <marker date="1454204484761" expanded="true" signature="2767:2803" placeholder="SELECT Email..users..." />
+                <marker date="1454204484761" expanded="true" signature="3085:3103" placeholder="Update ValDa..." />
               </folding>
             </state>
           </provider>
@@ -105,6 +107,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -202,7 +205,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -228,6 +230,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
   </component>
@@ -248,22 +256,22 @@
     <frame x="-8" y="-8" width="1376" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25379938" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -286,9 +294,25 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/web/app/core/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0377358">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/models/models.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1454204484761" expanded="true" signature="1457:1493" placeholder="SELECT Token..users..." />
+            <marker date="1454204484761" expanded="true" signature="1892:1966" placeholder="INSERT INTO ..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2328" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2334" placeholder="SELECT Type,..users..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2338" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="2767:2803" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="3085:3103" placeholder="Update ValDa..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -296,48 +320,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Account..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT Accou..Account..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..scores..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..standings..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Bet..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT Accou..Account..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT home ..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT visit..futures..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT pct F..standings..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT pct F..standings..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT Bet.A..Bet..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="SELECT Beter..Bet..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="UPDATE Accou..." />
-            <marker date="1450402634941" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/core/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/models/models.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39732888">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.68833333">
+          <caret line="90" column="68" selection-start-line="90" selection-start-column="68" selection-end-line="90" selection-end-column="68" />
           <folding>
-            <marker date="1454194374391" expanded="true" signature="1195:1231" placeholder="SELECT Token..users..." />
-            <marker date="1454194374391" expanded="true" signature="1631:1705" placeholder="INSERT INTO ..." />
-            <marker date="1454194374391" expanded="true" signature="2031:2067" placeholder="SELECT Email..users..." />
-            <marker date="1454194374391" expanded="true" signature="2031:2073" placeholder="SELECT Type,..users..." />
-            <marker date="1454194374391" expanded="true" signature="2031:2077" placeholder="SELECT Email..users..." />
-            <marker date="1454194374391" expanded="true" signature="2506:2542" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="1457:1493" placeholder="SELECT Token..users..." />
+            <marker date="1454204484761" expanded="true" signature="1892:1966" placeholder="INSERT INTO ..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2328" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2334" placeholder="SELECT Type,..users..." />
+            <marker date="1454204484761" expanded="true" signature="2292:2338" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="2767:2803" placeholder="SELECT Email..users..." />
+            <marker date="1454204484761" expanded="true" signature="3085:3103" placeholder="Update ValDa..." />
           </folding>
         </state>
       </provider>
