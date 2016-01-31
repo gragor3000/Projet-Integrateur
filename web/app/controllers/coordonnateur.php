@@ -2,11 +2,14 @@
 
 class Coordonnateur extends Controller
 {
+    private $models;//pointe vers la classe model
 
     //Constructeur de la classe
     public function __construct()
     {
         session_start();
+        parent::model("models");
+        $this->models = new models();
     }
 
     //Fonction appeler par défaut
@@ -16,16 +19,16 @@ class Coordonnateur extends Controller
     }
 
     //valide un compte
-    public function AccepterCompte($token)
+    public function AccepterCompte($id)
     {
-        //parent::BDExecute("Update ValDate Set " + date('Y-m-d H:i:s') + " WHERE Token = " + $token);
+        $this->models->ValidateAccount($id);
     }
 
     //ajoute un compte dans la bd
-    public function CreerCompte($firstName, $lastName, $password, $email, $tel, $type)
+    public function CreateUser($firstName, $lastName, $pw, $email, $tel, $type)
     {
-
-        }
+        $this->models->CreateUser($firstName, $lastName, $pw, $email, $tel, $type);
+    }
 
 
 }
