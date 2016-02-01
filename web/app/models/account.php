@@ -33,12 +33,22 @@ class account extends models
     }
 
     //création d'usager
-    public function CreateUser($user, $pw, $group)
+    public function CreateIntern($user, $pw, $group)
     {
         //verifier que "Type" cause pas de probleme
         $cmd = "INSERT INTO users (user, pw, Group)";
         $values = " VALUES(" + $user + "," + md5($pw) + "," + $group +")";
         $this->DBExecute($cmd + $values);
+    }
+
+    public function CreateCoordonator()
+    {
+
+    }
+
+    public function CreateBusiness()
+    {
+
     }
 
     //connexion de l'utilisateur avec nom et mot de passe

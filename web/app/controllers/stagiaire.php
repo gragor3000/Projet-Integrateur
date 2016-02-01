@@ -33,7 +33,7 @@
 			
 			//Tante de trouver le fichier Xml et de sauvegarder les modifications
 			try {
-				$Xml = simplexml_load_file($DefaultXMLPath.'journal_de_bord/'.$SESSION['ID']."_JDB.xml");
+				$Xml = simplexml_load_file(parent::DefaultXMLPath.'journal_de_bord/'. $SESSION['ID']."_JDB.xml");
 				
 				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);

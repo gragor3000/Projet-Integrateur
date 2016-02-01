@@ -3,7 +3,7 @@
 class Controller{
 	
 	//Contient le chemin pour accèder au dossier contenant les différent Xml
-	$DefaultXMLPath = "../models/xml/";
+	protected $DefaultXMLPath = '../models/xml/';
 	
 	public function model($model)
 	{
