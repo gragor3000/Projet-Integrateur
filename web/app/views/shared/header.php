@@ -9,6 +9,6 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!--OUTILS MAISON-->
-    <link rel="stylesheet" href="../../../public/css/default.css">
-    <script src="../../../public/js/scripts.js"></script>
+    <link rel="stylesheet" href="css/default.css">
+    <script src="js/scripts.js"></script>
 </head>
