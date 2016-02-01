@@ -5,7 +5,7 @@
         <div class="row" style="vertical-align: middle;">
             <div class="col-md-9">
                 <h2>D&eacute;partement de la Technique en Informatique<br />
-                    <small>vous acceuil sur son site de gestion des stages.</small>
+                    <small>vous acceuille sur son site de gestion des stages.</small>
                 </h2>
                 <br />
 
