@@ -16,6 +16,8 @@ class Coordonnateur extends Controller
     public function index($name = '')
     {
 
+		//Ouvre l'index du coordonnateur
+		parent::view('coordonnateur/index');
     }
 
     //valide un compte

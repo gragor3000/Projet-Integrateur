@@ -64,39 +64,33 @@ class models
         return $token;
     }
 
-    //création d'usager non validé
-    public function CreateUser($fName, $lName, $pw, $email, $tel, $type)
+    //création d'usager
+    public function CreateUser($user, $pw, $group)
     {
         //verifier que "Type" cause pas de probleme
-        $command = "INSERT INTO users (FirstName, LastName, Password, Email, Tel, Type, Token)";
-        $values = " VALUES(" + $fName + "," + $lName + "," + md5($pw) + "," + $email + "," + $tel + "," + $type + "," + $this->TokenGen() + ")";
+        $command = "INSERT INTO users (Username, Password, Token, Group)";
+        $values = " VALUES(" + $user + "," + md5($pw) + "," + $this->TokenGen() + "," + $group +")";
         $this->DBExecute($command + $values);
     }
 
-    //connexion de l'utilisateur avec email et mot de passe
-    public function Login($email, $pw)
+    //connexion de l'utilisateur avec nom et mot de passe
+    public function Login($user, $pw)
     {
-        $command = "SELECT Type, Token FROM users WHERE Email= " + $email + " Password= " + md5($pw);
+        $command = "SELECT Group, Token FROM users WHERE Username= " + $user + " Password= " + md5($pw);
         $result = $this->DBSearch($command);
         $_SESSION["token"] = $result[0][0];
-        $_SESSION["type"] = $result[0][1];
+        $_SESSION["group"] = $result[0][1];
 
         //expire apres une journee et sur tout le domaine
         setcookie("token", $result[0][0], time() + (86400 * 30), "/");
     }
 
-    //connexion automatique de l'utilisatuer avec un token
+    //connexion automatique de l'utilisateur avec un token
     public function TokenLogin($token)
     {
         $command = "SELECT Type FROM users WHERE Token = " + $token;
         $result = $this->DBSearch($command);
         $_SESSION["token"] = $token;
-        $_SESSION["type"] = $result[0][0];
-    }
-
-    //valide le compte mettant la date de validation dans la bd
-    public function ValidateAccount($id)
-    {
-        $this->DBExecute("Update ValDate Set " + date('Y-m-d H:i:s') + " WHERE ID = " + $id);
+        $_SESSION["group"] = $result[0][0];
     }
 }
