@@ -6,13 +6,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">C&Eacute;GEP R&eacute;gional de Lanaudi&egrave;re &agrave; Joliette</a> [Stagiaire]
+            <a class="navbar-brand" href="#">C&Eacute;GEP R&eacute;gional de Lanaudi&egrave;re &agrave; Joliette</a> 
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=nom,prenom ?><span class="caret"></span></a>
-                <ul class="dropdown-menu well">
-
+                <ul class="dropdown-menu">
+					<li><a href="#">Mes infos</a></li>
+					<li><a href="#">Stages</a></li>
+					<li><a href="#">Quitter</a></li>
                 </ul>
             </li>
             <li><tab></tab></li>
@@ -29,8 +31,11 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=nom,prenom ?><span class="caret"></span></a>
-                <ul class="dropdown-menu well">
-
+                <ul class="dropdown-menu">
+					<li><a href="#">Mes infos</a></li>
+					<li><a href="#">Compagnie</a></li>
+					<li><a href="#">Projets</a></li> 
+					<li><a href="#">Quitter</a></li> 
                 </ul>
             </li>
             <li><tab></tab></li>
@@ -47,8 +52,12 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=nom,prenom ?><span class="caret"></span></a>
-                <ul class="dropdown-menu well">
-
+                <ul class="dropdown-menu">
+					<li><a href="#">Mes infos</a></li>
+					<li><a href="#">Comptes</a></li>
+					<li><a href="#">Compagnies</a></li>
+					<li><a href="#">Projets</a></li> 
+					<li><a href="#">Quitter</a></li> 
                 </ul>
             </li>
             <li><tab></tab></li>
