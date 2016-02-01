@@ -1,6 +1,10 @@
 <?php
 
 class Controller{
+	
+	//Contient le chemin pour accèder au dossier contenant les différent Xml
+	$DefaultXMLPath = "C/";
+	
 	public function model($model)
 	{
 		require_once '../app/models/' . $model . '.php';

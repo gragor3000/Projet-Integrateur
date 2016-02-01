@@ -26,59 +26,45 @@
 			$models->NoteTrain($Note, $Train, $IDTrainer, $_SESSION['ID']);
 		}
 		
-		//Fonction permenttant de récupérer la description du stage (Pour faire le Ajax sur les stages)
-		/*
-		public function DescrTrain (int $Train){
-			return $models->BDExecute("Select Desc, SupID, Address, Postal from projects Where ID=".$Stage);
-		}
-		*/
-		
 		
 		//Met à jour le journal de bord des étudiant
 		public function SaveLog($Date, $Data){
 			
-			//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-			$DateLog = strToTime($Date);
-			$DateLog = date("d-M-Y", $DateLog);
 			
-			//Trouve le fichier XML de l'étudiant
-			parent::model("xml");
-			$models = new projets();
-			
-			$File = $models->GetXml($_SESSION['ID']);
-			
-			//Si un fichier à été trouver
-			if (!empty($File)){
-				$Xml = simplexml_load_file($File);
-				$Tag = $xml->createElement($DateLog, $Data);
+			//Tante de trouver le fichier Xml et de sauvegarder les modifications
+			try {
+				$Xml = simplexml_load_file($DefaultXMLPath.'JournalDeBord/'.$SESSION['ID']."_JDB.xml");
+				
+				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				$DateLog = strToTime($Date);
+				$DateLog = date("d-M-Y", $DateLog);
+					
+				$Tag = $Xml->createElement($DateLog, $Data);
 				$Xml->appendChild($Tag);
 				$Xml->saveXML();
 			}
-			else{ //Sinon envoie un message d'erreur
-				echo ("Erreur 001- fichier Xml introuvable");
+			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+				$Xml = new domxml_new_doc('1.0');
+				$Xml->save($DefaultXMLPath.'/JournalDeBord/'.$SESSION['ID']."_JDB.xml");
 			}	
 		}
 		
 		//Récupère les informations du journal de bord de l'étudiant
 		public function LoadLog($Date){
 			
-			//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-			$DateLog = strToTime($Date);
-			$DateLog = date("d-M-Y", $DateLog);
-			
-			//Trouve le fichier XML de l'étudiant
-			parent::model("xml");
-			$models = new projets();
-			
-			$File = $models->GetXml($_SESSION['ID']);
-			
-			//Si un fichier à été trouver
-			if (!empty($Fichier)){
-				$Xml = simplexml_load_file($File);
+			//Tante de trouver le fichier Xml et de charger son contenu à ',emplacement de la bonne balise
+			try {
+				$Xml = simplexml_load_file($DefaultXMLPath.'JournalDeBord/'.$SESSION['ID']."_JDB.xml");
+				
+				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				$DateLog = strToTime($Date);
+				$DateLog = date("d-M-Y", $DateLog); 
+				
 				return $Xml->children($DateLog);
-			}	
-			else{ //Sinon envoie un message d'erreur
-				echo ("Erreur 001- fichier Xml introuvable");
+			}
+			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+				$Xml = new domxml_new_doc('1.0');
+				$Xml->save($DefaultXMLPath.'/JournalDeBord/'.$SESSION['ID']."_JDB.xml");
 			}
 		}
 		
