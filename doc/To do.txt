@@ -11,6 +11,7 @@
 
 
 
+
 Ordre des processus d'aquisition et d'exécution de stage
 
 -le superviseur s'inscrit
@@ -26,3 +27,19 @@ Ordre des processus d'aquisition et d'exécution de stage
 -le coordonateur fait une éval de fin de session
 -le stagiaire fait un oral et est évaluer par tous prof (additionne toute les notes pi divise par 5)
 -le stagiaire passe(sauf pour baker) 
+
+
+
+_______________
+entreprise qui s'inscrit
+table intermediaire entre user et entreprise
+coordonateur peut gérer entreprise(ajouter modifier supprimer et approuver)
+faire install pour pouvoir déployer le site et la BD
+corrdonateur peut ajouter modifier supprimer et approuver projet
+projet pas visible par stagiaire avant d'être approuver
+coordonateur peut gérer compte
+juste garder entreprise dans bd
+peut purger ancient stagiaire
+coordonateur doit jumeler projet a stagiaire
+coordonateur peut voir ratings des stagiaires
+entreprise peut pu toucher projet après approuvation

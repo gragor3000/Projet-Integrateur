@@ -12,7 +12,7 @@ class models
     protected function DBConnection()
     {
         //Temporaire, mettre les bonne valeur
-        return new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'User', 'Passe');
+        return new PDO('mysql:host=localhost;dbname=db_pIntegrateur;charset=utf8', 'kalahee', 'test');
     }
 
     //Fonction qui permet de récupérer toute les informations d'une recherche
