@@ -1,0 +1,16 @@
+tab{
+    margin-left:10px;
+}
+
+red{
+    color:red;
+}
+
+#connexion{
+    width:250px;
+}
+
+#desc{
+    resize: vertical;
+    height:80px;
+}
