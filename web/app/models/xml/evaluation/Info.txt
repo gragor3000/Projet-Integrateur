@@ -1,0 +1,13 @@
+<pour les coordonnateur>
+balise nom de l'evaluation
+	balise note de levaluation
+		contenu
+	balise note totale
+		contenu
+	balise commentaire
+		contenu
+<pour les superviseur>
+...
+	balise numero de l'evaluation
+		balise numero d'élément
+			contenu

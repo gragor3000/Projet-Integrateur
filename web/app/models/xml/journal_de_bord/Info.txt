@@ -1,0 +1,2 @@
+balises contient la date où l'information à été envoyer.
+	contient les informations de journal de bord 

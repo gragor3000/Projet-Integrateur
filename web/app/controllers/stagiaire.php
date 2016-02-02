@@ -30,7 +30,6 @@
 		//Met à jour le journal de bord des étudiant
 		public function SaveLog($Date, $Data){
 			
-			
 			//Tante de trouver le fichier Xml et de sauvegarder les modifications
 			try {
 				$Xml = simplexml_load_file(parent::DefaultXMLPath.'journal_de_bord/'. $SESSION['ID']."_JDB.xml");
@@ -45,7 +44,7 @@
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
 				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/JournalDeBord/'.$SESSION['ID']."_JDB.xml");
+				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$SESSION['ID']."_JDB.xml");
 			}	
 		}
 		
@@ -54,7 +53,7 @@
 			
 			//Tante de trouver le fichier Xml et de charger son contenu à ',emplacement de la bonne balise
 			try {
-				$Xml = simplexml_load_file($DefaultXMLPath.'JournalDeBord/'.$SESSION['ID']."_JDB.xml");
+				$Xml = simplexml_load_file($DefaultXMLPath.'journal_de_bord/'.$SESSION['ID']."_JDB.xml");
 				
 				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);
@@ -64,7 +63,7 @@
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
 				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/JournalDeBord/'.$SESSION['ID']."_JDB.xml");
+				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$SESSION['ID']."_JDB.xml");
 			}
 		}
 		
