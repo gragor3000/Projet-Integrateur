@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `equip` varchar(512) NOT NULL COMMENT 'equipement',
   `extra` varchar(512) NOT NULL COMMENT 'exigence ',
   `info` varchar(512) NOT NULL COMMENT 'info supplémentaire',
-  `status` tinyint(1) NOT NULL COMMENT '0=en attente 1= approuvée',
+  `status` tinyint(1) NOT NULL COMMENT '0=en attente 1= approuvée 2=refusée',
   `internID` int(11) NULL COMMENT 'stagiaire affecté au projet',
   `entID` int(11) NOT NULL COMMENT 'entreprise du projet',
   PRIMARY KEY (`ID`),
