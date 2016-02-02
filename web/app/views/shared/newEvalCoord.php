@@ -1,14 +1,15 @@
-<!--L'évaluation du stagiaire par le coordonnateur-->
+<!--Nouvelle évaluation du stagiaire par le coordonnateur-->
 <body>
    <h2>Formulaire d'évaluation du coordonnateur</h2>
-   <br>
-      <h3>Nom de l'étudiant : </h3>
-   <br>
-      <h3>Nom du coordonnateur : </h3>
-   <br>
-         <h3>Note : <?=finalRate?> /60</h3>
-   <br>
    <form role="form" id="eval" class="panel panel-default">
+      <label>Nom de l'étudiant : </label>
+     <br>
+      <input type = "text" id = "internName" name = "internName" class="form-control" required>
+     <br>
+      <label>Nom du coordonnateur : </label>
+     <br>
+    <input type = "text" id = "coordName" name = "coordName" class="form-control" required>
+   <br>
     <!--Objectif #1-->
      <div class="row">
 	   <h2>Objectif #1 : L'étudiant(e) participe adéquatement aux différentes étapes de développement d'une application informatique.</h2>
@@ -43,7 +44,7 @@
 		
 		<!--Note objectif #1-->
 		<p>Note : </p>
-		<select id = "objRate1">
+		<select id = "objRate1" class="form-control" name = "objRate1">
 		  <option value = 0>0</option>
 		  <option value = 1>1</option>
 		  <option value = 2>2</option>
@@ -60,9 +61,7 @@
 		
 		<!--Commentaires objectif #1-->
 		<p>Commentaires : </p>
-		<input type = "textarea" id = "objComment1"/>
-		
-		
+		<textarea rows="4" cols="50" id = "objComment1" name = "objComment1" class="form-control" required></textarea>		
     </div>
 	
 	<!--Objectif #2-->
@@ -98,7 +97,7 @@
 		
 		<!--Note objectif #2a-->
 		<p>Note : </p>
-		<select id = "objRate2a">
+		<select id = "objRate2a" class="form-control" name = "objRate2a">
 		  <option value = 0>0</option>
 		  <option value = 1>1</option>
 		  <option value = 2>2</option>
@@ -145,7 +144,7 @@
 		
 		<!--Note objectif #2b-->
 		<p>Note : </p>
-		<select id = "objRate2b">
+		<select id = "objRate2b" class="form-control" name = "objRate2b">
 		  <option value = 0>0</option>
 		  <option value = 1>1</option>
 		  <option value = 2>2</option>
@@ -172,7 +171,7 @@
 		
 		<!--Commentaires objectif #2-->
 		<p>Commentaires : </p>
-		<input type = "textarea" id = "objComment2"/>
+		<textarea rows="4" cols="50" id = "objComment2" name = "objComment2" class="form-control" required></textarea>
 		
 		
     </div>
@@ -210,7 +209,7 @@
 		
 		<!--Note objectif #3a-->
 		<p>Note : </p>
-		<select id = "objRate3a">
+		<select id = "objRate3a" name = "objRate3a" class="form-control">
 		  <option value = 0>0</option>
 		  <option value = 1>1</option>
 		  <option value = 2>2</option>
@@ -256,7 +255,7 @@
 		
 		<!--Note objectif #3b-->
 		<p>Note : </p>
-		<select id = "objRate3b">
+		<select id = "objRate3b" class="form-control" name = "objRate3b">
 		  <option value = 0>0</option>
 		  <option value = 1>1</option>
 		  <option value = 2>2</option>
@@ -270,12 +269,14 @@
 		  <option value = 10>10</option>
 		</select>
 		<br>
-		
+
 		<!--Commentaires objectif #3-->
 		<p>Commentaires : </p>
-		<input type = "textarea" id = "objComment3"/>
-		
-		
+		<textarea rows="4" cols="50" id = "objComment3" name = "objComment3" class="form-control" required></textarea>
+		<br>
+		<br>
+		<!--NE PAS OUBLIER DE CALCULER SA NOTE SUR 60 AUTOMATIQUEMENT-->
+		<button type="submit" formmethod="POST" formaction="">Enregistrer</button>
     </div>
    </form>
 </body>

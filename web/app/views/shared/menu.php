@@ -20,7 +20,7 @@
     </div>
 </nav>
 <?php break; case 2: ?>
-<!--MENU DES SUPERVITEURS-->
+<!--MENU DES SUPERVISEURS-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
