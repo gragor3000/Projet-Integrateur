@@ -17,6 +17,19 @@
 			parent::view('stagiaire/index', $models->ShowTrain($_SESSION['ID']));
 		}
 		
+		//Fonction permettant d'atteindre les differente page de la section
+		public function Access($PageWanting = 0){
+			
+			switch ($PageWanting){
+				case 0:
+					index();
+					break;
+				case 1:
+					parent::view('stagiaire/journal');
+					break;
+			}
+		}
+		
 		
 		//Fonction permettant de donner une nouvelle note a un stage
 		public function NoteTrain ($Note, $Train){

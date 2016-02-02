@@ -6,16 +6,30 @@
 		function ShowTrain($IDTrainer){
 			
 			//Cherche le stage affecter à l'étudiant
-			$TblResult = parent::BDExecute("Select * where InternID =".$IDTrainer);
+			$TblResult = parent::BDExecute("Select * from projects where internID =".$IDTrainer);
 			
 			//Si le stagiaire n'est pas affecter à un stage, liste tous les stages
 			if (count($TblResult) = 0){
 				//Récupère les bonnes information de tous les stages
 				$TblResult = parent::BDRecherche("Select * from projects inner join ratings on projects.ID = ratings.projectID 
-													Where ratings.internID=".$IDTrainer);
+													Where ratings.internID=".$IDTrainer." and projects.status =" /*Numéro indiquant quil est accepter*/);
 			}
-			
+	
 			return $TblResult;
+		}
+		
+		//Permet d'afficher tout les stages qu'un supperviseur particulier à proposer
+		function ShowSupTrain($IDSup){
+			
+			//Trouve tous les stages qui on été ajouté par l'entreprise dont l'id est passé en paramètre
+			return parent::BDRecherche("Select * from projects Where entID=".$IDSup);
+		}
+		
+		//Permet d'afficher tout les stages au coordinateur selon leur status
+		function ShowCoorTrain($Status){
+			
+			//Trouve tous les stages qui on été ajouté par l'entreprise dont l'id est passé en paramètre
+			return parent::BDRecherche("Select * from projects Where status=".$Status);
 		}
 		
 		//Met à jour la note qu'un élève donne à son stage
@@ -28,6 +42,34 @@
 		public function DescTrain ($Train, $IDTrainer){
 			return parent::BDExecute("Select desc, supName, equip, info from projects Where ID=".$Train);
 		}
+		
+		//Fonction permetant de modifier le status d'un projet
+		public function TrainStatus ($IDTrain, $IsAccepted){
+			
+			//S'il est accepter, changer le status pour le bon numéro
+			if ($IsAccepted){
+				parent::BDExecute("UPDATE projects Set status="./*Numéro indiquant quil est accepter*/." Where ID=".$IDTrain);
+			}
+			else{	//Sinon m'être le status qui implique qu'il a été refuser
+				parent::BDExecute("UPDATE projects Set status="./*Numéro indiquant quil est refuser*/." Where ID=".$IDTrain);
+			}
+		}
+		
+		//Fonction permenttant de modifier un projet dans la base de donnée
+		public function EditTrain ($IDTrain, $Title, $SupName, $SupTitle, $SupEmail, $SupTel, $Desc, $Equip, $Extra, $IDSup){
+			
+			//Si le superviseur à travailler sur un projet déjà existant, il fera une modification
+			if ($IDTrain >= 0){
+				parent::BDExecute("UPDATE projects Set title="$Title.", supName=".$SupName.", supTitle=".$SupTitle.", supEmail=".$SupEmail.
+									", supTel=".$SupTel.", desc=".$Desc.", equip=".$Equip.", extra=".$Extra.", status = "./*Numéro indiquant quil est en attente*/."
+									 Where ID=".$IDTrain." and entID=".$IDSpv);
+			}
+			else{	//Sinon cela fera un ajout dans la base de donnée
+				parent::BDExecute("Insert into projects(title,supName,supTitle,supEmail,supTel,desc,equip,extra,status,entID) 
+									values(".$Title.",".$SupName.",".$SupTitle.",".$SupEmail.",".$SupTel.",".$Desc.",".$Equip.",".$Extra.",".$IDSup.")");
+			}
+		}
+		
 	}
 
 ?>

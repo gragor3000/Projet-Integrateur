@@ -19,6 +19,22 @@ class Coordonnateur extends Controller
 		//Ouvre l'index du coordonnateur
 		parent::view('coordonnateur/index');
     }
+	
+	//Fonction permettant d'atteindre les differente page de la section
+		public function Access($PageWanting = 0){
+			
+			switch ($PageWanting){
+				case 0:
+					index();
+					break;
+				case 1:
+					parent::view('coordonnateur/compte');
+					break;
+				case 2:
+					parent::view('superviseur/rapport');
+					break;
+			}
+		}
 
     //valide un compte
     public function AccepterCompte($id)
@@ -33,7 +49,7 @@ class Coordonnateur extends Controller
     }
 	
 	//Fonction permettant de récupérer le rapport d'entrevu
-	public function LoadReport($IDTrainer){
+	/*public function LoadReport($IDTrainer){
 		
 		//Tante de trouver le fichier Xml
 		try {
@@ -72,7 +88,7 @@ class Coordonnateur extends Controller
 			$Xml = new domxml_new_doc('1.0');
 			$Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
 		}	
-	}
+	}*/
 
 
 }
