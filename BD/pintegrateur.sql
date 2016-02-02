@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
---
--- Client :  127.0.0.1
--- Généré le :  Mar 02 Février 2016 à 02:27
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,25 +25,11 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `city` varchar(32) NOT NULL COMMENT 'ville',
   `tel` varchar(25) NOT NULL COMMENT 'téléphone et extension',
   `email` varchar(52) NOT NULL COMMENT 'addresse courriel',
-  `account` int(11) NOT NULL COMMENT 'compte donnée',
+  `account` int(11) NULL COMMENT 'compte donnée',
   `status` tinyint(1) NOT NULL COMMENT '0= en attente 1= approuvée',
   PRIMARY KEY (`ID`),
   KEY `account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='entreprises' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `names`
---
-
-CREATE TABLE IF NOT EXISTS `names` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clé primaire',
-  `name` varchar(64) NOT NULL COMMENT 'nom de l''utilisateur',
-  `userID` int(11) NOT NULL COMMENT 'id de l''utilisateur',
-  PRIMARY KEY (`ID`),
-  KEY `userID` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='nom des utilisateurs' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -70,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `extra` varchar(512) NOT NULL COMMENT 'exigence ',
   `info` varchar(512) NOT NULL COMMENT 'info supplémentaire',
   `status` tinyint(1) NOT NULL COMMENT '0=en attente 1= approuvée',
-  `internID` int(11) NOT NULL COMMENT 'stagiaire affecté au projet',
+  `internID` int(11) NULL COMMENT 'stagiaire affecté au projet',
   `entID` int(11) NOT NULL COMMENT 'entreprise du projet',
   PRIMARY KEY (`ID`),
   KEY `internID` (`internID`),
