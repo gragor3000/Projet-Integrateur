@@ -1,29 +1,33 @@
 Journal de Bord
 
-2016-01-31
-+Ajout de la barre de menu.
-+Changement sur la page d'acceuil.
+2016-02-02 [38dc1d6655b0dffedd4d977f7a6385815971eec2]
++Mise à jour de l'acceuil des visiteurs.
++Mise en page de l'acceuil des stagiaires.
 
-2016-01-30
+2016-02-02 [c42d1b75998b41d82f0d7466dbac90f91221b04a]
++Ajout de sous-menu dans le menu.
+
+2016-02-01 [5414a486c00383737ffb910a66611206f2b9f072]
++Modification du menu.
++Changement à la page d'acceuil.
+
+2016-01-30 [N/A]
 +Réinstallation de LAMP sur le serveur de développement.
 
-2016-01-29
+2016-01-29 [N/A]
 +Discussion d'équipe.
 +Clarification des besoin du client.
 +Bousiller MySQL sur le serveur de développement.
 
-2016-01-28
+2016-01-28 [4bfe81e52b92baca2a989d4eb3752d5444cf4ae7]
 +Configuration du serveur de developpement. [Fonctionnel]
 +Installation de phpMySQL.
 +Modification des noms de fichiers et dossiers.
 
-2016-01-27
+2016-01-27 [a18780a86333f67d79708fead43941f133a6e129]
 +Installation de Apache, MySQL et PHP.
 +Configuration du serveur de developpement.
 +Amélioration de la page d'acceuil pour inclure connexion + création projet.
 +Conception de la base de données.
 +Définir les questions pour le client.
 +Réunion d'équipe.
-
-2016-01-26
-+Prototype de page d'acceuil.
