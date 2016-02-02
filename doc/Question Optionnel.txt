@@ -1,7 +1,4 @@
-﻿1-est ce qu'il garde les ancients stagiaire(oui)
-2-quel format veut rapport/évaluation pour stage/stagiaire(doit demander france pour les formulaires)
-3-est ce qu'il faut une date d'inscription pour Users(faut une année de finissant pour stagiaire)
-4-quand refus de projet ou de compte envoi courriel a la personne refusé pour dire pourquoi
+﻿1- est ce qu'il faut vraiment mettre un calendrier pour les dates pour stagiaires.
 
 
 -OPTIONAL
@@ -12,14 +9,4 @@
 		s'inscrit sinon faire une liste pi si a pas d'entreprise clicker sur "+" 
 		pour afficher l'ajout d'entreprise
 	-lost passsword
-
-
-
-
--SOLUTION
-	-formulaire remplit web 
-	-peut communiquer par courriel
-	-peut modifier les projets
-	-étudiant doit savoir année finissant
-	-doit avoir personne ressource pour superviseur ou projet
 	
