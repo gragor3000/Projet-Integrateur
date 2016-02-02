@@ -66,7 +66,7 @@
 			}
 			else{	//Sinon cela fera un ajout dans la base de donnée
 				parent::BDExecute("Insert into projects(title,supName,supTitle,supEmail,supTel,desc,equip,extra,status,entID) 
-									values(".$Title.",".$SupName.",".$SupTitle.",".$SupEmail.",".$SupTel.",".$Desc.",".$Equip.",".$Extra.",".$IDSup.")");
+									values(".$Title.",".$SupName.",".$SupTitle.",".$SupEmail.",".$SupTel.",".$Desc.",".$Equip.",".$Extra.", 0,".$IDSup.")");
 			}
 		}
 		
