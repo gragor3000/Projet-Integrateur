@@ -12,7 +12,7 @@
 			if (count($TblResult) = 0){
 				//Récupère les bonnes information de tous les stages
 				$TblResult = parent::BDRecherche("Select * from projects inner join ratings on projects.ID = ratings.projectID 
-													Where ratings.internID=".$IDTrainer." and projects.status =" /*Numéro indiquant quil est accepter*/);
+													Where ratings.internID=".$IDTrainer." and projects.status =1");
 			}
 	
 			return $TblResult;
@@ -48,10 +48,10 @@
 			
 			//S'il est accepter, changer le status pour le bon numéro
 			if ($IsAccepted){
-				parent::BDExecute("UPDATE projects Set status="./*Numéro indiquant quil est accepter*/." Where ID=".$IDTrain);
+				parent::BDExecute("UPDATE projects Set status=1 Where ID=".$IDTrain);
 			}
 			else{	//Sinon m'être le status qui implique qu'il a été refuser
-				parent::BDExecute("UPDATE projects Set status="./*Numéro indiquant quil est refuser*/." Where ID=".$IDTrain);
+				parent::BDExecute("UPDATE projects Set status=2 Where ID=".$IDTrain);
 			}
 		}
 		
@@ -61,7 +61,7 @@
 			//Si le superviseur à travailler sur un projet déjà existant, il fera une modification
 			if ($IDTrain >= 0){
 				parent::BDExecute("UPDATE projects Set title="$Title.", supName=".$SupName.", supTitle=".$SupTitle.", supEmail=".$SupEmail.
-									", supTel=".$SupTel.", desc=".$Desc.", equip=".$Equip.", extra=".$Extra.", status = "./*Numéro indiquant quil est en attente*/."
+									", supTel=".$SupTel.", desc=".$Desc.", equip=".$Equip.", extra=".$Extra.", status = 0
 									 Where ID=".$IDTrain." and entID=".$IDSpv);
 			}
 			else{	//Sinon cela fera un ajout dans la base de donnée
