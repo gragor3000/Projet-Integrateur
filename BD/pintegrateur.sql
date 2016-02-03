@@ -1,5 +1,4 @@
 
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `entreprises` (
   `city` varchar(32) NOT NULL COMMENT 'ville',
   `tel` varchar(25) NOT NULL COMMENT 'téléphone et extension',
   `email` varchar(52) NOT NULL COMMENT 'addresse courriel',
-  `account` int(11) NULL COMMENT 'compte donnée',
+  `account` int(11) DEFAULT NULL COMMENT 'compte donnée',
   `status` tinyint(1) NOT NULL COMMENT '0= en attente 1= approuvée',
   PRIMARY KEY (`ID`),
   KEY `account` (`account`)
@@ -48,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `equip` varchar(512) NOT NULL COMMENT 'equipement',
   `extra` varchar(512) NOT NULL COMMENT 'exigence ',
   `info` varchar(512) NOT NULL COMMENT 'info supplémentaire',
-  `status` tinyint(1) NOT NULL COMMENT '0=en attente 1= approuvée 2=refusée',
-  `internID` int(11) NULL COMMENT 'stagiaire affecté au projet',
+  `status` tinyint(1) NOT NULL COMMENT '0=en attente 1= approuvée',
+  `internID` int(11) DEFAULT NULL COMMENT 'stagiaire affecté au projet',
   `entID` int(11) NOT NULL COMMENT 'entreprise du projet',
   PRIMARY KEY (`ID`),
   KEY `internID` (`internID`),
@@ -80,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'clé primaire',
+  `name` varchar(64) NOT NULL COMMENT 'nom de l''utilisateur',
   `user` varchar(24) NOT NULL COMMENT 'nom d''utilisateur',
   `pw` varchar(24) NOT NULL COMMENT 'mot de passe ',
   `token` varchar(32) DEFAULT NULL COMMENT 'numéro d''authentification',
@@ -98,24 +98,18 @@ ALTER TABLE `entreprises`
   ADD CONSTRAINT `fk_account` FOREIGN KEY (`account`) REFERENCES `users` (`ID`);
 
 --
--- Contraintes pour la table `names`
---
-ALTER TABLE `names`
-  ADD CONSTRAINT `fk_NUserID` FOREIGN KEY (`userID`) REFERENCES `users` (`ID`);
-
---
 -- Contraintes pour la table `projects`
 --
 ALTER TABLE `projects`
-  ADD CONSTRAINT `fk_PInternID` FOREIGN KEY (`internID`) REFERENCES `users` (`ID`),
-  ADD CONSTRAINT `fk_entID` FOREIGN KEY (`entID`) REFERENCES `entreprises` (`ID`);
+  ADD CONSTRAINT `fk_entID` FOREIGN KEY (`entID`) REFERENCES `entreprises` (`ID`),
+  ADD CONSTRAINT `fk_PInternID` FOREIGN KEY (`internID`) REFERENCES `users` (`ID`);
 
 --
 -- Contraintes pour la table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD CONSTRAINT `fk_RInternID` FOREIGN KEY (`internID`) REFERENCES `users` (`ID`),
-  ADD CONSTRAINT `fk_projectID` FOREIGN KEY (`projectID`) REFERENCES `projects` (`ID`);
+  ADD CONSTRAINT `fk_projectID` FOREIGN KEY (`projectID`) REFERENCES `projects` (`ID`),
+  ADD CONSTRAINT `fk_RInternID` FOREIGN KEY (`internID`) REFERENCES `users` (`ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
