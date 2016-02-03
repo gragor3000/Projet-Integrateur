@@ -15,7 +15,7 @@
    <br>
    <input type = "text" id = "supEmail" name = "supEmail" class="form-control" required>
    <br>
-   <label>Téléphone : </label>
+   <label>T&eacute;l&eacute;phone : </label>
    <br>
    <input type = "text" id = "supTel" name = "supTel" class="form-control" required>
    <br>
@@ -25,22 +25,22 @@
    <input type = "text" id = "projetTitle" name = "projetTitle" required>
    <br>
     <!--Description du projet-->
-	<label>Description et étapes de réalisation</label>
+	<label>Description et &eacute;tapes de r&eacute;alisation</label>
 	<br>
 	<textarea rows="4" cols="50" id = "projetDesc" name = "projetDesc" class="form-control" required></textarea>
 	<br>
-	<!--Équipements du projet-->
-	<label>Matériels et projets prévus pour la réalisation</label>
+	<!--&eacute;quipements du projet-->
+	<label>Mat&eacute;riels et projets pr&eacute;vus pour la r&eacute;alisation</label>
 	<br>
 	<textarea rows="4" cols="50" id = "projetEquip" name = "projetEquip" class="form-control" required></textarea>
 	<br>
 	<!--Exigences du projet-->
-	<label>Exigences particulières</label>
+	<label>Exigences particuli&egrave;res</label>
 	<br>
 	<textarea rows="4" cols="50" id = "projetExtra" name = "projetExtra" class="form-control" required></textarea>
 	<br>
 	<!--Commentaires du projet-->
-	<label>Commentaires et informations complémentaires</label>
+	<label>Commentaires et informations compl&eacute;mentaires</label>
 	<br>
 	<textarea rows="4" cols="50" id = "projetInfo" name = "projetInfo" class="form-control" required></textarea>
 	<br>

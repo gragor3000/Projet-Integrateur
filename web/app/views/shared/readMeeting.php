@@ -1,16 +1,16 @@
-<!--Rapport d'entrevue en lecture-->
+<!--Rapport d&apos;entrevue en lecture-->
 <body>
-   <h2>Rapport d'entrevue</h2>
-   <p>Nom de l'étudiant : <?=name?></p>
-   <p>Service / département  où l’étudiant effectuera son stage : <?=service?></p>
-   <p>Poste visé : <?=poste?></p>
-   <p>Date d'arrivée : <?=dates?></p>
-   <p>Heure d'arrivée : <?=hour?></p>
+   <h2>Rapport d&apos;entrevue</h2>
+   <p>Nom de l&apos;&eacute;tudiant : <?=name?></p>
+   <p>Service / d&eacute;partement  o&ugrave; l&apos;&eacute;tudiant effectuera son stage : <?=service?></p>
+   <p>Poste vis&eacute; : <?=poste?></p>
+   <p>Date d&apos;arriv&eacute;e : <?=dates?></p>
+   <p>Heure d&apos;arriv&eacute;e : <?=hour?></p>
    <br>
-   <!--Formulaire d'entrevue-->
+   <!--Formulaire d&apos;entrevue-->
    <table>
     <tr>
-	  <th>Critères</th>
+	  <th>Crit&egrave;res</th>
 	  <th>Mauvais</th>
 	  <th>Insatisfait</th>
 	  <th>Assez bien</th>
@@ -42,7 +42,7 @@
 	 <td><input type = "radio" name = "crit3" value = "5"/></td>
 	</tr>
 	<tr>
-	 <td><p>Présentation soignée</p></td>
+	 <td><p>Pr&eacute;sentation soign&eacute;e</p></td>
 	 <td><input type = "radio" name = "crit4" value = "1" /></td>
 	 <td><input type = "radio" name = "crit4" value = "2"/></td>
 	 <td><input type = "radio" name = "crit4" value = "3"/></td>
@@ -50,7 +50,7 @@
 	 <td><input type = "radio" name = "crit4" value = "5"/></td>
 	</tr>
 	<tr>
-	 <td><p>Qualité des réponses</p></td>
+	 <td><p>Qualit&eacute; des r&eacute;ponses</p></td>
 	 <td><input type = "radio" name = "crit5" value = "1" /></td>
 	 <td><input type = "radio" name = "crit5" value = "2" /></td>
 	 <td><input type = "radio" name = "crit5" value = "3" /></td>
