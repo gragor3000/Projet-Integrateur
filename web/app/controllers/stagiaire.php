@@ -7,7 +7,7 @@
 			session_start();
 		}
 		
-		//Fonction appeler par défaut
+		//Fonction appeler par dï¿½faut
 		public function index ( $name = '' ){
 		
 			parent::model("projets");
@@ -40,14 +40,14 @@
 		}
 		
 		
-		//Met à jour le journal de bord des étudiant
+		//Met ï¿½ jour le journal de bord des ï¿½tudiant
 		public function SaveLog($Date, $Data){
 			
 			//Tante de trouver le fichier Xml et de sauvegarder les modifications
 			try {
-				$Xml = simplexml_load_file(parent::DefaultXMLPath.'journal_de_bord/'. $SESSION['ID']."_JDB.xml");
+				$Xml = simplexml_load_file(parent::DefaultXMLPath.'journal_de_bord/'. $_SESSION['ID']."_JDB.xml");
 				
-				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				//Rï¿½cupï¿½re la date passer en paramï¿½tre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);
 				$DateLog = date("d-M-Y", $DateLog);
 					
@@ -55,36 +55,36 @@
 				$Xml->appendChild($Tag);
 				$Xml->saveXML();
 			}
-			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+			catch{ //Si le fichier n'est pas trouver, en crï¿½er un nouveau
 				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$SESSION['ID']."_JDB.xml");
+				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_SESSION['ID']."_JDB.xml");
 			}	
 		}
 		
-		//Récupère les informations du journal de bord de l'étudiant
+		//Rï¿½cupï¿½re les informations du journal de bord de l'ï¿½tudiant
 		public function LoadLog($Date){
 			
-			//Tante de trouver le fichier Xml et de charger son contenu à ',emplacement de la bonne balise
+			//Tante de trouver le fichier Xml et de charger son contenu ï¿½ ',emplacement de la bonne balise
 			try {
-				$Xml = simplexml_load_file($DefaultXMLPath.'journal_de_bord/'.$SESSION['ID']."_JDB.xml");
-				
-				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				$Xml = simplexml_load_file($DefaultXMLPath.'journal_de_bord/'.$_SESSION['ID']."_JDB.xml");
+
+				//Rï¿½cupï¿½re la date passer en paramï¿½tre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);
 				$DateLog = date("d-M-Y", $DateLog); 
 				
 				return $Xml->children($DateLog);
 			}
-			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+			catch{ //Si le fichier n'est pas trouver, en crï¿½er un nouveau
 				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$SESSION['ID']."_JDB.xml");
+				$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_SESSION['ID']."_JDB.xml");
 			}
 		}
 		
 		
-		//Permet de récupérer les informations de comptes
+		//Permet de rï¿½cupï¿½rer les informations de comptes
 		public function LoadAccountData (){
 			
-			//Cherche les informations de l'étudiant
+			//Cherche les informations de l'ï¿½tudiant
 			return $models->BDExecute(" =".SESSION['ID']);
 			
 		}
@@ -92,7 +92,7 @@
 		//Permet de changer les informations de comptes
 		public function SaveAccountData ($User, $PWord){
 			
-			//Change les informations de connection de l'étudiant
+			//Change les informations de connection de l'ï¿½tudiant
 			$models->BDExecute(" =".SESSION['ID']);
 		}
 		

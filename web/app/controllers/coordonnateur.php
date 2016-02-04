@@ -2,14 +2,14 @@
 
 class Coordonnateur extends Controller
 {
-    private $models;//pointe vers la classe model
+    private $account;//pointe vers la classe model
 
     //Constructeur de la classe
     public function __construct()
     {
         session_start();
         parent::model("models");
-        $this->models = new models();
+        $this->account = new account();
     }
 
     //Fonction appeler par défaut
@@ -39,13 +39,13 @@ class Coordonnateur extends Controller
     //valide un compte
     public function AccepterCompte($id)
     {
-        $this->models->ValidateAccount($id);
+        $this->account->ValidateAccount($id);
     }
 
     //ajoute un compte dans la bd
     public function CreateUser($firstName, $lastName, $pw, $email, $tel, $type)
     {
-        $this->models->CreateUser($firstName, $lastName, $pw, $email, $tel, $type);
+        $this->account->CreateUser($firstName, $lastName, $pw, $email, $tel, $type);
     }
 	
 	//Fonction permettant de récupérer le rapport d'entrevu
