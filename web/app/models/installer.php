@@ -63,6 +63,6 @@ class installer extends models
                           CONSTRAINT pk_usID PRIMARY KEY(ID);");
 
         //ajoute le premier coordonateur
-        parent::DBExecute("INSERT INTO users(name,user,pw,rank) VALUES(".$_name.",".$_username.",".$_pw.",0)");
+        parent::DBExecute("INSERT INTO users(name,user,pw,rank) VALUES('".$_name."','".$_username."','".$_pw."',0)");
     }
 }
