@@ -1,8 +1,12 @@
 Journal de Bord
 
+2016-02-03 [f151e53fe786f02175a0d8e66a9a4a5e1e4f4746]
++Ajout d'un footer pour lien "Retour en haut".
++Modification de l'acceuil des stagiaires pour cas avec projet.
+
 2016-02-02 [38dc1d6655b0dffedd4d977f7a6385815971eec2]
 +Mise à jour de l'acceuil des visiteurs.
-+Mise en page de l'acceuil des stagiaires.
++Mise en page de l'acceuil des stagiaires pour cas listing de projet à choisir.
 
 2016-02-02 [c42d1b75998b41d82f0d7466dbac90f91221b04a]
 +Ajout de sous-menu dans le menu.
