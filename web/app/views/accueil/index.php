@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <center>
-                            <button type="submit" formmethod="POST" formaction="">Soumettre</button>
+                            <button type="submit" formmethod="POST" formaction="#">Soumettre</button>
                         </center>
                     </div>
                 </div>

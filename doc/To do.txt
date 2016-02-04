@@ -9,9 +9,9 @@
 + Liste des projets autorisés (PHP->HTML)
 - Evaluation des projets (HTML->PHP)
 <--Après projet assigné-->
-[SHARED-PROJECT]- Information du projet assigné (PHP->HTML)
-[SHARED-LOGBOOK]- Affichage des journaux précédents (HTML->PHP)
-|- Formulaire du journal (PHP->HTML)
++ Information du projet assigné (PHP->HTML)
++ Affichage des journaux précédents (PHP->HTML)
+- Formulaire du journal (PHP->HTML)
 |- Visualisation des évaluations (PHP->HTML)
 
 [TODO]informaiton stagiaire

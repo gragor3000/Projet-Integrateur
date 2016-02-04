@@ -5,3 +5,20 @@ tab{
 #connexion{
     width:250px;
 }
+
+#back2top{
+	text-align:center;
+	position: fixed;
+	bottom : 20px;
+	right : 20px;
+	width : 200px;
+}
+
+#back2top > a{
+	text-decoration:none;
+	text-shadow: 0px 0px 5px white;
+}
+
+#back2top > a:hover{
+	font-weight:bold;
+}
