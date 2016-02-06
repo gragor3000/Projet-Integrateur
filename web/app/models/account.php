@@ -27,11 +27,11 @@ class account extends models
         return $token;
     }
 
-<<<<<<< HEAD
+
     /*//crï¿½ation d'usager
     public function CreateIntern($user, $pw, $group)
 =======
-    //création d'usager
+    //crï¿½ation d'usager
     public function CreateUser($user, $pw, $group)
 >>>>>>> origin/master
     {
@@ -42,10 +42,9 @@ class account extends models
 
     }
 
-    //création d'entreprise
+    //crï¿½ation d'entreprise
     public function CreateBusiness($address, $city, $tel, $email, $account)
     {
-<<<<<<< HEAD
 
     }*/
 
@@ -96,11 +95,10 @@ class account extends models
     public function ShowMyInfo($token)
     {
         return parent::DBSearch("SELECT name,user,pw FROM users WHERE token =".$token);
-=======
+
         $cmd = "INSERT INTO entreprises (address, city, tel, email, account)";
         $values = "VALUES(" + $address + "," + $city + "," + $tel + "," + $email + "," + $account + ")";
         $this->DBExecute($cmd + $values);
->>>>>>> origin/master
     }
 
     //connexion de l'utilisateur avec nom et mot de passe

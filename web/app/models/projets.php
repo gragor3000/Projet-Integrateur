@@ -93,9 +93,6 @@ class projets extends models
     {
         parent::DBExecute("DELETE FROM projects WHERE ID =".$id);
     }
-
-
-
 }
 
 ?>
