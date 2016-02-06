@@ -1,6 +1,6 @@
 <?php
 
-	class Superviseur extends Controller{
+	class superviseur extends Controller{
 		
 		private $models;//pointe vers la classe model
 		
@@ -11,7 +11,7 @@
 			$this->models = new models();
 		}
 		
-		//Fonction appeler par défaut
+		//Fonction appeler par dï¿½faut
 		public function index ( $name = '' ){
 			
 			parent::model("projets");
@@ -37,7 +37,7 @@
 			}
 		}
 		
-		//Fonction permettant de modifier ou créé un nouveau projet de stage
+		//Fonction permettant de modifier ou crï¿½ï¿½ un nouveau projet de stage
 		public function EditTrain($IDTrain, $Title, $SupName, $SupTitle, $SupEmail, $SupTel, $Desc, $Equip, $Extra){
 			
 			parent::model("projets");
@@ -47,14 +47,14 @@
 			
 		}
 		
-		//Fonction permettant de récupérer le rapport d'entrevu
+		//Fonction permettant de rï¿½cupï¿½rer le rapport d'entrevu
 		/*public function SaveReport($IDTrainer){
 			
 			//Tante de trouver le fichier Xml
 			try {
 				$Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
 				
-				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				//Rï¿½cupï¿½re la date passer en paramï¿½tre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);
 				$DateLog = date("d-M-Y", $DateLog);
 					
@@ -62,20 +62,20 @@
 				$Xml->appendChild($Tag);
 				$Xml->saveXML();
 			}
-			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+			catch{ //Si le fichier n'est pas trouver, en crï¿½er un nouveau
 				$Xml = new domxml_new_doc('1.0');
 				$Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
 			}	
 		}
 		
-		//Fonction permettant de récupérer le rapport d'entrevu
+		//Fonction permettant de rï¿½cupï¿½rer le rapport d'entrevu
 		public function SaveEvaluation($IDTrainer){
 			
 			//Tante de trouver le fichier Xml
 			try {
 				$Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
 				
-				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+				//Rï¿½cupï¿½re la date passer en paramï¿½tre pour l'utiliser comme balise pour le XML
 				$DateLog = strToTime($Date);
 				$DateLog = date("d-M-Y", $DateLog);
 					
@@ -83,7 +83,7 @@
 				$Xml->appendChild($Tag);
 				$Xml->saveXML();
 			}
-			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+			catch{ //Si le fichier n'est pas trouver, en crï¿½er un nouveau
 				$Xml = new domxml_new_doc('1.0');
 				$Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
 			}	

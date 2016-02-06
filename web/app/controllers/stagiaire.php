@@ -1,6 +1,6 @@
 <?php
 
-	class Stagiaire extends Controller{
+	class stagiaire extends Controller{
 		
 		//Constructeur de la classe
 		public function __construct(){

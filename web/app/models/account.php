@@ -2,21 +2,26 @@
 
 class account extends models
 {
+<<<<<<< HEAD
     //Génération de token.
+=======
+
+    //gï¿½nï¿½ration de token et vï¿½rification de doublons
+>>>>>>> origin/master
     public function TokenGen()
     {
 		//Création du token.
         $data = "qwertyuiopasdfghjklzxcvbnm1234567890";
         $token = "";
-        for($i = 0; $i < 32; $i++)
-        {
-            $rng = rand(0,strlen($data));
+        for ($i = 0; $i < 32; $i++) {
+            $rng = rand(0, strlen($data));
             $token += $data[$rng];
         }
 
 		//Vérification d'un doublon.
         $cmd = "SELECT token FROM users WHERE token=" + $token;
         $result = $this->DBSearch($cmd);
+<<<<<<< HEAD
         if($result == null) TokenGen();
 		
         return $token;
@@ -29,6 +34,20 @@ class account extends models
     //création d'usager
     public function CreateUser($user, $pw, $group)
 >>>>>>> origin/master
+=======
+        if ($result[0][0] == null)
+            $this->TokenGen();
+        return $token;
+    }
+
+
+    /*//crï¿½ation d'usager
+    public function CreateIntern($user, $pw, $group)
+    
+    //crï¿½ation d'usager
+    public function CreateUser($user, $pw, $group)
+
+>>>>>>> origin/master
     {
         //verifier que "Type" cause pas de probleme
         $cmd = "INSERT INTO users (user, pw, Group)";
@@ -37,9 +56,60 @@ class account extends models
 
     }
 
-    //création d'entreprise
+    //crï¿½ation d'entreprise
     public function CreateBusiness($address, $city, $tel, $email, $account)
     {
+
+    }*/
+
+    //crÃ©ation d'un compte
+    public function CreateUser($name, $user, $pw, $rank)
+    {
+        parent::DBExecute("INSERT INTO users (name,user,pw,rank)
+                          VALUES('" . $name . "','" . $user . "','" . $pw . "'," . $rank . ")");
+    }
+
+    //retourne tous les comptes
+    public function ShowUsers()
+    {
+        return parent::DBSearch("SELECT name,rank FROM users");
+    }
+
+    //supprime un utilisateur
+    public function DeleteUser($id)
+    {
+        parent::DBExecute("DELETE FROM users WHERE ID = ".$id);
+    }
+
+    //modifie les infos d'un compte
+    public function UpdateUser($id,$name,$user,$rank)
+    {
+        parent::DBExecute("UPDATE users SET name = '".$name."', user ='".$user."',rank =".$rank ." WHERE ID =".$id);
+    }
+
+    //modifie le mot de passe d'un compte
+    public function UpdatePw($id,$pw)
+    {
+        parent::DBExecute("UPDATE users SET pw ='".$pw."' WHERE ID =".$id);
+    }
+
+    //modifie ses infos
+    public function UpdateMyInfo($token,$name,$user)
+    {
+        parent::DBExecute("UPDATE users SET name ='".$name."',"."user = '".$user."' WHERE token = ".$token);
+    }
+
+    //modife son mot de passe
+    public function UpdateMyPw($token,$pw)
+    {
+        parent::DBExecute("UPDATE users SET pw ='".$pw."' WHERE token =".$token);
+    }
+
+    //retourne les ses infos
+    public function ShowMyInfo($token)
+    {
+        return parent::DBSearch("SELECT name,user,pw FROM users WHERE token =".$token);
+
         $cmd = "INSERT INTO entreprises (address, city, tel, email, account)";
         $values = "VALUES(" + $address + "," + $city + "," + $tel + "," + $email + "," + $account + ")";
         $this->DBExecute($cmd + $values);
@@ -71,6 +141,7 @@ class account extends models
     public function TokenLogin($token)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//Valider la connexion.
         $cmd = "SELECT ID, group FROM users WHERE token = " + $token;
         $result = $this->DBSearch($cmd);
@@ -79,6 +150,9 @@ class account extends models
 =======
         if($token != "")
         {
+=======
+        if ($token != "") {
+>>>>>>> origin/master
             $cmd = "SELECT ID, group FROM users WHERE token = " + $token;
             $result = $this->DBSearch($cmd);
             $_SESSION["token"] = $token;

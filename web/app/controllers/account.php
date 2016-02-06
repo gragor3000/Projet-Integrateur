@@ -6,6 +6,7 @@
  * Date: 2016-02-06
  * Time: 14:26
  */
+/*
 class Account extends Controller{
 
     private $models;//pointe vers la classe model
@@ -17,7 +18,7 @@ class Account extends Controller{
         $this->models = new models();
     }
 
-    //Fonction appeler par défaut
+    //Fonction appeler par dï¿½faut
     public function index ( $name = '' ){
 
         //Ouvre l'index de l'acceuil
@@ -35,7 +36,7 @@ class Account extends Controller{
             parent::view("index");
     }
 
-    //appel la création de compte utilisateur
+    //appel la crï¿½ation de compte utilisateur
     public function CreateUser()
     {
         if ($_POST["Action"] == "CreateUser") {
@@ -46,7 +47,7 @@ class Account extends Controller{
             parent::view("index");
     }
 
-    //appel la création de compte entreprise
+    //appel la crï¿½ation de compte entreprise
     public function CreateBusiness()
     {
         if ($_POST["Action"] == "CreateBusiness") {
@@ -56,7 +57,6 @@ class Account extends Controller{
         else
             parent::view("index");
     }
-}
-{
+}*/
 
-}
+

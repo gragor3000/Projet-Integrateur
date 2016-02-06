@@ -19,24 +19,24 @@
 - Modification des informations (HTML->PHP)
 
 [TODO]acceuil coordonateur
-- Liste des entreprises à autorisé (PHP->HTML)
-- Confirmation d'autorisation des entreprises (HTML->PHP)
-- Liste des projets à autorisé (PHP->HTML)
-- Confirmation d'autorisation des projets (HTML->PHP)
+- Liste des entreprises à autorisé (PHP->HTML) [FAIT]
+- Confirmation d'autorisation des entreprises (HTML->PHP) [FAIT]
+- Liste des projets à autorisé (PHP->HTML) [FAIT]
+- Confirmation d'autorisation des projets (HTML->PHP) [FAIT]
 
 [TODO]information coordonateur
-- Affichage des informations (PHP->HTML)
-- Modification des informations (HTML->PHP)
+- Affichage des informations (PHP->HTML) [FAIT]
+- Modification des informations (HTML->PHP) [FAIT]
 
 [TODO]comptes coordonnateur
-- Affichage des comptes (PHP->HTML)
-- Suppression de compte (HTML->PHP)
-|- Création et modification de compte (HTML->PHP)
+- Affichage des comptes (PHP->HTML) [FAIT]
+- Suppression de compte (HTML->PHP) [FAIT]
+|- Création et modification de compte (HTML->PHP) [FAIT]
 
 [TODO]projets coordonnateur
-- Liste des projets (PHP->HTML)
+- Liste des projets (PHP->HTML) [FAIT]
 - Ouverture des détails (HTML->HTML)
-|- Création et modification de projet (HTML->PHP)
+|- Création et modification de projet (HTML->PHP) [FAIT]
 
 [TODO]details projets coordonnateur
 [SHARED-PROJECT]- Affichage des projets (PHP->HTML)

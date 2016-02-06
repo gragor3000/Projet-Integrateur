@@ -1,6 +1,11 @@
 <?php
+<<<<<<< HEAD
 	//Contrôleur d'acceuil.
 	class home extends Controller{
+=======
+
+	class accueil extends Controller{
+>>>>>>> origin/master
 		
 		//Index par défaut.
 		public function index ( $name = '' ){
