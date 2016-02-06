@@ -8,31 +8,26 @@
  */
 class account extends models
 {
-    public function account()
-    {
-        session_start();
-    }
 
-    //génération de token et vérification de doublons
+    //gï¿½nï¿½ration de token et vï¿½rification de doublons
     public function TokenGen()
     {
         $data = "qwertyuiopasdfghjklzxcvbnm1234567890";
         $token = "";
-        for($i = 0; $i < 32; $i++)
-        {
-            $rng = rand(0,strlen($data));
+        for ($i = 0; $i < 32; $i++) {
+            $rng = rand(0, strlen($data));
             $token += $data[$rng];
         }
 
         $cmd = "SELECT token FROM users WHERE token=" + $token;
         //pas certain de ce que la BD renvoie si trouve rien
         $result = $this->DBSearch($cmd);
-        if($result[0][0] == null)
+        if ($result[0][0] == null)
             $this->TokenGen();
         return $token;
     }
 
-    //création d'usager
+    /*//crï¿½ation d'usager
     public function CreateIntern($user, $pw, $group)
     {
         //verifier que "Type" cause pas de probleme
@@ -49,6 +44,55 @@ class account extends models
     public function CreateBusiness()
     {
 
+    }*/
+
+    //crÃ©ation d'un compte
+    public function CreateUser($name, $user, $pw, $rank)
+    {
+        parent::DBExecute("INSERT INTO users (name,user,pw,rank)
+                          VALUES('" . $name . "','" . $user . "','" . $pw . "'," . $rank . ")");
+    }
+
+    //retourne tous les comptes
+    public function ShowUsers()
+    {
+        return parent::DBSearch("SELECT name,rank FROM users");
+    }
+
+    //supprime un utilisateur
+    public function DeleteUser($id)
+    {
+        parent::DBExecute("DELETE FROM users WHERE ID = ".$id);
+    }
+
+    //modifie les infos d'un compte
+    public function UpdateUser($id,$name,$user,$rank)
+    {
+        parent::DBExecute("UPDATE users SET name = '".$name."', user ='".$user."',rank =".$rank ." WHERE ID =".$id);
+    }
+
+    //modifie le mot de passe d'un compte
+    public function UpdatePw($id,$pw)
+    {
+        parent::DBExecute("UPDATE users SET pw ='".$pw."' WHERE ID =".$id);
+    }
+
+    //modifie ses infos
+    public function UpdateMyInfo($token,$name,$user)
+    {
+        parent::DBExecute("UPDATE users SET name ='".$name."',"."user = '".$user."' WHERE token = ".$token);
+    }
+
+    //modife son mot de passe
+    public function UpdateMyPw($token,$pw)
+    {
+        parent::DBExecute("UPDATE users SET pw ='".$pw."' WHERE token =".$token);
+    }
+
+    //retourne les ses infos
+    public function ShowMyInfo($token)
+    {
+        return parent::DBSearch("SELECT name,user,pw FROM users WHERE token =".$token);
     }
 
     //connexion de l'utilisateur avec nom et mot de passe
@@ -71,8 +115,7 @@ class account extends models
     //connexion automatique de l'utilisateur avec un token
     public function TokenLogin($token)
     {
-        if($token != "")
-        {
+        if ($token != "") {
             $cmd = "SELECT ID, group FROM users WHERE token = " + $token;
             $result = $this->DBSearch($cmd);
             $_SESSION["token"] = $token;
