@@ -1,6 +1,6 @@
 <?php
 
-	class Accueil extends Controller{
+	class accueil extends Controller{
 		
 		private $models;//pointe vers la classe model
 		

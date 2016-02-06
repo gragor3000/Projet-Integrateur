@@ -1,6 +1,6 @@
 <?php
 
-class projets extends models
+class projects extends models
 {
 
     //Permet d'afficher tout les stages on le stage affecter � l'�tudiant
