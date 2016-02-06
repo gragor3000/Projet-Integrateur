@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_COOKIE["token"])) {
-    class Coordonnateur extends Controller
+    class coordonnateur extends Controller
     {
         private $account;//permet utiliser fonction du model account
         private $cie;//permet utiliser fonction du model autorise
@@ -16,7 +16,7 @@ if (isset($_COOKIE["token"])) {
             parent::model("cie");
             $this->cie = new cie();
 
-            parent::model("projets");
+            parent::model("projects");
             $this->projects = new projets();
         }
 

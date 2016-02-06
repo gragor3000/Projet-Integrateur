@@ -5,7 +5,7 @@
  * Date: 03/02/2016
  * Time: 13:19
  */
-class Install extends Controller
+class install extends Controller
 {
     private $installer;//pointe vers la classe model
 

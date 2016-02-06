@@ -30,10 +30,10 @@ class account extends models
 
     /*//cr�ation d'usager
     public function CreateIntern($user, $pw, $group)
-=======
+    
     //cr�ation d'usager
     public function CreateUser($user, $pw, $group)
->>>>>>> origin/master
+
     {
         //verifier que "Type" cause pas de probleme
         $cmd = "INSERT INTO users (user, pw, Group)";
