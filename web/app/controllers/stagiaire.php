@@ -8,7 +8,7 @@
 		}
 		
 		//Fonction appeler par d�faut
-		public function index ( $name = '' ){
+		public function Index (){
 		
 			parent::model("projets");
 			$models = new projets();
@@ -16,20 +16,12 @@
 			//Ouvre l'index du stagiaire en envoyant un tableau d'information
 			parent::view('stagiaire/index', $models->ShowTrain($_SESSION['ID']));
 		}
-		
-		//Fonction permettant d'atteindre les differente page de la section
-		public function Access($PageWanting = 0){
+
+		//À FAIRE POUR RECEVOIR LES INFORMATIONS DU COMPTE.
+		public function Info (){
 			
-			switch ($PageWanting){
-				case 0:
-					index();
-					break;
-				case 1:
-					parent::view('stagiaire/journal');
-					break;
-			}
+			parent::view('stagiaire/info');
 		}
-		
 		
 		//Fonction permettant de donner une nouvelle note a un stage
 		public function NoteTrain ($Note, $Train){
@@ -41,15 +33,14 @@
 		
 		
 		//Met � jour le journal de bord des �tudiant
-		public function SaveLog($Date, $Data){
+		public function SaveLog($Data){
 			
-			//Tante de trouver le fichier Xml et de sauvegarder les modifications
+			//Tente de trouver le fichier Xml et de sauvegarder les modifications
 			try {
 				$Xml = simplexml_load_file(parent::DefaultXMLPath.'journal_de_bord/'. $_SESSION['ID']."_JDB.xml");
 				
-				//R�cup�re la date passer en param�tre pour l'utiliser comme balise pour le XML
-				$DateLog = strToTime($Date);
-				$DateLog = date("d-M-Y", $DateLog);
+				//Obtient la date et l'heure courante.
+				$DateLog = date();
 					
 				$Tag = $Xml->createElement($DateLog, $Data);
 				$Xml->appendChild($Tag);
@@ -61,10 +52,11 @@
 			}	
 		}
 		
+		//À MODIFIER POUR SEULEMENT INCLURE LE FICHIER XML DIRECTEMENT, PAS EN PAGE.
 		//R�cup�re les informations du journal de bord de l'�tudiant
 		public function LoadLog($Date){
 			
-			//Tante de trouver le fichier Xml et de charger son contenu � ',emplacement de la bonne balise
+			//Tente de trouver le fichier Xml et de charger son contenu � ',emplacement de la bonne balise
 			try {
 				$Xml = simplexml_load_file($DefaultXMLPath.'journal_de_bord/'.$_SESSION['ID']."_JDB.xml");
 
@@ -89,6 +81,7 @@
 			
 		}
 		
+		//SEUL LE MOT DE PASSE POURRA ÊTRE CHANGER.
 		//Permet de changer les informations de comptes
 		public function SaveAccountData ($User, $PWord){
 			
