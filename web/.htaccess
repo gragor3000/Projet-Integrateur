@@ -1,1 +1,17 @@
-RewriteEngine on
+Options +FollowSymLinks
+
+RewriteEngine On
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME} !-l
+
+
+
+RewriteBase /web/public
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
