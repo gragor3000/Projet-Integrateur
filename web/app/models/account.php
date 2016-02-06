@@ -1,21 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: 1229753
- * Date: 01/02/2016
- * Time: 15:07
- */
 class account extends models
 {
-    public function account()
-    {
-        session_start();
-    }
-
-    //génération de token et vérification de doublons
+    //Génération de token.
     public function TokenGen()
     {
+		//Création du token.
         $data = "qwertyuiopasdfghjklzxcvbnm1234567890";
         $token = "";
         for($i = 0; $i < 32; $i++)
@@ -24,15 +14,15 @@ class account extends models
             $token += $data[$rng];
         }
 
+		//Vérification d'un doublon.
         $cmd = "SELECT token FROM users WHERE token=" + $token;
-        //pas certain de ce que la BD renvoie si trouve rien
         $result = $this->DBSearch($cmd);
-        if($result[0][0] == null)
-            $this->TokenGen();
+        if($result == null) TokenGen();
+		
         return $token;
     }
 
-    //création d'usager
+    //Création de stagiare.
     public function CreateIntern($user, $pw, $group)
     {
         //verifier que "Type" cause pas de probleme
@@ -51,39 +41,35 @@ class account extends models
 
     }
 
-    //connexion de l'utilisateur avec nom et mot de passe
-    public function Login($user, $pw)
+    //Connexion de l'utilisateur.
+    public function UserLogin($user, $pw)
     {
-        $cmd = "SELECT ID, group FROM users WHERE user= " + $user + " Password= " + md5($pw);
-        $result = $this->DBSearch($cmd);
-        $_SESSION["id"] = $result[0][0];
-        $_SESSION["group"] = $result[0][1];
+		//Valider la connexion.
+        $cmd = "SELECT ID, group FROM users WHERE user='" . addslashes($user) . "' password='" . addslashes(md5($pw))) . "'";
+        $result = DBSearch($cmd);
 
-        $token = TokenGen();
-        $cmd = "UPDATE users SET token= " + $token + "WHERE ID = " + $_SESSION["id"];
-        $this->DBExecute($cmd);
-        $_SESSION["token"] = $token;
-
-        //expire apres une journee et sur tout le domaine
-        setcookie("token", $result[0][0], time() + (86400 * 30), "/");
+		if($result != null){
+			//Génération du token.
+			$token = TokenGen();
+			
+			//Mise à jour de l'utilisateur.
+			$cmd = "UPDATE users SET token= " + $token + "WHERE ID = " + $result['ID'];
+			DBExecute($cmd);
+			
+			//Ajouter token dans le résultat.
+			$result['token'] = $token;
+		}
+		
+        return $result;
     }
 
-    //connexion automatique de l'utilisateur avec un token
+    //Connexion par token.
     public function TokenLogin($token)
     {
-        if($token != "")
-        {
-            $cmd = "SELECT ID, group FROM users WHERE token = " + $token;
-            $result = $this->DBSearch($cmd);
-            $_SESSION["token"] = $token;
-            $_SESSION["id"] = $result[0][0];
-            $_SESSION["group"] = $result[0][1];
-        }
-    }
-
-    public function Logoff($id)
-    {
-        $cmd = "UPDATE users SET Token= '' WHERE ID = " + $_SESSION["id"];
-        session_destroy();
+		//Valider la connexion.
+        $cmd = "SELECT ID, group FROM users WHERE token = " + $token;
+        $result = $this->DBSearch($cmd);
+		
+		return $result;
     }
 }

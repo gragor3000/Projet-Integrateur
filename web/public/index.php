@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 
 <!-- Entête du site web. -->
 <?php include '../app/views/shared/header.php'; ?>

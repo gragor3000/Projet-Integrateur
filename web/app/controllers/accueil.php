@@ -1,50 +1,36 @@
 <?php
-
-	class Accueil extends Controller{
+	//Contrôleur d'acceuil.
+	class home extends Controller{
 		
-		private $models;//pointe vers la classe model
-		
-		//Constructeur de la classe
-		public function __construct(){
-			session_start();
-			parent::model("models");
-			$this->models = new models();
-		}
-		
-		//Fonction appeler par défaut
+		//Index par défaut.
 		public function index ( $name = '' ){
+			parent::model("account");
+			$account = new account();
+			
+			$info = $account.TokenLogin($_COOKIE['token']);
 			
 			//Ouvre l'index du de l'acceuil
 			parent::view('accueil/index', $TblResultat);
 		}
 		
-		//Fonction qui permet de se connecter au serveur
-		public function LogIn(){
+		//Connexion de l'utilisateur.
+		public function login(){
+			parent::model("account");
+			$account = new account();
 			
+			$info = $account.UserLogin($_POST['user'], $_POST['pass']);
 			
+			//expire apres une journee et sur tout le domaine
+			setcookie("token", $result['token'], time() + (86400 * 30), "/");
+			$_SESSION["role"]=$result['group'];
 		}
-
-		public function t()
-		{
-			//Tante de trouver le fichier Xml et de sauvegarder les modifications
-			try {
-				$Xml = simplexml_load_file(parent::$DefaultXMLPath.'journal_de_bord/'."nimortequoi"."_JDB.xml");
-
-				//Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-				/*$DateLog = strToTime($Date);
-				$DateLog = date("d-M-Y", $DateLog);
-
-				/*$Tag = $Xml->createElement($DateLog, $Data);
-				$Xml->appendChild($Tag);*/
-				$Xml->saveXML();
-			}
-			catch(exception $ex)
-			{ //Si le fichier n'est pas trouver, en créer un nouveau
-				$Xml = new domxml_new_doc('1.0');
-				$Xml->save(parent::$DefaultXMLPath.'/JournalDeBord/'."_JDB.xml");
-			}
+		
+		//Déconnexion de l'utilisateur.
+		public function logout(){
+			setcookie("token", '', -1, '/');
+			session_unset();
+			session_destroy();
 		}
-
 	}
 	
 ?>
