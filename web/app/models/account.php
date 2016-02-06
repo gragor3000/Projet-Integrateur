@@ -27,22 +27,25 @@ class account extends models
         return $token;
     }
 
+<<<<<<< HEAD
     /*//crï¿½ation d'usager
     public function CreateIntern($user, $pw, $group)
+=======
+    //création d'usager
+    public function CreateUser($user, $pw, $group)
+>>>>>>> origin/master
     {
         //verifier que "Type" cause pas de probleme
         $cmd = "INSERT INTO users (user, pw, Group)";
         $values = " VALUES(" + $user + "," + md5($pw) + "," + $group +")";
         $this->DBExecute($cmd + $values);
-    }
-
-    public function CreateCoordonator()
-    {
 
     }
 
-    public function CreateBusiness()
+    //création d'entreprise
+    public function CreateBusiness($address, $city, $tel, $email, $account)
     {
+<<<<<<< HEAD
 
     }*/
 
@@ -93,6 +96,11 @@ class account extends models
     public function ShowMyInfo($token)
     {
         return parent::DBSearch("SELECT name,user,pw FROM users WHERE token =".$token);
+=======
+        $cmd = "INSERT INTO entreprises (address, city, tel, email, account)";
+        $values = "VALUES(" + $address + "," + $city + "," + $tel + "," + $email + "," + $account + ")";
+        $this->DBExecute($cmd + $values);
+>>>>>>> origin/master
     }
 
     //connexion de l'utilisateur avec nom et mot de passe
@@ -124,6 +132,7 @@ class account extends models
         }
     }
 
+    //deconnexion
     public function Logoff($id)
     {
         $cmd = "UPDATE users SET Token= '' WHERE ID = " + $_SESSION["id"];
