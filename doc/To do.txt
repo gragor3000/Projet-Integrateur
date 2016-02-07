@@ -43,13 +43,13 @@
 [SHARED-LOGBOOK]- Affichage des journaux précédents (HTML->PHP)
 
 [TODO]jumelage coordonnateur
-- Visualisation des stagiaires, projets et évaluations (PHP->HTML)
-- Jumelage des stagiaires et des projets (HTML->PHP)
+- Visualisation des stagiaires, projets et évaluations (PHP->HTML) [FAIT]
+- Jumelage des stagiaires et des projets (HTML->PHP) [FAIT]
 
 [TODO]evaluation coordonnateur
-- Visualisation des stagiaires (PHP->HTML)
-|- Affichage de l'évaluation (PHP->HTML)
-|- Modification de l'évaluation (HTML->PHP)
+- Visualisation des stagiaires (PHP->HTML) [FAIT]
+|- Affichage de l'évaluation (PHP->HTML) [À FAIRE]
+|- Modification de l'évaluation (HTML->PHP) [À FAIRE]
 
 [TODO]acceuil entreprise
 - Liste des projets (PHP->HTML)
