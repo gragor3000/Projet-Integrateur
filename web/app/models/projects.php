@@ -11,7 +11,7 @@ class projects extends models
         $TblResult = parent::BDExecute("Select * from projects where internID =" . $IDTrainer);
 
         //Si le stagiaire n'est pas affecter � un stage, liste tous les stages
-        if (count($TblResult) = 0) {
+        if (count($TblResult) == 0) {
             //R�cup�re les bonnes information de tous les stages
             $TblResult = parent::BDRecherche("Select * from projects inner join ratings on projects.ID = ratings.projectID
 													Where ratings.internID=" . $IDTrainer . " and projects.status =1");
@@ -67,9 +67,9 @@ class projects extends models
 
         //Si le superviseur � travailler sur un projet d�j� existant, il fera une modification
         if ($IDTrain >= 0) {
-            parent::BDExecute("UPDATE projects Set title="$Title . ", supName=" . $SupName . ", supTitle=" . $SupTitle . ", supEmail=" . $SupEmail .
+            parent::BDExecute("UPDATE projects Set title=".$Title . ", supName=" . $SupName . ", supTitle=" . $SupTitle . ", supEmail=" . $SupEmail .
             ", supTel=" . $SupTel . ", desc=" . $Desc . ", equip=" . $Equip . ", extra=" . $Extra . ", status = 0
-									 Where ID=" . $IDTrain . " and entID=" . $IDSpv);
+									 Where ID=" . $IDTrain . " and entID=" . $IDSup);
 			} else {    //Sinon cela fera un ajout dans la base de donn�e
             parent::BDExecute("Insert into projects(title,supName,supTitle,supEmail,supTel,desc,equip,extra,status,entID)
 									values(" . $Title . "," . $SupName . "," . $SupTitle . "," . $SupEmail . "," . $SupTel . "," . $Desc . "," . $Equip . "," . $Extra . ", 0," . $IDSup . ")");
@@ -83,15 +83,21 @@ class projects extends models
     }
 
     //valide un projet
-    public function ValidateProjects($id)
+    public function ValidateProjects($_id)
     {
-        parent::DBExecute("UPDATE projects SET status = 1 WHERE ID = ".$id);
+        parent::DBExecute("UPDATE projects SET status = 1 WHERE ID = ".$_id);
     }
 
     //supprime un projet
-    public function DeleteProject($id)
+    public function DeleteProject($_id)
     {
-        parent::DBExecute("DELETE FROM projects WHERE ID =".$id);
+        parent::DBExecute("DELETE FROM projects WHERE ID =".$_id);
+    }
+
+    //jumelle un stagiaire a un projet
+    public function PairInternProject($_internId,$_projectId)
+    {
+        parent::DBExecute("UPDATE projects SET internID = ".$_internId ."WHERE ID = ".$_projectId);
     }
 }
 

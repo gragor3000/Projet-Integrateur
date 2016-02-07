@@ -9,7 +9,8 @@ if (isset($_COOKIE['token'])
     {
         private $account;//permet utiliser fonction du model account
         private $cie;//permet utiliser fonction du model autorise
-        private $projects;////permet utiliser fonction du model projets
+        private $projects;//permet utiliser fonction du model projets
+        private $interns;//permet utiliser fonction du model interns
 
         //Constructeur de la classe
         public function __construct()
@@ -21,7 +22,10 @@ if (isset($_COOKIE['token'])
             $this->cie = new cie();
 
             parent::model("projects");
-            $this->projects = new projets();
+            $this->projects = new projects();
+
+            parent::model("interns");
+            $this->interns = new interns();
         }
 
         //Fonction appeler par défaut
@@ -62,13 +66,13 @@ if (isset($_COOKIE['token'])
             echo json_encode($result);
         }
 
-        //valide un entreprise
+        //valide une entreprise
         public function ValidateEntreprise()
         {
             $this->cie->ValidateEntreprise($_POST["id"]);
         }
 
-        //valide un project
+        //valide un projet
         public function ValidateProjects()
         {
             $this->projects->ValidateProjects($_POST["id"]);
@@ -129,6 +133,45 @@ if (isset($_COOKIE['token'])
             echo json_encode($result);
         }
 
+        //affiche les notes misent par les étudiants
+        public function ShowInternsRatings()
+        {
+            parent::model("ratings");
+            $ratings = new ratings();
+
+            $result = $ratings->ShowInternsRatings();
+
+            echo json_encode($result);
+        }
+
+        //jumelle un stagiaire à un projet
+        public function PairInternProject()
+        {
+            $this->projects->PairInternProject($_POST["internId"],$_POST["projectId"]);
+        }
+
+        //affiche tous les stagiaires
+        public function ShowInterns()
+        {
+            $result = $this->interns->ShowInterns();
+
+            echo json_encode($result);
+        }
+
+        //affiche les évaluations d'un étudiant
+        public function ShowEval()
+        {
+            $result = $this->interns->ShowEval($_POST["id"]);
+
+            echo json_encode($result);
+        }
+
+        //met à jour l'évaluation d'un stagiaire
+        public function UpdateEval()
+        {
+            $this->interns->UpdateEval($_POST["id"]);
+        }
+
 
 
         //Fonction permettant de récupérer le rapport d'entrevu
@@ -176,7 +219,7 @@ if (isset($_COOKIE['token'])
 
     }
 } else {
-	//Rediriger vers l'acceuil.
+	//Redirige vers l'acceuil.
     session_unset();
     session_destroy();
     header("location: " . $_SERVER['SERVER_ADDR']);

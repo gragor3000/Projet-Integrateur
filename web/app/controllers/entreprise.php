@@ -5,7 +5,7 @@ if (isset($_COOKIE['token'])
 	&& isset($_SESSION["role"])
 	&& $_SESSION["role"] == 1)
 {
-	class cie extends Controller{
+	class entreprise extends Controller{
 		
 		private $models;//pointe vers la classe model
 		

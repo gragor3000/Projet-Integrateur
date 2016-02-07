@@ -3,10 +3,10 @@
 class account extends Models
 {
 
-    //Génération de token.
+    //Gï¿½nï¿½ration de token.
     public function TokenGen()
     {
-		//Création du token.
+		//Crï¿½ation du token.
         $data = "qwertyuiopasdfghjklzxcvbnm1234567890";
         $token = "";
         for ($i = 0; $i < 32; $i++) {
@@ -14,7 +14,7 @@ class account extends Models
             $token += $data[$rng];
         }
 
-		//Vérification d'un doublon.
+		//Vï¿½rification d'un doublon.
         $cmd = "SELECT token FROM users WHERE token='" . $token . "'";
         $result = $this->DBSearch($cmd);
 
@@ -23,9 +23,9 @@ class account extends Models
         return $token;
     }
 	
-	////////////////// DÉBUT GESTION DE COMPTE ////////////////////
+	////////////////// Dï¿½BUT GESTION DE COMPTE ////////////////////
 	
-	//Création d'un compte.
+	//Crï¿½ation d'un compte.
     public function CreateUser($_name, $_user, $_pw, $_rank)
     {
         parent::DBExecute("INSERT INTO users (name,user,pw,rank)
@@ -37,7 +37,7 @@ class account extends Models
 		
     }
 
-    //Création d'un entreprise.
+    //Crï¿½ation d'un entreprise.
     public function CreateBusiness($_address, $_city, $_tel, $_email, $_account)
     {
 		parent::DBExecute("INSERT INTO cie (address, city, tel, email, account)
@@ -50,29 +50,29 @@ class account extends Models
 		
     }    
 
-    //Retourner tous les comptes.
-    public function ShowUsers($_address, $_city, $_tel, $_email, $_account)
+    //Retourne tous les comptes.
+    public function ShowUsers()
     {
         return parent::DBSearch("SELECT ID,name,rank FROM users");
     }
 
-    //Retourner les infos d'un compte.
+    //Retourne les infos d'un compte.
     public function ShowInfo($_id)
     {
         return parent::DBSearch("SELECT name,user FROM users WHERE ID =" . $_id);
     }
 	
-    //Modifier les infos d'un compte.
+    //Modifie les infos d'un compte.
     public function UpdateUser($_id,$_name,$_user,$_rank)
     {
         parent::DBExecute("UPDATE users SET 
 			name = '" . addslashes($_name) . "', 
 			user ='" . addslashes($_user) . "',
-			rank =" . $rank . " 
+			rank =" . $_rank . "
 				WHERE ID =" . $_id);
     }
 	
-	//Modifier les infos d'une entreprise.
+	//Modifie les infos d'une entreprise.
 	public function UpdateCie($_address, $_city, $_tel, $_email, $_account)
     {
 		parent::DBExecute("UPDATE cie SET
@@ -84,28 +84,28 @@ class account extends Models
 		
     }    
 
-    //Modifier le mot de passe d'un compte.
+    //Modifie le mot de passe d'un compte.
     public function UpdatePw($_id, $_pw)
     {
         parent::DBExecute("UPDATE users SET pw ='" . md5($_pw) . "' WHERE ID =" . $_id);
     }
 	
-	//Supprimer un utilisateur.
+	//Supprime un utilisateur.
     public function DeleteUser($_id)
     {
         parent::DBExecute("DELETE FROM users WHERE ID = " . $_id);
     }
 	
-	//Supprimer une entreprise.
+	//Supprime une entreprise.
 	public function DeleteCie($_id)
 	{
 		parent::DBExecute("DELETE FROM cie WHERE account = " . $_id);
-		DeleteUser($_id)
+		DeleteUser($_id);
 	}
 	
 	////////////////// FIN GESTION DE COMPTE ////////////////////
 	
-	////////////////// DÉBUT CONNEXION DE COMPTE ////////////////////
+	////////////////// Dï¿½BUT CONNEXION DE COMPTE ////////////////////
 
     //Connexion de l'utilisateur.
     public function UserLogin($_user, $_pw)
@@ -115,14 +115,14 @@ class account extends Models
         $result = DBSearch($cmd);
 
 		if($result != null){
-			//Génération du token.
+			//Gï¿½nï¿½ration du token.
 			$token = TokenGen();
 			
-			//Mise à jour de l'utilisateur.
+			//Mise ï¿½ jour de l'utilisateur.
 			$cmd = "UPDATE users SET token= " . $token . "WHERE ID = " . $result['ID'];
 			parent::DBExecute($cmd);
 			
-			//Ajouter token dans le résultat.
+			//Ajouter token dans le rï¿½sultat.
 			$result['token'] = $token;
 		}
 		
@@ -139,12 +139,12 @@ class account extends Models
 		return $result;
     }
 	
-	//Déconnexion.
+	//Dï¿½connexion.
 	public function Logout($_token)
 	{
 		$token = TokenGen();
 		
-		//Mise à jour de l'utilisateur.
+		//Mise ï¿½ jour de l'utilisateur.
 		$cmd = "UPDATE users SET token= " . $token . "WHERE token = " . $_token;
 		parent::DBExecute($cmd);
 	}
