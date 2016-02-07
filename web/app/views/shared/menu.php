@@ -9,7 +9,7 @@
 		<!--MENU DES STAGIAIRES-->
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$name ?><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$_SESSION['name']; ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
 					<li><a href="/intern/info">Mes infos</a></li>
 					<li><a href="/intern/index">Stages</a></li>
@@ -22,7 +22,7 @@
 		<!--MENU DES ENTREPRISES-->
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$name?><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$_SESSION['name']; ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
 					<li><a href="/business/info">Mes infos</a></li>
 					<li><a href="/business/projects">Projets</a></li> 
@@ -35,7 +35,7 @@
 		<!--MENU DES COORDONNATEURS-->
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$name ?><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?=$_SESSION['name']; ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
 					<li><a href="/advisor/info">Mes infos</a></li>
 					<li><a href="/advisor/accounts">Comptes</a></li>

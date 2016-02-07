@@ -1,7 +1,11 @@
 <?php
 
-if (isset($_COOKIE["token"])) {
-    class coordonnateur extends Controller
+if (isset($_COOKIE['token'])
+	&& isset($_SESSION['ID'])
+	&& isset($_SESSION["role"])
+	&& $_SESSION["role"] == 2)
+{
+    class advisor extends Controller
     {
         private $account;//permet utiliser fonction du model account
         private $cie;//permet utiliser fonction du model autorise
@@ -171,11 +175,11 @@ if (isset($_COOKIE["token"])) {
 
 
     }
-} //le redirige vers la page d'accueil
-else {
+} else {
+	//Rediriger vers l'acceuil.
     session_unset();
     session_destroy();
-    header("location: http://52.90.216.65/");
+    header("location: " . $_SERVER['SERVER_ADDR']);
 }
 
 ?>

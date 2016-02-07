@@ -1,47 +1,54 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Baker
- * Date: 2016-01-30
- * Time: 16:40
- */
-class models
+class Models
 {
-    //Se connecte à une base de donnée précise et renvoie la connexion
-    protected function DBConnection()
+    //Connexion à la BD.
+    protected function DBConnect()
     {
         //Temporaire, mettre les bonne valeur
         return new PDO('mysql:host=localhost;dbname=db_pIntegrateur;charset=utf8', 'kalahee', 'test');
     }
 
-    //Fonction qui permet de récupérer toute les informations d'une recherche
+    //Requête avec le retour d'une table.
     protected function DBSearch($Command)
     {
-        //Récupère la connexion à la base de donnée
-        $pdo = DBConnection();
+        //Connexion à la BD.
+        $pdo = DBConnect();
 
+		//Préparer la commande.
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
 
+		//Fermer la connexion.
         $pdo = null;
 
         return $result;
     }
 
-    //Fonction qui permet de récupérer la première information d'une recherche
+    //Requête avec le retour d'une ligne unique.
     protected function DBExecute($Command)
     {
-        //Récupère la connexion à la base de donnée
-        $pdo = DBConnection();
+        //Connexion à la BD.
+        $pdo = DBConnect();
 
+		//Préparer la commande.
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetch(PDO::FETCH_ASSOC);
 
+		//Fermer la connexion.
         $pdo = null;
 
         return $result;
     }
+	
+	//Obtenir dernier ID généré.
+	protected function DBLastID()
+	{
+		//Connexion à la BD.
+        $pdo = DBConnect();
+		$result = $pdo->lastInsertId();
+	}
+	
 }

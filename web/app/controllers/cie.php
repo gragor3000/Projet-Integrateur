@@ -1,6 +1,11 @@
 <?php
 
-	class superviseur extends Controller{
+if (isset($_COOKIE['token'])
+	&& isset($_SESSION['ID'])
+	&& isset($_SESSION["role"])
+	&& $_SESSION["role"] == 1)
+{
+	class cie extends Controller{
 		
 		private $models;//pointe vers la classe model
 		
@@ -90,5 +95,11 @@
 		}*/
 			
 	}
+} else {
+	//Rediriger vers l'acceuil.
+    session_unset();
+    session_destroy();
+    header("location: " . $_SERVER['SERVER_ADDR']);
+}
 	
 ?>

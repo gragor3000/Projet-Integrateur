@@ -12,13 +12,12 @@ class install extends Controller
     //Constructeur de la classe
     public function __construct()
     {
-        session_start();
         parent::model("models");
         $this->installer = new installer();
     }
 
     //appelle la méthode deployDb pour déployer la base de donnée
-    public function Deploy($_dbName,$_username,$_pw)
+    public function deploy($_dbName,$_username,$_pw)
     {
         $this->installer->DeloyDb($_dbName,$_username,$_pw);
     }

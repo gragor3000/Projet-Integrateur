@@ -7,7 +7,7 @@
  * Time: 14:26
  */
 /*
-class Account extends Controller{
+class account extends Controller{
 
     private $models;//pointe vers la classe model
 
