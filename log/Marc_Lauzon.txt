@@ -1,5 +1,10 @@
 Journal de Bord
 
+2016-02-06 [3efd115e96eaf380188185999f42c962b07dc501]
++Renommer les fichiers et les variables selon notre convention.
++Simplifier les codes de M-Accounts, C-Home, C-Advisor.
++Ajouter fonction à M-Models pour obtenir le dernier ID créé dans la BD.
+
 2016-02-03 [f151e53fe786f02175a0d8e66a9a4a5e1e4f4746]
 +Ajout d'un footer pour lien "Retour en haut".
 +Modification de l'acceuil des stagiaires pour cas avec projet.
