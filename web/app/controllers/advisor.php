@@ -78,6 +78,7 @@ if (isset($_COOKIE['token'])
             $this->projects->ValidateProjects($_POST["id"]);
         }
 
+        //supprime un projet
         public function DeleteProject()
         {
             $this->projects->DeleteProject($_POST["id"]);
