@@ -1,27 +1,25 @@
-[DONE]mettre à jour les tables des bd
+[DONE]mettre Ã  jour les tables des bd
 
 [TODO]acceuil visiteur
-+ Affichage (HTML)
+- Formulaire d'inscription (HTML->PHP)[HTML/CSS fait] [FORM Ã  finir] [PHP Ã  faire]
 - Connexion (HTML->PHP)
-- Inscription (HTML->PHP)
 
 [TODO]acceuil stagiaire
-+ Liste des projets autorisés (PHP->HTML)
-- Evaluation des projets (HTML->PHP)
-<--Après projet assigné-->
-+ Information du projet assigné (PHP->HTML)
-+ Affichage des journaux précédents (PHP->HTML)
-- Formulaire du journal (PHP->HTML)
-|- Visualisation des évaluations (PHP->HTML)
+- Liste des projets autorisÃ©s (PHP->HTML)[HTML/CSS fait] [PHP Ã  faire]
+- Evaluation des projets (HTML->PHP)[HTML/CSS fait] [FORM Ã  finir] [PHP Ã  faire]
+<--AprÃ¨s projet assignÃ©-->
+- Information du projet assignÃ© (PHP->HTML)[HTML/CSS fait] [PHP Ã  faire]
+- Affichage des journaux prÃ©cÃ©dents (PHP->HTML)[HTML/CSS fait] [PHP Ã  faire]
+- Formulaire du journal (PHP->HTML)[HTML/CSS fait] [FORM Ã  finir]
+- Visualisation des Ã©valuations (PHP->HTML)
 
-[TODO]informaiton stagiaire
-- Affichage des informations (PHP->HTML)
-- Modification des informations (HTML->PHP)
+[TODO]informaiton stagiaire (Mot de passe seuelement)
+- Modification des informations (HTML->PHP)[HTML/CSS fait] [FORM Ã  finir]
 
 [TODO]acceuil coordonateur
-- Liste des entreprises à autorisé (PHP->HTML) [FAIT]
+- Liste des entreprises Ã  autorisÃ© (PHP->HTML) [FAIT]
 - Confirmation d'autorisation des entreprises (HTML->PHP) [FAIT]
-- Liste des projets à autorisé (PHP->HTML) [FAIT]
+- Liste des projets Ã  autorisÃ© (PHP->HTML) [FAIT]
 - Confirmation d'autorisation des projets (HTML->PHP) [FAIT]
 
 [TODO]information coordonateur
@@ -31,41 +29,39 @@
 [TODO]comptes coordonnateur
 - Affichage des comptes (PHP->HTML) [FAIT]
 - Suppression de compte (HTML->PHP) [FAIT]
-|- Création et modification de compte (HTML->PHP) [FAIT]
+|- CrÃ©ation et modification de compte (HTML->PHP) [FAIT]
 
 [TODO]projets coordonnateur
 - Liste des projets (PHP->HTML) [FAIT]
-- Ouverture des détails (HTML->HTML)
-|- Création et modification de projet (HTML->PHP) [FAIT]
+- Ouverture des dÃ©tails (HTML->HTML)
+|- CrÃ©ation et modification de projet (HTML->PHP) [FAIT]
 
 [TODO]details projets coordonnateur
-[SHARED-PROJECT]- Affichage des projets (PHP->HTML)
-[SHARED-LOGBOOK]- Affichage des journaux précédents (HTML->PHP)
+- Affichage des projets (PHP->HTML)
+- Affichage des journaux prÃ©cÃ©dents (HTML->PHP)
 
 [TODO]jumelage coordonnateur
-- Visualisation des stagiaires, projets et évaluations (PHP->HTML) [FAIT]
+- Visualisation des stagiaires, projets et Ã©valuations (PHP->HTML) [FAIT]
 - Jumelage des stagiaires et des projets (HTML->PHP) [FAIT]
 
 [TODO]evaluation coordonnateur
 - Visualisation des stagiaires (PHP->HTML) [FAIT]
-|- Affichage de l'évaluation (PHP->HTML) [À FAIRE]
-|- Modification de l'évaluation (HTML->PHP) [À FAIRE]
+|- Affichage de l'Ã©valuation (PHP->HTML) [Ã€ FAIRE]
+|- Modification de l'Ã©valuation (HTML->PHP) [Ã€ FAIRE]
 
 [TODO]acceuil entreprise
-- Liste des projets (PHP->HTML)
-- Ouverture des projets
+- Liste des projets (PHP->HTML)[HTML/CSS fait] [PHP Ã  faire]
+- Modification des projets (PHP->HTML)[HTML/CSS fait] [FORM Ã  finir]
 <--Suppression,Modification avant autorisation-->
 - Suppression de projet (HTML->PHP)
-|- Création et modification de projet (HTML->PHP)
+- CrÃ©ation et modification de projet (HTML->PHP)[HTML/CSS fait] [FORM Ã  finir]
 
 [TODO]projet entreprise
-- Détail du projet et du stagiaire si assigné (PHP->HTML)
-[SHARED-PROJECT]- Affichage des projets (PHP->HTML)
-|- Affichage de l'évaluation (PHP->HTML)
-|- Modification de l'évaluation(HTML->PHP)
+- DÃ©tail du projet et du stagiaire si assignÃ© (PHP->HTML)[HTML/CSS fait] [PHP Ã  faire]
+- Formulaire de l'Ã©valuation (PHP->HTML)[HTML/CSS fait] [FORM Ã  finir]
 
 [TODO]entrevue entreprise
-- Formulaire d'évaluation de l'entrevue. (PHP->HTML)
+- Formulaire d'Ã©valuation de l'entrevue. (PHP->HTML)[HTML/CSS fait] [FORM Ã  finir]
 - Envoi du formulaire de l'entrevue (HTML->PHP)
 
 
@@ -74,32 +70,32 @@
 
 
 ========================================================
-Ordre des processus d'aquisition et d'exécution de stage
+Ordre des processus d'aquisition et d'exÃ©cution de stage
 ========================================================
 -le superviseur s'inscrit
 -le superviseur ajoute l'entreprise
--le superviseur fait une proposition de projet *lier au superviseur et à l'entreprise (état par défault attente)
+-le superviseur fait une proposition de projet *lier au superviseur et Ã  l'entreprise (Ã©tat par dÃ©fault attente)
 -un coordonateur valide ou refuse le projet
 -un stagiaire donne son rating sur les projets
--le superviseur rempli un formulaire d'évaluation d'entrevue(*seulement lier au stagiaire pas le projet)
+-le superviseur rempli un formulaire d'Ã©valuation d'entrevue(*seulement lier au stagiaire pas le projet)
 -les coordonateurs affecte un coordonateur et/ou un stagiaire a un projet avant le 1er mars
--le stagiaire remplit son journal à chaque jour
--le coordonateur fait une évaluation de mi-session(compte pas)
--le surperviseur fait une éval de fin
--le coordonateur fait une éval de fin de session
--le stagiaire fait un oral et est évaluer par tous prof (additionne toute les notes pi divise par 5)
+-le stagiaire remplit son journal Ã  chaque jour
+-le coordonateur fait une Ã©valuation de mi-session(compte pas)
+-le surperviseur fait une Ã©val de fin
+-le coordonateur fait une Ã©val de fin de session
+-le stagiaire fait un oral et est Ã©valuer par tous prof (additionne toute les notes pi divise par 5)
 -le stagiaire passe(sauf pour baker) 
 
 
 
 _______________
-coordonateur peut gérer entreprise(ajouter modifier supprimer et approuver)
-faire install pour pouvoir déployer le site et la BD
+coordonateur peut gÃ©rer entreprise(ajouter modifier supprimer et approuver)
+faire install pour pouvoir dÃ©ployer le site et la BD
 corrdonateur peut ajouter modifier supprimer et approuver projet
-projet pas visible par stagiaire avant d'être approuver
-coordonateur peut gérer compte
+projet pas visible par stagiaire avant d'Ãªtre approuver
+coordonateur peut gÃ©rer compte
 juste garder entreprise dans bd
 peut purger ancient stagiaire
 coordonateur doit jumeler projet a stagiaire
 coordonateur peut voir ratings des stagiaires
-entreprise peut pu toucher projet après approuvation
+entreprise peut pu toucher projet aprÃ¨s approuvation
