@@ -7,51 +7,45 @@ if (isset($_COOKIE['token'])
 {
     class advisor extends Controller
     {
-        private $account;//permet utiliser fonction du model account
-        private $cie;//permet utiliser fonction du model autorise
-        private $projects;//permet utiliser fonction du model projets
-        private $interns;//permet utiliser fonction du model interns
-
-        //Constructeur de la classe
-        public function __construct()
+        //Fonction appeler par défaut
+        public function index()
         {
-            parent::model("account");
-            $this->account = new account();
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+            parent::view("advisor/index");
+            parent::view("shared/footer");
+        }
+
+        //appelle la page pour des projets et entreprises non validée
+        public function inactive()
+        {
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+
+            parent::model("models");
+            parent::model("projects");
+            $projects = new projects();
+            $data["projects"] = $projects->ShowProjects(false);
 
             parent::model("cie");
-            $this->cie = new cie();
+            $cie = new cie();
+            $data["cie"] = $cie->ShowCie(false);
 
-            parent::model("projects");
-            $this->projects = new projects();
-
-            parent::model("interns");
-            $this->interns = new interns();
+            parent::view("advisor/inactive",$data);
+            parent::view("shared/footer");
         }
 
-        //Fonction appeler par défaut
-        public function index($name = '')
+        //
+        public function projects()
         {
-            //Ouvre l'index du coordonnateur
-            parent::view('home/index');
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+
+
+            parent::view("shared/footer");
+
+
         }
-
-        //Fonction permettant d'atteindre les differente page de la section
-        public function Access($PageWanting = 0)
-        {
-
-            switch ($PageWanting) {
-                case 0:
-                    index();
-                    break;
-                case 1:
-                    parent::view('coordonnateur/compte');
-                    break;
-                case 2:
-                    parent::view('superviseur/rapport');
-                    break;
-            }
-        }
-
         //affiche les entreprises non valider
         public function ShowInactiveCie()
         {
@@ -62,8 +56,7 @@ if (isset($_COOKIE['token'])
         //affiche les projets non valider
         public function ShowInactiveProjects()
         {
-            $result = $this->projects->ShowInactiveProjects();
-            echo json_encode($result);
+            return $this->projects->ShowInactiveProjects();
         }
 
         //valide une entreprise
@@ -196,7 +189,7 @@ if (isset($_COOKIE['token'])
             }
         }
 
-        //Fonction permettant de récupérer le rapport d'entrevu
+        //Fonction permettant de récupérer le rapport d'entrevuprotected $DefaultXMLPath = '../app/models/xml/';
         public function LoadEvaluation($IDTrainer){
 
             //Tante de trouver le fichier Xml

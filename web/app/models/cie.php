@@ -41,9 +41,9 @@ class cie extends models
         mail($email, "Compte validée", $msg);
     }
 
-    //retourne les entreprises non approuvée
-    public function ShowInactiveCie()
+    //retourne les entreprises selon le status
+    public function ShowCie($_status)
     {
-        return parent::DBSearch("SELECT * FROM entreprises WHERE Status = 0");
+        return new entreprises(parent::DBSearch("SELECT * FROM entreprises WHERE status = ".$_status));
     }
 }
