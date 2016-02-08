@@ -53,9 +53,9 @@
 			$account = new accounts();
 			
 			//Obtenir les informations de compte.
-			$info = $account->UserLogin($_POST['user'], $_POST['pass']);
+			$result = $account->UserLogin($_POST['user'], $_POST['pass']);
 			
-			if($info != null){
+			if(isset($result["token"])){
 				//Sauvegarde des informations de connexion.
 				setcookie("token", $result['token'], time() + (86400 * 30), "/");
 				$_SESSION["ID"]=$result['ID'];
@@ -64,17 +64,17 @@
 				
 				//Rediriger vers le menu et l'acceuil selon le groupe.
 				switch($_SESSION["role"]){
-					case 2:
+					case 2:	//stagiaire
 						parent::view('intern/menu');
 						parent::view('intern/index');
 						break;
-					case 1:
-						parent::view('advisor/menu');
-						parent::view('advisor/index');
-						break;
-					case 0:
+					case 1:	//superviseur
 						parent::view('cie/menu');
 						parent::view('cie/index');
+						break;
+					case 0:	//coordonnateur
+						parent::view('advisor/menu');
+						parent::view('advisor/index');
 						break;
 				}
 			} else {
