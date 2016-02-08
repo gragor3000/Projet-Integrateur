@@ -1,3 +1,16 @@
+<!--
+2016-02-08 Marc Lauzon.
+=======================
+HTML/CSS complété.
+FORMULAIRE complété.
+PHP complété. [sauf exception voir 'actions']
+-->
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
 <?php include "menu.php"; ?>
 <div class="section section-info">
 	<div class="container">
@@ -13,29 +26,30 @@
 	<div class="container">
 		<div id="carousel-projects" data-interval="false" class="carousel slide">
 			<div class="carousel-inner">
-				<div class="item active">
+				<?php $count = 0; foreach($project in $data['project']){ ?>
+				<div class="item <?php if($count == 0) echo('active'); ?>">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title">Nom du projet</h3>
+									<h3 class="panel-title"><?= $project['title']; ?></h3>
 								</div>
 								<div class="scrollable-project">
 									<div class="panel-body">
 										<b>Description</b>
-										<p>Description du projet.</p>
+										<p><?= $project['desc']; ?></p>
 									</div>
 									<div class="panel-body">
 										<b>Matériels et logiciels prévus</b>
-										<p>Description du projet.</p>
+										<p><?= $project['equip']; ?></p>
 									</div>
 									<div class="panel-body">
 										<b>Exigences particulières</b>
-										<p>Description du projet.</p>
+										<p><?= $project['extra']; ?></p>
 									</div>
 									<div class="panel-body">
 										<b>Commentaires et informations complémentaires</b>
-										<p>Description du projet.</p>
+										<p><?= $project['info']; ?></p>
 									</div>
 								</div>
 							</div>
@@ -45,27 +59,27 @@
 								<div class="row">
 									<div class="col-md-12">
 										<b>Nom de l'entreprise</b>
-										<p>Entreprise Inc.</p>
+										<p><?= $project['name']; ?></p>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<b>Numéro de téléphone</b>
-										<p>(450)555-5555 #1234</p>
+										<p><?= $project['tel']; ?></p>
 									</div>
 									<div class="col-md-6">
 										<b>Adresse courriel</b>
-										<p>contact@entreprise.tld</p>
+										<p><?= $project['email']; ?></p>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-8">
 										<b>Adresse de l'entreprise</b>
-										<p>555 rue Entreprise, local 555</p>
+										<p><?= $project['address']; ?></p>
 									</div>
 									<div class="col-md-4">
 										<b>Ville</b>
-										<p>Joliette</p>
+										<p><?= $project['city']; ?></p>
 									</div>
 								</div>
 							</div>
@@ -73,120 +87,35 @@
 								<div class="row">
 									<div class="col-md-7">
 										<b>Nom du superviseur</b>
-										<p>Prenom Nom</p>
+										<p><?= $project['supName']; ?></p>
 									</div>
 									<div class="col-md-5">
 										<b>Titre</b>
-										<p>Coordonnateur</p>
+										<p><?= $project['supTitle']; ?></p>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<b>Numéro de téléphone</b>
-										<p>(450)555-5555 #1234</p>
+										<p><?= $project['supTel']; ?></p>
 									</div>
 									<div class="col-md-6">
 										<b>Adresse courriel</b>
-										<p>contact@entreprise.tld</p>
+										<p><?= $project['supEmail']; ?></p>
 									</div>
 								</div>
 							</div>
 							<form role="form" class="form-inline text-center well">
 								<div class="form-group">
-									<a class="btn btn-primary"><i class="fa fa-fw fa-edit"></i> Éditer</a>
-									<a class="btn btn-primary"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
+								<!-- MODIFIER SELON LE STATUS -->
+									<a class="btn btn-primary" formaction="cie/editProject/<?= $project['name']; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</a>
+									<a class="btn btn-primary" formaction="cie/delProject/<?= $project['ID']; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				<div class="item">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h3 class="panel-title">Nom du projet</h3>
-								</div>
-								<div class="scrollable-project">
-									<div class="panel-body">
-										<b>Description</b>
-										<p>Description du projet.</p>
-									</div>
-									<div class="panel-body">
-										<b>Matériels et logiciels prévus</b>
-										<p>Description du projet.</p>
-									</div>
-									<div class="panel-body">
-										<b>Exigences particulières</b>
-										<p>Description du projet.</p>
-									</div>
-									<div class="panel-body">
-										<b>Commentaires et informations complémentaires</b>
-										<p>Description du projet.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="well">
-								<div class="row">
-									<div class="col-md-12">
-										<b>Nom de l'entreprise</b>
-										<p>Entreprise Inc.</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<b>Numéro de téléphone</b>
-										<p>(450)555-5555 #1234</p>
-									</div>
-									<div class="col-md-6">
-										<b>Adresse courriel</b>
-										<p>contact@entreprise.tld</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-8">
-										<b>Adresse de l'entreprise</b>
-										<p>555 rue Entreprise, local 555</p>
-									</div>
-									<div class="col-md-4">
-										<b>Ville</b>
-										<p>Joliette</p>
-									</div>
-								</div>
-							</div>
-							<div class="well">
-								<div class="row">
-									<div class="col-md-7">
-										<b>Nom du superviseur</b>
-										<p>Prenom Nom</p>
-									</div>
-									<div class="col-md-5">
-										<b>Titre</b>
-										<p>Coordonnateur</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<b>Numéro de téléphone</b>
-										<p>(450)555-5555 #1234</p>
-									</div>
-									<div class="col-md-6">
-										<b>Adresse courriel</b>
-										<p>contact@entreprise.tld</p>
-									</div>
-								</div>
-							</div>
-							<form role="form" class="form-inline text-center well">
-								<div class="form-group">
-									<a class="btn btn-primary"><i class="fa fa-fw fa-edit"></i> Éditer</a>
-									<a class="btn btn-primary"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 		<a class="left carousel-control" href="#carousel-projects" data-slide="prev"><i class="icon-prev  fa fa-angle-left"></i></a>

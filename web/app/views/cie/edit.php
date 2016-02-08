@@ -1,3 +1,25 @@
+<!--
+2016-02-08 Marc Lauzon.
+=======================
+HTML/CSS complété.
+FORMULAIRE complété.
+PHP/JS complété.
+-->
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
+<script>
+	//Obtenir les informations.
+	var data = JSON.parse(<?= json_encode($data); ?>);
+	
+	//Remplir les champs.
+	for(key in data['form']){
+		$('#' + key).value(data['form'][key]);
+	}
+</script>
 <?php include "menu.php"; ?>
 <div class="section section-info">
 	<div class="container">
@@ -16,8 +38,8 @@
 				<div class="col-md-6">
 					<div class="well well-sm">
 						<div class="form-group">
-							<label class="control-label" for="pjtName">Titre du projet</label>
-							<input class="form-control" id="pjtName" placeholder="Projet de stage" type="text" required />
+							<label class="control-label" for="title">Titre du projet</label>
+							<input class="form-control" id="title" name="title" placeholder="Projet de stage" type="text" required />
 						</div>
 					</div>
 					<div class="panel-group" id="accordion">
@@ -29,7 +51,7 @@
 							</div>
 							<div id="colDesc" class="panel-collapse collapse in">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtDesc" required></textarea>
+									<textarea class="form-control" id="desc" name="desc" required></textarea>
 								</div>
 							</div>
 						</div>
@@ -41,7 +63,7 @@
 							</div>
 							<div id="colTools" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtTools"></textarea>
+									<textarea class="form-control" id="equip" name="equip"></textarea>
 								</div>
 							</div>
 						</div>
@@ -53,7 +75,7 @@
 							</div>
 							<div id="colSkills" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtSkills"></textarea>
+									<textarea class="form-control" id="extra" name="extra"></textarea>
 								</div>
 							</div>
 						</div>
@@ -65,7 +87,7 @@
 							</div>
 							<div id="colInfo" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtInfo"></textarea>
+									<textarea class="form-control" id="info" name="info"></textarea>
 								</div>
 							</div>
 						</div>
@@ -76,54 +98,54 @@
 						<div class="row">
 							<div class="col-md-12">
 								<b>Nom de l'entreprise</b>
-								<p>Entreprise Inc.</p>
+								<p id="name"></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<b>Numéro de téléphone</b>
-								<p>(450)555-5555 #1234</p>
+								<p id="tel"></p>
 							</div>
 							<div class="col-md-6">
 								<b>Adresse courriel</b>
-								<p>contact@entreprise.tld</p>
+								<p id="email"></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-8">
 								<b>Adresse de l'entreprise</b>
-								<p>555 rue Entreprise, local 555</p>
+								<p id="address"></p>
 							</div>
 							<div class="col-md-4">
 								<b>Ville</b>
-								<p>Joliette</p>
+								<p id="city"></p>
 							</div>
 						</div>
 					</div>
 					<div class="well">
 						<div class="row">
 							<div class="form-group col-md-7">
-								<label for="pjtSupName">Nom du superviseur</label>
-								<input class="form-control" id="pjtSupName" placeholder="Prénom Nom" type="text" required />
+								<label for="supName">Nom du superviseur</label>
+								<input class="form-control" id="supName" name="supName" placeholder="Prénom Nom" type="text" required />
 							</div>
 							<div class=" form-group col-md-5">
-								<label for="pjtSupTitle">Titre</label>
-								<input id="pjtSupTitle" class="form-control" placeholder="Coordonnateur" type="text" required />
+								<label for="supTitle">Titre</label>
+								<input class="form-control" id="supTitle" name="supTitle"  placeholder="Coordonnateur" type="text" required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-6">
-								<label for="pjtSupTel">Numéro de téléphone</label>
-								<input id="pjtSupTel" class="form-control" placeholder="(450)555-5555 #1234" type="text" required />
+								<label for="supTel">Numéro de téléphone</label>
+								<input class="form-control" id="supTel" name="supTel" placeholder="(450)555-5555 #1234" type="text" />
 							</div>
 							<div class="col-md-6">
-								<label for="pjtSupEmail">Adresse courriel</label>
-								<input id="pjtSupEmail" class="form-control" placeholder="contact@entreprise.tld" type="email" required />
+								<label for="supEmail">Adresse courriel</label>
+								<input class="form-control" id="supEmail" name="supEmail" placeholder="contact@entreprise.tld" type="email" />
 							</div>
 						</div>
 					</div>
 					<div class="well">
-						<a class="btn btn-block btn-primary">Modifier</a>
+						<button name="submit" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Modifier</button>
 					</div>
 				</div>
 			</div>

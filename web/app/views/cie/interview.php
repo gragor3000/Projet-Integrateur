@@ -1,3 +1,10 @@
+<!--
+2016-02-08 Marc Lauzon.
+=======================
+HTML/CSS complété.
+FORMULAIRE complété.
+PHP complété. [sauf exception voir 'actions']
+-->
 <?php include="menu.php"; ?>
 <div class="section section-info">
 	<div class="container">

@@ -12,10 +12,10 @@
   overflow-y: scroll;
 }
 #logText,
-#pjtDesc,
-#pjtTools,
-#pjtSkills,
-#pjtInfo {
+#desc,
+#equip,
+#extra,
+#info {
   height: 175px;
 }
 textarea {

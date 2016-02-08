@@ -1,6 +1,6 @@
 <?php
 
-class account extends Models
+class accounts extends models
 {
 
     //G�n�ration de token.
