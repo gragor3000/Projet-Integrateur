@@ -2,12 +2,16 @@
 
 	class modelXML extends models{
 		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////// Log ///////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		//Ajoute des élément au journal de bord d'un étudiant.
 		public function SaveLog($_IDIntern, $_Entry)
 		{
 			//Sauvegarder le journal.
 			try {//Trouve le fichier xml
-				$_Xml = simplexml_load_file("../files/" . $_IDIntern . "_JDB.xml");
+				$_Xml = SimpleXml_load_file("../journal_de_bord/" . $_IDIntern . "_JDB.xml");
 			}
 			catch{ 
 				//Créer nouveau fichier.
@@ -24,15 +28,19 @@
 			$_Xml->saveXML();
 		}
 		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////// Rapport ////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		//Fonction qui vérifie que le supervisseur peut modifier une section precise
-		public function ReadOnlyEntreprise($_IDEntreprise, $_BaliseName){
+		public function ReadOnlyReport($_IDIntern, $_BaliseName){
 			//Tante de trouver le fichier Xml
 			try {
-				$_Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDEntreprise."_RPT.xml");
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
 				$_Xml = new domxml_new_doc('1.0');
-				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDEntreprise."_RPT.xml");
+				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
 			}
 			
 			//Si la balise existe, le read only est vrai
@@ -40,28 +48,20 @@
 		}
 		
 		
-		//Fonction permettant de r?cup?rer le rapport d'entrevu
-		public function SaveReport($_IDEntreprise, $_BaliseName){
+		//Fonction permettant de sauvegarde un document du superviseur
+		public function SaveReport($_IDIntern, $_BaliseName, $_Data){
 			
 			//Tante de trouver le fichier Xml
 			try {
-				$_Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDEntreprise."_RPT.xml");
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
 				$_Xml = new domxml_new_doc('1.0');
-				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDEntreprise."_RPT.xml");
+				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
 			}
 			
 			//Tante d'enregistrer les nouvelle information
 			try{
-				//Contient toutes les données à enregistrer
-				$_Data = array();
-				
-				//Boucle pour ajouter tout les éléments du poste dans un tableau
-				foreach($_POST as $_Elem =>$_Valeur){
-					array_push($_Data, $_Valeur);
-				}
-				
 				//Crée un nouvelle enfant au fichier					
 				$_Enfant = $_Xml->createElement($_BaliseName, $_Data);
 					
@@ -75,67 +75,78 @@
 			}
 		}
 		
-		//Fonction permettant de r?cup?rer le rapport d'entrevu
-		/*public function SaveEvaluation($IDTrainer){
+		//Fonction permettant de charger un document du superviseur
+		public function LoadReport($_IDIntern, $_BaliseName){
 			
 			//Tante de trouver le fichier Xml
 			try {
-				$Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
+				//Cherche le fichier XML
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml");
 				
-				//R?cup?re la date passer en param?tre pour l'utiliser comme balise pour le XML
-				$DateLog = strToTime($Date);
-				$DateLog = date("d-M-Y", $DateLog);
-					
-				$Tag = $Xml->createElement($DateLog, $Data);
-				$Xml->appendChild($Tag);
-				$Xml->saveXML();
+				//récupère l'enfant voulu
+				return $_Xml->children($_BaliseName);
 			}
-			catch{ //Si le fichier n'est pas trouver, en cr?er un nouveau
-				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
-			}	
-		}*/
+			catch{}
+		}
 		
-		//Fonction permettant de récupérer le rapport d'entrevu
-        /*public function LoadReport($IDTrainer){
-
-            //Tante de trouver le fichier Xml
-            try {
-                $Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
-
-                //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-                $DateLog = strToTime($Date);
-                $DateLog = date("d-M-Y", $DateLog);
-
-                $Tag = $Xml->createElement($DateLog, $Data);
-                $Xml->appendChild($Tag);
-                $Xml->saveXML();
-            }
-            catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-                $Xml = new domxml_new_doc('1.0');
-                $Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
-            }
-        }
-
-        //Fonction permettant de récupérer le rapport d'entrevu
-        public function LoadEvaluation($IDTrainer){
-
-            //Tante de trouver le fichier Xml
-            try {
-                $Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
-
-                //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-                $DateLog = strToTime($Date);
-                $DateLog = date("d-M-Y", $DateLog);
-
-                $Tag = $Xml->createElement($DateLog, $Data);
-                $Xml->appendChild($Tag);
-                $Xml->saveXML();
-            }
-            catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-                $Xml = new domxml_new_doc('1.0');
-                $Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
-            }
-        }*/
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////// Evaluation ////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		//Fonction qui vérifie que le coordonnateur peut modifier une section precise
+		public function ReadOnlyEvalution($_IDIntern, $_BaliseName){
+			//Tante de trouver le fichier Xml
+			try {
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
+			}
+			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+				$_Xml = new domxml_new_doc('1.0');
+				$_Xml->save($DefaultXMLPath.'/evaluation/'.$_IDIntern."_EVL.xml");
+			}
+			
+			//Si la balise existe, le read only est vrai
+			return (count($_Xml->children($_BaliseName)) > 0);	
+		}
+		
+		
+		//Fonction permettant de sauvegarde un document du coordonnateur
+		public function SaveEvaluation($_IDIntern, $_BaliseName, $_Data){
+			
+			//Tante de trouver le fichier Xml
+			try {
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
+			}
+			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+				$_Xml = new domxml_new_doc('1.0');
+				$_Xml->save($DefaultXMLPath.'/evaluation/'.$_IDIntern."_EVL.xml");
+			}
+			
+			//Tante d'enregistrer les nouvelle information
+			try{
+				//Crée un nouvelle enfant au fichier					
+				$_Enfant = $_Xml->createElement($_BaliseName, $_Data);
+					
+				//Ajoute l'enfant à la base de donnée
+				$_Xml->appendChild($_Enfant);
+				
+				//Enregistre les modifications
+				$_Xml->saveXML();
+			}catch{	}
+		}
+		
+		//Fonction permettant de sauvegarde un document du coordonnateur
+		public function LoadEvaluation($_IDIntern, $_BaliseName){
+			
+			//Tante de trouver le fichier Xml
+			try {
+				//Cherche le fichier XML
+				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
+				
+				//récupère l'enfant voulu
+				return $_Xml->children($_BaliseName);
+			}
+			catch{}
+		}
 	}
 ?>

@@ -51,7 +51,15 @@ if (isset($_COOKIE['token'])
 			$_modelXML = new modelXML();
 			
 			if(isset($_POST["logText"])){
-				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"])
+				//Contient toutes les données à enregistrer
+				$_Data = array();
+				
+				//Boucle pour ajouter tout les éléments du poste dans un tableau
+				foreach($_POST as $_Elem =>$_Valeur){
+					array_push($_Data, $_Valeur);
+				}
+				
+				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"], $_Data)
 			}
 			
 			parent::view('intern/info');
