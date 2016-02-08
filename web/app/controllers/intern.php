@@ -44,6 +44,18 @@ if (isset($_COOKIE['token'])
 			
 			parent::view('intern/info', $data);
 		}
+		
+		//Enregistre un log
+		public function SaveLog(){
+			parent::model("modelXML");
+			$_modelXML = new modelXML();
+			
+			if(isset($_POST["logText"])){
+				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"])
+			}
+			
+			parent::view('intern/info');
+		}
 	}
 } else {
 	//Rediriger vers l'acceuil.
