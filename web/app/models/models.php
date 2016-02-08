@@ -2,6 +2,9 @@
 
 class Models
 {
+    //Contient le chemin pour accèder au dossier contenant les différent Xml
+    protected $DefaultXMLPath = '../app/models/xml/';
+
     //Connexion à la BD.
     protected function DBConnect()
     {
