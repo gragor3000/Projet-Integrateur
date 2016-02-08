@@ -11,9 +11,7 @@ if (isset($_COOKIE['token'])
 		
 		//Constructeur de la classe
 		public function __construct(){
-			session_start();
-			parent::model("models");
-			$this->models = new models();
+			//session_start();
 		}
 		
 		//Fonction appeler par d�faut
@@ -43,56 +41,14 @@ if (isset($_COOKIE['token'])
 		}
 		
 		//Fonction permettant de modifier ou cr�� un nouveau projet de stage
-		public function EditTrain($IDTrain, $Title, $SupName, $SupTitle, $SupEmail, $SupTel, $Desc, $Equip, $Extra){
+		public function EditTrain($_IDTrain, $_Title, $_SupName, $_SupTitle, $_SupEmail, $_SupTel, $_Desc, $_Equip, $_Extra){
 			
 			parent::model("projets");
 			$models = new projets();
 						
-			$models->EditTrain($IDTrain, $Title, $SupName, $SupTitle, $SupEmail, $SupTel, $Desc, $Equip, $Extra, $_SESSION['ID']);
+			$models->EditTrain($_IDTrain, $_Title, $_SupName, $_SupTitle, $_SupEmail, $_SupTel, $_Desc, $_Equip, $_Extra, $_SESSION['ID']);
 			
 		}
-		
-		//Fonction permettant de r�cup�rer le rapport d'entrevu
-		/*public function SaveReport($IDTrainer){
-			
-			//Tante de trouver le fichier Xml
-			try {
-				$Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
-				
-				//R�cup�re la date passer en param�tre pour l'utiliser comme balise pour le XML
-				$DateLog = strToTime($Date);
-				$DateLog = date("d-M-Y", $DateLog);
-					
-				$Tag = $Xml->createElement($DateLog, $Data);
-				$Xml->appendChild($Tag);
-				$Xml->saveXML();
-			}
-			catch{ //Si le fichier n'est pas trouver, en cr�er un nouveau
-				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
-			}	
-		}
-		
-		//Fonction permettant de r�cup�rer le rapport d'entrevu
-		public function SaveEvaluation($IDTrainer){
-			
-			//Tante de trouver le fichier Xml
-			try {
-				$Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
-				
-				//R�cup�re la date passer en param�tre pour l'utiliser comme balise pour le XML
-				$DateLog = strToTime($Date);
-				$DateLog = date("d-M-Y", $DateLog);
-					
-				$Tag = $Xml->createElement($DateLog, $Data);
-				$Xml->appendChild($Tag);
-				$Xml->saveXML();
-			}
-			catch{ //Si le fichier n'est pas trouver, en cr�er un nouveau
-				$Xml = new domxml_new_doc('1.0');
-				$Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
-			}	
-		}*/
 			
 	}
 } else {
