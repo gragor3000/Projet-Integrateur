@@ -67,13 +67,13 @@ class accounts extends models
     //Retourne tous les comptes.
     public function ShowUsers()
     {
-        return parent::DBSearch("SELECT ID,name,rank FROM users");
+        return new account(parent::DBSearch("SELECT ID, name, user, rank FROM users"));
     }
 
     //Retourne les infos d'un compte.
     public function ShowInfo($_id)
     {
-        return parent::DBSearch("SELECT name,user FROM users WHERE ID =" . $_id);
+        return new account(parent::DBSearch("SELECT name, user FROM users WHERE ID =" . $_id));
     }
 	
     //Modifie les infos d'un compte.

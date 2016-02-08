@@ -62,7 +62,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="well">
-                <form role="form">
+                <form role="form" href="../public/index.php/intern/SaveLog">
                   <div class="form-group">
                     <label class="control-label" for="logText">Écrire votre nouvelle entrée ci-dessous.</label>
                     <textarea class="form-control" id="logText"></textarea>

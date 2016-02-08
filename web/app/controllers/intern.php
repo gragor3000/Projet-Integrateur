@@ -9,28 +9,7 @@ if (isset($_COOKIE['token'])
 		
 		//Index par défaut.
 		public function index ()
-		{
-			//Sauvegarder le journal.
-			if(isset($_POST['savelog']) && isset($_POST['entry']))
-			{
-				try {
-					//Rechercher le fichier.
-					$xml = simplexml_load_file("../files/" . $_SESSION['ID'] . "_JDB.xml");
-					
-					//Obtenir la date et l'heure courante.
-					$date = date();
-						
-					$tag = $xml->createElement($date, $_POST['entry']);
-					$xml->prependChild($tag);
-					$xml->saveXML();
-				}
-				catch{ 
-					//Créer nouveau fichier.
-					$Xml = new domxml_new_doc('1.0');
-					$Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_SESSION['ID']."_JDB.xml");
-				}	
-			}
-			
+		{			
 			parent::model("projets");
 			$projects = new projets();
 			
@@ -66,10 +45,16 @@ if (isset($_COOKIE['token'])
 			parent::view('intern/info', $data);
 		}
 		
-		//Mettre à jour le journal de bord.
-		public function SaveLog()
-		{
+		//Enregistre un log
+		public function SaveLog(){
+			parent::model("modelXML");
+			$_modelXML = new modelXML();
 			
+			if(isset($_POST["logText"])){
+				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"])
+			}
+			
+			parent::view('intern/info');
 		}
 	}
 } else {
