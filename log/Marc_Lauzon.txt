@@ -1,5 +1,10 @@
 Journal de Bord
 
+2016-02-07 [c287920d96931a4b42f2bf72beec75451c1620e3]
++Redesign des pages d'accueil des visiteurs et différents comptes.
++Redesign de l'affihcage des projets pour le stagiaire et l'entreprise.
++Conception des pages de soumission de projet, d'évaluation, de journal de bord et d'entrevue.
+
 2016-02-06 [3efd115e96eaf380188185999f42c962b07dc501]
 +Renommer les fichiers et les variables selon notre convention.
 +Simplifier les codes de M-Accounts, C-Home, C-Advisor.
