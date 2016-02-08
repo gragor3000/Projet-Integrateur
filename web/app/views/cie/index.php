@@ -5,13 +5,6 @@ HTML/CSS complété.
 FORMULAIRE complété.
 PHP complété. [sauf exception voir 'actions']
 -->
-<?php
-	//Générer un token d'identification.
-	$token = md5(uniqid(rand(), TRUE));
-	$_SESSION['form_token'] = $token;
-	$_SESSION['form_timer'] = time();
-?>
-<?php include "menu.php"; ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
