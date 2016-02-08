@@ -1,1 +1,0 @@
-<div id="back2top"><a href="#top"><span class="glyphicon glyphicon-menu-up"></span> Retourner en haut</a></div>

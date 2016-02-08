@@ -50,9 +50,9 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h1>Information du projet de stage</h1>
-              <p>Sur cette page vous trouverez les informations concernant le projet de
-                stage qui vous a été assigné.</p>
+              <h1>Journal de bord</h1>
+              <p>Sur cette page vous pourrez soumettre une entrée à votre journal de bord
+                ou consulter les entrées précédentes.</p>
             </div>
           </div>
         </div>
@@ -61,78 +61,37 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Nom du projet</h3>
-                </div>
-				<div class="scrollable-project">
-                <div class="panel-body">
-                  <b>Description</b>
-                  <p>Description du projet.</p>
-                </div>
-                <div class="panel-body">
-                  <b>Matériels et logiciels prévus</b>
-                  <p>Description du projet.</p>
-                </div>
-                <div class="panel-body">
-                  <b>Exigences particulières</b>
-                  <p>Description du projet.</p>
-                </div>
-                <div class="panel-body">
-                  <b>Commentaires et informations complémentaires</b>
-                  <p>Description du projet.</p>
-                </div>
-				</div>
+              <div class="well">
+                <form role="form">
+                  <div class="form-group">
+                    <label class="control-label" for="logText">Écrire votre nouvelle entrée ci-dessous.</label>
+                    <textarea class="form-control" id="logText"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                </form>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="well">
-                <div class="row">
-                  <div class="col-md-12">
-                    <b>Nom de l'entreprise</b>
-                    <p>Entreprise Inc.</p>
-                  </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Archives</h3>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <b>Numéro de téléphone</b>
-                    <p>(450)555-5555 #1234</p>
+                <div class="scrollable-project">
+                  <div class="panel-body">
+                    <b>2016-01-10 12:10</b>
+                    <p>Entrée.</p>
                   </div>
-                  <div class="col-md-6">
-                    <b>Adresse courriel</b>
-                    <p>contact@entreprise.tld</p>
+                  <div class="panel-body">
+                    <b>2016-01-09 10:28</b>
+                    <p>Entrée.</p>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-8">
-                    <b>Adresse de l'entreprise</b>
-                    <p>555 rue Entreprise, local 555</p>
+                  <div class="panel-body">
+                    <b>2016-01-09 08:10</b>
+                    <p>Entrée.</p>
                   </div>
-                  <div class="col-md-4">
-                    <b>Ville</b>
-                    <p>Joliette</p>
-                  </div>
-                </div>
-              </div>
-              <div class="well">
-                <div class="row">
-                  <div class="col-md-7">
-                    <b>Nom du superviseur</b>
-                    <p>Prenom Nom</p>
-                  </div>
-                  <div class="col-md-5">
-                    <b>Titre</b>
-                    <p>Coordonnateur</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <b>Numéro de téléphone</b>
-                    <p>(450)555-5555 #1234</p>
-                  </div>
-                  <div class="col-md-6">
-                    <b>Adresse courriel</b>
-                    <p>contact@entreprise.tld</p>
+                  <div class="panel-body">
+                    <b>2016-01-08 14:35</b>
+                    <p>Entrée.</p>
                   </div>
                 </div>
               </div>
