@@ -1,6 +1,11 @@
 <?php
 
+<<<<<<< HEAD
+
+class account extends Models
+=======
 class account
+>>>>>>> origin/master
 {
     private $properties;
 
@@ -68,6 +73,14 @@ class accounts extends models
     public function ShowUsers()
     {
         return new account(parent::DBSearch("SELECT ID, name, user, rank FROM users"));
+    }
+	
+	//Retourne tous les comptes d'un type.
+    public function ShowUsersRank($_rank)
+    {
+		$result = parent::DBSearch("SELECT ID,name,rank FROM users WHERE rank =" .$_rank);		
+			
+        return $result;
     }
 
     //Retourne les infos d'un compte.
