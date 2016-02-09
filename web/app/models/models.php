@@ -1,4 +1,18 @@
 <?php
+//transformation de tableau à objet.
+class obj{
+	private $properties;
+
+    public function __construct($_data)
+    {
+        $this->properties = $_data;
+    }
+
+    public function __get($property)
+    {
+        return $this->properties[$property];
+    }
+}
 
 class Models
 {

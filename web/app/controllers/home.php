@@ -1,4 +1,12 @@
 <?php
+/*
+2016-02-09 Marc Lauzon
+INDEX [TERMINÉ]
+LOGIN [TERMINÉ]
+LOGOUT [TERMINÉ]
+[TEST à faire]
+*/
+
 	//Contrôleur d'acceuil.
 	class home extends Controller{
 		

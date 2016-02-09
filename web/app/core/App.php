@@ -1,5 +1,5 @@
 <?php
-
+/* Class APP pour MVC par Michel DiCroci. */
 class App
 {
 	protected $controller = 'home';
@@ -32,16 +32,10 @@ class App
 
 		$this->params = $url ? array_values ($url) : [] ;
 		$controller->$method($this->params);
-		//call_user_func_array([$this->controller, $this->method], $this->params );
 	}
 
 	 public function parseUrl()
- 	{
-
-		//print_r($_GET['URL']);
-		//if (isset($_GET['URL'])) {
-		//	return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-		
+ 	{	
 		if (isset($_GET['url'])) {
 			return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
 		}

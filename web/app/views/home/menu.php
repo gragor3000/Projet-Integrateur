@@ -15,7 +15,7 @@
 					<input type="text" class="form-control" placeholder="Nom de compte" required />
 					<input type="text" class="form-control" placeholder="Mot de passe" required />
 				</div>
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary" formmethod="post" formaction="/home/login">
 					<i class="fa fa-fw fa-sign-in"></i>
 				</button>
 			</form>

@@ -1,4 +1,9 @@
-<?php include "menu.php"; ?>
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -16,7 +21,7 @@
 				<form role="form">
 					<div class="form-group">
 						<label class="control-label" for="newPass">Entrer le nouveau mot de passe</label>
-						<input class="form-control" id="newPass" placeholder="Nouveau mot de passe" type="password" required />
+						<input class="form-control" id="newPass" name="password" placeholder="Nouveau mot de passe" type="password" required />
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="newVerif">Verifier le mot de passe</label>
@@ -27,7 +32,7 @@
 							<p class="text-center">Message de validité.</p>
 						</div>
 						<div class="col-md-4">
-							<button type="submit" class="btn btn-block btn-primary">Submit</button>
+							<button type="submit" name="editPass" value="<?= $_SESSION['form_token'];?>" class="btn btn-block btn-primary" formaction="/cie/pass" formmethod="post">Submit</button>
 						</div>
 					</div>
 				</form>

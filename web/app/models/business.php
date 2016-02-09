@@ -6,21 +6,7 @@
  * Date: 06/02/2016
  * Time: 16:10
  */
-class entreprises
-{
-    private $properties;
-
-    public function __construct($_data)
-    {
-        $this->properties = $_data;
-    }
-
-    public function __get($property)
-    {
-        return $this->properties[$property];
-    }
-}
-class cie extends models
+class business extends models
 {
     //valide une entreprise
     public function ValidateEntreprise($id)

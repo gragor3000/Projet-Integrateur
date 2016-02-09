@@ -11,16 +11,6 @@ PHP/JS complété.
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
-<script>
-	//Obtenir les informations.
-	var data = JSON.parse(<?= json_encode($data); ?>);
-	
-	//Remplir les champs.
-	for(key in data['form']){
-		$('#' + key).value(data['form'][key]);
-	}
-</script>
-<?php include "menu.php"; ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -39,7 +29,7 @@ PHP/JS complété.
 					<div class="well well-sm">
 						<div class="form-group">
 							<label class="control-label" for="title">Titre du projet</label>
-							<input class="form-control" id="title" name="title" placeholder="Projet de stage" type="text" required />
+							<input class="form-control" id="title" name="title" placeholder="Projet de stage" type="text" required value="<?= (isset($data['project']->title)) ? $data['project']->title : ''; ?>"/>
 						</div>
 					</div>
 					<div class="panel-group" id="accordion">
@@ -51,7 +41,7 @@ PHP/JS complété.
 							</div>
 							<div id="colDesc" class="panel-collapse collapse in">
 								<div class="panel-body">
-									<textarea class="form-control" id="desc" name="desc" required></textarea>
+									<textarea class="form-control" id="desc" name="desc" required><?= (isset($data['project']->title)) ? $data['project']->desc : ''; ?></textarea>
 								</div>
 							</div>
 						</div>
@@ -63,7 +53,7 @@ PHP/JS complété.
 							</div>
 							<div id="colTools" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="equip" name="equip"></textarea>
+									<textarea class="form-control" id="equip" name="equip"><?= (isset($data['project']->equip)) ? $data['project']->equip : ''; ?></textarea>
 								</div>
 							</div>
 						</div>
@@ -75,7 +65,7 @@ PHP/JS complété.
 							</div>
 							<div id="colSkills" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="extra" name="extra"></textarea>
+									<textarea class="form-control" id="extra" name="extra"><?= (isset($data['project']->extra)) ? $data['project']->extra : ''; ?></textarea>
 								</div>
 							</div>
 						</div>
@@ -87,7 +77,7 @@ PHP/JS complété.
 							</div>
 							<div id="colInfo" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="info" name="info"></textarea>
+									<textarea class="form-control" id="info" name="info"><?= (isset($data['project']->info)) ? $data['project']->info : ''; ?></textarea>
 								</div>
 							</div>
 						</div>
@@ -126,26 +116,26 @@ PHP/JS complété.
 						<div class="row">
 							<div class="form-group col-md-7">
 								<label for="supName">Nom du superviseur</label>
-								<input class="form-control" id="supName" name="supName" placeholder="Prénom Nom" type="text" required />
+								<input class="form-control" id="supName" name="supName" placeholder="Prénom Nom" type="text" <?= (isset($data['project']->supName)) ? $data['project']->supName : ''; ?> required />
 							</div>
 							<div class=" form-group col-md-5">
 								<label for="supTitle">Titre</label>
-								<input class="form-control" id="supTitle" name="supTitle"  placeholder="Coordonnateur" type="text" required />
+								<input class="form-control" id="supTitle" name="supTitle"  placeholder="Coordonnateur" type="text" <?= (isset($data['project']->supTitle)) ? $data['project']->supTitle : ''; ?> required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-6">
 								<label for="supTel">Numéro de téléphone</label>
-								<input class="form-control" id="supTel" name="supTel" placeholder="(450)555-5555 #1234" type="text" />
+								<input class="form-control" id="supTel" name="supTel" placeholder="(450)555-5555 #1234" type="text" <?= (isset($data['project']->supTel)) ? $data['project']->supTel : ''; ?> />
 							</div>
 							<div class="col-md-6">
 								<label for="supEmail">Adresse courriel</label>
-								<input class="form-control" id="supEmail" name="supEmail" placeholder="contact@entreprise.tld" type="email" />
+								<input class="form-control" id="supEmail" name="supEmail" placeholder="contact@entreprise.tld" type="email" <?= (isset($data['project']->supEmail)) ? $data['project']->supEmail : ''; ?> />
 							</div>
 						</div>
 					</div>
 					<div class="well">
-						<button name="submit" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Modifier</button>
+						<button name="editProject" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Modifier</button>
 					</div>
 				</div>
 			</div>

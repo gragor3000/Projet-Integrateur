@@ -1,9 +1,8 @@
 <!--
-2016-02-08 Marc Lauzon.
-=======================
+2016-02-08 Marc Lauzon
 HTML/CSS complété.
 FORMULAIRE complété.
-PHP à faire.
+PHP complété.
 -->
 <?php
 	//Générer un token d'identification.
@@ -11,7 +10,6 @@ PHP à faire.
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
-<?php include="menu.php"; ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -24,11 +22,8 @@ PHP à faire.
 </div>
 <div class="section">
 	<div class="container">
-<<<<<<< HEAD
-		<form name="cieRev" role="form">
-=======
-		<form role="form" name="Review"">
->>>>>>> origin/master
+		<form role="form">
+		<input type="hidden" name="form" value="cieReview" />
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row well">

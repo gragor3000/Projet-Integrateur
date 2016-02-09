@@ -1,45 +1,41 @@
 <?php
 
-<<<<<<< HEAD
-
-class account extends Models
-=======
+//Convertir un tableau en objet.
 class account
->>>>>>> origin/master
 {
+	//Propriétés de l'objet.
     private $properties;
 
+	//Construction de l'objet.
     public function __construct($_data)
     {
         $this->properties = $_data;
     }
 
+	//Accesseur de propriétés.
     public function __get($property)
     {
         return $this->properties[$property];
     }
 }
 
+//Modélisateur de comptes.
 class accounts extends models
 {
     //Génération de token.
     public function TokenGen()
     {
 		//Création du token.
-        $data = "qwertyuiopasdfghjklzxcvbnm1234567890";
-        $token = "";
-        for ($i = 0; $i < 32; $i++) {
-            $rng = rand(0, strlen($data));
-            $token += $data[$rng];
-        }
+        $token = md5(uniqid(rand(), TRUE));
 
 		//Vérification d'un doublon.
         $cmd = "SELECT token FROM users WHERE token='" . $token . "'";
         $result = $this->DBSearch($cmd);
 
-        if($result == null) TokenGen();
-		
-        return $token;
+        if($result == null)
+			TokenGen();
+		else
+			return $token;
     }
 	
 	////////////////// DÉBUT GESTION DE COMPTE ////////////////////
@@ -112,7 +108,7 @@ class accounts extends models
     }    
 
     //Modifie le mot de passe d'un compte.
-    public function UpdatePw($_id, $_pw)
+    public function updatePw($_id, $_pw)
     {
         parent::DBExecute("UPDATE users SET pw ='" . md5($_pw) . "' WHERE ID =" . $_id);
     }

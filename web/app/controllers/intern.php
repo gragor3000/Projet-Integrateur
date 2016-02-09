@@ -1,5 +1,13 @@
 <?php
+/*
+2016-02-09 Marc Lauzon
+À FAIRE
+- Soumission de journal de bord.
+- Visualisation des évaluations.
+*/
 
+
+//Validation de l'identité.
 if (isset($_COOKIE['token'])
 	&& isset($_SESSION['ID'])
 	&& isset($_SESSION["role"])
@@ -8,45 +16,73 @@ if (isset($_COOKIE['token'])
 	class intern extends Controller{
 		
 		//Index par défaut.
-		public function index ()
-		{			
+		public function index (){	
+			parent::view("shared/header");
+			parent::view("intern/menu");
+		
 			parent::model("projets");
-			$projects = new projets();
-			
+			$model = new projets();
 			//Obtenir le projet assigné.
-			$data['project'] = $projects->ShowProject($_SESSION['ID']);
-			$data['assigner'] = ($data['project'] != null);
+			$data['project'] = $model->ShowProjectByIntern($_SESSION['ID']);
 			
 			//Sinon obtenir tous les projets.
-			if($data['project'] == null) $project = $projects->ShowActive();
-			
-			//Obtenir le journal de bord.
-			$path = "../files/" . $_SESSION['ID'] . "_JDB.xml";
-			if(file_exists($path) $data['logbook'] = $path;
-
-			parent::view('intern/index', $data);
-		}
-
-		//Afficher les informations du compte.
-		public function info ()
-		{
-			parent::model("accounts");
-			$accounts = new accounts();
-			
-			//Changer le mot de passe.
-			if(isset($_POST['updatepw']))
-			{
-				$accounts->UpdatePw($_pass, $_SESSION['ID'])
+			if($data['project'] == null){
+				$data['projects'] = $model->ShowProjectByStatus(true);
+				
+				parent::model("business");
+				$model = new business;
+				
+				foreach($project in $data['projects']){
+					//Obtenir les informations de l'entreprise.
+					$data['cie'][$project->ID] = $model->ShowBusinessByID($project->entID);
+				}
+				
+				parent::view("intern/list", $data);
+			}
+			else {
+				
+				parent::model("business");
+				$model = new business;
+				//Obtenir les informations de l'entreprise.
+				$data['cie'][$project->ID] = $model->ShowBusinessByID($project->entID);
+				
+				parent::view("intern/index", $data);
 			}
 			
-			//Obtenir information du compte.
-			$data['account'] = $accounts->ShowUser($_SESSION['ID']);
+			parent::view("shared/footer");
+		}
+
+		//Modifier mot de passe.
+		public function pass(){
+			parent::view("shared/header");
+			parent::view("intern/menu");
 			
-			parent::view('intern/info', $data);
+			//Modification du mot de passe.
+			if(isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()){
+				parent::model('accounts');
+				$model = new accounts();
+				try{
+					$model->UpdatePw($_SESSION['ID'], $_POST['password'])
+					$data['message'] = "Le mot de passe a été changé.";
+				}
+				catch {
+					$data['message'] = "Le changement a échoué.";
+				}
+			}
+			
+			parent::view('intern/pass', $data);
+			parent::view('shared/footer');
+		}
+		
+		//Visualiser les évaluations
+		public function review(){
+			//////////////// À FAIRE //////////////////
 		}
 		
 		//Enregistre un log
-		public function SaveLog(){
+		public function logbook(){
+			//////////////// RETOURNER LE LOGBOOK & SAUVEGARDER //////////////////
+			
 			parent::model("modelXML");
 			$_modelXML = new modelXML();
 			
@@ -63,6 +99,7 @@ if (isset($_COOKIE['token'])
 			}
 			
 			parent::view('intern/info');
+			//////////////////////// À CORRIGER ////////////////////////
 		}
 	}
 } else {
