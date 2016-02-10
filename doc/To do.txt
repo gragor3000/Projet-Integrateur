@@ -1,4 +1,4 @@
-[DONE]mettre à jour les tables des bd
+﻿[DONE]mettre à jour les tables des bd
 
 [TODO]acceuil visiteur
 - Formulaire d'inscription (HTML->PHP)[HTML/CSS fait] [FORM à finir] [PHP à faire]
@@ -65,7 +65,7 @@
 - Envoi du formulaire de l'entrevue (HTML->PHP)
 
 
--gestion de fichier XML
+-gestion de fichier XML [Suposément fait, à tester]
 
 
 

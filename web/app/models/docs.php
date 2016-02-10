@@ -15,7 +15,7 @@
 			}
 			catch{ 
 				//Créer nouveau fichier.
-				$_Xml = new domxml_new_doc('1.0');
+				$_Xml = new DomDocument("1.0", "ISO-8859-15");
 				$_Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_IDIntern."_JDB.xml");
 			}	
 			
@@ -24,7 +24,7 @@
 				
 			//Ajoute le log au fichier xml et le sauvegarde
 			$_Log = $_Xml->createElement($_Date, $_Entry);
-			$_Xml->prependChild($_Log);
+			$_Xml->appendChild($_Log);
 			$_Xml->saveXML();
 		}
 		
@@ -39,7 +39,7 @@
 				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-				$_Xml = new domxml_new_doc('1.0');
+				$_Xml = new DomDocument("1.0", "ISO-8859-15");
 				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
 			}
 			
@@ -56,7 +56,7 @@
 				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-				$_Xml = new domxml_new_doc('1.0');
+				$_Xml = new DomDocument("1.0", "ISO-8859-15");
 				$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
 			}
 			
@@ -69,7 +69,7 @@
 				$_Xml->appendChild($_Enfant);
 				
 				//Enregistre les modifications
-				$_Xml->saveXML();
+				$_Xml->$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
 			}catch{
 				
 			}
@@ -101,7 +101,7 @@
 				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-				$_Xml = new domxml_new_doc('1.0');
+				$_Xml = new DomDocument("1.0", "ISO-8859-15");
 				$_Xml->save($DefaultXMLPath.'/evaluation/'.$_IDIntern."_EVL.xml");
 			}
 			
@@ -118,7 +118,7 @@
 				$_Xml = SimpleXml_load_file(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
 			}
 			catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-				$_Xml = new domxml_new_doc('1.0');
+				$_Xml = new DomDocument("1.0", "ISO-8859-15");
 				$_Xml->save($DefaultXMLPath.'/evaluation/'.$_IDIntern."_EVL.xml");
 			}
 			
@@ -131,7 +131,7 @@
 				$_Xml->appendChild($_Enfant);
 				
 				//Enregistre les modifications
-				$_Xml->saveXML();
+				$_Xml->save($DefaultXMLPath.'/evaluation/'.$_IDIntern."_EVL.xml");
 			}catch{	}
 		}
 		
