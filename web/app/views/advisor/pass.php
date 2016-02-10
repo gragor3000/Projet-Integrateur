@@ -1,8 +1,8 @@
 <!--
 2016-02-09 Marc Lauzon.
 Formulaire de changement de mot de passe.
-Accessible par l'entreprise seulement.
-(Copie dans stagiaire et coordonnateurs)
+Accessible par le coordonnateur seulement.
+(Copie dans stagiaire et entreprise)
 
 À FAIRE
 - Validation entre newPass et newVerif. (JS)
@@ -42,7 +42,7 @@ Accessible par l'entreprise seulement.
 							<p class="text-center" id="valid"></p>
 						</div>
 						<div class="col-md-4">
-							<button type="submit" name="editPass" value="<?= $_SESSION['form_token'];?>" class="btn btn-block btn-primary" formaction="/cie/updatePW" formmethod="post">Soumettre</button>
+							<button type="submit" name="editPass" value="<?= $_SESSION['form_token'];?>" class="btn btn-block btn-primary" formaction="/advisor/updatePW" formmethod="post">Soumettre</button>
 						</div>
 					</div>
 				</form>

@@ -1,3 +1,17 @@
+<!--
+2016-02-09 Marc Lauzon
+Formulaire d'enregistrement d'entreprise.
+Aucun remplissage à faire.
+Formulaire de connexion des usagers.
+
+COMPLÉTÉ... j'espère.
+-->
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -17,34 +31,34 @@
 						<div class="row">
 							<div class="form-group col-md-7">
 								<label class="control-label" for="cieName">Nom de l'entreprise</label>
-								<input class="form-control" id="cieName" placeholder="Entreprise Inc." type="text" required />
+								<input class="form-control" id="cieName" name="name" placeholder="Entreprise Inc." type="text" required />
 							</div>
 							<div class="form-group col-md-5">
 								<label class="control-label" for="cieUser">Nom de compte (Suggestion)</label>
-								<input class="form-control" id="cieUser" placeholder="Entre_Inc" type="text" required />
+								<input class="form-control" id="cieUser" name="user" placeholder="Entre_Inc" type="text" required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-6">
 								<label class="control-label" for="cieTel">Numéro de téléphone</label>
-								<input class="form-control" id="cieTel" placeholder="(450)555-5555 #1234" type="text" required />
+								<input class="form-control" id="cieTel" name="tel" placeholder="(450)555-5555 #1234" type="text" required />
 							</div>
 							<div class="form-group col-md-6">
 								<label class="control-label" for="cieEmail">Adresse courriel</label>
-								<input class="form-control" id="cieEmail" placeholder="contact@entreprise.tld" type="email" required />
+								<input class="form-control" id="cieEmail" name="email" placeholder="contact@entreprise.tld" type="email" required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-8">
 								<label class="control-label" for="cieAddress">Adresse de l'entreprise</label>
-								<input class="form-control" id="cieAddress" placeholder="555 rue Entreprise, local 555" type="text" required />
+								<input class="form-control" id="cieAddress" name="address"placeholder="555 rue Entreprise, local 555" type="text" required />
 							</div>
 							<div class="form-group col-md-4">
 								<label class="control-label" for="cieCity">Ville</label>
-								<input class="form-control" id="cieCity" placeholder="Joliette" type="text" required />
+								<input class="form-control" id="cieCity" name="city" placeholder="Joliette" type="text" required />
 							</div>
 						</div>
-						<button type="submit" class="btn btn-block btn-primary">Soumettre</button>
+						<button type="submit" name="sendCie" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Soumettre</button>
 					</form>
 				</div>
 			</div>

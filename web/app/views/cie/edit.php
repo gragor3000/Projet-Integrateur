@@ -3,7 +3,7 @@
 =======================
 HTML/CSS complété.
 FORMULAIRE complété.
-PHP/JS complété.
+PHP complété.
 -->
 <?php
 	//Générer un token d'identification.

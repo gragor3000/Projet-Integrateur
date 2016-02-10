@@ -1,4 +1,9 @@
 <?php
+/*
+2016-02-09 Marc Lauzon
+COMPLÉTÉ... je pense.
+*/
+
 //transformation de tableau à objet.
 class obj{
 	private $properties;
@@ -16,7 +21,7 @@ class obj{
 
 class Models
 {
-    //Contient le chemin pour accèder au dossier contenant les différent Xml
+    //Chemin des fichiers XML.
     protected $DefaultXMLPath = '../app/models/xml/';
 
     //Connexion à la BD.

@@ -1,3 +1,10 @@
+<!--
+2016-02-09 Marc Lauzon.
+=======================
+Menu pour l'entreprise.
+
+COMPLÉTÉ.
+-->
 <div class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -12,7 +19,7 @@
 		<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-user"></i> Nom de l'utilisateur <i class="fa fa-caret-down"></i></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-user"></i> <?= $_SESSION['name']; ?><i class="fa fa-caret-down"></i></a>
 					<ul class="dropdown-menu" role="menu">
 						<li>
 							<a href="/cie/index"><i class="fa fa-fw fa-briefcase"></i> Projets de stage</a>

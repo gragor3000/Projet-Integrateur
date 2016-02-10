@@ -1,10 +1,23 @@
-<?php include "menu.php"; ?>
+<!--
+2016-02-09 Marc Lauzon
+Formulaire de soumission de projet.
+Formulaire vide seulement, affiche l'entreprise.
+Accès possible aux entreprises seulement.
+
+COMPLÉTÉ.
+-->
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Soumettre un projet de stage</h1>
-				<p>Sur cette page vous pourrez soumettre un porjet de stage au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pouvez modifier celui-ci avant qu'il soit accepté. Si le projet est accepté ou refusé par les coordonnateurs, un courriel vous sera envoyé.</p>
+				<p>Sur cette page vous pourrez soumettre un porjet de stage au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pourrez modifier celui-ci avant qu'il soit accepté. Si le projet est accepté ou refusé par les coordonnateurs, un courriel vous sera envoyé.</p>
 			</div>
 		</div>
 	</div>
@@ -17,7 +30,7 @@
 					<div class="well well-sm">
 						<div class="form-group">
 							<label class="control-label" for="pjtName">Titre du projet</label>
-							<input class="form-control" id="pjtName" placeholder="Projet de stage" type="text" required />
+							<input class="form-control" id="pjtName" name="title" placeholder="Projet de stage" type="text" required />
 						</div>
 					</div>
 					<div class="panel-group" id="accordion">
@@ -29,7 +42,7 @@
 							</div>
 							<div id="colDesc" class="panel-collapse collapse in">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtDesc" required></textarea>
+									<textarea class="form-control" id="pjtDesc" name="desc" required></textarea>
 								</div>
 							</div>
 						</div>
@@ -41,7 +54,7 @@
 							</div>
 							<div id="colTools" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtTools"></textarea>
+									<textarea class="form-control" id="pjtTools" name="equip"></textarea>
 								</div>
 							</div>
 						</div>
@@ -53,7 +66,7 @@
 							</div>
 							<div id="colSkills" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtSkills"></textarea>
+									<textarea class="form-control" id="pjtSkills" name="extra"></textarea>
 								</div>
 							</div>
 						</div>
@@ -65,7 +78,7 @@
 							</div>
 							<div id="colInfo" class="panel-collapse collapse">
 								<div class="panel-body">
-									<textarea class="form-control" id="pjtInfo"></textarea>
+									<textarea class="form-control" id="pjtInfo" name="info"></textarea>
 								</div>
 							</div>
 						</div>
@@ -76,27 +89,27 @@
 						<div class="row">
 							<div class="col-md-12">
 								<b>Nom de l'entreprise</b>
-								<p>Entreprise Inc.</p>
+								<p><?= $data['cie']->name; ?></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<b>Numéro de téléphone</b>
-								<p>(450)555-5555 #1234</p>
+								<p><?= $data['cie']->tel; ?></p>
 							</div>
 							<div class="col-md-6">
 								<b>Adresse courriel</b>
-								<p>contact@entreprise.tld</p>
+								<p><?= $data['cie']->tel; ?></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-8">
 								<b>Adresse de l'entreprise</b>
-								<p>555 rue Entreprise, local 555</p>
+								<p><?= $data['cie']->address; ?></p>
 							</div>
 							<div class="col-md-4">
 								<b>Ville</b>
-								<p>Joliette</p>
+								<p><?= $data['cie']->city; ?></p>
 							</div>
 						</div>
 					</div>
@@ -104,26 +117,26 @@
 						<div class="row">
 							<div class="form-group col-md-7">
 								<label for="pjtSupName">Nom du superviseur</label>
-								<input class="form-control" id="pjtSupName" placeholder="Prénom Nom" type="text" required />
+								<input class="form-control" id="pjtSupName" name="supName" placeholder="Prénom Nom" type="text" required />
 							</div>
 							<div class=" form-group col-md-5">
 								<label for="pjtSupTitle">Titre</label>
-								<input id="pjtSupTitle" class="form-control" placeholder="Coordonnateur" type="text" required />
+								<input id="pjtSupTitle" class="form-control" name="supTitle" placeholder="Coordonnateur" type="text" required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-6">
 								<label for="pjtSupTel">Numéro de téléphone</label>
-								<input id="pjtSupTel" class="form-control" placeholder="(450)555-5555 #1234" type="text" required />
+								<input id="pjtSupTel" class="form-control" name="supTel" placeholder="(450)555-5555 #1234" type="text" required />
 							</div>
 							<div class="col-md-6">
 								<label for="pjtSupEmail">Adresse courriel</label>
-								<input id="pjtSupEmail" class="form-control" placeholder="contact@entreprise.tld" type="email" required />
+								<input id="pjtSupEmail" class="form-control" name="supEmail" placeholder="contact@entreprise.tld" type="email" required />
 							</div>
 						</div>
 					</div>
 					<div class="well">
-						<a class="btn btn-block btn-primary">Soumettre</a>
+						<button name="sendProject" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/sendProject" formmethod="post">Soumettre</a>
 					</div>
 				</div>
 			</div>
