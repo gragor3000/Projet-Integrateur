@@ -48,7 +48,7 @@ class Models
         $pdo = DBConnect();
 
 
-        //Préparer la commande.
+        //Prï¿½parer la commande.
 
 		//PrÃ©parer la commande.
 
@@ -69,7 +69,7 @@ class Models
         $pdo = DBConnect();
 
 
-        //Préparer la commande.
+        //Prï¿½parer la commande.
 
 		//PrÃ©parer la commande.
 
@@ -82,20 +82,11 @@ class Models
 
         return $result;
     }
-<<<<<<< HEAD
-	
-	//Obtenir dernier ID gÃ©nÃ©rÃ©.
-	public function DBLastID()
-	{
-		//Connexion Ã  la BD.
-=======
 
-
-    //Obtenir dernier ID généré.
+    //Obtenir dernier ID gï¿½nï¿½rï¿½.
     public function DBLastID()
     {
-        //Connexion à la BD.
->>>>>>> origin/master
+        //Connexion ï¿½ la BD.
         $pdo = DBConnect();
         return $pdo->lastInsertId();
     }
