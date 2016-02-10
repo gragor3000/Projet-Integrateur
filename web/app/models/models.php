@@ -85,7 +85,7 @@ class Models
 
 
     //Obtenir dernier ID généré.
-    protected function DBLastID()
+    public function DBLastID()
     {
         //Connexion à la BD.
         $pdo = DBConnect();
