@@ -106,8 +106,29 @@ if (isset($_COOKIE['token'])
 		}
 		
 		//Formulaire de mise à jour d'information.
-		public function info(){
-			//////////// À FAIRE ////////////////
+		public function info($_address, $_city, $_tel, $_email){
+			parent::view("shared/header");
+			parent::view("cie/menu");
+			
+			parent::model("business");
+			$model = new business();
+			
+			//Modification des informations d'une entreprise.
+			if(isset($_POST['editCie']) && $_POST['editCie'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()){
+				parent::model('accounts');
+				$model = new accounts();
+				try{
+					$model->UpdateBusiness($_SESSION['ID'], $_POST['address'],$_POST['city'],$_POST['tel'],$_POST['email'])
+					$data['message'] = "Le(s) information(s) a(ont) été changée(s).";
+				}
+				catch {
+					$data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+				}
+			}
+			
+			//vues associées aux mises à jour????
+			parent::view('cie/???', $data);
+			parent::view('shared/footer');
 		}
 				
 		//Formulaire d'entrevue de stagiaire.
@@ -128,11 +149,11 @@ if (isset($_COOKIE['token'])
 				if(isset($_POST['sendInterview']) && $_POST['sendInterview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()){
 					try{
 						$model->AddInterview($_SESSION['ID'], $_internID, $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
-						$data['message'] = "L'entrevue a été sauvegardé avec succès.";
+						$data['message'] = "L'entrevue a été sauvegardée avec succès.";
 						parent::view("cie/index", $data);
 					}
 					catch(exception $ex){
-						$data['message'] = "L'information n'a pas pu être enregistré.";
+						$data['message'] = "L'information n'a pas pu être enregistrée.";
 					}
 				}
 				
@@ -148,28 +169,69 @@ if (isset($_COOKIE['token'])
 			parent::view("shared/footer");
 		}
 		
-		//Formulaire d'évaluation de stage.
+        //Formulaire d'évaluation de stage.
 		public function review($_projectID){	
 			parent::view("shared/header");
 			parent::view("cie/menu");
 		
 			parent::model("docs");
 			$model = new docs();
+										
+			//Vérifier l'existence d'une évaluation de stage
+			$data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_projectID, 'cieReview');
 			
-			/////////// PROBLÉMATIQUE : S'assuré que l'entreprise ne peut voir les autres évaluations ou passer une evaluation inexistante.
-			
-			$data['readOnly'] = $model->FormExists($_SESSION['ID'], $_projectID, 'cieReview');
-			if($data['readOnly']){
-				$data['review'] = $model->ShowCieReview($_projectID);
-			}
-			
-			//AddCieReview(...);
 			parent::model("projects");
-			$model = new projects();
+			$model2 = new projects(); 
 			
-			$data['title'] = ($model->ShowProjectByID($_projectID))->title;
+			$data['title'] = ($model2->ShowProjectByID($_projectID))->title;
+			$data['internId'] = ($model2->ShowProjectByID($_projectID))->internID;
 			$data['date'] = date();
-			/////////////// À CORRIGER /////////////////////////////
+			
+			parent::model("accounts");
+			$model3 = new accounts();
+			$data['intern'] = $model3->ShowUserByID($data['internId']))->name;
+			
+			
+			if($data['readOnly']){ //si le formulaire existe
+				$data['review'] = $model->ShowCieReview($_projectID);
+				
+				//Si les id sont les mêmes, afficher le formulaire d'évaluation
+				if($data['review']->cieId == $_SESSION['ID'])
+				{
+					parent::view("cie/review", $data);
+				}
+				else
+				{
+					$data['message'] = "Il vous est interdit de visualiser ce formulaire.";
+				    parent::view("cie/index", $data);
+				}
+			}
+			else //si le formulaire n'existe pas
+			{
+				//Enregistrer le formulaire d'évaluation.
+				if(isset($_POST['sendReview']) && $_POST['sendReview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time())
+				{
+					try{
+						$model->AddCieReview($_SESSION['ID'], $_POST['internId'], $_POST['docName'], $_POST['cieRev111'] ,
+						$_POST['cieRev112'],$_POST['cieRev113'], $_POST['cieRev1'], $_POST['cieRev211'],$_POST['cieRev221'], 
+						$_POST['cieRev222'], $_POST['cieRev231'],$_POST['cieRev232'], $_POST['cieRev2'],$_POST['cieRev311'],
+						$_POST['cieRev312'],$_POST['cieRev313'],$_POST['cieRev321'],$_POST['cieRev331'],$_POST['cieRev332'],
+						$_POST['cieRev341'],$_POST['cieRev342'],$_POST['cieRev351'],$_POST['cieRev352'],$_POST['cieRev3'],
+						$_POST['cieRevBest'],$_POST['cieRevLess'],$_POST['cieRevOther'],$_POST['cieRevLike'],$_POST['cieRevAgain'],
+						$_POST['cieRevSame']);
+						$data['message'] = "L'évaluation a été sauvegardée avec succès.";
+					}
+					catch{
+						$data['message'] = "L'évaluation n'a pas pu être enregistrée.";
+					}
+					parent::view("cie/index", $data);
+				}
+               else //Voir formulaire vierge
+               {				   				   
+	             parent::view("cie/review", $data);				 				 
+               }	
+			}
+					
 			parent::view("shared/footer");			
 		}
 		
