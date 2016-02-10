@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Mic
@@ -8,9 +9,9 @@
 class installer extends models
 {
     //délpoie la base de donnée
-    public function DeloyDb($_dbName,$_name,$_username,$_pw)
+    public function DeloyDb($_dbAdress, $_dbName, $_name, $_username, $_pw)
     {
-        parent::DBExecute("CREATE DATABASE ".$_dbName);
+        parent::DBExecute("CREATE DATABASE IF NOT EXISTS " . $_dbName);
         //créer la table entreprises
         parent::DBExecute("CREATE TABLE IF NOT EXISTS business (
                           ID int NOT NULL AUTO_INCEREMENT COMMENT 'clé primaire',
@@ -63,6 +64,13 @@ class installer extends models
                           PRIMARY KEY(ID)");
 
         //ajoute le premier coordonateur
-        parent::DBExecute("INSERT INTO users(name,user,pw,rank) VALUES('".$_name."','".$_username."','".$_pw."',0)");
+        parent::DBExecute("INSERT INTO users(name,user,pw,rank) VALUES('" . $_name . "','" . $_username . "','" . $_pw . "',0)");
+
+        //écrit les infos dans un fichier
+        $myfile = $myfile = fopen("../app/dbSettings.txt", "w");
+        fwrite($myfile,$_dbAdress.",".$_dbName.",".$_username.",".$_pw);
+        fclose($myfile);
+
     }
+
 }
