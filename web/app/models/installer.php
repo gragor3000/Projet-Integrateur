@@ -39,7 +39,7 @@ class installer extends models
                           internID int(11) DEFAULT NULL COMMENT 'stagiaire affecté au projet',
                           businessID int(11) NOT NULL COMMENT 'entreprise du projet',
                           PRIMARY KEY(ID),
-                          FOREIGN KEY (entID) REFERENCES entreprises (ID),
+                          FOREIGN KEY (businessID) REFERENCES business (ID),
                           FOREIGN KEY (internID) REFERENCES users (ID)");
 
         //créer la table ratings

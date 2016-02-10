@@ -32,19 +32,18 @@ if (isset($_COOKIE['token'])
 				parent::model("business");
 				$model = new business;
 				
-				foreach($project in $data['projects']){
+				foreach($data['projects'] as $project){
 					//Obtenir les informations de l'entreprise.
-					$data['cie'][$project->ID] = $model->ShowBusinessByID($project->entID);
+					$data['cie'][$project->ID] = $model->ShowBusinessByID($project->businessID);
 				}
 				
 				parent::view("intern/list", $data);
 			}
 			else {
-				
 				parent::model("business");
 				$model = new business;
 				//Obtenir les informations de l'entreprise.
-				$data['cie'][$project->ID] = $model->ShowBusinessByID($project->entID);
+				$data['cie'][$data['project']->ID] = $model->ShowBusinessByID($data['project']->businessID);
 				
 				parent::view("intern/index", $data);
 			}
@@ -62,14 +61,13 @@ if (isset($_COOKIE['token'])
 				parent::model('accounts');
 				$model = new accounts();
 				try{
-					$model->UpdatePw($_SESSION['ID'], $_POST['password'])
+					$model->UpdatePw($_SESSION['ID'], $_POST['password']);
 					$data['message'] = "Le mot de passe a été changé.";
 				}
-				catch {
+				catch(exception $ex) {
 					$data['message'] = "Le changement a échoué.";
 				}
 			}
-			
 			parent::view('intern/pass', $data);
 			parent::view('shared/footer');
 		}
@@ -84,7 +82,7 @@ if (isset($_COOKIE['token'])
 			//////////////// RETOURNER LE LOGBOOK & SAUVEGARDER //////////////////
 			
 			parent::model("modelXML");
-			$_modelXML = new modelXML();
+			$_modelXML = new docs();
 			
 			if(isset($_POST["logText"])){
 				//Contient toutes les données à enregistrer
@@ -95,14 +93,15 @@ if (isset($_COOKIE['token'])
 					array_push($_Data, $_Valeur);
 				}
 				
-				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"], $_Data)
+				$_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"], $_Data);
 			}
 			
 			parent::view('intern/info');
 			//////////////////////// À CORRIGER ////////////////////////
 		}
 	}
-} else {
+}
+else {
 	//Rediriger vers l'acceuil.
     session_unset();
     session_destroy();
