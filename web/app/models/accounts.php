@@ -1,8 +1,7 @@
 <?php
 /*
-2016-02-09 Marc Lauzon
-COMPLÉTÉ.
-? Je doute que Déconnexion soit nécessaire.
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ.
 */
 
 class accounts extends models
@@ -61,7 +60,7 @@ class accounts extends models
 		$result = parent::DBSearch("SELECT ID, name, user, rank FROM users");
 		
 		//Générer un tableau d'objet.
-		foreach($user in $result) $obj[$user['ID']] = new obj($user);
+		foreach($result as $user) $obj[$user['ID']] = new obj($user);
 			
 		return $obj;
     }
@@ -72,7 +71,7 @@ class accounts extends models
         $result = parent::DBSearch("SELECT ID,name,user,rank FROM users WHERE rank =" .$_rank);
 		
 		//Générer un tableau d'objet.
-		foreach($user in $result) $obj[$user['ID']] = new obj($user);
+		foreach($result as $user) $obj[$user['ID']] = new obj($user);
 			
 		return $obj;
     }

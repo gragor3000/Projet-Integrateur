@@ -1,10 +1,10 @@
 <?php
 /*
-2016-02-09 Marc Lauzon
-COMPLÉTÉ... je pense.
+2016-02-10 Marc Lauzon, Baker
+RÃ‰VISÃ‰
 */
 
-//transformation de tableau à objet.
+//transformation de tableau Ã  objet.
 class obj{
 	private $properties;
 
@@ -24,20 +24,20 @@ class Models
     //Chemin des fichiers XML.
     protected $DefaultXMLPath = '../app/models/xml/';
 
-    //Connexion à la BD.
+    //Connexion Ã  la BD.
     protected function DBConnect()
     {
         //Temporaire, mettre les bonne valeur
         return new PDO('mysql:host=localhost;dbname=db_pIntegrateur;charset=utf8', 'kalahee', 'test');
     }
 
-    //Requête avec le retour d'une table.
+    //RequÃªte avec le retour d'une table.
     protected function DBSearch($Command)
     {
-        //Connexion à la BD.
+        //Connexion Ã  la BD.
         $pdo = DBConnect();
 
-		//Préparer la commande.
+		//PrÃ©parer la commande.
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -48,13 +48,13 @@ class Models
         return $result;
     }
 
-    //Requête avec le retour d'une ligne unique.
+    //RequÃªte avec le retour d'une ligne unique.
     protected function DBExecute($Command)
     {
-        //Connexion à la BD.
+        //Connexion Ã  la BD.
         $pdo = DBConnect();
 
-		//Préparer la commande.
+		//PrÃ©parer la commande.
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetch(PDO::FETCH_ASSOC);
@@ -65,12 +65,12 @@ class Models
         return $result;
     }
 	
-	//Obtenir dernier ID généré.
+	//Obtenir dernier ID gÃ©nÃ©rÃ©.
 	protected function DBLastID()
 	{
-		//Connexion à la BD.
+		//Connexion Ã  la BD.
         $pdo = DBConnect();
-		$result = $pdo->lastInsertId();
+        return $pdo->lastInsertId();
 	}
 	
 }
