@@ -1,5 +1,11 @@
 Journal de Bord
 
+2016-02-09 [73b8d857c213ac85cd83068284f1b65c17b6e5b7]
++Nettoyage du code, amélioration des structures.
+
+2016-02-08 [5fb01d00d7e5ce92e9c1cec7ac2af28f177c2bfd]
++Nettoyage du code, amélioration des structures.
+
 2016-02-07 [c287920d96931a4b42f2bf72beec75451c1620e3]
 +Redesign des pages d'accueil des visiteurs et différents comptes.
 +Redesign de l'affihcage des projets pour le stagiaire et l'entreprise.
