@@ -27,143 +27,196 @@ if (isset($_COOKIE['token'])
             $projects = new projects();
             $data["projects"] = $projects->ShowProjects(false);
 
-            parent::model("cie");
-            $cie = new cie();
+            parent::model("business");
+            $cie = new business();
             $data["cie"] = $cie->ShowCie(false);
 
             parent::view("advisor/inactive",$data);
             parent::view("shared/footer");
         }
 
-        //
+        //appelle la page pour afficher tous les projets
         public function projects()
         {
             parent::view("shared/header");
             parent::view("advisor/menu");
 
 
+
             parent::view("shared/footer");
 
 
         }
-        //affiche les entreprises non valider
-        public function ShowInactiveCie()
-        {
-            $result = $this->cie->ShowInactiveCie();
-            echo json_encode($result);
-        }
 
-        //affiche les projets non valider
-        public function ShowInactiveProjects()
-        {
-            return $this->projects->ShowInactiveProjects();
-        }
 
         //valide une entreprise
-        public function ValidateEntreprise()
+        public function ValidateBusiness()
         {
-            $this->cie->ValidateEntreprise($_POST["id"]);
+            parent::model("models");
+            parent::model("business");
+            $cie = new business();
+
+            $cie->ValidateEntreprise($_POST["id"]);
         }
 
         //valide un projet
         public function ValidateProjects()
         {
-            $this->projects->ValidateProjects($_POST["id"]);
+            parent::model("models");
+            parent::model("projects");
+            $projects = new projects();
+
+            $projects->ValidateProjects($_POST["id"]);
         }
 
         //supprime un projet
         public function DeleteProject()
         {
-            $this->projects->DeleteProject($_POST["id"]);
+            parent::model("models");
+            parent::model("projects");
+            $projects = new projects();
+
+            $projects->DeleteProject($_POST["id"]);
         }
 
         //ajoute un compte dans la bd
         public function CreateUser()
         {
-            $this->account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);
         }
 
         //affiche tous les comptes
         public function ShowUsers()
         {
-            $result = $this->account->ShowUsers();
-            echo json_encode($result);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+            /***** à changer ******/
+            $result = $account->ShowUsers();
+
         }
 
         //supprime un compte
         public function DeleteUser()
         {
-            $this->account->DeleteUser($_POST["id"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->DeleteUser($_POST["id"]);
         }
 
         //update les infos d'un compte
         public function UpdateUser()
         {
-            $this->account->UpdateUser($_POST["id"], $_POST["name"], $_POST["user"], $_POST["rank"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->UpdateUser($_POST["id"], $_POST["name"], $_POST["user"], $_POST["rank"]);
         }
 
         //update le mot de passe d'un compte
         public function UpdatePw()
         {
-            $this->account->UpdatePw($_POST["id"], $_POST["pw"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->UpdatePw($_POST["id"], $_POST["pw"]);
         }
 
         //change ses infos
         public function UpdateMyInfo()
         {
-            $this->account->UpdateMyInfo($_COOKIE["token"], $_POST["name"], $_POST["user"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->UpdateMyInfo($_COOKIE["token"], $_POST["name"], $_POST["user"]);
         }
 
         //change son mot de passe
         public function UpdateMyPw()
         {
-            $this->account->UpdateMyPw($_COOKIE["token"], $_POST["pw"]);
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $account->UpdateMyPw($_COOKIE["token"], $_POST["pw"]);
         }
 
         //montre ses infos
         public function ShowMyInfo()
         {
-            $result = $this->account->ShowMyInfo($_COOKIE["token"]);
-            echo json_encode($result);
+            /***** à changer *****/
+            parent::model("models");
+            parent::model("accounts");
+            $account = new accounts();
+
+            $result = $account->ShowMyInfo($_COOKIE["token"]);
+
         }
 
         //affiche les notes misent par les étudiants
         public function ShowInternsRatings()
         {
+
+            /***** à changer *****/
             parent::model("ratings");
             $ratings = new ratings();
 
             $result = $ratings->ShowInternsRatings();
 
-            echo json_encode($result);
+
         }
 
         //jumelle un stagiaire à un projet
         public function PairInternProject()
         {
-            $this->projects->PairInternProject($_POST["internId"],$_POST["projectId"]);
+            parent::model("models");
+            parent::model("projects");
+            $projects = new projects();
+
+            $projects->PairInternProject($_POST["internId"],$_POST["projectId"]);
         }
 
         //affiche tous les stagiaires
         public function ShowInterns()
         {
-            $result = $this->interns->ShowInterns();
+            /****** à changer *****/
 
-            echo json_encode($result);
+            parent::model("models");
+            parent::model("interns");
+            $interns = new interns();
+
+            $result = $interns->ShowInterns();
+
         }
 
         //affiche les évaluations d'un étudiant
         public function ShowEval()
         {
-            $result = $this->interns->ShowEval($_POST["id"]);
+            /******* à changer ******/
+            parent::model("models");
+            parent::model("interns");
+            $interns = new interns();
 
-            echo json_encode($result);
+            $result = $interns->ShowEval($_POST["id"]);
         }
 
         //met à jour l'évaluation d'un stagiaire
         public function UpdateEval()
         {
-            $this->interns->UpdateEval($_POST["id"]);
+            parent::model("models");
+            parent::model("interns");
+            $interns = new interns();
+
+            $interns->UpdateEval($_POST["id"]);
         }
 
 
