@@ -1,34 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mic
- * Date: 07/02/2016
- * Time: 15:57
- */
+
+/*
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ.
+*/
 
 class interns extends models
 {
-    //retourne tous les stagiaires
+    //Retourner tous les stagiaires
     public function ShowInterns()
     {
-        return parent::DBSearch("Select name FROM users WHERE rank = 2");
-    }
+        $result = parent::DBSearch("Select ID, name FROM users WHERE rank = 2");
 
-    //retourn les évaluation d'un stagiaire
-    public function ShowEval($_id)
-    {
-        $result = parent::DBSearch("SELECT user FROM users WHERE ID = ".$_id);
-        $user = $result[0][0];
-
-        /**** va chercher les info dans fichier text *****/
-    }
-
-    //met à jour l'évaluation d'un stagiaire
-    public function UpdateEval($_id)
-    {
-        $result = parent::DBSearch("SELECT user FROM users WHERE ID = ".$_id);
-        $user = $result[0][0];
-
-        /**** modifie le fichier du stagiaire ****/
+        foreach($result as $item){
+            $intern[$item["ID"]] = new obj($item);
+        }
     }
 }

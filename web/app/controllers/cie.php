@@ -33,7 +33,7 @@ if (isset($_COOKIE['token'])
 			parent::model("accounts");
 			$model = new accounts();
 			//Déterminer l'assignation du projet.
-			foreach ($project in $data['projects']){
+			foreach ($data['projects'] as $project){
 				if (isset($project->internID) && $project->internID != null){
 					$data['intern'][$project->ID] = $model->ShowUserByID($project->internID);
 				}
@@ -64,7 +64,7 @@ if (isset($_COOKIE['token'])
 					$model->UpdateProject($_projectID, $_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
 					$data['message'] = "Le projet a été mis à jour.";
 				}
-				catch {
+				catch(exception $ex){
 					$data['message'] = "Le changement a échoué.";
 				}
 			}
@@ -72,9 +72,10 @@ if (isset($_COOKIE['token'])
 			//Obtenir les informations du projet.
 			$data['project'] = $model->ShowProjectByID($_projectID);
 			
-			if($data['project']->status == '0' $$ $data['project']->entID == $_SESSION['ID']){
+			if($data['project']->status == '0' && $data['project']->entID == $_SESSION['ID']){
 				parent::view('cie/edit', $data);
-			} else {
+			}
+			else {
 				$data['message'] = "Vous n'avez pas l'autorisation de moddifier ce projet.";
 				parent::view('cie/index', $data);
 			}
@@ -92,10 +93,10 @@ if (isset($_COOKIE['token'])
 				parent::model('accounts');
 				$model = new accounts();
 				try{
-					$model->UpdatePw($_SESSION['ID'], $_POST['password'])
+					$model->UpdatePw($_SESSION['ID'], $_POST['password']);
 					$data['message'] = "Le mot de passe a été changé.";
 				}
-				catch {
+				catch(exception $ex) {
 					$data['message'] = "Le changement a échoué.";
 				}
 			}
@@ -121,7 +122,7 @@ if (isset($_COOKIE['token'])
 			//Vérifié l'existence d'un entrevue entre l'entreprise et le stagiaire.
 			$data['readOnly'] = $model->FormExists($_SESSION['ID'], $_internID, 'interview1') || $model->FormExists($_SESSION['ID'], $_internID, 'interview2');
 			
-			if(!$data['readOnly')){
+			if(!$data['readOnly']){
 				
 				//Enregistrer l'entrevue.
 				if(isset($_POST['sendInterview']) && $_POST['sendInterview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()){
@@ -130,13 +131,13 @@ if (isset($_COOKIE['token'])
 						$data['message'] = "L'entrevue a été sauvegardé avec succès.";
 						parent::view("cie/index", $data);
 					}
-					catch{
+					catch(exception $ex){
 						$data['message'] = "L'information n'a pas pu être enregistré.";
 					}
 				}
 				
 				parent::model("accounts");
-				$models = new (account);
+				$models = new account();
 			  
 				parent::view("cie/interview", $data);
 			} else {
@@ -188,10 +189,11 @@ if (isset($_COOKIE['token'])
 				$model = new projects();
 				
 				try{
-					$model->SubmitProject($_projectID, $_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
+					$model->SubmitProject($_projectID, $_POST['title'], $_POST['supName'], $_POST['supTitle'],
+						$_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
 					$data['message'] = "Le projet a été soumis pour une validation.";
 				}
-				catch {
+				catch(exception $ex) {
 					$data['message'] = "Le projet n'a pas pu être envoyé.";
 				}
 			}			

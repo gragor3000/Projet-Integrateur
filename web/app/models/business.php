@@ -1,7 +1,7 @@
 <?php
 /*
-2016-02-09 Marc Lauzon
-COMPLÉTÉ.
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ.
 */
 
 class business extends models
@@ -33,7 +33,7 @@ class business extends models
 		$result = parent::DBSearch("SELECT * FROM cie");
 		
 		//Générer un tableau d'objet.
-		foreach($cie in $result) $obj[$cie['ID']] = new obj($cie);
+		foreach($result as $cie) $obj[$cie['ID']] = new obj($cie);
 			
 		return $obj;
 	}
@@ -44,7 +44,7 @@ class business extends models
 		//Obtenir l'entreprise.
 		$result = parent::DBExecute("SELECT * FROM cie WHERE ID = " . $_businessID);
 		//Obtenir le nom de l'entreprise.
-		$result['name'] = parent::DBExecute("SELECT name FROM users WHERE ID = " . $result['userID'])
+		$result['name'] = parent::DBExecute("SELECT name FROM users WHERE ID = " . $result['userID']);
 		
         return new obj($result);
     }
@@ -52,10 +52,10 @@ class business extends models
     //Retourne les entreprises selon le status.
     public function ShowCieByStatus($_status)
     {
-        $result = parent::DBSearch("SELECT * FROM entreprises WHERE status = ".$_status));
+        $result = parent::DBSearch("SELECT * FROM entreprises WHERE status = ".$_status);
 		
 		//Générer un tableau d'objet.
-		foreach($cie in $result) $obj[$cie['ID']] = new obj($cie);
+		foreach($result as $cie) $obj[$cie['ID']] = new obj($cie);
 			
 		return $obj;
     }
@@ -67,18 +67,18 @@ class business extends models
 		//Obtenir l'ID de compte et courriel.
 		$result = parent::DBExecute("SELECT email,userID FROM cie WHERE ID =" . $_businessID);
 		//Obtenir le nom d'utilisateur et mot de passe.
-		$user = parent::DBExecute("SELECT user,pw FROM users WHERE ID=" . $result['userID']);
+		$user = parent::DBExecute("SELECT user,pw,name FROM users WHERE ID=" . $result['userID']);
 		
-        $msg = "Votre entreprise à été autorisé à soumettre des projets. Voici le nom d'utilisateur et un mot de passe :
-                \n Nom d'utilisateur : " . $user['user'] . "\n Mot de passe: " . $user['pw'];
+        $msg = "Votre entreprise, ". $user["name"] . ", à été autorisé à soumettre des projets. Voici le nom
+        d'utilisateur et un mot de passe :\n Nom d'utilisateur : " . $user['user'] . "\n Mot de passe: " . $user['pw'];
 
         //Envoi du courriel de confirmation.
-        mail($result['email'], "Compte validée", $msg);
+        mail($result['email'], $user["name"] . " Compte validée", $msg);
     }
 	
 	//Supprimer une entreprise.
-	public function DeleteCie($_businessID)
+	public function DeleteCie($_userID)
 	{
-		parent::DBExecute("DELETE FROM cie WHERE account = " . $_businessID);
+		parent::DBExecute("DELETE FROM cie WHERE userID = " . $_userID);
 	}
 }

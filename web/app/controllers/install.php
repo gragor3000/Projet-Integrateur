@@ -1,10 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mic
- * Date: 03/02/2016
- * Time: 13:19
- */
+
+/*
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ
+*/
+
 class install extends Controller
 {
     private $installer;//pointe vers la classe model

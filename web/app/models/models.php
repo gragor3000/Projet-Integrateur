@@ -1,13 +1,19 @@
 <?php
 /*
-2016-02-09 Marc Lauzon
-COMPLÉTÉ... je pense.
+2016-02-10 Marc Lauzon, Baker
+RÃ‰VISÃ‰
 */
 
+<<<<<<< HEAD
 //transformation de tableau à objet.
 class obj
 {
     private $properties;
+=======
+//transformation de tableau Ã  objet.
+class obj{
+	private $properties;
+>>>>>>> origin/master
 
     public function __construct($_data)
     {
@@ -25,7 +31,7 @@ class Models
     //Chemin des fichiers XML.
     protected $DefaultXMLPath = '../app/models/xml/';
 
-    //Connexion à la BD.
+    //Connexion Ã  la BD.
     protected function DBConnect()
     {
         $myfile = fopen("../app/dbSettings.txt", "r");
@@ -40,13 +46,17 @@ class Models
         return null;
     }
 
-    //Requête avec le retour d'une table.
+    //RequÃªte avec le retour d'une table.
     protected function DBSearch($Command)
     {
-        //Connexion à la BD.
+        //Connexion Ã  la BD.
         $pdo = DBConnect();
 
+<<<<<<< HEAD
         //Préparer la commande.
+=======
+		//PrÃ©parer la commande.
+>>>>>>> origin/master
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -57,13 +67,17 @@ class Models
         return $result;
     }
 
-    //Requête avec le retour d'une ligne unique.
+    //RequÃªte avec le retour d'une ligne unique.
     protected function DBExecute($Command)
     {
-        //Connexion à la BD.
+        //Connexion Ã  la BD.
         $pdo = DBConnect();
 
+<<<<<<< HEAD
         //Préparer la commande.
+=======
+		//PrÃ©parer la commande.
+>>>>>>> origin/master
         $request = $pdo->prepare($Command);
         $request->execute();
         $result = $request->fetch(PDO::FETCH_ASSOC);
@@ -73,6 +87,7 @@ class Models
 
         return $result;
     }
+<<<<<<< HEAD
 
     //Obtenir dernier ID généré.
     protected function DBLastID()
@@ -82,4 +97,15 @@ class Models
         $result = $pdo->lastInsertId();
     }
 
+=======
+	
+	//Obtenir dernier ID gÃ©nÃ©rÃ©.
+	protected function DBLastID()
+	{
+		//Connexion Ã  la BD.
+        $pdo = DBConnect();
+        return $pdo->lastInsertId();
+	}
+	
+>>>>>>> origin/master
 }

@@ -1,10 +1,8 @@
 <?php
+
 /*
-2016-02-09 Marc Lauzon
-INDEX [TERMINÉ]
-LOGIN [TERMINÉ]
-LOGOUT [TERMINÉ]
-[TEST à faire]
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ
 */
 
 	//Contrôleur d'acceuil.
@@ -19,9 +17,9 @@ LOGOUT [TERMINÉ]
 			$account = new accounts();
 			
 			//Obtenir les informations de compte.
-			$info = (isset($_COOKIE['token'])) ? $account->TokenLogin($_COOKIE['token']) : null;
+			$result = (isset($_COOKIE['token'])) ? $account->TokenLogin($_COOKIE['token']) : null;
 			
-			if($info != null){
+			if(isset($result)){
 				//Sauvegarde des informations de connexion.
 				setcookie("token", $_COOKIE['token'], time() + (86400 * 30), "/");
 				$_SESSION["ID"]=$result['ID'];
@@ -30,17 +28,17 @@ LOGOUT [TERMINÉ]
 				
 				//Rediriger vers l'acceuil selon le groupe.
 				switch($_SESSION["role"]){
-					case 2:
+					case 2:	//stagiaire
 						parent::view('intern/menu');
 						parent::view('intern/index');
 						break;
-					case 1:
-						parent::view('advisor/menu');
-						parent::view('advisor/index');
-						break;
-					case 0:
+					case 1:	//superviseur
 						parent::view('cie/menu');
 						parent::view('cie/index');
+						break;
+					case 0:	//coordonnateur
+						parent::view('advisor/menu');
+						parent::view('advisor/index');
 						break;
 				}
 			} else {

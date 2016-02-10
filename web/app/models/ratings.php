@@ -1,18 +1,21 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Mic
- * Date: 07/02/2016
- * Time: 14:26
- */
+/*
+2016-02-10 Marc Lauzon, Sam Baker
+RÉVISÉ.
+*/
+
 class ratings extends models
 {
     //retourne les notes mit par les étudiants
-    public function ShowInternsRatings()
+    public function ShowRatingsByIntern($_internID)
     {
-        return parent::DBSearch("SELECT users.name,projects.title,ratings.score
-                                FROM (users INNER JOIN ratings ON ratings.internID = users.ID)
-                                INNER JOIN projects ON ratings.projectID = projects.ID");
+        $result = parent::DBSearch("SELECT * FROM ratings WHERE internID=". $_internID);
+
+        foreach($result as $item){
+            $rating[$item['ID']] = new obj($item);
+        }
+
+        return $rating;
     }
 }
