@@ -91,6 +91,22 @@ RÉVISÉ
 			//Ajouter le pied.
 			parent::view('shared/footer');
 		}
+
+		//ajoute une compagni
+		public function submitCie()
+		{
+			parent::model("models");
+			parent::model("business");
+			parent::model("accounts");
+
+			$business = new business();
+			$user = new accounts();
+
+			if(!$user->UsernameExist()) {
+				$user->CreateUser($_POST["name"], $_POST["user"], $user->PassGen(), 1);
+				$business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastID());
+			}
+		}
 		
 		//Déconnexion de l'utilisateur.
 		public function logout(){

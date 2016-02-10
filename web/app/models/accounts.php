@@ -82,6 +82,15 @@ class accounts extends models
         return new obj(parent::DBExecute("SELECT ID,name,user,rank FROM users WHERE ID =" . $_userID));
     }
 
+    public function UsernameExist($_name)
+    {
+        $result = parent::DBSearch("SELECT ID FROM user WHERE rank=" . $_name);
+
+        if(isset($result))
+            return true;
+        return false;
+    }
+
     //Modifie le mot de passe d'un compte.
     public function UpdatePW($_id, $_pw)
     {

@@ -58,7 +58,7 @@ COMPLÉTÉ... j'espère.
 								<input class="form-control" id="cieCity" name="city" placeholder="Joliette" type="text" required />
 							</div>
 						</div>
-						<button type="submit" name="sendCie" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Soumettre</button>
+						<button type="submit" name="sendCie" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/home/submitCie" formmethod="post">Soumettre</button>
 					</form>
 				</div>
 			</div>

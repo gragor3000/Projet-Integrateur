@@ -9,7 +9,7 @@
 			<div class="col-sm-6 text-right">
 				<p>Ce site a été conçu dans le cadre du cours de Projet Intégrateur par :
 					<br />
-					<i>Samuel Baker, Marc Lauzon, Michael Légaré &amp; Patrick Limoge</i>
+					<i>Samuel Baker, Marc Lauzon, Michael Légaré, Patrick Limoge &amp; Guillaume Payette-Brisson</i>
 				</p>
 			</div>
 		</div>
