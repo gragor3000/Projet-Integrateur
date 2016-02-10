@@ -89,7 +89,7 @@ class Models
     {
         //Connexion à la BD.
         $pdo = DBConnect();
-        $result = $pdo->lastInsertId();
+        return $pdo->lastInsertId();
     }
 
 
