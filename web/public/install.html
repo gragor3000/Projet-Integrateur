@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<meta name="description" content="Ce site a pour objectif de permettre aux entreprises de soumettre des projets de stage à destination des étudiants en technique informatique et à ceux-ci de soumettre leur journal de bord. Il permet aussi aux coordonnateurs de gerer les comptes d'accès et de soumettre des documents d'évaluation." />
+		<title>CEGEP de Joliette | 420.AA | Gesion de Stage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"><span>420.AA | Gestion de Stage | Installation</span></a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+					<ul class="nav navbar-nav navbar-right"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="section section-info">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Installation de l'application</h1>
+						<p>Entrez les informations requises ci-dessous et appuyez sur le bouton 'Installer' pour commencer l'installation de l'application web de gestion de stage..</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<form role="form">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Information de la base de donnée</h3>
+								</div>
+								<div>
+									<div class="panel-body">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label" for="address">Adresse du serveur</label>
+												<p>La base de données doit être sur l'hébergeur web (localhost).</p>
+											</div>
+											<div class="form-group">
+												<label class="control-label" for="name">Nom de la base de données</label>
+												<input class="form-control" id="name" name="name" placeholder="GestionStage" type="text" required />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label" for="user">Nom de compte d'accès</label>
+												<input class="form-control" id="user" name="user" placeholder="gs_IAmG.Root" type="text" required />
+											</div>
+											<div class="form-group">
+												<label class="control-label" for="pass">Mot de passe</label>
+												<input class="form-control" id="pass" name="pass" placeholder="Mot de passe" type="password" required />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Premier compte de coordonnateur</h3>
+								</div>
+								<div>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="control-label" for="adminName">Nom du coordonnateur</label>
+											<input class="form-control" id="adminName" placeholder="Prénom Nom" type="text" name="adminName" required />
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label" for="adminUser">Nom de compte</label>
+												<input class="form-control" id="address" placeholder="admin_Compte" type="text" name="adminUser" required />
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label" for="adminPass">Mot de passe</label>
+												<input class="form-control" id="adminPass" name="adminPass" placeholder="Mot de passe" type="password" required />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="well">
+								<p><i>N.B. : Ce fichier d'installation sera supprimé une fois l'installation exécutée.</i></p>
+								<button formaction="/install/deploy" formmethod="post" class="btn btn-block btn-primary">Installer</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="section section-primary">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<a href="http://www.cegep-lanaudiere.qc.ca/joliette" target="_new" class="text-inverse"><b class="text-uppercase">Cégep Régional <i class="text-lowercase">de</i> Lanaudière</b> <i>à Joliette</i></a><br />
+						<a href="http://www.cegep-lanaudiere.qc.ca/joliette/programmes/techniques-de-linformatique" target="_new" class="text-inverse"><small>420.AA | Technique de l'informatique</small></a>
+					</div>
+					<div class="col-sm-6 text-right">
+						<p>Ce site a été conçu dans le cadre du cours de Projet Intégrateur par :<br />
+						<i>Samuel Baker, Marc Lauzon, Michael Légaré,<br /> Patrick Limoge &amp; Guillaume Payette-Brisson</i></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

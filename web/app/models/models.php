@@ -24,15 +24,16 @@ class obj{
 class Models
 {
     //Chemin des fichiers XML.
-    protected $DefaultXMLPath = '../app/models/xml/';
+    protected $DefaultXMLPath = '../app/models/models/xml/';
 
     //Connexion à la BD.
     protected function DBConnect()
     {
-        $myfile = fopen("../app/dbSettings.txt", "r");
+		$filepath = "../app/models/dbSettings.txt";
+        $myfile = fopen($filepath, "r");
         if ($myfile != null) {
 
-            $fileText = fread($myfile, filesize("../app/dbSetings.txt"));
+            $fileText = fread($myfile, filesize($filepath));
             $result = explode(",", $fileText);
             fclose($myfile);
 
@@ -45,10 +46,7 @@ class Models
     protected function DBSearch($Command)
     {
         //Connexion à la BD.
-        $pdo = DBConnect();
-
-
-        //Pr�parer la commande.
+        $pdo = $this->DBConnect();
 
 		//Préparer la commande.
 
@@ -66,10 +64,7 @@ class Models
     protected function DBExecute($Command)
     {
         //Connexion à la BD.
-        $pdo = DBConnect();
-
-
-        //Pr�parer la commande.
+        $pdo = $this->DBConnect();
 
 		//Préparer la commande.
 
@@ -87,7 +82,7 @@ class Models
     public function DBLastID()
     {
         //Connexion � la BD.
-        $pdo = DBConnect();
+        $pdo = $this->DBConnect();
         return $pdo->lastInsertId();
     }
 
