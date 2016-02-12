@@ -106,8 +106,4 @@ class Models
 		$result = $request->fetch(PDO::FETCH_ASSOC);
         return $result['id'];
     }
-
-
-	
-
 }

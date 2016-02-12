@@ -4,8 +4,8 @@
 RÉVISÉ.
 */
 
-class business extends models
-{
+class business extends Models{
+
 	//Création d'un entreprise.
     public function CreateBusiness($_address, $_city, $_tel, $_email, $_account){
 		parent::DBExecute("INSERT INTO business (address, city, tel, email, userID)

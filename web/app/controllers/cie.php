@@ -23,7 +23,7 @@ if (isset($_COOKIE['token'])
 			parent::model("business");
 			$model = new business;
 			//Obtenir les informations de l'entreprise.
-			$data['cie'] = $model->ShowBusinessByID($_SESSION['ID']);
+			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 			
 			parent::model("projects");
 			$model = new projects();
@@ -118,10 +118,10 @@ if (isset($_COOKIE['token'])
 				parent::model('accounts');
 				$model = new accounts();
 				try{
-					$model->UpdateBusiness($_SESSION['ID'], $_POST['address'],$_POST['city'],$_POST['tel'],$_POST['email'])
+					$model->UpdateBusiness($_SESSION['ID'], $_POST['address'],$_POST['city'],$_POST['tel'],$_POST['email']);
 					$data['message'] = "Le(s) information(s) a(ont) été changée(s).";
 				}
-				catch {
+				catch (Exception $e){
 					$data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
 				}
 			}
@@ -199,15 +199,15 @@ if (isset($_COOKIE['token'])
 			$data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_projectID, 'cieReview');
 			
 			parent::model("projects");
-			$model2 = new projects(); 
+			$model2 = new projects();
 			
-			$data['title'] = ($model2->ShowProjectByID($_projectID))->title;
-			$internId = ($model2->ShowProjectByID($_projectID))->internID;
+			$data['title'] = $model2->ShowProjectByID($_projectID)->title;
+			$internId = $model2->ShowProjectByID($_projectID)->internID;
 			$data['date'] = date();
 			
 			parent::model("accounts");
 			$model3 = new accounts();
-			$data['intern'] = $model3->ShowUserByID($internId))->name;
+			$data['intern'] = $model3->ShowUserByID($internId)->name;
 			
 			
 			if($data['readOnly']){ //si le formulaire existe
@@ -239,7 +239,7 @@ if (isset($_COOKIE['token'])
 						$_POST['cieRevSame']);
 						$data['message'] = "L'évaluation a été sauvegardée avec succès.";
 					}
-					catch{
+					catch(Exception $e){
 						$data['message'] = "L'évaluation n'a pas pu être enregistrée.";
 					}
 					parent::view("cie/index", $data);
