@@ -1,4 +1,9 @@
 Journal de Bord
+2016-02-11 [0a8b644605f1add9c0bef40c6467b9f45db2f07c]
++Débuggage des commandes SQL et divers des fonctions.
+
+2016-02-10 avec Sam Baker [55854e5fca880520f12ee8b2d790d62cead58d66]
++Nettoyage du code, amélioration des structures.
 
 2016-02-09 [73b8d857c213ac85cd83068284f1b65c17b6e5b7]
 +Nettoyage du code, amélioration des structures.
