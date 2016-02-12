@@ -1,7 +1,18 @@
 <?php
 /*
-2016-02-10 Marc Lauzon, Sam Baker
-RÉVISÉ.
+TokenGen : 			TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+PassGen : 			TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+CreateUser : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+UpdateUser :
+ShowAllUsers :
+ShowUsersByRank :
+ShowUserByID :
+UsernameExists : 	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+UpdatePW :
+DeleteUser :
+UserLogin : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+TokenLogin : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+Logout :
 */
 
 class accounts extends models
@@ -14,10 +25,10 @@ class accounts extends models
 
 		//Vérification d'un doublon.
         $cmd = "SELECT token FROM users WHERE token='" . $token . "'";
-        $result = $this->DBSearch($cmd);
+        $result = parent::DBSearch($cmd);
 
-        if($result == null)
-			TokenGen();
+        if($result != null)
+			$this->TokenGen();
 		else
 			return $token;
     }
@@ -34,7 +45,7 @@ class accounts extends models
 	////////////////// DÉBUT GESTION DE COMPTE ////////////////////
 	
 	//Création d'un compte.
-    public function CreateUser($_name, $_user, $_pw, $_rank)
+    public function CreateUser($_name, $_user, $_pw, $_rank) //100%.
     {
         parent::DBExecute("INSERT INTO users (name,user,pw,rank)
 							VALUES(
@@ -79,16 +90,14 @@ class accounts extends models
     //Retourne les infos d'un compte.
     public function ShowUserByID($_userID)
     {
-        return new obj(parent::DBExecute("SELECT ID,name,user,rank FROM users WHERE ID =" . $_userID));
+        return new obj(parent::DBQuery("SELECT ID,name,user,rank FROM users WHERE ID =" . $_userID));
     }
 
+	//Valider l'existence du nomd e compte.
     public function UsernameExist($_name)
     {
-        $result = parent::DBSearch("SELECT ID FROM user WHERE rank=" . $_name);
-
-        if(isset($result))
-            return true;
-        return false;
+        $result = parent::DBQuery("SELECT ID FROM users WHERE rank=0 AND user='" . $_name . "'");
+        return ($result != NULL);
     }
 
     //Modifie le mot de passe d'un compte.
@@ -111,15 +120,15 @@ class accounts extends models
     public function UserLogin($_user, $_pw)
     {
 		//Valider la connexion.
-        $cmd = "SELECT ID, name, rank FROM users WHERE user='" . addslashes($_user) . "' password='" . md5($_pw) . "'";
-        $result = DBSearch($cmd);
+        $cmd = "SELECT ID, name, rank FROM users WHERE user='" . addslashes($_user) . "' AND pw='" . md5($_pw) . "'";
+        $result = parent::DBQuery($cmd);
 
 		if($result != null){
 			//Génération du token.
-			$token = TokenGen();
+			$token = $this->TokenGen();
 			
 			//Mise à jour de l'utilisateur.
-			$cmd = "UPDATE users SET token= " . $token . "WHERE ID = " . $result['ID'];
+			$cmd = "UPDATE users SET token= '" . $token . "' WHERE ID = " . $result['ID'];
 			parent::DBExecute($cmd);
 			
 			//Ajouter token dans le résultat.
@@ -133,8 +142,8 @@ class accounts extends models
     public function TokenLogin($_token)
     {
 		//Valider la connexion.
-        $cmd = "SELECT ID, rank FROM users WHERE token = " . $_token;
-        $result = DBSearch($cmd);
+        $cmd = "SELECT ID, name, rank FROM users WHERE token = '" . $_token . "'";
+        $result = parent::DBQuery($cmd);
 		
 		return $result;
     }
@@ -142,7 +151,7 @@ class accounts extends models
 	//Déconnexion.
 	public function Logout($_token)
 	{
-		$token = TokenGen();
+		$token = $this->TokenGen();
 		
 		//Mise à jour de l'utilisateur.
 		$cmd = "UPDATE users SET token= " . $token . "WHERE token = " . $_token;

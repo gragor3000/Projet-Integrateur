@@ -19,7 +19,7 @@ PHP complété. [sauf exception voir 'actions']
 	<div class="container">
 		<div id="carousel-projects" data-interval="false" class="carousel slide">
 			<div class="carousel-inner">
-				<?php $count = 0; foreach($project in $data['project']){ ?>
+				<?php $count = 0; foreach($data['project'] as $project){ ?>
 				<div class="item <?php if($count == 0) echo('active'); ?>">
 					<div class="row">
 						<div class="col-md-6">

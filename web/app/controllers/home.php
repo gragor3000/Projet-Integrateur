@@ -1,8 +1,11 @@
 <?php
-
 /*
-2016-02-10 Marc Lauzon, Sam Baker
-RÉVISÉ
+index : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+login : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+----> rediriger adéquatement. Manque les $data.
+submitCie : 	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+logout :		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
+----> rediriger logout vers l'acceuil.
 */
 
 	//Contrôleur d'acceuil.
@@ -18,13 +21,14 @@ RÉVISÉ
 			
 			//Obtenir les informations de compte.
 			$result = (isset($_COOKIE['token'])) ? $account->TokenLogin($_COOKIE['token']) : null;
+			var_dump($result);
 			
 			if(isset($result)){
 				//Sauvegarde des informations de connexion.
 				setcookie("token", $_COOKIE['token'], time() + (86400 * 30), "/");
 				$_SESSION["ID"]=$result['ID'];
 				$_SESSION["name"]=$result['name'];
-				$_SESSION["role"]=$result['group'];
+				$_SESSION["role"]=$result['rank'];
 				
 				//Rediriger vers l'acceuil selon le groupe.
 				switch($_SESSION["role"]){
@@ -59,14 +63,14 @@ RÉVISÉ
 			$account = new accounts();
 			
 			//Obtenir les informations de compte.
-			$result = $account->UserLogin($_POST['user'], $_POST['pass']);
+			$result = $account->UserLogin($_POST['logUser'], $_POST['logPass']);
 			
 			if(isset($result["token"])){
 				//Sauvegarde des informations de connexion.
 				setcookie("token", $result['token'], time() + (86400 * 30), "/");
 				$_SESSION["ID"]=$result['ID'];
 				$_SESSION["name"]=$result['name'];
-				$_SESSION["role"]=$result['group'];
+				$_SESSION["role"]=$result['rank'];
 				
 				//Rediriger vers le menu et l'acceuil selon le groupe.
 				switch($_SESSION["role"]){
@@ -92,9 +96,13 @@ RÉVISÉ
 			parent::view('shared/footer');
 		}
 
-		//ajoute une compagni
+		//Ajouter une compagnie
 		public function submitCie()
 		{
+			//Ajouter l'entête.
+			parent::view('shared/header');
+			parent::view('home/menu');
+			
 			parent::model("models");
 			parent::model("business");
 			parent::model("accounts");
@@ -102,10 +110,18 @@ RÉVISÉ
 			$business = new business();
 			$user = new accounts();
 
-			if(!$user->UsernameExist()) {
+			if($user->UsernameExist($_POST["user"]))
+				$_POST["user"] = $user->PassGen();
+				
+			try{
 				$user->CreateUser($_POST["name"], $_POST["user"], $user->PassGen(), 1);
-				$business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastID());
+				$business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastInsertedID('users'));
+				$data['message'] = "L'entreprise a été soumis aux coordonnateurs de stage. Merci de votre participation.";
 			}
+			catch(PDOException $e){ echo($e); }
+			
+			parent::view('home/index');
+			parent::view('shared/footer');
 		}
 		
 		//Déconnexion de l'utilisateur.
@@ -113,6 +129,8 @@ RÉVISÉ
 			setcookie("token", '', time() - 1, '/');
 			session_unset();
 			session_destroy();
+			
+			//Redirigé vers l'acceuil.
 		}
 	}
 	

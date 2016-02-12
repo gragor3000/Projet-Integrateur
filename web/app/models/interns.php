@@ -1,4 +1,5 @@
 <?php
+/////////// Utiliser ShowUsersByRank d'Account ///////////////////
 
 /*
 2016-02-10 Marc Lauzon, Sam Baker

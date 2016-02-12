@@ -23,14 +23,14 @@ class projects extends models
     function ShowProjectByIntern($_internId)
     {
         //Cherche le stage affecter à l'étudiant
-		return new obj(parent::DBExecute("Select * from projects where internID =" . $_internId));
+		return new obj(parent::DBQuery("Select * from projects where internID =" . $_internId));
     }
 	
 	//Permet d'afficher un stage
     function ShowProjectByID($_projectId)
     {
         //Cherche le stage
-		return new obj(parent::DBExecute("Select * from projects where ID =" . $_projectId));
+		return new obj(parent::DBQuery("Select * from projects where ID =" . $_projectId));
     }
 
     //Permet d'afficher tout les stages qu'un superviseur particulier à proposer

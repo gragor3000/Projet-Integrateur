@@ -12,9 +12,8 @@ class ratings extends models
     {
         $result = parent::DBSearch("SELECT * FROM ratings WHERE internID=". $_internID);
 
-        foreach($result as $item){
+        foreach($result as $item)
             $rating[$item['ID']] = new obj($item);
-        }
 
         return $rating;
     }

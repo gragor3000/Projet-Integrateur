@@ -37,7 +37,10 @@ class Models
             $result = explode(",", $fileText);
             fclose($myfile);
 
-            return new PDO('mysql:host=' . $result[0] . ';dbname=' . $result[1] . ';charset=utf8', $result[2], $result[3]);
+			$pdo = new PDO('mysql:host=localhost;dbname=' . $result[1] . ';charset=utf8', $result[2], $result[3]);
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			
+            return $pdo;
         }
         return null;
     }
@@ -49,9 +52,8 @@ class Models
         $pdo = $this->DBConnect();
 
 		//Préparer la commande.
-
         $request = $pdo->prepare($Command);
-        $request->execute();
+		$request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
 
         //Fermer la connexion.
@@ -61,15 +63,14 @@ class Models
     }
 
     //Requête avec le retour d'une ligne unique.
-    protected function DBExecute($Command)
+    protected function DBQuery($Command)
     {
         //Connexion à la BD.
         $pdo = $this->DBConnect();
 
 		//Préparer la commande.
-
         $request = $pdo->prepare($Command);
-        $request->execute();
+		$request->execute();
         $result = $request->fetch(PDO::FETCH_ASSOC);
 
         //Fermer la connexion.
@@ -77,13 +78,33 @@ class Models
 
         return $result;
     }
-
-    //Obtenir dernier ID g�n�r�.
-    public function DBLastID()
+	
+	//Requête avec le retour d'une ligne unique.
+    protected function DBExecute($Command)
     {
-        //Connexion � la BD.
+        //Connexion à la BD.
         $pdo = $this->DBConnect();
-        return $pdo->lastInsertId();
+
+		//Préparer la commande.
+        $request = $pdo->prepare($Command);
+        $result = $request->execute();
+
+        //Fermer la connexion.
+        $pdo = null;
+
+        return $result;
+    }
+	
+
+    //Obtenir dernier ID généré.
+    public function DBLastInsertedID($_table)
+    {
+        //Connexion à la BD.
+        $pdo = $this->DBConnect();
+		$request = $pdo->prepare("SELECT id FROM ". $_table ." ORDER BY ID DESC LIMIT 1");
+		$request->execute();
+		$result = $request->fetch(PDO::FETCH_ASSOC);
+        return $result['id'];
     }
 
 

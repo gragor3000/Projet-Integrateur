@@ -1,8 +1,6 @@
 <?php
-
 /*
-2016-02-10 Marc Lauzon, Sam Baker
-RÉVISÉ
+deploy :	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
 */
 
 class install extends Controller
@@ -21,7 +19,7 @@ class install extends Controller
     public function deploy()
     {
 		echo('this');
-        $this->installer->DeloyDb($_POST["name"],$_POST["user"],$_POST["pass"],$_POST["adminName"],$_POST["adminUser"],$_POST["adminPass"]);
+        $this->installer->DeployDb($_POST["name"],$_POST["user"],$_POST["pass"],$_POST["adminName"],$_POST["adminUser"],$_POST["adminPass"]);
 		echo('that');
     }
 
