@@ -52,7 +52,7 @@ if (isset($_COOKIE['token'])
 			parent::model("business");
 			$model = new business;
 			//Obtenir les informations de l'entreprise.
-			$data['cie'] = $model->ShowBusinessByID($_SESSION['ID']);
+			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 			
 			//Obtenir les informations du projet.
 			parent::model("projects");
@@ -261,7 +261,7 @@ if (isset($_COOKIE['token'])
 			parent::model("business");
 			$model = new business;
 			//Obtenir les informations de l'entreprise.
-			$data['cie'] = $model->ShowBusinessByID($_SESSION['ID']);
+			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 			
 			//Soumission du projet.
 			if(isset($_POST['sendProject']) && $_POST['sendProject'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 600 > time()){
