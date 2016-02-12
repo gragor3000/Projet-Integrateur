@@ -76,7 +76,7 @@ if (isset($_COOKIE['token'])
 				parent::view('cie/edit', $data);
 			}
 			else {
-				$data['message'] = "Vous n'avez pas l'autorisation de moddifier ce projet.";
+				$data['message'] = "Vous n'avez pas l'autorisation de modifier ce projet.";
 				parent::view('cie/index', $data);
 			}
 			
@@ -137,35 +137,53 @@ if (isset($_COOKIE['token'])
 			parent::view("cie/menu");
 			
 			parent::model("docs");
-			$model = new docs();
-
-			///////// PROBLÉMATIQUE : (A[X & Y] | B[X & Y]) = F : Form. (A & B) | A[X & Y]) | B(X & Y) = V : Index. /////
-			//Vérifié l'existence d'un entrevue entre l'entreprise et le stagiaire.
-			$data['readOnly'] = $model->FormExists($_SESSION['ID'], $_internID, 'interview1') || $model->FormExists($_SESSION['ID'], $_internID, 'interview2');
+			$model1 = new docs();
 			
-			if(!$data['readOnly']){
-				
+			parent::model("accounts");
+			$model2 = new accounts();
+					
+			//Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
+			$data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_internID, 'interview');
+						
+			if(!$data['readOnly'])   //Si le formulaire n'existe pas
+			{ 				
 				//Enregistrer l'entrevue.
 				if(isset($_POST['sendInterview']) && $_POST['sendInterview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()){
-					try{
-						$model->AddInterview($_SESSION['ID'], $_internID, $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
+					try
+					{
+						$model->AddInterview($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
 						$data['message'] = "L'entrevue a été sauvegardée avec succès.";
-						parent::view("cie/index", $data);
 					}
-					catch(exception $ex){
-						$data['message'] = "L'information n'a pas pu être enregistrée.";
+					catch(exception $ex)
+					{
+						$data['message'] = "L'entrevue n'a pas pu être enregistrée.";
 					}
-				}
+					parent::view("cie/index", $data);
+				}												
+				else //Voir formulaire vierge
+                {					
+                    $data['interns'] = $model2->ShowUsersByRank(0);
+	                parent::view("cie/interview", $data);				 				 
+                }	
+			} 
+			else   //si le formulaire existe
+			{ 
+				$data['interview'] = $model->ShowCieInterview($_internID, 'interview');
 				
-				parent::model("accounts");
-				$models = new account();
-			  
-				parent::view("cie/interview", $data);
-			} else {
-				$data['message'] = "Il vous est impossible d'ajouter ou de visualisé les entrevues.";
-				parent::view("cie/index", $data);
+				//Si les id sont les mêmes, afficher le formulaire d'évaluation
+				if($data['interview']->cieId == $_SESSION['ID'])
+				{
+					$data['interns'] = $model2->ShowUsersByRank(0);
+					parent::view("cie/interview", $data);
+				}
+				else
+				{
+					$data['message'] = "Il vous est interdit de visualiser ce formulaire.";
+				    parent::view("cie/index", $data);
+				}
 			}
-			//////////// À CORRIGER ///////////////////////////////
+			
+			
 			parent::view("shared/footer");
 		}
 		
@@ -175,7 +193,7 @@ if (isset($_COOKIE['token'])
 			parent::view("cie/menu");
 		
 			parent::model("docs");
-			$model = new docs();
+			$model1 = new docs();
 										
 			//Vérifier l'existence d'une évaluation de stage
 			$data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_projectID, 'cieReview');
@@ -184,12 +202,12 @@ if (isset($_COOKIE['token'])
 			$model2 = new projects(); 
 			
 			$data['title'] = ($model2->ShowProjectByID($_projectID))->title;
-			$data['internId'] = ($model2->ShowProjectByID($_projectID))->internID;
+			$internId = ($model2->ShowProjectByID($_projectID))->internID;
 			$data['date'] = date();
 			
 			parent::model("accounts");
 			$model3 = new accounts();
-			$data['intern'] = $model3->ShowUserByID($data['internId']))->name;
+			$data['intern'] = $model3->ShowUserByID($internId))->name;
 			
 			
 			if($data['readOnly']){ //si le formulaire existe
