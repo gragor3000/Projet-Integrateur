@@ -148,7 +148,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model2 = new accounts();
 
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
-            $data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_internID, 'interview');
+            $data['readOnly'] = $model1->ReadOnlyCie($_internID, 'interview');
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
                 //Enregistrer l'entrevue.

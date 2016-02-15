@@ -5,6 +5,9 @@ Soumission uniquement par entreprise.
 Consultation par tous. [readOnly] à true.
 
 COMPLÉTÉ... j'espère.
+
+
+///***ATTENTION PATRICK L'UTILISE, LUI PARLER AVANT DE TOUTES SCRAPPER****////
 -->
 <?php
 	//Générer un token d'identification.

@@ -23,7 +23,6 @@ class projects extends models
 
         $projects = array();    //Contient tous les projets à récupérer
 
-
         foreach ($result as $item) {
             $projects[$item["ID"]] = new obj($item); //un projet du tableau
         }

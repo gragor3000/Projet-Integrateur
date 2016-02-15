@@ -38,6 +38,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     //Obtenir les informations de l'entreprise.
                     $data['cie'][$project->ID] = $model->ShowCieByID($project->businessID);
                 }
+				
+				var_dump($data['projects']);
 
                 parent::view("intern/list", $data);
             } else {
@@ -45,6 +47,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new business;
                 //Obtenir les informations de l'entreprise.
                 $data['cie'][$data['project']->ID] = $model->ShowCieByID($data['project']->businessID);
+				
+				var_dump($data);
 
                 parent::view("intern/index", $data);
             }

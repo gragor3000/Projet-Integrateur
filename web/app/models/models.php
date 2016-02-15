@@ -23,7 +23,7 @@ class obj {
 class Models {
 
     //Chemin des fichiers XML.
-    protected $DefaultXMLPath = '../app/models/models/xml/';
+    define ('DefaultXMLPath', '../app/models/models/xml/');
 
     //Connexion à la BD.
     protected function DBConnect() {
