@@ -16,11 +16,11 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjects(false);
+            $data["projects"] = $projects->ShowAllProjects(false);
 
             parent::model("business");
             $cie = new business();
-            $data["cie"] = $cie->ShowCie(false);
+            $data["cie"] = $cie->ShowCieByStatus(false);
 
             parent::view("advisor/inactive", $data);
             parent::view("shared/footer");
@@ -34,7 +34,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("models");
             parent::model("projects");
 
+            $projects = new projects();
+            $data["projects"] = $projects->ShowAllProjects(true);
 
+            parent::view("advisor/projects",$data);
             parent::view("shared/footer");
         }
 
@@ -42,8 +45,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function ValidateBusiness() {
             parent::model("models");
             parent::model("business");
-            $cie = new business();
 
+            $cie = new business();
             $cie->ValidateEntreprise($_POST["id"]);
         }
 
@@ -51,8 +54,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function ValidateProjects() {
             parent::model("models");
             parent::model("projects");
-            $projects = new projects();
 
+            $projects = new projects();
             $projects->ValidateProjects($_POST["id"]);
         }
 
@@ -60,8 +63,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function DeleteProject() {
             parent::model("models");
             parent::model("projects");
-            $projects = new projects();
 
+            $projects = new projects();
             $projects->DeleteProject($_POST["id"]);
         }
 
@@ -69,8 +72,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function CreateUser() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);
         }
 
@@ -78,17 +81,20 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function ShowUsers() {
             parent::model("models");
             parent::model("accounts");
+
             $account = new accounts();
-            /*             * *** à changer ***** */
-            $result = $account->ShowUsers();
+            $data["users"] = $account->ShowUsers();
+
+            parent::view("advisor/users",$data);
+            parent::view("shared/footer");
         }
 
         //supprime un compte
         public function DeleteUser() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->DeleteUser($_POST["id"]);
         }
 
@@ -96,8 +102,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function UpdateUser() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->UpdateUser($_POST["id"], $_POST["name"], $_POST["user"], $_POST["rank"]);
         }
 
@@ -105,8 +111,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function UpdatePw() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->UpdatePw($_POST["id"], $_POST["pw"]);
         }
 
@@ -114,8 +120,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function UpdateMyInfo() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->UpdateMyInfo($_COOKIE["token"], $_POST["name"], $_POST["user"]);
         }
 
@@ -123,19 +129,21 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function UpdateMyPw() {
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
+            $account = new accounts();
             $account->UpdateMyPw($_COOKIE["token"], $_POST["pw"]);
         }
 
         //montre ses infos
         public function ShowMyInfo() {
-            /***** à changer *****/
             parent::model("models");
             parent::model("accounts");
-            $account = new accounts();
 
-            $result = $account->ShowMyInfo($_COOKIE["token"]);
+            $account = new accounts();
+            $data["info"] = $account->ShowMyInfo($_COOKIE["token"]);
+
+            parent::view("advisor/info",$data);
+            parent::view("shared/footer");
         }
 
         //affiche les notes misent par les étudiants

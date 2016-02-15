@@ -30,8 +30,7 @@ class business extends Models {
 
     //Retourne toutes les entreprises.
     public function ShowAllCie() {
-        $result = parent::DBSearch("SELECT users.name, business.ID,business.address,business.city,
-                                    business.tel,business.email FROM cie INNER JOIN Users");
+        $result = parent::DBSearch("SELECT * FROM cie");
 
 
         //Générer un tableau d'objet.
@@ -54,7 +53,9 @@ class business extends Models {
 
     //Retourne les entreprises selon le status.
     public function ShowCieByStatus($_status) {
-        $result = parent::DBSearch("SELECT * FROM business WHERE status = " . $_status);
+        $result = parent::DBSearch("SELECT users.name, business.ID,business.address,business.city,
+                                    business.tel,business.email FROM cie INNER JOIN Users
+                                    ON users.ID = business.usersID WHERE status = " . $_status);
 
         //Générer un tableau d'objet.
         foreach ($result as $cie)
@@ -76,6 +77,20 @@ class business extends Models {
 
         //Envoi du courriel de confirmation.
         mail($result['email'], $user["name"] . " Compte validée", $msg);
+    }
+
+    //refuse une entreprise
+    public function DenyCie($_businessID)
+    {
+        $user = parent::DBQuery("SELECT userID, users.name,business.email FROM business
+                                 INNER JOIN users ON users.ID = business.userID WHERE ID =" . $_businessID);
+        parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
+        parent::DBExecute("DELETE FROM users WHERE ID =" .$user["userID"]);
+
+        $msg = "Votre entreprise, " . $user["name"] . ", à été refusée";
+
+        mail($user["email"],$user["name"]."Compte refusé",$msg);
+
     }
 
     //Supprimer une entreprise.

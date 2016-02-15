@@ -9,7 +9,9 @@ class projects extends models {
 
     //Permet d'afficher tout les projets
     function ShowAllProjects($_status) {
-        $result = parent::DBSearch("Select * from projects WHERE projects.status =" . $_status);
+        $result = parent::DBSearch("Select projects from (projects INNER JOIN business ON
+                                    projects.businessID = business.ID) INNER JOIN users ON business.userID = users.ID
+                                    WHERE projects.status =" . $_status);
 
         foreach ($result as $item) {
             $projects[$item["ID"]] = new obj($item); //un projet du tableau
