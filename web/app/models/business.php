@@ -5,7 +5,7 @@
   RÉVISÉ.
  */
 
-class business extends Models {
+class business extends Models {	
 
     //Création d'un entreprise.
     public function CreateBusiness($_address, $_city, $_tel, $_email, $_account) {

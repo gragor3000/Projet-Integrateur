@@ -9,7 +9,7 @@
 
 
 //Validation de l'identité.
-if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
+if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 2) {
 
     class intern extends Controller {
 
@@ -20,10 +20,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //Index par défaut.
         public function index() {
             parent::view("shared/header");
-            parent::view("intern/menu");
+            //parent::view("intern/menu");      Tant que le fichier n'existe pas
 
-            parent::model("projets");
-            $model = new projets();
+            parent::model("projects");
+            $model = new projects();
             //Obtenir le projet assigné.
             $data['project'] = $model->ShowProjectByIntern($_SESSION['ID']);
 
@@ -36,7 +36,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
                 foreach ($data['projects'] as $project) {
                     //Obtenir les informations de l'entreprise.
-                    $data['cie'][$project->ID] = $model->ShowBusinessByID($project->businessID);
+                    $data['cie'][$project->ID] = $model->ShowCieByID($project->businessID);
                 }
 
                 parent::view("intern/list", $data);
@@ -44,7 +44,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 parent::model("business");
                 $model = new business;
                 //Obtenir les informations de l'entreprise.
-                $data['cie'][$data['project']->ID] = $model->ShowBusinessByID($data['project']->businessID);
+                $data['cie'][$data['project']->ID] = $model->ShowCieByID($data['project']->businessID);
 
                 parent::view("intern/index", $data);
             }
@@ -106,6 +106,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
     //Rediriger vers l'acceuil.
     session_unset();
     session_destroy();
-    header("location: " . $_SERVER['SERVER_ADDR']);
+    header("location:/");
 }
 ?>
