@@ -104,9 +104,51 @@ class projects extends models
     }
 
     //Supprimer un projet
-    public function DeleteProject($_projectId)
+    public function DeleteProject($_projectID)
     {
-        parent::DBExecute("DELETE FROM projects WHERE ID =" . $_projectId);
+        parent::DBExecute("DELETE FROM projects WHERE ID =" . $_projectID);
+    }
+
+    //valide un projet
+    public function ValidateProject($_projectID)
+    {
+        parent::DBExecute("UPDATE projects SET status = 1 WHERE ID = ".$_projectID);
+
+        $projectTitle = parent::DBQuery("SELECT title FROM project
+                                       WHERE project.ID = " . $_projectID);
+
+        $businessID = parent::DBQuery("SELECT business.ID FROM business
+                                       INNER JOIN projects ON business.ID = project.businessID
+                                       WHERE project.ID = " . $_projectID);
+
+        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
+        $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
+
+        $msg = "Votre projet, " . $projectTitle[0][0] . ", de l'entreprise,". $user["name"] .",à été autorisé";
+
+        //Envoi du courriel de confirmation.
+        mail($result['email'], $user["name"] . " projet validée", $msg);
+    }
+
+    //refuse un projet
+    public function DenyProject($_projectID)
+    {
+        parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
+
+        $projectTitle = parent::DBQuery("SELECT title FROM project
+                                       WHERE project.ID = " . $_projectID);
+
+        $businessID = parent::DBQuery("SELECT business.ID FROM business
+                                       INNER JOIN projects ON business.ID = project.businessID
+                                       WHERE project.ID = " . $_projectID);
+
+        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
+        $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
+
+        $msg = "Votre projet, " . $projectTitle[0][0] . ", de l'entreprise,". $user["name"] .",à été refusé";
+
+        //Envoi du courriel de confirmation.
+        mail($result['email'], $user["name"] . " projet validée", $msg);
     }
 
     //Jumeller un stagiaire à un projet
@@ -114,6 +156,7 @@ class projects extends models
     {
         parent::DBExecute("UPDATE projects SET internID = " . $_internId . "WHERE ID = " . $_projectId);
     }
+
 
 }
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f66ce10-fe64-452b-9a3c-afda212f1e50" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/controllers/advisor.php" afterPath="$PROJECT_DIR$/web/app/controllers/advisor.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/projects.php" afterPath="$PROJECT_DIR$/web/app/models/projects.php" />
     </list>
     <ignored path="Projet-Integrateur.iws" />
@@ -58,37 +59,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="business.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/app/models/business.php">
+      <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/app/models/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.730769">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state vertical-scroll-proportion="-44.76923">
+              <caret line="145" column="88" selection-start-line="145" selection-start-column="88" selection-end-line="145" selection-end-column="88" />
               <folding>
-                <marker date="1455565260023" expanded="true" signature="237:485" placeholder="INSERT INTO ..." />
-                <marker date="1455565260023" expanded="true" signature="654:875" placeholder="UPDATE busin..." />
-                <marker date="1455565260023" expanded="true" signature="1003:1010" placeholder="SELECT users..cie..." />
-                <marker date="1455565260023" expanded="true" signature="1003:1020" placeholder="SELECT * FRO..cie..." />
-                <marker date="1455565260023" expanded="true" signature="1003:1110" placeholder="SELECT * FRO..cie..." />
-                <marker date="1455565260023" expanded="true" signature="1330:1368" placeholder="SELECT * FRO..business..." />
-                <marker date="1455565260023" expanded="true" signature="1462:1496" placeholder="SELECT name ..users..." />
-                <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT * FRO..business..." />
-                <marker date="1455565260023" expanded="true" signature="2256:2295" placeholder="UPDATE busin..." />
-                <marker date="1455565260023" expanded="true" signature="2395:2439" placeholder="SELECT email..business..." />
-                <marker date="1455565260023" expanded="true" signature="2547:2587" placeholder="SELECT user,..users..." />
-                <marker date="1455565260023" expanded="true" signature="3077:3222" placeholder="SELECT userI..business..." />
-                <marker date="1455565260023" expanded="true" signature="3268:3299" placeholder="DELETE FROM ..." />
-                <marker date="1455565260023" expanded="true" signature="3345:3373" placeholder="DELETE FROM ..." />
-                <marker date="1455565260023" expanded="true" signature="3643:3679" placeholder="DELETE FROM ..." />
+                <marker date="1455570594179" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
+                <marker date="1455570594179" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
+                <marker date="1455570594179" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
+                <marker date="1455570594179" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
+                <marker date="1455570594179" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
+                <marker date="1455570594179" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
+                <marker date="1455570594179" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
+                <marker date="1455570594179" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
+                <marker date="1455570594179" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
+                <marker date="1455570594179" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
+                <marker date="1455570594179" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
+                <marker date="1455570594179" expanded="true" signature="4029:4036" placeholder="UPDATE busin..." />
+                <marker date="1455570594179" expanded="true" signature="4029:4071" placeholder="UPDATE proje..." />
+                <marker date="1455570594179" expanded="true" signature="4129:4213" placeholder="SELECT busin..business..." />
+                <marker date="1455570594179" expanded="true" signature="4271:4456" placeholder="SELECT busin..business..." />
+                <marker date="1455570594179" expanded="true" signature="4271:4457" placeholder="SELECT busin..business..." />
+                <marker date="1455570594179" expanded="true" signature="4511:4555" placeholder="SELECT email..business..." />
+                <marker date="1455570594179" expanded="true" signature="4606:4638" placeholder="SELECT user,..users..." />
+                <marker date="1455570594179" expanded="true" signature="5002:5034" placeholder="DELETE FROM ..." />
+                <marker date="1455570594179" expanded="true" signature="5013:5034" placeholder="UPDATE proje..." />
+                <marker date="1455570594179" expanded="true" signature="5092:5176" placeholder="SELECT title..project..." />
+                <marker date="1455570594179" expanded="true" signature="5234:5420" placeholder="SELECT busin..business..." />
+                <marker date="1455570594179" expanded="true" signature="5474:5518" placeholder="SELECT email..business..." />
+                <marker date="1455570594179" expanded="true" signature="5569:5601" placeholder="SELECT name ..users..." />
+                <marker date="1455570594179" expanded="true" signature="6000:6060" placeholder="UPDATE proje..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="advisor.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="advisor.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/controllers/advisor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.269231">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.5463183">
+              <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -110,35 +121,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projects.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/app/models/projects.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7042755">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-              <folding>
-                <marker date="1455565431305" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
-                <marker date="1455565431305" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
-                <marker date="1455565431305" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
-                <marker date="1455565431305" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
-                <marker date="1455565431305" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
-                <marker date="1455565431305" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
-                <marker date="1455565431305" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
-                <marker date="1455565431305" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
-                <marker date="1455565431305" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
-                <marker date="1455565431305" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
-                <marker date="1455565431305" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
-                <marker date="1455565431305" expanded="true" signature="4062:4122" placeholder="UPDATE proje..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="accounts.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/models/accounts.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="business.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/app/models/business.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.153846">
+              <caret line="74" column="49" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+              <folding>
+                <marker date="1455565260023" expanded="true" signature="237:485" placeholder="INSERT INTO ..." />
+                <marker date="1455565260023" expanded="true" signature="654:875" placeholder="UPDATE busin..." />
+                <marker date="1455565260023" expanded="true" signature="1003:1020" placeholder="SELECT * FRO..cie..." />
+                <marker date="1455565260023" expanded="true" signature="1330:1368" placeholder="SELECT * FRO..business..." />
+                <marker date="1455565260023" expanded="true" signature="1462:1496" placeholder="SELECT name ..users..." />
+                <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT users..cie..." />
+                <marker date="1455565260023" expanded="true" signature="2256:2295" placeholder="UPDATE busin..." />
+                <marker date="1455565260023" expanded="true" signature="2395:2439" placeholder="SELECT email..business..." />
+                <marker date="1455565260023" expanded="true" signature="2547:2587" placeholder="SELECT user,..users..." />
+                <marker date="1455565260023" expanded="true" signature="3077:3222" placeholder="SELECT userI..business..." />
+                <marker date="1455565260023" expanded="true" signature="3268:3299" placeholder="DELETE FROM ..." />
+                <marker date="1455565260023" expanded="true" signature="3345:3373" placeholder="DELETE FROM ..." />
+                <marker date="1455565260023" expanded="true" signature="3643:3679" placeholder="DELETE FROM ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,8 +175,8 @@
         <option value="$PROJECT_DIR$/web/app/models/models.php" />
         <option value="$PROJECT_DIR$/web/app/views/home/index.php" />
         <option value="$PROJECT_DIR$/web/app/models/business.php" />
-        <option value="$PROJECT_DIR$/web/app/controllers/advisor.php" />
         <option value="$PROJECT_DIR$/web/app/models/projects.php" />
+        <option value="$PROJECT_DIR$/web/app/controllers/advisor.php" />
       </list>
     </option>
   </component>
@@ -623,12 +635,10 @@
           <folding>
             <marker date="1455565260023" expanded="true" signature="237:485" placeholder="INSERT INTO ..." />
             <marker date="1455565260023" expanded="true" signature="654:875" placeholder="UPDATE busin..." />
-            <marker date="1455565260023" expanded="true" signature="1003:1010" placeholder="SELECT users..cie..." />
             <marker date="1455565260023" expanded="true" signature="1003:1020" placeholder="SELECT * FRO..cie..." />
-            <marker date="1455565260023" expanded="true" signature="1003:1110" placeholder="SELECT * FRO..cie..." />
             <marker date="1455565260023" expanded="true" signature="1330:1368" placeholder="SELECT * FRO..business..." />
             <marker date="1455565260023" expanded="true" signature="1462:1496" placeholder="SELECT name ..users..." />
-            <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT * FRO..business..." />
+            <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT users..cie..." />
             <marker date="1455565260023" expanded="true" signature="2256:2295" placeholder="UPDATE busin..." />
             <marker date="1455565260023" expanded="true" signature="2395:2439" placeholder="SELECT email..business..." />
             <marker date="1455565260023" expanded="true" signature="2547:2587" placeholder="SELECT user,..users..." />
@@ -663,18 +673,31 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding>
-            <marker date="1455565431305" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
-            <marker date="1455565431305" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
-            <marker date="1455565431305" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
-            <marker date="1455565431305" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
-            <marker date="1455565431305" expanded="true" signature="4062:4122" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
+            <marker date="1455570594179" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
+            <marker date="1455570594179" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
+            <marker date="1455570594179" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4036" placeholder="UPDATE busin..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4071" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="4129:4213" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4456" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4457" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4511:4555" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="4606:4638" placeholder="SELECT user,..users..." />
+            <marker date="1455570594179" expanded="true" signature="5002:5034" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="5013:5034" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="5092:5176" placeholder="SELECT title..project..." />
+            <marker date="1455570594179" expanded="true" signature="5234:5420" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="5474:5518" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="5569:5601" placeholder="SELECT name ..users..." />
+            <marker date="1455570594179" expanded="true" signature="6000:6060" placeholder="UPDATE proje..." />
           </folding>
         </state>
       </provider>
@@ -755,18 +778,31 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <marker date="1455565431305" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
-            <marker date="1455565431305" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
-            <marker date="1455565431305" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
-            <marker date="1455565431305" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
-            <marker date="1455565431305" expanded="true" signature="4062:4122" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
+            <marker date="1455570594179" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
+            <marker date="1455570594179" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
+            <marker date="1455570594179" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4036" placeholder="UPDATE busin..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4071" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="4129:4213" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4456" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4457" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4511:4555" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="4606:4638" placeholder="SELECT user,..users..." />
+            <marker date="1455570594179" expanded="true" signature="5002:5034" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="5013:5034" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="5092:5176" placeholder="SELECT title..project..." />
+            <marker date="1455570594179" expanded="true" signature="5234:5420" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="5474:5518" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="5569:5601" placeholder="SELECT name ..users..." />
+            <marker date="1455570594179" expanded="true" signature="6000:6060" placeholder="UPDATE proje..." />
           </folding>
         </state>
       </provider>
@@ -976,16 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/models/interns.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.384615">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <marker date="1455558641833" expanded="true" signature="269:310" placeholder="Select ID, n..users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app/controllers/home.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5736342">
@@ -1020,6 +1046,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/models/business.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.153846">
+          <caret line="74" column="49" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+          <folding>
+            <marker date="1455565260023" expanded="true" signature="237:485" placeholder="INSERT INTO ..." />
+            <marker date="1455565260023" expanded="true" signature="654:875" placeholder="UPDATE busin..." />
+            <marker date="1455565260023" expanded="true" signature="1003:1020" placeholder="SELECT * FRO..cie..." />
+            <marker date="1455565260023" expanded="true" signature="1330:1368" placeholder="SELECT * FRO..business..." />
+            <marker date="1455565260023" expanded="true" signature="1462:1496" placeholder="SELECT name ..users..." />
+            <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT users..cie..." />
+            <marker date="1455565260023" expanded="true" signature="2256:2295" placeholder="UPDATE busin..." />
+            <marker date="1455565260023" expanded="true" signature="2395:2439" placeholder="SELECT email..business..." />
+            <marker date="1455565260023" expanded="true" signature="2547:2587" placeholder="SELECT user,..users..." />
+            <marker date="1455565260023" expanded="true" signature="3077:3222" placeholder="SELECT userI..business..." />
+            <marker date="1455565260023" expanded="true" signature="3268:3299" placeholder="DELETE FROM ..." />
+            <marker date="1455565260023" expanded="true" signature="3345:3373" placeholder="DELETE FROM ..." />
+            <marker date="1455565260023" expanded="true" signature="3643:3679" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/app/models/installer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.1538461">
@@ -1034,56 +1082,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/models/business.php">
+    <entry file="file://$PROJECT_DIR$/web/app/models/interns.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.730769">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.384615">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1455565260023" expanded="true" signature="237:485" placeholder="INSERT INTO ..." />
-            <marker date="1455565260023" expanded="true" signature="654:875" placeholder="UPDATE busin..." />
-            <marker date="1455565260023" expanded="true" signature="1003:1010" placeholder="SELECT users..cie..." />
-            <marker date="1455565260023" expanded="true" signature="1003:1020" placeholder="SELECT * FRO..cie..." />
-            <marker date="1455565260023" expanded="true" signature="1003:1110" placeholder="SELECT * FRO..cie..." />
-            <marker date="1455565260023" expanded="true" signature="1330:1368" placeholder="SELECT * FRO..business..." />
-            <marker date="1455565260023" expanded="true" signature="1462:1496" placeholder="SELECT name ..users..." />
-            <marker date="1455565260023" expanded="true" signature="1734:1969" placeholder="SELECT * FRO..business..." />
-            <marker date="1455565260023" expanded="true" signature="2256:2295" placeholder="UPDATE busin..." />
-            <marker date="1455565260023" expanded="true" signature="2395:2439" placeholder="SELECT email..business..." />
-            <marker date="1455565260023" expanded="true" signature="2547:2587" placeholder="SELECT user,..users..." />
-            <marker date="1455565260023" expanded="true" signature="3077:3222" placeholder="SELECT userI..business..." />
-            <marker date="1455565260023" expanded="true" signature="3268:3299" placeholder="DELETE FROM ..." />
-            <marker date="1455565260023" expanded="true" signature="3345:3373" placeholder="DELETE FROM ..." />
-            <marker date="1455565260023" expanded="true" signature="3643:3679" placeholder="DELETE FROM ..." />
+            <marker date="1455558641833" expanded="true" signature="269:310" placeholder="Select ID, n..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/models/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-44.76923">
+          <caret line="145" column="88" selection-start-line="145" selection-start-column="88" selection-end-line="145" selection-end-column="88" />
+          <folding>
+            <marker date="1455570594179" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
+            <marker date="1455570594179" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
+            <marker date="1455570594179" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
+            <marker date="1455570594179" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
+            <marker date="1455570594179" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4036" placeholder="UPDATE busin..." />
+            <marker date="1455570594179" expanded="true" signature="4029:4071" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="4129:4213" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4456" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4271:4457" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="4511:4555" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="4606:4638" placeholder="SELECT user,..users..." />
+            <marker date="1455570594179" expanded="true" signature="5002:5034" placeholder="DELETE FROM ..." />
+            <marker date="1455570594179" expanded="true" signature="5013:5034" placeholder="UPDATE proje..." />
+            <marker date="1455570594179" expanded="true" signature="5092:5176" placeholder="SELECT title..project..." />
+            <marker date="1455570594179" expanded="true" signature="5234:5420" placeholder="SELECT busin..business..." />
+            <marker date="1455570594179" expanded="true" signature="5474:5518" placeholder="SELECT email..business..." />
+            <marker date="1455570594179" expanded="true" signature="5569:5601" placeholder="SELECT name ..users..." />
+            <marker date="1455570594179" expanded="true" signature="6000:6060" placeholder="UPDATE proje..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/controllers/advisor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.269231">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.5463183">
+          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/models/projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7042755">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <marker date="1455565431305" expanded="true" signature="217:448" placeholder="Select proje..projects..." />
-            <marker date="1455565431305" expanded="true" signature="555:601" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1028:1067" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1169:1208" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1457:1510" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="1798:1838" placeholder="Select * fro..projects..." />
-            <marker date="1455565431305" expanded="true" signature="2185:2275" placeholder="UPDATE ratin..." />
-            <marker date="1455565431305" expanded="true" signature="2453:2506" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="2766:3075" placeholder="INSERT INTO ..." />
-            <marker date="1455565431305" expanded="true" signature="3336:3741" placeholder="UPDATE proje..." />
-            <marker date="1455565431305" expanded="true" signature="3868:3899" placeholder="DELETE FROM ..." />
-            <marker date="1455565431305" expanded="true" signature="4062:4122" placeholder="UPDATE proje..." />
-          </folding>
         </state>
       </provider>
     </entry>
