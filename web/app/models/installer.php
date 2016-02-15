@@ -35,7 +35,7 @@ class installer extends models {
             echo($e);
         }
 
-        //créer la table entreprises
+        //créer la table business
         try {
             $request = $pdo->prepare("CREATE TABLE IF NOT EXISTS business (
                           ID int NOT NULL AUTO_INCREMENT COMMENT 'clé primaire',

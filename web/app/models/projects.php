@@ -27,7 +27,7 @@ class projects extends models {
     //Permet d'afficher un stage
     function ShowProjectByID($_projectId) {
         //Cherche le stage
-        return new obj(parent::DBQuery("Select * from projects where ID =" . $_projectId));
+        return new obj(parent::DBQuery("Select * from projects inner join business where ID =" . $_projectId));
     }
 
     //Permet d'afficher tout les stages qu'un superviseur particulier à proposer
@@ -56,27 +56,19 @@ class projects extends models {
 
     //Fonction permenttant de modifier un projet dans la base de donnée
     public function CreateProject($_title, $_supName, $_supTitle, $_supEmail, $_supTel, $_desc, $_equip, $_extra, $_info, $_cieID) {
-        parent::BDExecute("UPDATE projects SET title=" . $_title .
-                ", supName=" . $_supName .
-                ", supTitle=" . $_supTitle .
-                ", supEmail=" . $_supEmail .
-                ", supTel=" . $_supTel .
-                ", desc=" . $_desc .
-                ", equip=" . $_equip .
-                ", extra=" . $_extra .
-                ", info=" . $_info .
-                " WHERE ID=" . $_projectID .
-                " AND businessID=" . $_cieID);
+        parent::DBExecute("INSERT INTO projects (title, supName, supTitle, supEmail, supTel, descr, equip, extra, info, businessID) 
+				Values  ('" . $_title . "','" . $_supName . "','" . $_supTitle . "','". $_supEmail . "','" . $_supTel . "',
+				'". $_desc . "','" . $_equip ."','" . $_extra . "','". $_info ."'," .$_cieID. ");");
     }
     
     //Fonction permenttant de modifier un projet dans la base de donnée
     public function UpdateProject($_projectID, $_title, $_supName, $_supTitle, $_supEmail, $_supTel, $_desc, $_equip, $_extra, $_info, $_cieID) {
-        parent::BDExecute("UPDATE projects SET title=" . $_title .
+        parent::DBExecute("UPDATE projects SET title=" . $_title .
                 ", supName=" . $_supName .
                 ", supTitle=" . $_supTitle .
                 ", supEmail=" . $_supEmail .
                 ", supTel=" . $_supTel .
-                ", desc=" . $_desc .
+                ", descr=" . $_desc .
                 ", equip=" . $_equip .
                 ", extra=" . $_extra .
                 ", info=" . $_info .
