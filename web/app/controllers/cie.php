@@ -67,8 +67,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             if (isset($_POST['editProject']) && $_POST['editProject'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 600 > time()) {
                 try {
                     $model->UpdateProject($_projectID, $_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
-                    $data['message'] = "Le projet a été mis à jour.";
+                    $data['alert'] = "alert-success";
+					$data['message'] = "Le projet a été mis à jour.";
                 } catch (exception $ex) {
+					$data['alert'] = "alert-danger";
                     $data['message'] = "Le changement a échoué.";
                 }
             }
@@ -79,6 +81,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             if ($data['project']->status == '0' && $data['project']->entID == $_SESSION['ID']) {
                 parent::view('cie/edit', $data);
             } else {
+				$data['alert'] = "alert-warning";
                 $data['message'] = "Vous n'avez pas l'autorisation de modifier ce projet.";
                 parent::view('cie/index', $data);
             }
@@ -94,10 +97,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new accounts();
                 try {
                     $model->UpdatePw($_SESSION['ID'], $_POST['password']);
-                    $data['alert'] = "alert-success";
+                    $data['alert'] = "alert-success";					
                     $data['message'] = "Le mot de passe a été changé.";
                 } catch (exception $ex) {
-                    $data['alert'] = "alert-danger";
+                    $data['alert'] = "alert-warning";
                     $data['message'] = "Le changement a échoué.";
                 }
             } else {
@@ -125,8 +128,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new accounts();
                 try {
                     $model->UpdateBusiness($_SESSION['ID'], $_POST['address'], $_POST['city'], $_POST['tel'], $_POST['email']);
+					 $data['alert'] = "alert-success";
                     $data['message'] = "Le(s) information(s) a(ont) été changée(s).";
                 } catch (Exception $e) {
+					 $data['alert'] = "alert-warning";
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
             }
@@ -148,15 +153,21 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model2 = new accounts();
 
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
+<<<<<<< HEAD
             $data['readOnly'] = $model1->ReadOnlyCie($_internID, 'interview');
+=======
+            $data['readOnly'] = $model1->ReadOnlyCie($_SESSION['ID'], $_internID, 'interview');
+>>>>>>> origin/master
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
                 //Enregistrer l'entrevue.
                 if (isset($_POST['sendInterview']) && $_POST['sendInterview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()) {
                     try {
-                        $model->AddInterview($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
-                        $data['message'] = "L'entrevue a été sauvegardée avec succès.";
+                        $model->SaveCie($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
+                        $data['alert'] = "alert-success";
+					   $data['message'] = "L'entrevue a été sauvegardée avec succès.";
                     } catch (exception $ex) {
+						 $data['alert'] = "alert-warning";
                         $data['message'] = "L'entrevue n'a pas pu être enregistrée.";
                     }
                     parent::view("cie/index", $data);
@@ -172,6 +183,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $data['interns'] = $model2->ShowUsersByRank(0);
                     parent::view("cie/interview", $data);
                 } else {
+					 $data['alert'] = "alert-warning";
                     $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
                     parent::view("cie/index", $data);
                 }
@@ -190,7 +202,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model1 = new docs();
 
             //Vérifier l'existence d'une évaluation de stage
-            $data['readOnly'] = $model1->FormExists($_SESSION['ID'], $_projectID, 'cieReview');
+            $data['readOnly'] = $model1->ReadOnlyCie($_projectID, 'cieReview');
 
             parent::model("projects");
             $model2 = new projects();
@@ -205,12 +217,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 
             if ($data['readOnly']) { //si le formulaire existe
-                $data['review'] = $model->ShowCieReview($_projectID);
+                $data['review'] = $model->LoadCie($_projectID);
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['review']->cieId == $_SESSION['ID']) {
                     parent::view("cie/review", $data);
                 } else {
+					 $data['alert'] = "alert-warning";
                     $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
                     parent::view("cie/index", $data);
                 }
@@ -218,9 +231,11 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 //Enregistrer le formulaire d'évaluation.
                 if (isset($_POST['sendReview']) && $_POST['sendReview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()) {
                     try {
-                        $model->AddCieReview($_SESSION['ID'], $_POST['internId'], $_POST['docName'], $_POST['cieRev111'], $_POST['cieRev112'], $_POST['cieRev113'], $_POST['cieRev1'], $_POST['cieRev211'], $_POST['cieRev221'], $_POST['cieRev222'], $_POST['cieRev231'], $_POST['cieRev232'], $_POST['cieRev2'], $_POST['cieRev311'], $_POST['cieRev312'], $_POST['cieRev313'], $_POST['cieRev321'], $_POST['cieRev331'], $_POST['cieRev332'], $_POST['cieRev341'], $_POST['cieRev342'], $_POST['cieRev351'], $_POST['cieRev352'], $_POST['cieRev3'], $_POST['cieRevBest'], $_POST['cieRevLess'], $_POST['cieRevOther'], $_POST['cieRevLike'], $_POST['cieRevAgain'], $_POST['cieRevSame']);
-                        $data['message'] = "L'évaluation a été sauvegardée avec succès.";
+                        $model->SaveCie($_POST['internId'], $_POST['docName'], $_POST['cieRev111'], $_POST['cieRev112'], $_POST['cieRev113'], $_POST['cieRev1'], $_POST['cieRev211'], $_POST['cieRev221'], $_POST['cieRev222'], $_POST['cieRev231'], $_POST['cieRev232'], $_POST['cieRev2'], $_POST['cieRev311'], $_POST['cieRev312'], $_POST['cieRev313'], $_POST['cieRev321'], $_POST['cieRev331'], $_POST['cieRev332'], $_POST['cieRev341'], $_POST['cieRev342'], $_POST['cieRev351'], $_POST['cieRev352'], $_POST['cieRev3'], $_POST['cieRevBest'], $_POST['cieRevLess'], $_POST['cieRevOther'], $_POST['cieRevLike'], $_POST['cieRevAgain'], $_POST['cieRevSame']);
+                        $data['alert'] = "alert-success";
+					   $data['message'] = "L'évaluation a été sauvegardée avec succès.";
                     } catch (Exception $e) {
+						 $data['alert'] = "alert-warning";
                         $data['message'] = "L'évaluation n'a pas pu être enregistrée.";
                     }
                     parent::view("cie/index", $data);
@@ -250,7 +265,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $data['alert'] = "alert-success";
                         $data['message'] = "Le projet a été soumis pour une validation.";
                     } catch (PDOexception $e) {
-                        $data['alert'] = "alert-danger";
+                         $data['alert'] = "alert-warning";
                         $data['message'] = $e;
                     }
                 } else {
