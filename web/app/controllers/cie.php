@@ -153,11 +153,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model2 = new accounts();
 
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
-<<<<<<< HEAD
+
             $data['readOnly'] = $model1->ReadOnlyCie($_internID, 'interview');
-=======
-            $data['readOnly'] = $model1->ReadOnlyCie($_SESSION['ID'], $_internID, 'interview');
->>>>>>> origin/master
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
                 //Enregistrer l'entrevue.
@@ -176,7 +173,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     parent::view("cie/interview", $data);
                 }
             } else {   //si le formulaire existe
-                $data['interview'] = $model->ShowCieInterview($_internID, 'interview');
+                $data['interview'] = $model1->LoadCie($_internID, 'interview');
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['interview']->cieId == $_SESSION['ID']) {

@@ -15,8 +15,8 @@
 			$_Xml->appendChild($_Root);
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern."_JDB.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern."_JDB.xml",0,true);
+			if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
@@ -33,7 +33,7 @@
 			$_Root->appendChild($_Log);
 			
 			//Enregistre le fichier fichier.
-			$_Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_IDIntern."_JDB.xml");
+			$_Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_IDIntern.'_JDB.xml');
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,9 +43,13 @@
 		//Fonction qui vérifie que le supervisseur peut modifier une section precise
 		public function ReadOnlyCie($_IDIntern, $_BaliseName){
 			
+			var_dump($_IDIntern);
+			
+			$_Acces = parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml';
+			
 			//Si le fichier existe vérifier que la section n'est pas déjà rempli
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml",0,true);
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
 				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
@@ -64,8 +68,8 @@
 			$_Xml->appendChild($_Root);
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml",0,true);
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
@@ -79,7 +83,7 @@
 			$_Root->appendChild($_Report);
 			
 			//Enregistre le fichier
-			$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern."_RPT.xml");
+			$_Xml->save($DefaultXMLPath.'/rapport/'.$_IDIntern.'_RPT.xml');
 		}
 		
 		
@@ -90,8 +94,8 @@
 			$_ArraysResult = Array();		//Contient les informations contenue dans le fichier XML
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern."_RPT.xml",0,true);				
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml',0,true);				
 				
 				//Recupère toute les informations
 				foreach($_Xml->children() as $_Element){
@@ -111,8 +115,8 @@
 		public function ReadOnlyAdvisor($_IDIntern, $_BaliseName){
 			
 			//Si le fichier existe vérifier que la section n'est pas déjà rempli
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml",0,true);
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
 				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
@@ -131,8 +135,8 @@
 			$_Xml->appendChild($_Root);
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml",0,true);
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
@@ -146,7 +150,7 @@
 			$_Root->appendChild($_Report);
 			
 			//Enregistre le fichier
-			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml");
+			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml');
 		}
 		
 		
@@ -157,8 +161,8 @@
 			$_ArraysResult = Array();		//Contient les informations contenue dans le fichier XML
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml")){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern."_EVL.xml",0,true);				
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);				
 				
 				//Recupère toute les informations
 				foreach($_Xml->children() as $_Element){
