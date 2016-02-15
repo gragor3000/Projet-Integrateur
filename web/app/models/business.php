@@ -30,7 +30,9 @@ class business extends Models {
 
     //Retourne toutes les entreprises.
     public function ShowAllCie() {
-        $result = parent::DBSearch("SELECT * FROM cie");
+        $result = parent::DBSearch("SELECT users.name, business.ID,business.address,business.city,
+                                    business.tel,business.email FROM cie INNER JOIN Users");
+
 
         //Générer un tableau d'objet.
         foreach ($result as $cie)

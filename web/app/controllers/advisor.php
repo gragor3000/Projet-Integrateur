@@ -8,16 +8,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("models");
         }
 
-        //Fonction appeler par défaut
+        //appelle la page d'accueil qui as projets et entreprises non validée
         public function index() {
-            parent::view("shared/header");
-            parent::view("advisor/menu");
-            parent::view("advisor/index");
-            parent::view("shared/footer");
-        }
-
-        //appelle la page pour des projets et entreprises non validée
-        public function inactive() {
             parent::view("shared/header");
             parent::view("advisor/menu");
 
@@ -34,11 +26,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
 
-        //appelle la page pour afficher tous les projets
+        //appelle la page pour afficher tous les projets validés
         public function projects() {
             parent::view("shared/header");
             parent::view("advisor/menu");
 
+            parent::model("models");
+            parent::model("projects");
 
 
             parent::view("shared/footer");
@@ -136,7 +130,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //montre ses infos
         public function ShowMyInfo() {
-            /*             * *** à changer **** */
+            /***** à changer *****/
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -147,7 +141,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //affiche les notes misent par les étudiants
         public function ShowInternsRatings() {
 
-            /*             * *** à changer **** */
+            /***** à changer *****/
             parent::model("ratings");
             $ratings = new ratings();
 
@@ -165,7 +159,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //affiche tous les stagiaires
         public function ShowInterns() {
-            /*             * **** à changer **** */
+            /****** à changer *****/
 
             parent::model("models");
             parent::model("interns");
@@ -176,7 +170,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //affiche les évaluations d'un étudiant
         public function ShowEval() {
-            /*             * ***** à changer ***** */
+            /******* à changer ******/
             parent::model("models");
             parent::model("interns");
             $interns = new interns();
