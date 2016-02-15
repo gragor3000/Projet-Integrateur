@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><span>420.AA | Gestion de Stage</span></a>
+			<a class="navbar-brand" href="/"><span>420.AA | Gestion de Stage</span></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 			<form class="navbar-form navbar-right" role="connection">

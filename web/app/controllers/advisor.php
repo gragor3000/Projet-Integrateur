@@ -1,15 +1,15 @@
 <?php
 
-if (isset($_COOKIE['token'])
-	&& isset($_SESSION['ID'])
-	&& isset($_SESSION["role"])
-	&& $_SESSION["role"] == 2)
-{
-    class advisor extends Controller
-    {
+if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 2) {
+
+    class advisor extends Controller {
+
+        public function __construct() {
+            parent::model("models");
+        }
+
         //Fonction appeler par défaut
-        public function index()
-        {
+        public function index() {
             parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view("advisor/index");
@@ -17,8 +17,7 @@ if (isset($_COOKIE['token'])
         }
 
         //appelle la page pour des projets et entreprises non validée
-        public function inactive()
-        {
+        public function inactive() {
             parent::view("shared/header");
             parent::view("advisor/menu");
 
@@ -31,27 +30,22 @@ if (isset($_COOKIE['token'])
             $cie = new business();
             $data["cie"] = $cie->ShowCie(false);
 
-            parent::view("advisor/inactive",$data);
+            parent::view("advisor/inactive", $data);
             parent::view("shared/footer");
         }
 
         //appelle la page pour afficher tous les projets
-        public function projects()
-        {
+        public function projects() {
             parent::view("shared/header");
             parent::view("advisor/menu");
 
 
 
             parent::view("shared/footer");
-
-
         }
 
-
         //valide une entreprise
-        public function ValidateBusiness()
-        {
+        public function ValidateBusiness() {
             parent::model("models");
             parent::model("business");
             $cie = new business();
@@ -60,8 +54,7 @@ if (isset($_COOKIE['token'])
         }
 
         //valide un projet
-        public function ValidateProjects()
-        {
+        public function ValidateProjects() {
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
@@ -70,8 +63,7 @@ if (isset($_COOKIE['token'])
         }
 
         //supprime un projet
-        public function DeleteProject()
-        {
+        public function DeleteProject() {
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
@@ -80,8 +72,7 @@ if (isset($_COOKIE['token'])
         }
 
         //ajoute un compte dans la bd
-        public function CreateUser()
-        {
+        public function CreateUser() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -90,19 +81,16 @@ if (isset($_COOKIE['token'])
         }
 
         //affiche tous les comptes
-        public function ShowUsers()
-        {
+        public function ShowUsers() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
-            /***** à changer ******/
+            /*             * *** à changer ***** */
             $result = $account->ShowUsers();
-
         }
 
         //supprime un compte
-        public function DeleteUser()
-        {
+        public function DeleteUser() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -111,8 +99,7 @@ if (isset($_COOKIE['token'])
         }
 
         //update les infos d'un compte
-        public function UpdateUser()
-        {
+        public function UpdateUser() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -121,8 +108,7 @@ if (isset($_COOKIE['token'])
         }
 
         //update le mot de passe d'un compte
-        public function UpdatePw()
-        {
+        public function UpdatePw() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -131,8 +117,7 @@ if (isset($_COOKIE['token'])
         }
 
         //change ses infos
-        public function UpdateMyInfo()
-        {
+        public function UpdateMyInfo() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -141,8 +126,7 @@ if (isset($_COOKIE['token'])
         }
 
         //change son mot de passe
-        public function UpdateMyPw()
-        {
+        public function UpdateMyPw() {
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
@@ -151,57 +135,48 @@ if (isset($_COOKIE['token'])
         }
 
         //montre ses infos
-        public function ShowMyInfo()
-        {
-            /***** à changer *****/
+        public function ShowMyInfo() {
+            /*             * *** à changer **** */
             parent::model("models");
             parent::model("accounts");
             $account = new accounts();
 
             $result = $account->ShowMyInfo($_COOKIE["token"]);
-
         }
 
         //affiche les notes misent par les étudiants
-        public function ShowInternsRatings()
-        {
+        public function ShowInternsRatings() {
 
-            /***** à changer *****/
+            /*             * *** à changer **** */
             parent::model("ratings");
             $ratings = new ratings();
 
             $result = $ratings->ShowInternsRatings();
-
-
         }
 
         //jumelle un stagiaire à un projet
-        public function PairInternProject()
-        {
+        public function PairInternProject() {
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
 
-            $projects->PairInternProject($_POST["internId"],$_POST["projectId"]);
+            $projects->PairInternProject($_POST["internId"], $_POST["projectId"]);
         }
 
         //affiche tous les stagiaires
-        public function ShowInterns()
-        {
-            /****** à changer *****/
+        public function ShowInterns() {
+            /*             * **** à changer **** */
 
             parent::model("models");
             parent::model("interns");
             $interns = new interns();
 
             $result = $interns->ShowInterns();
-
         }
 
         //affiche les évaluations d'un étudiant
-        public function ShowEval()
-        {
-            /******* à changer ******/
+        public function ShowEval() {
+            /*             * ***** à changer ***** */
             parent::model("models");
             parent::model("interns");
             $interns = new interns();
@@ -210,8 +185,7 @@ if (isset($_COOKIE['token'])
         }
 
         //met à jour l'évaluation d'un stagiaire
-        public function UpdateEval()
-        {
+        public function UpdateEval() {
             parent::model("models");
             parent::model("interns");
             $interns = new interns();
@@ -219,57 +193,53 @@ if (isset($_COOKIE['token'])
             $interns->UpdateEval($_POST["id"]);
         }
 
-
-
         //Fonction permettant de récupérer le rapport d'entrevu
-        /*public function LoadReport($IDTrainer){
+        /* public function LoadReport($IDTrainer){
 
-            //Tante de trouver le fichier Xml
-            try {
-                $Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
+          //Tante de trouver le fichier Xml
+          try {
+          $Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
 
-                //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-                $DateLog = strToTime($Date);
-                $DateLog = date("d-M-Y", $DateLog);
+          //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+          $DateLog = strToTime($Date);
+          $DateLog = date("d-M-Y", $DateLog);
 
-                $Tag = $Xml->createElement($DateLog, $Data);
-                $Xml->appendChild($Tag);
-                $Xml->saveXML();
-            }
-            catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-                $Xml = new domxml_new_doc('1.0');
-                $Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
-            }
-        }
+          $Tag = $Xml->createElement($DateLog, $Data);
+          $Xml->appendChild($Tag);
+          $Xml->saveXML();
+          }
+          catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+          $Xml = new domxml_new_doc('1.0');
+          $Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
+          }
+          }
 
-        //Fonction permettant de récupérer le rapport d'entrevuprotected $DefaultXMLPath = '../app/models/xml/';
-        public function LoadEvaluation($IDTrainer){
+          //Fonction permettant de récupérer le rapport d'entrevuprotected $DefaultXMLPath = '../app/models/xml/';
+          public function LoadEvaluation($IDTrainer){
 
-            //Tante de trouver le fichier Xml
-            try {
-                $Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
+          //Tante de trouver le fichier Xml
+          try {
+          $Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
 
-                //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-                $DateLog = strToTime($Date);
-                $DateLog = date("d-M-Y", $DateLog);
+          //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
+          $DateLog = strToTime($Date);
+          $DateLog = date("d-M-Y", $DateLog);
 
-                $Tag = $Xml->createElement($DateLog, $Data);
-                $Xml->appendChild($Tag);
-                $Xml->saveXML();
-            }
-            catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-                $Xml = new domxml_new_doc('1.0');
-                $Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
-            }
-        }*/
-
-
+          $Tag = $Xml->createElement($DateLog, $Data);
+          $Xml->appendChild($Tag);
+          $Xml->saveXML();
+          }
+          catch{ //Si le fichier n'est pas trouver, en créer un nouveau
+          $Xml = new domxml_new_doc('1.0');
+          $Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
+          }
+          } */
     }
+
 } else {
-	//Redirige vers l'acceuil.
+    //Redirige vers l'acceuil.
     session_unset();
     session_destroy();
     header("location: " . $_SERVER['SERVER_ADDR']);
 }
-
 ?>

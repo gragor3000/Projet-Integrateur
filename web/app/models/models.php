@@ -1,35 +1,33 @@
 <?php
-/*
-2016-02-10 Marc Lauzon, Baker
-RÉVISÉ
-*/
 
+/*
+  2016-02-10 Marc Lauzon, Baker
+  RÉVISÉ
+ */
 
 //transformation de tableau à objet.
-class obj{
-	private $properties;
+class obj {
 
+    private $properties;
 
-    public function __construct($_data)
-    {
+    public function __construct($_data) {
         $this->properties = $_data;
     }
 
-    public function __get($property)
-    {
+    public function __get($property) {
         return $this->properties[$property];
     }
+
 }
 
-class Models
-{
+class Models {
+
     //Chemin des fichiers XML.
     protected $DefaultXMLPath = '../app/models/models/xml/';
 
     //Connexion à la BD.
-    protected function DBConnect()
-    {
-		$filepath = "../app/models/dbSettings.txt";
+    protected function DBConnect() {
+        $filepath = "../app/models/dbSettings.txt";
         $myfile = fopen($filepath, "r");
         if ($myfile != null) {
 
@@ -37,23 +35,22 @@ class Models
             $result = explode(",", $fileText);
             fclose($myfile);
 
-			$pdo = new PDO('mysql:host=localhost;dbname=' . $result[1] . ';charset=utf8', $result[2], $result[3]);
-			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			
+            $pdo = new PDO('mysql:host=localhost;dbname=' . $result[1] . ';charset=utf8', $result[2], $result[3]);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             return $pdo;
         }
         return null;
     }
 
     //Requête avec le retour d'une table.
-    protected function DBSearch($Command)
-    {
+    protected function DBSearch($Command) {
         //Connexion à la BD.
         $pdo = $this->DBConnect();
 
-		//Préparer la commande.
+        //Préparer la commande.
         $request = $pdo->prepare($Command);
-		$request->execute();
+        $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
 
         //Fermer la connexion.
@@ -63,14 +60,13 @@ class Models
     }
 
     //Requête avec le retour d'une ligne unique.
-    protected function DBQuery($Command)
-    {
+    protected function DBQuery($Command) {
         //Connexion à la BD.
         $pdo = $this->DBConnect();
 
-		//Préparer la commande.
+        //Préparer la commande.
         $request = $pdo->prepare($Command);
-		$request->execute();
+        $request->execute();
         $result = $request->fetch(PDO::FETCH_ASSOC);
 
         //Fermer la connexion.
@@ -78,14 +74,13 @@ class Models
 
         return $result;
     }
-	
-	//Requête avec le retour d'une ligne unique.
-    protected function DBExecute($Command)
-    {
+
+    //Requête avec le retour d'une ligne unique.
+    protected function DBExecute($Command) {
         //Connexion à la BD.
         $pdo = $this->DBConnect();
 
-		//Préparer la commande.
+        //Préparer la commande.
         $request = $pdo->prepare($Command);
         $result = $request->execute();
 
@@ -94,16 +89,15 @@ class Models
 
         return $result;
     }
-	
 
     //Obtenir dernier ID généré.
-    public function DBLastInsertedID($_table)
-    {
+    public function DBLastInsertedID($_table) {
         //Connexion à la BD.
         $pdo = $this->DBConnect();
-		$request = $pdo->prepare("SELECT id FROM ". $_table ." ORDER BY ID DESC LIMIT 1");
-		$request->execute();
-		$result = $request->fetch(PDO::FETCH_ASSOC);
+        $request = $pdo->prepare("SELECT id FROM " . $_table . " ORDER BY ID DESC LIMIT 1");
+        $request->execute();
+        $result = $request->fetch(PDO::FETCH_ASSOC);
         return $result['id'];
     }
+
 }

@@ -12,6 +12,12 @@ COMPLÉTÉ... j'espère.
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
+<?php if (isset($data['alert'])) { ?>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $data['message']; ?>
+</div>
+<?php } ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -41,7 +47,7 @@ COMPLÉTÉ... j'espère.
 						</div>
 						<div class="form-group col-md-2">
 							<label class="control-label">Date</label>
-							<p style="margin-top:7px;"><?= (isset($data['review']) ? $data['review']->date : date(); ?></p>
+							<p style="margin-top:7px;"><?= (isset($data['review'])) ? $data['review']->date : date(); ?></p>
 						</div>
 					</div>
 					<h3 class="page-header">Comportement et éthique nécessaire à l'exercice de la profession.</h3>
@@ -211,7 +217,7 @@ COMPLÉTÉ... j'espère.
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="cieRev2">Commentaires et suggestions</label>
-							<textarea class="form-control" id="cieRev2" name="cieRev2" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRev2'])) ? $data['review']->cieRev2'] : ''; ?></textarea>
+							<textarea class="form-control" id="cieRev2" name="cieRev2" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRev2)) ? $data['review']->cieRev2 : ''; ?></textarea>
 						</div>
 					</div>
 					<h3 class="page-header">Mise en oeuvre d'une application.</h3>
@@ -413,26 +419,26 @@ COMPLÉTÉ... j'espère.
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="cieRev3">Commentaires et suggestions</label>
-							<textarea class="form-control" id="cieRev3" name="cieRev3" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRev3'])) ? $data['review']->cieRev3'] : ''; ?></textarea>
+							<textarea class="form-control" id="cieRev3" name="cieRev3" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRev3)) ? $data['review']->cieRev3 : ''; ?></textarea>
 						</div>
 					</div>
 					<h3 class="page-header">Informations complémentaires</h3>
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="cieRevBest">Points forts</label>
-							<textarea class="form-control" id="cieRevBest" name="cieRevBest" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevBest'])) ? $data['review']->cieRevBest'] : ''; ?></textarea>
+							<textarea class="form-control" id="cieRevBest" name="cieRevBest" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevBest)) ? $data['review']->cieRevBest : ''; ?></textarea>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="cieRevLess">Points à améliorer</label>
-							<textarea class="form-control" id="cieRevLess" name="cieRevLess" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevLess'])) ? $data['review']->cieRevLess'] : ''; ?></textarea>
+							<textarea class="form-control" id="cieRevLess" name="cieRevLess" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevLess)) ? $data['review']->cieRevLess : ''; ?></textarea>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="cieRevOther">Autres remarques</label>
-							<textarea class="form-control" id="cieRevOther" name="cieRevOther" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevOther'])) ? $data['review']->cieRevOther'] : ''; ?></textarea>
+							<textarea class="form-control" id="cieRevOther" name="cieRevOther" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'readonly' : ''; ?>><?= (isset($data['review']->cieRevOther)) ? $data['review']->cieRevOther : ''; ?></textarea>
 						</div>
 					</div>
 					<h4>Appréciation globale du séjour.</h4>
@@ -450,11 +456,11 @@ COMPLÉTÉ... j'espère.
 										<td>Avez-vous apprécié travailler avec le stagiaire assigné à votre projet?</td>
 										<td>
 											<select class="form-control" id="cieRevLike" name="cieRevLike" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'disabled' : ''; ?>>
-												<option value="4" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="4") ? 'selected' : ''; ?>>Excellent</option>
-												<option value="3" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="3") ? 'selected' : ''; ?>>Satisfaisant</option>
-												<option value="2" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="2") ? 'selected' : ''; ?>>Acceptable</option>
-												<option value="1" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="1") ? 'selected' : ''; ?>>Insatisfait</option>
-												<option value="0" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="0") ? 'selected' : ''; ?>>Non applicable</option>
+												<option value="4" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="4") ? 'selected' : ''; ?>>Excellent</option>
+												<option value="3" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="3") ? 'selected' : ''; ?>>Satisfaisant</option>
+												<option value="2" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="2") ? 'selected' : ''; ?>>Acceptable</option>
+												<option value="1" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="1") ? 'selected' : ''; ?>>Insatisfait</option>
+												<option value="0" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="0") ? 'selected' : ''; ?>>Non applicable</option>
 											</select>
 										</td>
 									</tr>
@@ -462,8 +468,8 @@ COMPLÉTÉ... j'espère.
 										<td>Reprendriez-vous un finissant ou une finissante de la technique?</td>
 										<td>
 											<select class="form-control" id="cieRevAgain" name="cieRevAgain" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'disabled' : ''; ?>>
-												<option value="oui" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="oui") ? 'selected' : ''; ?>>Oui</option>
-												<option value="non" <?= (isset($data['review']->cieRevLike']) && $data['review']->cieRevLike']="non") ? 'selected' : ''; ?>>Non</option>
+												<option value="oui" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="oui") ? 'selected' : ''; ?>>Oui</option>
+												<option value="non" <?= (isset($data['review']->cieRevLike) && $data['review']->cieRevLike="non") ? 'selected' : ''; ?>>Non</option>
 											</select>
 										</td>
 									</tr>
@@ -471,8 +477,8 @@ COMPLÉTÉ... j'espère.
 										<td>Reprendriez-vous le même étudiant?</td>
 										<td>
 											<select class="form-control" id="cieRevSame" name="cieRevSame" <?= (isset($data['readOnly']) && $data['readOnly']) ? 'disabled' : ''; ?>>
-												<option value="oui" <?= (isset($data['review']->cieRevSame']) && $data['review']->cieRevSame']="oui") ? 'selected' : ''; ?>>Oui</option>
-												<option value="non" <?= (isset($data['review']->cieRevSame']) && $data['review']->cieRevSame']="non") ? 'selected' : ''; ?>>Non</option>
+												<option value="oui" <?= (isset($data['review']->cieRevSame) && $data['review']->cieRevSame="oui") ? 'selected' : ''; ?>>Oui</option>
+												<option value="non" <?= (isset($data['review']->cieRevSame) && $data['review']->cieRevSame="non") ? 'selected' : ''; ?>>Non</option>
 											</select>
 										</td>
 									</tr>
@@ -481,7 +487,7 @@ COMPLÉTÉ... j'espère.
 						</div>
 					</div>
 					<br />
-					<?php if !(isset($data['readOnly']) && $data['readOnly']) { ?>
+					<?php if (!(isset($data['readOnly']) && $data['readOnly'])) { ?>
 						<div class="well col-md-6 col-md-offset-3">
 							<div class="row">
 								<div class="col-md-12">

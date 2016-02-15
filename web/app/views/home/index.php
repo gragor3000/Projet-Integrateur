@@ -12,6 +12,12 @@ COMPLÉTÉ... j'espère.
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
+<?php if (isset($data['alert'])) { ?>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $data['message']; ?>
+</div>
+<?php } ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -25,7 +31,7 @@ COMPLÉTÉ... j'espère.
 <div class="section">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3 ">
+			<div class="col-md-8 col-md-offset-2 ">
 				<div class="well">
 					<form role="form">
 						<div class="row">

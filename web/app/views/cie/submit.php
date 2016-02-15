@@ -12,6 +12,12 @@ COMPLÉTÉ.
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
+<?php if (isset($data['alert'])) { ?>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $data['message']; ?>
+</div>
+<?php } ?>
 <div class="section section-info">
 	<div class="container">
 		<div class="row">
@@ -99,7 +105,7 @@ COMPLÉTÉ.
 							</div>
 							<div class="col-md-6">
 								<b>Adresse courriel</b>
-								<p><?= $data['cie']->tel; ?></p>
+								<p><?= $data['cie']->email; ?></p>
 							</div>
 						</div>
 						<div class="row">
@@ -136,7 +142,7 @@ COMPLÉTÉ.
 						</div>
 					</div>
 					<div class="well">
-						<button name="sendProject" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/sendProject" formmethod="post">Soumettre</a>
+						<button name="sendProject" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/submit" formmethod="post">Soumettre</a>
 					</div>
 				</div>
 			</div>
