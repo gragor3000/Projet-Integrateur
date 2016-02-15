@@ -246,7 +246,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $model = new projects();
 
                     try {
-                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
+                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supEmail'], $_POST['supTel'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
                         $data['alert'] = "alert-success";
                         $data['message'] = "Le projet a été soumis pour une validation.";
                     } catch (PDOexception $e) {

@@ -26,30 +26,30 @@ PHP complété. [sauf exception voir 'actions']
         <?php if (isset($data['projects'])) { ?>
             <div id="carousel-projects" data-interval="false" class="carousel slide">
                 <div class="carousel-inner">
-                    <?php $count = 0; foreach ($data['project'] as $project) { ?>
+                    <?php $count = 0; foreach ($data['projects'] as $project) { ?>
                         <div class="item <?php if ($count == 0) echo('active'); ?>">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title"><?= $project['title']; ?></h3>
+                                            <h3 class="panel-title"><?= $project->title; ?></h3>
                                         </div>
                                         <div class="scrollable-project">
                                             <div class="panel-body">
                                                 <b>Description</b>
-                                                <p><?= $project['desc']; ?></p>
+                                                <p><?= $project->descr; ?></p>
                                             </div>
                                             <div class="panel-body">
                                                 <b>Matériels et logiciels prévus</b>
-                                                <p><?= $project['equip']; ?></p>
+                                                <p><?= $project->equip; ?></p>
                                             </div>
                                             <div class="panel-body">
                                                 <b>Exigences particulières</b>
-                                                <p><?= $project['extra']; ?></p>
+                                                <p><?= $project->extra; ?></p>
                                             </div>
                                             <div class="panel-body">
                                                 <b>Commentaires et informations complémentaires</b>
-                                                <p><?= $project['info']; ?></p>
+                                                <p><?= $project->info; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -59,27 +59,27 @@ PHP complété. [sauf exception voir 'actions']
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <b>Nom de l'entreprise</b>
-                                                <p><?= $project['name']; ?></p>
+                                                <p><?= $project->name; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <b>Numéro de téléphone</b>
-                                                <p><?= $project['tel']; ?></p>
+                                                <p><?= $project->tel; ?></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <b>Adresse courriel</b>
-                                                <p><?= $project['email']; ?></p>
+                                                <p><?= $project->email; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <b>Adresse de l'entreprise</b>
-                                                <p><?= $project['address']; ?></p>
+                                                <p><?= $project->address; ?></p>
                                             </div>
                                             <div class="col-md-4">
                                                 <b>Ville</b>
-                                                <p><?= $project['city']; ?></p>
+                                                <p><?= $project->city; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,21 +87,21 @@ PHP complété. [sauf exception voir 'actions']
                                         <div class="row">
                                             <div class="col-md-7">
                                                 <b>Nom du superviseur</b>
-                                                <p><?= $project['supName']; ?></p>
+                                                <p><?= $project->supName; ?></p>
                                             </div>
                                             <div class="col-md-5">
                                                 <b>Titre</b>
-                                                <p><?= $project['supTitle']; ?></p>
+                                                <p><?= $project->supTitle; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <b>Numéro de téléphone</b>
-                                                <p><?= $project['supTel']; ?></p>
+                                                <p><?= $project->supTel; ?></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <b>Adresse courriel</b>
-                                                <p><?= $project['supEmail']; ?></p>
+                                                <p><?= $project->supEmail; ?></p>
                                             </div>
                                         </div>
                                     </div>
