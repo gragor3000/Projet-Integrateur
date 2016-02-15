@@ -1,52 +1,16 @@
-<html><head>
-    <meta name="description" content="Ce site a pour objectif de permettre aux entreprises de soumettre des projets de stage à destination des étudiants en technique informatique et à ceux-ci de soumettre leur journal de bord. Il permet aussi aux coordonnateurs de gerer les comptes d'accès et de soumettre des documents d'évaluation.">
-    <title>CEGEP de Joliette | 420.AA | Gesion de Stage</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="..\..\..\public\css\default.css" rel="stylesheet" type="text/css">
-  </head><body>
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><span>420.AA | Gestion de Stage | Stagiaire</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-user"></i> Nom de l'utilisateur <i class="fa fa-caret-down"></i></a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-briefcase"></i> Projet de stage</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-book"></i> Journal de Bord</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-pencil"></i> Évaluations</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-key"></i> Changer de mot de passe</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#"><i class="fa fa-fw fa-sign-out"></i> Déconnexion</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="section section-info">
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
+<?php if (isset($data['alert'])) { ?>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $data['message']; ?>
+</div>
+<?php } ?>
+<div class="section section-info">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -64,29 +28,30 @@
         <div class="container">
 		<div id="carousel-projects" data-interval="false" class="carousel slide">
 		  <div class="carousel-inner">
-			<div class="item active">
+            <?php $count = 0; foreach ($data['projects'] as $project) { ?>
+             <div class="item <?php if ($count == $data["carousel-index"]) echo('active'); ?>">
 			  <div class="row">
 				<div class="col-md-6">
 				  <div class="panel panel-default">
 					<div class="panel-heading">
-					  <h3 class="panel-title">Nom du projet</h3>
+					  <h3 class="panel-title"><?= $project->name;?></h3>
 					</div>
 					<div class="scrollable-project">
 					<div class="panel-body">
 					  <b>Description</b>
-					  <p>Description du projet.</p>
+					  <p><?= $project->descr;?></p>
 					</div>
 					<div class="panel-body">
 					  <b>Matériels et logiciels prévus</b>
-					  <p>Description du projet.</p>
+					  <p><?=$project->equip;?></p>
 					</div>
 					<div class="panel-body">
 					  <b>Exigences particulières</b>
-					  <p>Description du projet.</p>
+					  <p><?= $project->name;?></p>
 					</div>
 					<div class="panel-body">
 					  <b>Commentaires et informations complémentaires</b>
-					  <p>Description du projet.</p>
+					  <p><?= $project->info;?></p>
 					</div>
 					</div>
 				  </div>
@@ -96,27 +61,27 @@
 					<div class="row">
 					  <div class="col-md-12">
 						<b>Nom de l'entreprise</b>
-						<p>Entreprise Inc.</p>
+						p><<?= $data['cie'][$project->businessID]->name; ?></p>
 					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-md-6">
 						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
+						<p><?= $data['cie'][$project->businessID]->tel; ?></p>
 					  </div>
 					  <div class="col-md-6">
 						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
+						<p><?= $data['cie'][$project->businessID]->email; ?></p>
 					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-md-8">
 						<b>Adresse de l'entreprise</b>
-						<p>555 rue Entreprise, local 555</p>
+						<p><?= $data['cie'][$project->businessID]->address; ?></p>
 					  </div>
 					  <div class="col-md-4">
 						<b>Ville</b>
-						<p>Joliette</p>
+						<p><?= $data['cie'][$project->businessID]->city; ?></p>
 					  </div>
 					</div>
 				  </div>
@@ -124,230 +89,43 @@
 					<div class="row">
 					  <div class="col-md-7">
 						<b>Nom du superviseur</b>
-						<p>Prenom Nom</p>
+						<p><?= $data["projects"][0]->supName;?></p>
 					  </div>
 					  <div class="col-md-5">
 						<b>Titre</b>
-						<p>Coordonnateur</p>
+						<p><?= $data["projects"][0]->supTitle;?></p>
 					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-md-6">
 						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
+						<p><?= $data["projects"][0]->supTel;?></p>
 					  </div>
 					  <div class="col-md-6">
 						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
+						<p><?= $data["projects"][0]->supEmail;?></p>
 					  </div>
 					</div>
 				  </div>
 				  <form role="form" class="well form-inline text-right">
 					<div class="form-group">
 					  <label for="rateProject">Évaluation du projet de stage :</label>
-					  <select class="form-control" id="rateProject">
-						<option>0 - Impossible</option>
-						<option>1 - Complication</option>
-						<option>2 - Difficile</option>
-						<option>3 - Acceptable</option>
-						<option>4 - Favorable</option>
-						<option>5 - Préférence</option>
+					  <select class="form-control" id="rateProject" name = "rating">
+						<option value = 0 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 0) ? 'selected' : ''; ?>>0 - Impossible</option>
+						<option value = 1 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 1) ? 'selected' : ''; ?>>1 - Complication</option>
+						<option value = 2 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 2) ? 'selected' : ''; ?>>2 - Difficile</option>
+						<option value = 3 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 3) ? 'selected' : ''; ?>>3 - Acceptable</option>
+						<option value = 4 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 4) ? 'selected' : ''; ?>>4 - Favorable</option>
+						<option value = 5 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 5) ? 'selected' : ''; ?>>5 - Préférence</option>
 					  </select>
-					  <a class="btn btn-primary"><i class="fa fa-fw fa-star"></i></a>
+					  <button type = "submit" name = "id" value = "<?=$project->ID; ?>" class="btn btn-link" formaction = "/intern/list/<?=$count; ?>"><i class="fa fa-fw fa-star"></i></button>
 					</div>
 				  </form>
 				</div>
 			  </div>
+			</div>	
+		   <?php } ?>			
 			</div>
-			<div class="item">
-			  <div class="row">
-				<div class="col-md-6">
-				  <div class="panel panel-default">
-					<div class="panel-heading">
-					  <h3 class="panel-title">Nom du projet</h3>
-					</div>
-					<div class="scrollable-project">
-					<div class="panel-body">
-					  <b>Description</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Matériels et logiciels prévus</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Exigences particulières</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Commentaires et informations complémentaires</b>
-					  <p>Description du projet.</p>
-					</div>
-					</div>
-				  </div>
-				</div>
-				<div class="col-md-6">
-				  <div class="well">
-					<div class="row">
-					  <div class="col-md-12">
-						<b>Nom de l'entreprise</b>
-						<p>Entreprise Inc.</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-6">
-						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
-					  </div>
-					  <div class="col-md-6">
-						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-8">
-						<b>Adresse de l'entreprise</b>
-						<p>555 rue Entreprise, local 555</p>
-					  </div>
-					  <div class="col-md-4">
-						<b>Ville</b>
-						<p>Joliette</p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="well">
-					<div class="row">
-					  <div class="col-md-7">
-						<b>Nom du superviseur</b>
-						<p>Prenom Nom</p>
-					  </div>
-					  <div class="col-md-5">
-						<b>Titre</b>
-						<p>Coordonnateur</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-6">
-						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
-					  </div>
-					  <div class="col-md-6">
-						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
-					  </div>
-					</div>
-				  </div>
-				  <form role="form" class="well form-inline text-right">
-					<div class="form-group">
-					  <label for="rateProject">Évaluation du projet de stage :</label>
-					  <select class="form-control" id="rateProject">
-						<option>0 - Impossible</option>
-						<option>1 - Complication</option>
-						<option>2 - Difficile</option>
-						<option>3 - Acceptable</option>
-						<option>4 - Favorable</option>
-						<option>5 - Préférence</option>
-					  </select>
-					  <a class="btn btn-primary"><i class="fa fa-fw fa-star"></i></a>
-					</div>
-				  </form>
-				</div>
-			  </div>
-			</div>
-			<div class="item">
-			  <div class="row">
-				<div class="col-md-6">
-				  <div class="panel panel-default">
-					<div class="panel-heading">
-					  <h3 class="panel-title">Nom du projet</h3>
-					</div>
-					<div class="scrollable-project">
-					<div class="panel-body">
-					  <b>Description</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Matériels et logiciels prévus</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Exigences particulières</b>
-					  <p>Description du projet.</p>
-					</div>
-					<div class="panel-body">
-					  <b>Commentaires et informations complémentaires</b>
-					  <p>Description du projet.</p>
-					</div>
-					</div>
-				  </div>
-				</div>
-				<div class="col-md-6">
-				  <div class="well">
-					<div class="row">
-					  <div class="col-md-12">
-						<b>Nom de l'entreprise</b>
-						<p>Entreprise Inc.</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-6">
-						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
-					  </div>
-					  <div class="col-md-6">
-						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-8">
-						<b>Adresse de l'entreprise</b>
-						<p>555 rue Entreprise, local 555</p>
-					  </div>
-					  <div class="col-md-4">
-						<b>Ville</b>
-						<p>Joliette</p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="well">
-					<div class="row">
-					  <div class="col-md-7">
-						<b>Nom du superviseur</b>
-						<p>Prenom Nom</p>
-					  </div>
-					  <div class="col-md-5">
-						<b>Titre</b>
-						<p>Coordonnateur</p>
-					  </div>
-					</div>
-					<div class="row">
-					  <div class="col-md-6">
-						<b>Numéro de téléphone</b>
-						<p>(450)555-5555 #1234</p>
-					  </div>
-					  <div class="col-md-6">
-						<b>Adresse courriel</b>
-						<p>contact@entreprise.tld</p>
-					  </div>
-					</div>
-				  </div>
-				  <form role="form" class="well form-inline text-right">
-					<div class="form-group">
-					  <label for="rateProject">Évaluation du projet de stage :</label>
-					  <select class="form-control" id="rateProject">
-						<option>0 - Impossible</option>
-						<option>1 - Complication</option>
-						<option>2 - Difficile</option>
-						<option>3 - Acceptable</option>
-						<option>4 - Favorable</option>
-						<option>5 - Préférence</option>
-					  </select>
-					  <a class="btn btn-primary"><i class="fa fa-fw fa-star"></i></a>
-					</div>
-				  </form>
-				</div>
-			  </div>
 			</div>
 			</div>
 		  </div>
@@ -355,24 +133,3 @@
 		  <a class="right carousel-control" href="#carousel-projects" data-slide="next"><i class="icon-next fa fa-angle-right text-inverse"></i></a>
 		</div>
       </div>
-    </div>
-    <footer class="section section-primary">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <a href="http://www.cegep-lanaudiere.qc.ca/joliette" target="_new" class="text-inverse"><b class="text-uppercase">Cégep Régional <i class="text-lowercase">de</i> Lanaudière</b> <i>à Joliette</i></a>
-            <br>
-            <a href="http://www.cegep-lanaudiere.qc.ca/joliette/programmes/techniques-de-linformatique" target="_new" class="text-inverse"><small>420.AA | Technique de l'informatique</small></a>
-          </div>
-          <div class="col-sm-6 text-right">
-            <p>Ce site a été conçu dans le cadre du cours de Projet Intégrateur par :
-              <br>
-              <i>Samuel Baker, Marc Lauzon, Michael Légaré &amp; Patrick Limoge</i>
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  
-
-</body></html>
