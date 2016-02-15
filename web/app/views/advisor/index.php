@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <html>
 <head>
     <meta name="description"
@@ -55,6 +51,14 @@
             </ul>
         </div>
     </div>
+
+
+    <?php if (isset($data['alert'])) { ?>
+        <div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <?= $data['message']; ?>
+        </div>
+    <?php } ?>
     <div class="section section-info">
         <div class="container">
             <div class="row">
@@ -92,17 +96,17 @@
                                     <?php
                                     if (isset($data['cie'])) {
                                         foreach ($data['cie'] as $cie) { ?>
-                                            <tr>
+                                            <tr id="business<?= $cie->id ?>">
                                                 <td><?= $cie->name; ?></td>
                                                 <td><?= $cie->city; ?></td>
                                                 <td><?= $cie->address; ?></td>
                                                 <td><?= $cie->tel; ?></td>
                                                 <td><?= $cie->email; ?></td>
                                                 <td>
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link" formaction="advisor/ValidateBusiness" formmethod="post">
                                                         <i class="fa fa-check-circle fa-fw fa-lg text-primary"></i>
                                                     </button>
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link" formaction="advisor/DenyBusiness" formmethod="post">
                                                         <i class="-circle fa fa-fw fa-lg fa-times-circle text-danger"></i>
                                                     </button>
                                                 </td>
@@ -149,7 +153,7 @@
                                         <?php
                                         if (isset($data['projects'])) {
                                             foreach ($data['projects'] as $project) { ?>
-                                                <tr>
+                                                <tr id="project<?= $project->id ?>">
                                                     <td>
                                                         <button class="btn btn-link">
                                                             <i class="fa fa-3x fa-caret-down fa-fw fa-rotate-270"></i>
@@ -162,13 +166,33 @@
                                                     <td><?= $project->supTel; ?></td>
                                                     <td><?= $project->supEmail; ?></td>
                                                     <td>
-                                                        <button class="btn btn-link">
+                                                        <button class="btn btn-link" formaction="advisor/ValidateProject" formmethod="post">
                                                             <i class="fa fa-check-circle fa-fw fa-lg text-primary"></i>
                                                         </button>
-                                                        <button class="btn btn-link">
+                                                        <button class="btn btn-link" formaction="advisor/DenyProject" formmethod="post">
                                                             <i class="-circle fa fa-fw fa-lg fa-times-circle text-danger"></i>
                                                         </button>
                                                     </td>
+                                                </tr>
+                                                <tr id="project<?= $project->id ?>" class="collapse">
+                                                    <div>
+                                                        <p>
+                                                            <b>Description: </b>
+                                                            <?= $project->descr; ?>
+                                                        </p>
+                                                        <p>
+                                                            <b>Equipement: </b>
+                                                            <?= $project->equip; ?>
+                                                        </p>
+                                                        <p>
+                                                            <b>Exigence: </b>
+                                                            <?= $project->extra; ?>
+                                                        </p>
+                                                        <p>
+                                                            <b>Information supplementaire: </b>
+                                                            <?= $project->info; ?>
+                                                        </p>
+                                                    </div>
                                                 </tr>
                                             <?php }
                                         else
