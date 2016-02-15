@@ -8,10 +8,17 @@
 class projects extends models {
 
     //Permet d'afficher tout les projets
+<<<<<<< HEAD
     function ShowAllProjects($_status) {
         $result = parent::DBSearch("Select projects from (projects INNER JOIN business ON
                                     projects.businessID = business.ID) INNER JOIN users ON business.userID = users.ID
                                     WHERE projects.status =" . $_status);
+=======
+    function ShowProjectByStatus($_status) {
+        $result = parent::DBSearch("Select * from projects WHERE projects.status =" . $_status);
+		
+		$projects = array();	//Contient tous les projets à récupérer
+>>>>>>> origin/master
 
         foreach ($result as $item) {
             $projects[$item["ID"]] = new obj($item); //un projet du tableau
@@ -22,8 +29,15 @@ class projects extends models {
 
     //Permet d'afficher le stage affecté
     function ShowProjectByIntern($_internId) {
-        //Cherche le stage affecter à l'étudiant
-        return new obj(parent::DBQuery("Select * from projects where internID =" . $_internId));
+		
+		//Cherche si un stage à été affecter à l'étudiant
+		if (parent::DBQuery("Select * from projects where internID =" . $_internId)){
+			//Si oui, renvoie le stage
+			return new obj(parent::DBQuery("Select * from projects where internID =" . $_internId));
+		}
+		else{	//Sinon renvoie null
+			return NULL;
+		}
     }
 
     //Permet d'afficher un stage
