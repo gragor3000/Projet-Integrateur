@@ -18,9 +18,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Accueil par défaut.
-        public function index() {
+        public function index() {			
             parent::model("business");
-            $model = new business;
+            $model = new business;			
             //Obtenir les informations de l'entreprise.
             $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 
