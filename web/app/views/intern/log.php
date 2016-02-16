@@ -30,7 +30,7 @@
                     <label class="control-label" for="logText">Écrire votre nouvelle entrée ci-dessous.</label>
                     <textarea class="form-control" id="logText"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-block btn-primary">Soumettre</button>
                 </form>
               </div>
             </div>
@@ -40,25 +40,16 @@
                   <h3 class="panel-title">Archives</h3>
                 </div>
                 <div class="scrollable-project">
+				 <?php $count = 0; foreach ($data['logs'] as $log) { ?>
                   <div class="panel-body">
-                    <b>2016-01-10 12:10</b>
-                    <p>Entrée.</p>
+                    <b><?=$log->dates?></b>
+                    <p><?=$log->info?></p>
+					<br/>
                   </div>
-                  <div class="panel-body">
-                    <b>2016-01-09 10:28</b>
-                    <p>Entrée.</p>
-                  </div>
-                  <div class="panel-body">
-                    <b>2016-01-09 08:10</b>
-                    <p>Entrée.</p>
-                  </div>
-                  <div class="panel-body">
-                    <b>2016-01-08 14:35</b>
-                    <p>Entrée.</p>
-                  </div>
-                </div>
+				 <?php } ?>		
               </div>
             </div>
           </div>
         </div>
       </div>
+	  </div>
