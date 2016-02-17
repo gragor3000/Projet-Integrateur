@@ -36,7 +36,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
                 foreach ($data['projects'] as $project) {
                     //Obtenir les informations de l'entreprise.
-                    $data['cie'][$project->ID] = $model->ShowCieByID($project->businessID);
+                    $data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
                 }
 				
 				var_dump($data['projects']);
