@@ -209,7 +209,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev22">Note</label>
-							<select id = "advNote3" class="form-control" name = "advNote3">
+							<select id = "advRev22" class="form-control" name = "advRev22">
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev22="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev22="1") ? 'selected' : ''; ?>>1</option>
 		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev22="2") ? 'selected' : ''; ?>>2</option>

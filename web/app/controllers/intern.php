@@ -20,7 +20,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //Index par défaut.
         public function index() {
             parent::view("shared/header");
-            //parent::view("intern/menu");      Tant que le fichier n'existe pas
+            parent::view("intern/menu");    
 
             parent::model("projects");
             $model = new projects();
@@ -56,6 +56,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
 
+		 //Voir le menu des évaluations d'un stagiaire
+		public function info()
+		{
+		   parent::view("shared/header");
+		   parent::view("intern/menu");
+		   parent::view("intern/info");
+		   parent::view('shared/footer');		
+		}
+		
         //Modifier mot de passe.
         public function pass() {
             parent::view("shared/header");
@@ -67,8 +76,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new accounts();
                 try {
                     $model->UpdatePw($_SESSION['ID'], $_POST['password']);
+					$data['alert'] = "success";
                     $data['message'] = "Le mot de passe a été changé.";
                 } catch (exception $ex) {
+					$data['alert'] = "warning";
                     $data['message'] = "Le changement a échoué.";
                 }
             }
@@ -76,9 +87,42 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('shared/footer');
         }
 
-        //Visualiser les évaluations
-        public function review() {
-            //////////////// À FAIRE //////////////////
+        //Visualiser une évaluation ou une entrevue pour un stagiaire
+        public function review($_review) 
+		{
+           parent::view("shared/header");
+		   parent::view("intern/menu");
+		   parent::view("intern/info");
+		   
+		   switch($_review)
+		   {
+			   case "advMid": 
+			   {
+				   
+				   parent::view("intern/reviewAdv");
+				   break;
+			   }
+			   case "advFinale": 
+			   {
+				   
+				   parent::view("intern/reviewAdv");
+				   break;
+			   }
+			   case "interview": 
+			   {
+				   
+				   parent::view("intern/interview");
+				   break;
+			   }
+			   case "sup": 
+			   {
+				   
+				   parent::view("intern/reviewSup");
+				   break;
+			   }
+		   }
+		   		   	   		   
+		   parent::view('shared/footer');			
         }
 
         //Enregistre un log
@@ -104,6 +148,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             //////////////////////// À CORRIGER ////////////////////////
         }
 
+		
     }
 
 } else {
