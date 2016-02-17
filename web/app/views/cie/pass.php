@@ -48,7 +48,7 @@ Accessible par l'entreprise seulement.
 							<p class="text-center" id="valid"></p>
 						</div>
 						<div class="col-md-4">
-							<button type="submit" name="editPass" value="<?= $_SESSION['form_token'];?>" class="btn btn-block btn-primary" formaction="/cie/updatePW" formmethod="post">Soumettre</button>
+							<button type="submit" name="editPass" value="<?= $_SESSION['form_token'];?>" class="btn btn-block btn-primary" formaction="/cie/pass" formmethod="post">Soumettre</button>
 						</div>
 					</div>
 				</form>
