@@ -1,19 +1,5 @@
 <html>
-<head>
-    <meta name="description"
-          content="Ce site a pour objectif de permettre aux entreprises de soumettre des projets de stage à destination des étudiants en technique informatique et à ceux-ci de soumettre leur journal de bord. Il permet aussi aux coordonnateurs de gerer les comptes d'accès et de soumettre des documents d'évaluation.">
-    <title>CEGEP de Joliette | 420.AA | Gesion de Stage</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css">
-    <link href="..\..\..\public\css\default.css" rel="stylesheet" type="text/css">
-</head>
 <body>
-
-
     <?php if (isset($data['alert'])) { ?>
         <div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -72,13 +58,11 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        <?php }
-                                    else
+                                        <?php }}else
                                         {
                                             ?>
                                             <td colspan="6">Aucune entreprise a valider</td>
-                                        <?php }
-                                    } ?>
+                                        <?php  } ?>
                                     </tbody>
                                 </table>
                             </form>
@@ -155,13 +139,11 @@
                                                         </p>
                                                     </div>
                                                 </tr>
-                                            <?php }
-                                        else
-                                            {
-                                                ?>
+                                            <?php }}else
+                                        {
+                                            ?>
                                                 <td colspan="6">Aucun projet a valider</td>
-                                            <?php }
-                                        } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </form>
@@ -172,28 +154,6 @@
             </div>
         </div>
     </div>
-    <footer class="section section-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <a href="http://www.cegep-lanaudiere.qc.ca/joliette" target="_new" class="text-inverse"><b
-                            class="text-uppercase">Cégep Régional <i class="text-lowercase">de</i> Lanaudière</b> <i>à
-                            Joliette</i></a>
-                    <br>
-                    <a href="http://www.cegep-lanaudiere.qc.ca/joliette/programmes/techniques-de-linformatique"
-                       target="_new" class="text-inverse">
-                        <small>420.AA | Technique de l'informatique</small>
-                    </a>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <p>Ce site a été conçu dans le cadre du cours de Projet Intégrateur par :
-                        <br>
-                        <i>Samuel Baker, Marc Lauzon, Michael Légaré &amp; Patrick Limoge</i>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>
 
 

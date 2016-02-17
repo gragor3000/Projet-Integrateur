@@ -19,7 +19,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(false);
+            $data["projects"] = $projects->ShowProjectByStatus(0);
 
             parent::model("business");
             $model = new business;
@@ -31,7 +31,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("business");
             $cie = new business();
-            $data["cie"] = $cie->ShowCieByStatus(false);
+            $data["cie"] = $cie->ShowCieByStatus(0);
 
             parent::view("advisor/index", $data);
             parent::view("shared/footer");
@@ -47,7 +47,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("projects");
 
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(true);
+            $data["projects"] = $projects->ShowProjectByStatus(1);
 
             parent::view("advisor/projects", $data);
             parent::view("shared/footer");
