@@ -83,9 +83,14 @@ class accounts extends models {
         return $obj;
     }
 
-    //Retourne les infos d'un compte.
+    //Retourne les infos d'un compte par ID
     public function ShowUserByID($_userID) {
         return new obj(parent::DBQuery("SELECT ID,name,user,rank FROM users WHERE ID =" . $_userID));
+    }
+
+    //retourne les infos d'un compte par token
+    public function ShowUserByToken($_userToken){
+        return new obj(parent::DBQuery("SELECT ID,name,user,rank FROM users WHERE token =" . $_userToken));
     }
 
     //Valider l'existence du nomd e compte.

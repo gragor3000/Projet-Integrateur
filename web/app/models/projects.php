@@ -102,12 +102,6 @@ class projects extends models
             " AND businessID=" . $_cieID);
     }
 
-    //Supprimer un projet
-    public function DeleteProject($_projectID)
-    {
-        parent::DBExecute("DELETE FROM projects WHERE ID =" . $_projectID);
-    }
-
     //valide un projet
     public function ValidateProject($_projectID)
     {
@@ -132,8 +126,6 @@ class projects extends models
     //refuse un projet
     public function DenyProject($_projectID)
     {
-        parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
-
         $projectTitle = parent::DBQuery("SELECT title FROM project
                                        WHERE project.ID = " . $_projectID);
 
@@ -143,6 +135,8 @@ class projects extends models
 
         $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
+
+        parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
 
         $msg = "Votre projet, " . $projectTitle[0][0] . ", de l'entreprise,". $user["name"] .",à été refusé";
 

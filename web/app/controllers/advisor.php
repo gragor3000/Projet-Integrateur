@@ -25,7 +25,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $cie = new business();
             $data["cie"] = $cie->ShowCieByStatus(false);
 
-            parent::view("advisor/inactive", $data);
+            parent::view("advisor/index", $data);
             parent::view("shared/footer");
         }
 
@@ -85,16 +85,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $projects->DenyProject($_POST["projectID"]);
         }
 
-        //supprime un projet
-        public function DeleteProject()
-        {
-            parent::model("models");
-            parent::model("projects");
-
-            $projects = new projects();
-            $projects->DeleteProject($_POST["projectID"]);
-        }
-
         //ajoute un compte dans la bd
         public function CreateUser()
         {
@@ -112,7 +102,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("accounts");
 
             $account = new accounts();
-            $data["users"] = $account->ShowUsers();
+            $data["users"] = $account->ShowAllUsers();
 
             parent::view("advisor/users", $data);
             parent::view("shared/footer");
@@ -155,7 +145,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("accounts");
 
             $account = new accounts();
-            $data["info"] = $account->ShowMyInfo($_COOKIE["token"]);
+            $data["info"] = $account->ShowUserByToken($_COOKIE["token"]);
 
             parent::view("advisor/info", $data);
             parent::view("shared/footer");
