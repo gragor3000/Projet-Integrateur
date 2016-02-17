@@ -14,10 +14,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Information du projet de stage</h1>
-
-                    <p>Sur cette page vous trouverez les informations concernant le projet de
-                        stage qui vous a été assigné.</p>
+                    <h1>Listes des entreprises et des projets de stage</h1>
+                    <p>Sur cette page vous trouverez les informations concernant les entreprises à valider et aussi les projets de stage en attente de validation.</p>
                 </div>
             </div>
         </div>
@@ -37,8 +35,8 @@
                                     <tr>
                                         <th>Nom</th>
                                         <th>Ville</th>
-                                        <th>Addresse</th>
-                                        <th>Telephone</th>
+                                        <th>Adresse</th>
+                                        <th>Téléphone</th>
                                         <th>E-mail</th>
                                         <th>Validation</th>
                                     </tr>
@@ -66,7 +64,7 @@
                                     else
                                         {
                                             ?>
-                                            <td colspan="6">Aucune entreprise a valider</td>
+                                            <td colspan="6">Aucune entreprise à valider</td>
                                         <?php }
                                     } ?>
                                     </tbody>
@@ -140,7 +138,7 @@
                                                             <?= $project->extra; ?>
                                                         </p>
                                                         <p>
-                                                            <b>Information supplementaire: </b>
+                                                            <b>Information supplémentaire: </b>
                                                             <?= $project->info; ?>
                                                         </p>
                                                     </div>
@@ -149,7 +147,7 @@
                                         else
                                             {
                                                 ?>
-                                                <td colspan="6">Aucun projet a valider</td>
+                                                <td colspan="6">Aucun projet à valider</td>
                                             <?php }
                                         } ?>
                                         </tbody>
@@ -162,30 +160,3 @@
             </div>
         </div>
     </div>
-    <footer class="section section-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <a href="http://www.cegep-lanaudiere.qc.ca/joliette" target="_new" class="text-inverse"><b
-                            class="text-uppercase">Cégep Régional <i class="text-lowercase">de</i> Lanaudière</b> <i>à
-                            Joliette</i></a>
-                    <br>
-                    <a href="http://www.cegep-lanaudiere.qc.ca/joliette/programmes/techniques-de-linformatique"
-                       target="_new" class="text-inverse">
-                        <small>420.AA | Technique de l'informatique</small>
-                    </a>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <p>Ce site a été conçu dans le cadre du cours de Projet Intégrateur par :
-                        <br>
-                        <i>Samuel Baker, Marc Lauzon, Michael Légaré &amp; Patrick Limoge</i>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-
-
-</body>
-</html>

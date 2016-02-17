@@ -19,7 +19,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("models");
             parent::model("projects");
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(false);
+            $data["projects"] = $projects->ShowProjectByStatus(0);
 
             parent::model("business");
             $model = new business;
@@ -31,7 +31,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("business");
             $cie = new business();
-            $data["cie"] = $cie->ShowCieByStatus(false);
+            $data["cie"] = $cie->ShowCieByStatus(0);
 
             parent::view("advisor/index", $data);
             parent::view("shared/footer");
@@ -47,7 +47,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("projects");
 
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(true);
+            $data["projects"] = $projects->ShowProjectByStatus(1);
 
             parent::view("advisor/projects", $data);
             parent::view("shared/footer");
@@ -126,6 +126,28 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $account->DeleteUser($_POST["userID"]);
         }
 
+		//Modifier mot de passe.
+        public function pass() {
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+
+            //Modification du mot de passe.
+            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
+                parent::model('accounts');
+                $model = new accounts();
+                try {
+                    $model->UpdatePw($_SESSION['ID'], $_POST['password']);
+					$data['alert'] = "success";
+                    $data['message'] = "Le mot de passe a été changé.";
+                } catch (exception $ex) {
+					$data['alert'] = "warning";
+                    $data['message'] = "Le changement a échoué.";
+                }
+            }
+            parent::view('advisor/pass', $data);
+            parent::view('shared/footer');
+        }
+		
         //update les infos d'un compte
         public function UpdateUser()
         {

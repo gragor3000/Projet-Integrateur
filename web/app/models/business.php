@@ -53,10 +53,11 @@ class business extends Models {
 
     //Retourne les entreprises selon le status.
     public function ShowCieByStatus($_status) {
-        $result = parent::DBSearch("SELECT users.name, business.ID,business.address,business.city,
-                                    business.tel,business.email FROM cie INNER JOIN Users
-                                    ON users.ID = business.usersID WHERE status = " . $_status);
+        $result = parent::DBSearch("SELECT users.name, business.ID, business.address, business.city,
+                                    business.tel, business.email FROM business INNER JOIN users
+                                    ON users.ID = business.userID WHERE business.status = " . $_status);
 
+        $obj = null;
         //Générer un tableau d'objet.
         foreach ($result as $cie)
             $obj[$cie['ID']] = new obj($cie);
