@@ -53,7 +53,7 @@
                     <input class="form-control" id="cieCity" name="city" placeholder="Joliette" type="text" required value="<?=$data["cie"]->city?>">
                   </div>
                 </div>
-                <button type="submit" name="sendCie" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/info" formmethod="post">Modifier</button>
+                <button type="submit" name="editCie" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/info" formmethod="post">Modifier</button>
               </form>
             </div>
           </div>

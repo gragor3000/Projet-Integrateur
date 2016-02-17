@@ -24,8 +24,8 @@ class business extends Models {
 							address = '" . addslashes($_address) . "',
 							city = '" . addslashes($_city) . "',
 							tel = '" . addslashes($_tel) . "',
-							email = '" . addslashes($_email) . "',
-							WHERE id = " . $_id);
+							email = '" . addslashes($_email) . "'
+							WHERE userID = " . $_id);
     }
 
     //Retourne toutes les entreprises.

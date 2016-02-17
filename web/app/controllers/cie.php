@@ -124,28 +124,23 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/header");
             parent::view("cie/menu");
 
+			//Crée un lien avec le modèle business
             parent::model("business");
             $model = new business();
-			
-			var_dump($_POST['sendCie']);
 
             //Modification des informations d'une entreprise.
             if (isset($_POST['editCie']) && $_POST['editCie'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
-                parent::model('accounts');
-                $model = new accounts();
                 try {
                     $model->UpdateBusiness($_SESSION['ID'], $_POST['address'], $_POST['city'], $_POST['tel'], $_POST['email']);
-					 $data['alert'] = "alert-success";
-                    $data['message'] = "Le(s) information(s) a(ont) été changée(s).";
+					$data['alert'] = "alert-success";
+                    $data['message'] = "Les informations ont été changées.";
                 } catch (Exception $e) {
 					 $data['alert'] = "alert-warning";
-                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                    $data['message'] = "Les changements ont échoués.";
                 }
             }	
 			
 			//récupère les informations de la compagnie
-			parent::model('business');
-			$model = new business();
 			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 
             //vues associées aux mises à jour????
