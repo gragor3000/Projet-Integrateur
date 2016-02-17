@@ -137,7 +137,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             }
 
             //vues associées aux mises à jour????
-            parent::view('cie/???', $data);
+            parent::view('cie/info', $data);
             parent::view('shared/footer');
         }
 
@@ -154,7 +154,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
 
-            $data['readOnly'] = $model1->ReadOnlyCie($_internID, 'interview');
+            $data['readOnly'] = (Count($_internID)>0) ? $model1->ReadOnlyCie($_internID, 'interview'): false;
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
                 //Enregistrer l'entrevue.
@@ -169,7 +169,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     }
                     parent::view("cie/index", $data);
                 } else { //Voir formulaire vierge
-                    $data['interns'] = $model2->ShowUsersByRank(0);
+                    $data['interns'] = $model2->ShowUsersByRank(2);
                     parent::view("cie/interview", $data);
                 }
             } else {   //si le formulaire existe
@@ -177,7 +177,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['interview']->cieId == $_SESSION['ID']) {
-                    $data['interns'] = $model2->ShowUsersByRank(0);
+                    $data['interns'] = $model2->ShowUsersByRank(2);
                     parent::view("cie/interview", $data);
                 } else {
 					 $data['alert'] = "alert-warning";
