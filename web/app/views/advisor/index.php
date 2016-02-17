@@ -43,7 +43,7 @@
                                     <?php
                                     if (isset($data['cie'])) {
                                         foreach ($data['cie'] as $cie) { ?>
-                                            <tr id="business<?= $cie->id ?>">
+                                            <tr id="business<?= $cie->ID ?>">
                                                 <td><?= $cie->name; ?></td>
                                                 <td><?= $cie->city; ?></td>
                                                 <td><?= $cie->address; ?></td>
@@ -97,15 +97,16 @@
                                         <tbody>
                                         <?php
                                         if (isset($data['projects'])) {
+                                            $i = 0;
                                             foreach ($data['projects'] as $project) { ?>
-                                                <tr id="project<?= $project->id ?>">
+                                                <tr id="project<?= $project->ID ?>">
                                                     <td>
                                                         <button class="btn btn-link">
-                                                            <i class="fa fa-3x fa-caret-down fa-fw fa-rotate-270"></i>
+                                                            <i class="fa fa-lg fa-caret-down fa-fw fa-rotate-270"></i>
                                                         </button>
                                                     </td>
                                                     <td><?= $project->title; ?></td>
-                                                    <td><?= $project->name; ?></td>
+                                                    <td><?= $data["cieP"][$project->businessID]->name; ?></td>
                                                     <td><?= $project->supName; ?></td>
                                                     <td><?= $project->supTitle; ?></td>
                                                     <td><?= $project->supTel; ?></td>
@@ -119,8 +120,8 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                <tr id="project<?= $project->id ?>" class="collapse">
-                                                    <div>
+                                                <tr id="projectInfo<?= $project->ID ?>" class="collapse">
+                                                    <td colspan="8">
                                                         <p>
                                                             <b>Description: </b>
                                                             <?= $project->descr; ?>
@@ -137,7 +138,7 @@
                                                             <b>Information supplementaire: </b>
                                                             <?= $project->info; ?>
                                                         </p>
-                                                    </div>
+                                                    </td>
                                                 </tr>
                                             <?php }}else
                                         {

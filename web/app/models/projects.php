@@ -12,7 +12,7 @@ class projects extends models
     {
         $result = parent::DBSearch("Select * from projects WHERE projects.status =" . $_status);
 
-        $projects = array();    //Contient tous les projets à récupérer
+        $projects = null;    //Contient tous les projets à récupérer
 
         foreach ($result as $item) {
             $projects[$item["ID"]] = new obj($item); //un projet du tableau
