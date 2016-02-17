@@ -38,7 +38,7 @@ class projects extends models
     function ShowProjectByID($_projectId)
     {
         //Cherche le stage
-        return new obj(parent::DBQuery("Select * from projects inner join business where ID =" . $_projectId));
+        return new obj(parent::DBQuery("Select * from projects where ID =" . $_projectId));
     }
 
     //Permet d'afficher tout les stages qu'un superviseur particulier à proposer

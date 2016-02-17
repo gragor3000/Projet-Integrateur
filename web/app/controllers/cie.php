@@ -71,7 +71,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             //Modification du projet.
             if (isset($_POST['editProject']) && $_POST['editProject'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 600 > time()) {
                 try {
-                    $model->UpdateProject($_projectID, $_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
+                    $model->UpdateProject(intval($_projectID[0]), $_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info']);
                     $data['alert'] = "alert-success";
 					$data['message'] = "Le projet a été mis à jour.";
                 } catch (exception $ex) {
@@ -81,9 +81,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             }
 
             //Obtenir les informations du projet.
-            $data['project'] = $model->ShowProjectByID($_projectID);
+            $data['project'] = $model->ShowProjectByID(intval($_projectID[0]));
 
-            if ($data['project']->status == '0' && $data['project']->entID == $_SESSION['ID']) {
+            if ($data['project']->status == '0' && $data['project']->businessID == $_SESSION['ID']) {
                 parent::view('cie/edit', $data);
             } else {
 				$data['alert'] = "alert-warning";
@@ -268,7 +268,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $model = new projects();
 
                     try {
-                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supEmail'], $_POST['supTel'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
+                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
                         $data['alert'] = "alert-success";
                         $data['message'] = "Le projet a été soumis pour une validation.";
                     } catch (PDOexception $e) {
