@@ -49,7 +49,7 @@ COMPLÉTÉ... j'espère.
 					</div>
 					<div class="form-group col-md-6">
 						<label class="control-label" for="intTimestamp">Date et heure d'arrivé</label>
-						<input class="form-control" id="intTimestamp" name="timestamp" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?>" <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
+						<input class="form-control" id="intTimestamp" name="timestamp" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?>" <!-- le disabled se trouve a droite--> <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
 					</div>
 				</div>
 				<div class="row">

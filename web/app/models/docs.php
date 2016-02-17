@@ -52,9 +52,9 @@
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
-				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
+				return !($_Simple->children()->getName($_BaliseName) == $_BaliseName);
 			}else{
-				return true;
+				return false;
 			}	
 		}
 		
@@ -119,9 +119,9 @@
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
-				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
+				return !($_Simple->children()->getName($_BaliseName) == $_BaliseName);
 			}else{
-				return true;
+				return false;
 			}	
 		}
 		
