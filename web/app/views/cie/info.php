@@ -30,7 +30,7 @@
                 <div class="row">
                   <div class="form-group col-md-12">
                     <label class="control-label" for="cieName">Nom de l'entreprise</label>
-                    <input class="form-control" id="cieName" name="name" placeholder="Entreprise Inc." type="text" required value="<?=$data["cie"]->name; ?>">
+                    <input class="form-control" id="cieName" name="name" placeholder="Entreprise Inc." type="text" required value="<?=$data["cie"]->name; ?>" disabled>
                   </div>
                 </div>
                 <div class="row">

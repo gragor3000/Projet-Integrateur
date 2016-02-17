@@ -59,27 +59,27 @@ PHP complété. [sauf exception voir 'actions']
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <b>Nom de l'entreprise</b>
-                                                <p><?= $project->name; ?></p>
+                                                <p><?=$data["cie"]->name; ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <b>Numéro de téléphone</b>
-                                                <p><?= $project->tel; ?></p>
+                                                <p><?=$data["cie"]->tel; ?></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <b>Adresse courriel</b>
-                                                <p><?= $project->email; ?></p>
+                                                <p><?=$data["cie"]->email?></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <b>Adresse de l'entreprise</b>
-                                                <p><?= $project->address; ?></p>
+                                                <p><?=$data["cie"]->address?></p>
                                             </div>
                                             <div class="col-md-4">
                                                 <b>Ville</b>
-                                                <p><?= $project->city; ?></p>
+                                                <p><?=$data["cie"]->city?></p>
                                             </div>
                                         </div>
                                     </div>

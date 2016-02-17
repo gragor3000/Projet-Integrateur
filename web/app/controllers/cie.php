@@ -41,7 +41,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             } else {
                 header('location:/cie/submit');
             }
-
+			
+			//récupère les informations de la compagnie
+			parent::model('business');
+			$model = new business();
+			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+			
             //Ouvre l'index du superviseur
             parent::view("shared/header");
             parent::view("cie/menu");
@@ -115,12 +120,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Formulaire de mise à jour d'information.
-        public function info($_address, $_city, $_tel, $_email) {
+        public function info() {
             parent::view("shared/header");
             parent::view("cie/menu");
 
             parent::model("business");
             $model = new business();
+			
+			var_dump($_POST['sendCie']);
 
             //Modification des informations d'une entreprise.
             if (isset($_POST['editCie']) && $_POST['editCie'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
@@ -134,7 +141,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					 $data['alert'] = "alert-warning";
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
-            }
+            }	
+			
+			//récupère les informations de la compagnie
+			parent::model('business');
+			$model = new business();
+			$data['cie'] = $model->ShowCieByID($_SESSION['ID']);
 
             //vues associées aux mises à jour????
             parent::view('cie/info', $data);
@@ -157,8 +169,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $data['readOnly'] = (Count($_internID)>0) ? $model1->ReadOnlyCie($_internID, 'interview'): false;
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
+			
+			echo("doit lire");/////////////////////////////////////////////3
                 //Enregistrer l'entrevue.
                 if (isset($_POST['sendInterview']) && $_POST['sendInterview'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 1200 > time()) {
+					
+					echo("peut envoyé");////////////////////////////////////3
                     try {
                         $model->SaveCie($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
                         $data['alert'] = "alert-success";
@@ -167,26 +183,25 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 						 $data['alert'] = "alert-warning";
                         $data['message'] = "L'entrevue n'a pas pu être enregistrée.";
                     }
-                    parent::view("cie/index", $data);
                 } else { //Voir formulaire vierge
                     $data['interns'] = $model2->ShowUsersByRank(2);
-                    parent::view("cie/interview", $data);
                 }
             } else {   //si le formulaire existe
+			
+				echo("existe");///////////////////////////////////////////3
+			
                 $data['interview'] = $model1->LoadCie($_internID, 'interview');
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['interview']->cieId == $_SESSION['ID']) {
                     $data['interns'] = $model2->ShowUsersByRank(2);
-                    parent::view("cie/interview", $data);
                 } else {
 					 $data['alert'] = "alert-warning";
                     $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
-                    parent::view("cie/index", $data);
                 }
             }
 
-
+			parent::view("cie/interview", $data);
             parent::view("shared/footer");
         }
 
