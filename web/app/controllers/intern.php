@@ -73,6 +73,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function pass() {
             parent::view("shared/header");
             parent::view("intern/menu");
+			
+			$data = array();
 
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
