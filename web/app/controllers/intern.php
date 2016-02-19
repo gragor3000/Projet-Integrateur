@@ -131,27 +131,28 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		   parent::view('shared/footer');			
         }
 
-        //Enregistre un log
-        public function logbook() {
-            //////////////// RETOURNER LE LOGBOOK & SAUVEGARDER //////////////////
+        //Enregistre un log et ouvre la page réservé au log de l'étudiant
+        public function log() {
 
-            parent::model("modelXML");
-            $_modelXML = new docs();
+            parent::model("docs");
+            $_model = new docs();
+			
+			//Contient toutes les données à afficher
+			$data = array();
 
             if (isset($_POST["logText"])) {
-                //Contient toutes les données à enregistrer
-                $_Data = array();
 
-                //Boucle pour ajouter tout les éléments du poste dans un tableau
-                foreach ($_POST as $_Elem => $_Valeur) {
-                    array_push($_Data, $_Valeur);
-                }
-
-                $_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"], $_Data);
+                $_model->SaveLog($_SESSION['ID'], $_POST["logText"]);
             }
+			
+			$data['logs'] = $_model->LoadLog($_SESSION['ID']);
+			
+			var_dump($data['logs']);
 
-            parent::view('intern/info');
-            //////////////////////// À CORRIGER ////////////////////////
+			parent::view("shared/header");
+			parent::view("intern/menu");
+            parent::view('intern/log', $data['logs']);
+			parent::view('shared/footer');
         }
 
 		

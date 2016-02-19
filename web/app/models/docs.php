@@ -26,14 +26,36 @@
 			}
 			
 			//Obtenir la date et l'heure courante, pour s'en servire comme balise.
-			$_Date = date();
+			$_Date = date('M_dS_Y_H:i:s');
 				
 			//Ajoute le log au fichier xml et le sauvegarde
 			$_Log = $_Xml->createElement($_Date, $_Entry);
 			$_Root->appendChild($_Log);
 			
+			var_dump($_Root);
+			
 			//Enregistre le fichier fichier.
-			$_Xml->save($DefaultXMLPath.'/journal_de_bord/'.$_IDIntern.'_JDB.xml');
+			$_Xml->save(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml');
+		}
+		
+		//Charge les journaux d'un étudiant particulier
+		public function LoadLog($_IDIntern)
+		{		
+			//Déclaration du tableau dans lequelle sera stoqué tous les log
+			$obj = array();
+			
+			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
+			if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml',0,true);
+				
+				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le tableau $obj
+				foreach($_Simple->children() as $Enfant){
+					$obj[$Enfant->getName()] = (string)$Enfant;
+				}
+			}
+			
+			//Transforme les journeaux en objet utilisable et les retourne
+			return $obj;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
