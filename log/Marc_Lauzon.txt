@@ -1,4 +1,8 @@
 Journal de Bord
+
+2016-02-15 []
++Mise à jour avec l'équipe sur les tâches à accomplir.
+
 2016-02-11 [0a8b644605f1add9c0bef40c6467b9f45db2f07c]
 +Débuggage des commandes SQL et divers des fonctions.
 
