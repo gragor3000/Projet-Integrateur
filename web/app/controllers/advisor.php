@@ -128,8 +128,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 		//Modifier mot de passe.
         public function pass() {
-            parent::view("shared/header");
-            parent::view("advisor/menu");
+			
+			$data = array();
 
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
@@ -144,6 +144,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $data['message'] = "Le changement a échoué.";
                 }
             }
+			
+			parent::view("shared/header");
+            parent::view("advisor/menu");
             parent::view('advisor/pass', $data);
             parent::view('shared/footer');
         }
@@ -246,6 +249,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
     //Redirige vers l'acceuil.
     session_unset();
     session_destroy();
-    header("location:/home/index);
+    header("location:/home/index");
 }
 ?>

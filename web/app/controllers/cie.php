@@ -96,6 +96,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //Modifier mot de passe.
         public function pass() {
+			
+			$data = array();
+			
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
                 parent::model('accounts');
