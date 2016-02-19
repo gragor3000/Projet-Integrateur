@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-expanded="false"><i class="fa fa-fw fa-user"></i> <?=?advName?> <i
+                       aria-expanded="false"><i class="fa fa-fw fa-user"></i> <?=$_SESSION['name'];?> <i
                             class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>

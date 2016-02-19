@@ -61,11 +61,11 @@
                                                 </td>
                                             </tr>
                                         <?php }
-                                    else
+                                    }else
                                         {
                                             ?>
                                             <td colspan="6">Aucune entreprise à valider</td>
-                                        <?php }
+                                        <?php
                                     } ?>
                                     </tbody>
                                 </table>
@@ -144,12 +144,11 @@
                                                     </div>
                                                 </tr>
                                             <?php }
-                                        else
+                                        }else
                                             {
                                                 ?>
                                                 <td colspan="6">Aucun projet à valider</td>
-                                            <?php }
-                                        } ?>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </form>
