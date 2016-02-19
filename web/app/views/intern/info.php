@@ -13,10 +13,10 @@
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
               <div class="lead list-group text-center">
-                <a href = "public/index.php/intern/review/interview" class="list-group-item">Entretien d'embauche</a>
-                <a href = "public/index.php/intern/review/advMid" class="list-group-item">Évaluation de stage mi-session</a>
-                <a href = "public/index.php/intern/review/Sup" class="list-group-item">Évaluation de stage du superviseur</a>
-                <a href = "public/index.php/intern/review/advSup" class="list-group-item">Évaluation de stage finale</a>
+                <a href = "review/interview" class="list-group-item">Entretien d'embauche</a>
+                <a href = "review/advMid" class="list-group-item">Évaluation de stage mi-session</a>
+                <a href = "review/Sup" class="list-group-item">Évaluation de stage du superviseur</a>
+                <a href = "review/advSup" class="list-group-item">Évaluation de stage finale</a>
               </div>
             </div>
           </div>
