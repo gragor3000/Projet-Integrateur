@@ -49,17 +49,17 @@ COMPLÉTÉ... j'espère.
 					</div>
 					<div class="form-group col-md-6">
 						<label class="control-label" for="intTimestamp">Date et heure d'arrivé</label>
-						<input class="form-control" id="intTimestamp" name="timestamp" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?>" <!-- le disabled se trouve a droite--> <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
+						<input class="form-control" id="intTimestamp" name="timestamp" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-6">
 						<label class="control-label" for="intDept">Service / Département</label>
-						<input class="form-control" id="intDept" name="department" type="text" value="<?= (isset($data['interview']) )? $data['interview']->department : ''; ?>" <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
+						<input class="form-control" id="intDept" name="department" type="text" value="<?= (isset($data['interview']) )? $data['interview']->department : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
 					</div>
 					<div class="form-group col-md-6">
 						<label class="control-label" for="intPos">Poste concerné</label>
-						<input class="form-control" id="intPosition" name="position" type="text" value="<?= (isset($data['interview'])) ? $data['interview']->position : ''; ?>" <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
+						<input class="form-control" id="intPosition" name="position" type="text" value="<?= (isset($data['interview'])) ? $data['interview']->position : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
 					</div>
 				</div>
 				<div class="row">
@@ -139,19 +139,19 @@ COMPLÉTÉ... j'espère.
 				<div class="row">
 					<div class="form-group col-md-12">
 						<label class="control-label" for="intComment">Commentaires</label>
-						<textarea class="form-control" id="intComment" name="comments" <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?>><?= (isset($data['interview'])) ?  $data['interview']->comments : ''; ?></textarea>
+						<textarea class="form-control" id="intComment" name="comments" <?= ($data['readOnly']) ? "readonly" : "required"; ?>><?= (isset($data['interview'])) ?  $data['interview']->comments : ''; ?></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
 						<label class="control-label" for="intInterviewer">Responsable de l'entrevue</label>
-						<input class="form-control" id="intInterviewer" name="interviewer placeholder="Prénom Nom" type="text" value="<?= (isset($data['interview'])) ?  $data['interview']->interviewer : ''; ?>" <?= (isset($data['readOnly'])) ? "readonly" : "required"; ?> />
+						<input class="form-control" id="intInterviewer" name="interviewer placeholder="Prénom Nom" type="text" value="<?= (isset($data['interview'])) ?  $data['interview']->interviewer : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
 					</div>
 				</div>
-				<?php if (!(isset($data['readOnly']) && $data['readOnly'])){ ?>
+				<?php if (!$data['readOnly']){ ?>
 					<div class="row">
 						<div class="col-md-12">
-							<button name="sendInterview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary">Soumettre</button>
+							<button name="sendInterview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/interview/">Soumettre</button>
 						</div>
 					</div>
 				<?php } ?>
