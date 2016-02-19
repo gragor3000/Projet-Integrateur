@@ -288,6 +288,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
     //Redirige vers l'acceuil.
     session_unset();
     session_destroy();
-    header("location:/home/index);
+    header("location:/home/index");
 }
+
 ?>

@@ -1,11 +1,6 @@
 <?php
-
 /*
-  index : TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  login : TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  submitCie : TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  logout : TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  ----> rediriger logout vers l'acceuil.
+ *2016-02-19 : COMPLÉTÉ
  */
 
 //Contrôleur d'acceuil.
@@ -25,7 +20,7 @@ class home extends Controller {
         //Obtenir les informations de compte.
         $result = (isset($_COOKIE['token'])) ? $account->TokenLogin($_COOKIE['token']) : null;
 
-        if (isset($result)) {
+        if ($result != null) {
             //Sauvegarde des informations de connexion.
             setcookie("token", $_COOKIE['token'], time() + (86400 * 30), "/");
             $_SESSION["ID"] = $result['ID'];
@@ -63,7 +58,7 @@ class home extends Controller {
         //Obtenir les informations de compte.
         $result = $account->UserLogin($_POST['logUser'], $_POST['logPass']);
 
-        if (isset($result["token"])) {
+        if ($result != null) {
             //Sauvegarde des informations de connexion.
             setcookie("token", $result['token'], time() + (86400 * 30), "/");
             $_SESSION["ID"] = $result['ID'];

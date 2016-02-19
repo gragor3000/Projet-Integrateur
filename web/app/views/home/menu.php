@@ -1,3 +1,8 @@
+<?php
+/*
+ * 2016-02-19 : COMPLÉTÉ
+ */
+?>
 <div class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">

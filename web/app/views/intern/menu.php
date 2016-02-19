@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbar-ex-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-user"></i> <?=?internName?> <i class="fa fa-caret-down"></i></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-user"></i> <?= $_SESSION['name']; ?> <i class="fa fa-caret-down"></i></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="public/index.php/intern/index"><i class="fa fa-fw fa-briefcase"></i> Projet de stage</a>
@@ -21,7 +21,7 @@
                   <a href="public/index.php/intern/log"><i class="fa fa-fw fa-book"></i> Journal de Bord</a>
                 </li>
                 <li>
-                  <a href="public/index.php/intern/info"><i class="fa fa-fw fa-pencil"></i> Évaluations</a>
+                  <a href="public/index.php/intern/info"><i class="fa fa-fw fa-pencil"></i> ï¿½valuations</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -29,7 +29,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href=""><i class="fa fa-fw fa-sign-out"></i> Déconnexion</a>
+                  <a href=""><i class="fa fa-fw fa-sign-out"></i> Dï¿½connexion</a>
                 </li>
               </ul>
             </li>
