@@ -30,7 +30,7 @@ class business extends Models {
 
     //Retourne toutes les entreprises.
     public function ShowAllCie() {
-        $result = parent::DBSearch("SELECT * FROM cie");
+        $result = parent::DBSearch("SELECT * FROM cie ORDER BY city");
 
 
         //Générer un tableau d'objet.
@@ -53,7 +53,7 @@ class business extends Models {
 
     //Retourne les entreprises selon le status.
     public function ShowCieByStatus($_status) {
-        $result = parent::DBSearch("SELECT users.name, business.ID, business.address, business.city,
+        $result = parent::DBSearch("SELECT users.name, users.user, business.ID, business.address, business.city,
                                     business.tel, business.email FROM business INNER JOIN users
                                     ON users.ID = business.userID WHERE business.status = " . $_status);
 

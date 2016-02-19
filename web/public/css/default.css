@@ -6,21 +6,6 @@
  * Licensed under MIT 
  * Based on Bootstrap v3.3.4
 */
-/* Add custom CSS classes here */
-.scrollable-projects {
-  height: 400px;
-  overflow-y: scroll;
-}
-#logText,
-#desc,
-#equip,
-#extra,
-#info {
-  height: 175px;
-}
-textarea {
-  resize: vertical;
-}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6785,3 +6770,21 @@ body {
   background-attachment: fixed;
 }
 /* PINGENDO COMMENT DO NOT REMOVE */
+/* Add custom CSS classes here */
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.scrollable-projects {
+  height: 400px;
+  overflow-y: scroll;
+}
+#logText,
+#desc,
+#equip,
+#extra,
+#info {
+  height: 175px;
+}
+textarea {
+  resize: vertical;
+}

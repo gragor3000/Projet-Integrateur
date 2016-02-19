@@ -1,9 +1,21 @@
 <?php
+/*
+ * 2016-02-19 : COMPLÉTÉ
+ */
+?>
+<?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
 ?>
+<script>
+    //Active les popovers.
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
+    });
+</script>
+    
 <?php if (isset($data['alert'])) { ?>
 <div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -29,42 +41,40 @@
                         <h3 class="panel-title">Validation d'entreprises</h3>
                     </div>
                     <div class="panel-body">
-                        <form>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Ville</th>
-                                        <th>Adresse</th>
-                                        <th>Téléphone</th>
-                                        <th>E-mail</th>
-                                        <th>Validation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (isset($data['cie'])) {
-                                        foreach ($data['cie'] as $cie) { ?>
-                                    <tr id="business<?= $cie->id ?>">
-                                        <td><?= $cie->name; ?></td>
-                                        <td><?= $cie->city; ?></td>
-                                        <td><?= $cie->address; ?></td>
-                                        <td><?= $cie->tel; ?></td>
-                                        <td><?= $cie->email; ?></td>
-                                        <td>
-                                            <button class="btn btn-link" formaction="advisor/ValidateBusiness" formmethod="post">
-                                                <i class="fa fa-check-circle fa-fw fa-lg text-primary"></i>
-                                            </button>
-                                            <button class="btn btn-link" formaction="advisor/DenyBusiness" formmethod="post">
-                                                <i class="-circle fa fa-fw fa-lg fa-times-circle text-danger"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nom de l'entreprise</th>
+                                    <th>Adresse</th>
+                                    <th>Ville</th>
+                                    <th width="200px">Nom d'utilisateur</th>
+                                    <th class="text-center" width="125px">Validation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (isset($data['cie'])) {
+                                    foreach ($data['cie'] as $cie) { ?>
+                            <form>
+                                <tr id="business<?= $cie->id ?>">
+                                    <td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $cie->name; ?><br />Email : <?= $cie->email; ?>"><?= $cie->name; ?></a></td>
+                                    <td><?= $cie->address; ?></td>
+                                    <td><?= $cie->city; ?></td>
+                                    <td><input type="text" name="user<?php $cie->ID ?>" value="<?= $cie->user; ?>" /></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link" name="valCie" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/ValidateBusiness/<?php $cie->ID ?>" formmethod="post">
+                                            <i class="fa fa-check-circle fa-fw fa-lg text-success"></i>
+                                        </button>
+                                        <button class="btn btn-link" name="denyCie" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/DenyBusiness/<?php $cie->ID ?>" formmethod="post">
+                                            <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
                                     <?php }} else { ?>
-                                        <td colspan="6">Aucune entreprise à valider</td>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </form>
+                            <td colspan="6">Aucune entreprise à valider</td>
+                                <?php } ?>
+                            </tbody>
+                        </table>                            
                     </div>
                 </div>
             </div>
@@ -80,64 +90,58 @@
                         </div>
                         <div class="panel-body">
                             <form>
-                                <table class="table table-hover">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th width="15px"></th>
                                             <th>Titre</th>
                                             <th>Entreprise</th>
                                             <th>Nom superviseur</th>
-                                            <th>Poste</th>
-                                            <th>Telephone</th>
-                                            <th>E-mail</th>
-                                            <th>Validation</th>
+                                            <th class="text-center" width="125px">Validation</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         if (isset($data['projects'])) {
                                             foreach ($data['projects'] as $project) { ?>
-                                        <tr id="project<?= $project->id ?>">
+                                        <tr>
                                             <td>
-                                                <button class="btn btn-link">
-                                                    <i class="fa fa-3x fa-caret-down fa-fw fa-rotate-270"></i>
-                                                </button>
+                                                <a data-toggle="collapse" href="#project<?= $project->ID ?>">
+                                                    <i class="fa fa-caret-down fa-lg fa-fw"></i>
+                                                </a>
                                             </td>
                                             <td><?= $project->title; ?></td>
-                                            <td><?= $project->name; ?></td>
-                                            <td><?= $project->supName; ?></td>
-                                            <td><?= $project->supTitle; ?></td>
-                                            <td><?= $project->supTel; ?></td>
-                                            <td><?= $project->supEmail; ?></td>
-                                            <td>
-                                                <button class="btn btn-link" formaction="advisor/ValidateProject" formmethod="post">
-                                                    <i class="fa fa-check-circle fa-fw fa-lg text-primary"></i>
+                                            <td><?= $data['cieP'][$project->businessID]->name; ?></td>
+                                            <td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $project->supTel; ?><br />Email : <?= $project->supEmail; ?>"><?= $project->supName; ?></a></td>
+                                            <td class="text-center">
+                                                <button class="btn btn-link" name="valProject" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/ValidateProject/<?php $project->ID ?>" formmethod="post">
+                                                    <i class="fa fa-check-circle fa-fw fa-lg text-success"></i>
                                                 </button>
-                                                <button class="btn btn-link" formaction="advisor/DenyProject" formmethod="post">
-                                                    <i class="-circle fa fa-fw fa-lg fa-times-circle text-danger"></i>
+                                                <button class="btn btn-link" name="denyProject" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/DenyProject/<?php $project->ID ?>" formmethod="post">
+                                                    <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr id="project<?= $project->id ?>" class="collapse">
-                                    <div>
-                                        <p>
-                                            <b>Description: </b>
+                                        <tr id="project<?= $project->ID ?>" class="panel-collapse collapse">
+                                            <td colspan="5">
+                                                <p>
+                                                    <b>Description: </b>
                                             <?= $project->descr; ?>
-                                        </p>
-                                        <p>
-                                            <b>Equipement: </b>
+                                                </p>
+                                                <p>
+                                                    <b>Equipement: </b>
                                             <?= $project->equip; ?>
-                                        </p>
-                                        <p>
-                                            <b>Exigence: </b>
+                                                </p>
+                                                <p>
+                                                    <b>Exigence: </b>
                                             <?= $project->extra; ?>
-                                        </p>
-                                        <p>
-                                            <b>Information supplémentaire: </b>
+                                                </p>
+                                                <p>
+                                                    <b>Information supplémentaire: </b>
                                             <?= $project->info; ?>
-                                        </p>
-                                    </div>
-                                    </tr>
+                                                </p>
+                                                </div>
+                                        </tr>
                                         <?php }} else { ?>
                                     <td colspan="6">Aucun projet à valider</td>
                                             <?php } ?>
