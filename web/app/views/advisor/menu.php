@@ -1,3 +1,8 @@
+<?php
+/*
+ * 2016-02-19 : COMPLÃ‰TÃ‰
+ */
+?>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -17,10 +22,13 @@
                             class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/advisor/projects"><i class="fa fa-fw fa-briefcase"></i> Voir tous les projets</a>
+                            <a href="/advisor/cie"><i class="fa fa-fw fa-building"></i> Entreprises</a>
                         </li>
                         <li>
-                            <a href="/advisor/ShowUsers"><i class="fa fa-fw fa-book"></i> Voir comptes</a>
+                            <a href="/advisor/projects"><i class="fa fa-fw fa-briefcase"></i> Projets</a>
+                        </li>
+                        <li>
+                            <a href="/advisor/users"><i class="fa fa-fw fa-book"></i> Comptes</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -28,14 +36,15 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-star-half-empty"></i> Évaluations</a>
+                            <a href="/advisor/review"><i class="fa fa-fw fa-star-half-empty"></i> ï¿½valuations</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/home/logout"><i class="fa fa-fw fa-sign-out"></i> Déconnexion</a>
+                            <a href="/home/logout"><i class="fa fa-fw fa-sign-out"></i> Dï¿½connexion</a>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
+</div>
