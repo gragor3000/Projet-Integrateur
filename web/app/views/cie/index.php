@@ -108,14 +108,14 @@ PHP complété. [sauf exception voir 'actions']
                                     <form role="form" class="form-inline text-center well">
                                         <div class="form-group">
                                             <!-- MODIFIER SELON LE STATUS -->
-                                            <a class="btn btn-primary" formaction="cie/editProject/<?= $project['name']; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</a>
-                                            <a class="btn btn-primary" formaction="cie/delProject/<?= $project['ID']; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
+                                            <a class="btn btn-primary" formaction="cie/editProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</a>
+                                            <a class="btn btn-primary" formaction="cie/delProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php $count++; } ?>
                 </div>
             </div>
             <a class="left carousel-control" href="#carousel-projects" data-slide="prev"><i class="icon-prev  fa fa-angle-left"></i></a>

@@ -128,8 +128,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 		//Modifier mot de passe.
         public function pass() {
-            parent::view("shared/header");
-            parent::view("advisor/menu");
+			
+			$data = array();
 
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
@@ -144,6 +144,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $data['message'] = "Le changement a échoué.";
                 }
             }
+			
+			parent::view("shared/header");
+            parent::view("advisor/menu");
             parent::view('advisor/pass', $data);
             parent::view('shared/footer');
         }
@@ -240,48 +243,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $interns = new interns();
             $interns->UpdateEval($_POST["EvalID"]);
         }
-
-        //Fonction permettant de récupérer le rapport d'entrevu
-        /* public function LoadReport($IDTrainer){
-
-          //Tante de trouver le fichier Xml
-          try {
-          $Xml = simplexml_load_file(parent::DefaultXMLPath.'rapport/'. $IDTrainer."_RPT.xml");
-
-          //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-          $DateLog = strToTime($Date);
-          $DateLog = date("d-M-Y", $DateLog);
-
-          $Tag = $Xml->createElement($DateLog, $Data);
-          $Xml->appendChild($Tag);
-          $Xml->saveXML();
-          }
-          catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-          $Xml = new domxml_new_doc('1.0');
-          $Xml->save($DefaultXMLPath.'/rapport/'.$IDTrainer."_RPT.xml");
-          }
-          }
-
-          //Fonction permettant de récupérer le rapport d'entrevuprotected $DefaultXMLPath = '../app/models/xml/';
-          public function LoadEvaluation($IDTrainer){
-
-          //Tante de trouver le fichier Xml
-          try {
-          $Xml = simplexml_load_file(parent::DefaultXMLPath.'evaluation/'. $IDTrainer."_EVL.xml");
-
-          //Récupère la date passer en paramètre pour l'utiliser comme balise pour le XML
-          $DateLog = strToTime($Date);
-          $DateLog = date("d-M-Y", $DateLog);
-
-          $Tag = $Xml->createElement($DateLog, $Data);
-          $Xml->appendChild($Tag);
-          $Xml->saveXML();
-          }
-          catch{ //Si le fichier n'est pas trouver, en créer un nouveau
-          $Xml = new domxml_new_doc('1.0');
-          $Xml->save($DefaultXMLPath.'/evaluation/'.$IDTrainer."_EVL.xml");
-          }
-          } */
     }
 
 } else {

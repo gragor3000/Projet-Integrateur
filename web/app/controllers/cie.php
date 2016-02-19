@@ -54,6 +54,39 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('shared/footer');
         }
 
+        //Formulaire de soumission de projet.
+        public function submit() {
+            parent::model("business");
+            $model = new business;
+            //Obtenir les informations de l'entreprise.
+            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+
+            //Soumission du projet.
+            if (isset($_POST['sendProject']) && $_POST['sendProject'] == $_SESSION['form_token']) {
+                if ($_SESSION['form_timer'] + 600 > time()) {
+                    parent::model("projects");
+                    $model = new projects();
+
+                    try {
+                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
+                        $data['alert'] = "alert-success";
+                        $data['message'] = "Le projet a été soumis pour une validation.";
+                    } catch (PDOexception $e) {
+                         $data['alert'] = "alert-warning";
+                        $data['message'] = $e;
+                    }
+                } else {
+                    $data['alert'] = "alert-warning";
+                    $data['message'] = "La permission du formulaire a expiré.";
+                }
+            }
+
+            parent::view("shared/header");
+            parent::view("cie/menu");
+            parent::view('cie/submit', $data);
+            parent::view('shared/footer');
+        }
+        
         //Modifier un projet.
         public function edit($_projectID) {
             parent::view("shared/header");
@@ -93,9 +126,36 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::view('shared/footer');
         }
+        
+        //Supprimer un projet.
+        public function delete($_projectID){
+            if (isset($_POST['delProject']) && $_POST['delProject'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 3000 > time()) {
+                
+                parent::model('projects');
+                $projects = new projects();
+                //Obtenir les informations du projet.
+                $project = $projects->ShowProjectByID($_projectId[0]);
+                
+                parent::model('business');
+                $business = new business();
+                //Obtenir les informations de l'entreprise.
+                $cie = $business->ShowCieByID($project->businessID);
+                
+                //Si cie propriétaire du projet.
+                if($business->userID = $_SESSION['ID'])
+                    $projects->DeleteProject($_projectID[0]);
+                
+            }
+            
+            //Retour à l'index.
+            $this->index();
+        }
 
         //Modifier mot de passe.
         public function pass() {
+			
+			$data = array();
+			
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
                 parent::model('accounts');
@@ -253,41 +313,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::view("shared/footer");
         }
-
-        //Formulaire de soumission de projet.
-        public function submit() {
-            parent::model("business");
-            $model = new business;
-            //Obtenir les informations de l'entreprise.
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
-
-            //Soumission du projet.
-            if (isset($_POST['sendProject']) && $_POST['sendProject'] == $_SESSION['form_token']) {
-                if ($_SESSION['form_timer'] + 600 > time()) {
-                    parent::model("projects");
-                    $model = new projects();
-
-                    try {
-                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
-                        $data['alert'] = "alert-success";
-                        $data['message'] = "Le projet a été soumis pour une validation.";
-                    } catch (PDOexception $e) {
-                         $data['alert'] = "alert-warning";
-                        $data['message'] = $e;
-                    }
-                } else {
-                    $data['alert'] = "alert-warning";
-                    $data['message'] = "La permission du formulaire a expiré.";
-                }
-            }
-
-            parent::view("shared/header");
-            parent::view("cie/menu");
-            parent::view('cie/submit', $data);
-            parent::view('shared/footer');
-        }
-
     }
+        
 
 } else {
     //Rediriger vers l'acceuil.
