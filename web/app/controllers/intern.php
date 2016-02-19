@@ -20,7 +20,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //Index par défaut.
         public function index() {
             parent::view("shared/header");
-            parent::view("intern/menu");    
+            parent::view("intern/menu");   
+
+			$data = array();
 
             parent::model("projects");
             $model = new projects();
@@ -29,17 +31,19 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             //Sinon obtenir tous les projets.
             if ($data['project'] == null) {
-                $data['projects'] = $model->ShowProjectByStatus(true);
-
+                $data['projects'] = $model->ShowProjectByStatus(1);
+				
                 parent::model("business");
                 $model = new business;
-
-                foreach ($data['projects'] as $project) {
-                    //Obtenir les informations de l'entreprise.
-                    $data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
-                }
 				
-				var_dump($data['projects']);
+				//S'il existe des projet que l'étudiant peut évaluer, les lister
+				if($data['projects'] != null){
+					foreach ($data['projects'] as $project) {
+						//Obtenir les informations de l'entreprise.
+						$data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
+					}
+				}
+				
 
                 parent::view("intern/list", $data);
             } else {
