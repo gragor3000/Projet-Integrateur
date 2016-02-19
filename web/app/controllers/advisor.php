@@ -105,14 +105,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //affiche tous les comptes
         public function ShowUsers()
-        {
+        {			
             parent::model("models");
             parent::model("accounts");
 
             $account = new accounts();
             $data["users"] = $account->ShowAllUsers();
 
-            parent::view("advisor/users", $data);
+			//Affiche tout les éléments de la page
+			parent::view("shared/header");
+            parent::view("advisor/menu");
+            parent::view("advisor/account", $data);
             parent::view("shared/footer");
         }
 
