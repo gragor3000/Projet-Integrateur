@@ -154,14 +154,27 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('shared/footer');
         }
 		
-        //update les infos d'un compte
+                //update les infos d'un compte
         public function UpdateUser()
         {
-            parent::model("models");
-            parent::model("accounts");
-
-            $account = new accounts();
-            $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"], $_POST["rank"]);
+			parent::view("shared/header");
+            parent::view("advisor/menu");
+			
+			//Modification du mot de passe.
+            if (isset($_POST['updateUser']) && $_POST['updateUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
+                parent::model('accounts');
+                $model = new accounts();
+                try {
+                    $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"], $_POST["rank"]);
+					$data['alert'] = "success";
+                    $data['message'] = "Les nouvelles informations ont été enregistrées.";
+                } catch (exception $ex) {
+					$data['alert'] = "warning";
+                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                }
+            }
+            parent::view('advisor/updateAccount', $data);
+            parent::view('shared/footer');			
         }
 
         //update le mot de passe d'un compte
@@ -225,15 +238,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //affiche les évaluations d'un étudiant
-        public function ShowEval()
+        public function review($_review)
         {
             parent::model("models");
             parent::model("interns");
 
             $interns = new interns();
-            $data["evals"] = $interns->ShowEval($_POST["internID"]);
+								   
+            if($_review != "logbook")$data["review"] = $interns->review($_POST["internID"],$_review); 
+            else $data["review"] = $interns->logbook($_POST["internID"]); 		 
 
-            parent::view("advisor/Evals", $data);
+            //parent::view("advisor/Evals", $data);
             parent::view("shared/footer");
         }
 

@@ -25,12 +25,12 @@
           <div class="row">
             <div class="col-md-6">
               <div class="well">
-                <form role="form" href="../public/index.php/intern/SaveLog">
+                <form role="form">
                   <div class="form-group">
                     <label class="control-label" for="logText">Écrire votre nouvelle entrée ci-dessous.</label>
-                    <textarea class="form-control" id="logText"></textarea>
+                    <textarea class="form-control" name ="logText" id="logText"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary">Soumettre</button>
+                  <button type="submit" class="btn btn-block btn-primary" formaction="/intern/log" formmethod="post">Soumettre</button>
                 </form>
               </div>
             </div>
@@ -40,13 +40,15 @@
                   <h3 class="panel-title">Archives</h3>
                 </div>
                 <div class="scrollable-project">
-				 <?php $count = 0; foreach ($data['logs'] as $log) { ?>
-                  <div class="panel-body">
-                    <b><?=$log->dates?></b>
-                    <p><?=$log->info?></p>
-					<br/>
-                  </div>
-				 <?php } ?>		
+				 <?php if($data['logs'] != null){
+					$count = 0; foreach ($data['logs'] as $log) { ?>
+					  <div class="panel-body">
+						<b><?=$log->dates?></b>
+						<p><?=$log->info?></p>
+						<br/>
+					  </div>
+				 <?php }
+				 }?>		
               </div>
             </div>
           </div>

@@ -73,6 +73,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function pass() {
             parent::view("shared/header");
             parent::view("intern/menu");
+			
+			$data = array();
 
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
@@ -94,62 +96,61 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //Visualiser une évaluation ou une entrevue pour un stagiaire
         public function review($_review) 
 		{
-           parent::view("shared/header");
-		   parent::view("intern/menu");
-		   parent::view("intern/info");
+			parent::view("shared/header");
+			parent::view("intern/menu");
+			
+			$data = array();		//Contient les informations à afficher au stagiaire
 		   
-		   switch($_review)
-		   {
-			   case "advMid": 
-			   {
-				   
-				   parent::view("intern/reviewAdv");
-				   break;
-			   }
-			   case "advFinale": 
-			   {
-				   
-				   parent::view("intern/reviewAdv");
-				   break;
-			   }
-			   case "interview": 
-			   {
-				   
-				   parent::view("intern/interview");
-				   break;
-			   }
-			   case "sup": 
-			   {
-				   
-				   parent::view("intern/reviewSup");
-				   break;
-			   }
-		   }
+			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
+			switch($_review[0])
+			{
+				case "advMid": //Evaluation de mi-stage
+				{
+					parent::view("intern/reviewAdv", $data);
+					break;
+				}
+				case "advFinale": //Evaluation finale
+				{
+					parent::view("intern/reviewAdv", $data);
+					break;
+				}
+				case "interview": //Entrevue avec l'employeur
+				{
+					parent::view("intern/interview", $data);
+					break;
+				}
+				case "sup": //
+				{
+					parent::view("intern/reviewSup", $data);
+					break;
+				}
+			}
 		   		   	   		   
-		   parent::view('shared/footer');			
+			parent::view('shared/footer');			
         }
 
-        //Enregistre un log
-        public function logbook() {
-            //////////////// RETOURNER LE LOGBOOK & SAUVEGARDER //////////////////
+        //Enregistre un log et ouvre la page réservé au log de l'étudiant
+        public function log() {
 
-            parent::model("modelXML");
-            $_modelXML = new docs();
+            parent::model("docs");
+            $_model = new docs();
+			
+			//Contient toutes les données à afficher
+			$data = array();
 
             if (isset($_POST["logText"])) {
-                //Contient toutes les données à enregistrer
-                $_Data = array();
 
-                //Boucle pour ajouter tout les éléments du poste dans un tableau
-                foreach ($_POST as $_Elem => $_Valeur) {
-                    array_push($_Data, $_Valeur);
-                }
-
-                $_modelXML->SaveLog($_SESSION['ID'], $_POST["logText"], $_Data);
+                $_model->SaveLog($_SESSION['ID'], $_POST["logText"]);
             }
+			
+			$data['logs'] = $_model->LoadLog($_SESSION['ID']);
+			
+			var_dump($data['logs']);
 
-            parent::view('intern/info');
-            //////////////////////// À CORRIGER ////////////////////////
+			parent::view("shared/header");
+			parent::view("intern/menu");
+            parent::view('intern/log', $data['logs']);
+			parent::view('shared/footer');
         }
 
 		

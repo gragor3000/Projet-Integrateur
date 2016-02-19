@@ -218,12 +218,16 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("accounts");
             $model2 = new accounts();
+			
+			var_dump($_POST);
 
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
 
             $data['readOnly'] = (Count($_internID)>0) ? $model1->ReadOnlyCie($_internID, 'interview'): false;
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
+			
+			var_dump($data['readOnly']);
 			
 			echo("doit lire");/////////////////////////////////////////////3
                 //Enregistrer l'entrevue.
@@ -233,9 +237,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     try {
                         $model->SaveCie($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
                         $data['alert'] = "alert-success";
-					   $data['message'] = "L'entrevue a été sauvegardée avec succès.";
+						$data['message'] = "L'entrevue a été sauvegardée avec succès.";
                     } catch (exception $ex) {
-						 $data['alert'] = "alert-warning";
+						$data['alert'] = "alert-warning";
                         $data['message'] = "L'entrevue n'a pas pu être enregistrée.";
                     }
                 } else { //Voir formulaire vierge
