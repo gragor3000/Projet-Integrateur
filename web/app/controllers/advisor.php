@@ -227,15 +227,26 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
             
         //affiche les notes misent par les étudiants
-        public function ShowInternsRatings()
+        public function assign()
         {
             parent::model("ratings");
-                
             $ratings = new ratings();
-                
-            $data["ratings"] = $ratings->ShowInternsRatings();
-                
-            parent::view("advisor/ratings", $data);
+            //Obtenir toutes les évaluations.
+            $data["ratings"] = $ratings->ShowAllRatings();
+            
+            parent::model("projects");
+            $projects = new projects();
+            //Obtenir tous les projets autorisés.
+            $data["projects"] = $projects->ShowProjectByStatus(true);
+            
+            parent::model("interns");
+            $interns = new interns();
+            //Obtenir tous les stagiaires.
+            $data["interns"] = $interns->ShowInterns();
+            
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+            parent::view("advisor/assign", $data);
             parent::view("shared/footer");
         }
             
@@ -267,14 +278,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             $interns = new interns();
                 
-            if($_review != "logbook")$data["review"] = $interns->review($_POST["internID"],$_review); 
-            else $data["review"] = $interns->logbook($_POST["internID"]); 		 
+            if($_review != "logbook"){
+                $data["review"] = $interns->review($_POST["internID"],$_review); 
+            } else {
+                $data["review"] = $interns->logbook($_POST["internID"]); 		 
+            }
                 
             //parent::view("advisor/Evals", $data);
             parent::view("shared/footer");
         }
             
-        //met à jour l'évaluation d'un stagiaire
+        //met à jour l'évaluation d'un stagiaire (???)
         public function UpdateEval()
         {
             parent::model("interns");

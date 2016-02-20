@@ -7,27 +7,14 @@
 
 class ratings extends models {
 
-    //retourne les notes mit par les étudiants
-    public function ShowRatingsByIntern($_internID){
-        $result = parent::DBSearch("SELECT * FROM ratings WHERE internID=" . $_internID);
-
-        foreach ($result as $item)
-            $rating[$item['ID']] = new obj($item);
-
-        return $rating;
+    //Retournes toues les évaluations.
+    public function ShowAllRatings(){
+        $result = parent::DBSearch("SELECT score, projectID, internID FROM ratings");
+        return $result;
     }
 	
-	//retourne la note mit par un étudiant pour un stage particulier
-	public function FindRateByID($_internID, $_projectID){
+    //Permet de notez un stage
+    public function RatingProject($_internID, $_projectID, $_value){
 		
-		return parent::DBQuery("SELECT * FROM ratings WHERE internID=" . $_internID . " and projectID=".$_projectID);
-	}
-	
-	//Permet de notez un stage
-	public function RatingProject($_internID, $_projectID, $_value){
-		
-	}
-	
-	
-
+    }
 }

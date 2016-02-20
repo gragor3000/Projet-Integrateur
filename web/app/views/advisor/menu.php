@@ -36,7 +36,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/advisor/review"><i class="fa fa-fw fa-hand-o-right"></i> Panneau de jumelage</a>
+                            <a href="/advisor/assign"><i class="fa fa-fw fa-hand-o-right"></i> Panneau de jumelage</a>
                         </li>
                         <li>
                             <a href="/advisor/review"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>

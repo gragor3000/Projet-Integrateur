@@ -1,21 +1,18 @@
 <?php
 
-/////////// Utiliser ShowUsersByRank d'Account ///////////////////
-
-/*
-  2016-02-10 Marc Lauzon, Sam Baker
-  RÉVISÉ.
- */
-
-class interns extends models {
-
-    //Retourner tous les stagiaires
+class interns extends models{
+    
+    //Retourne tous les comptes d'un type.
     public function ShowInterns() {
-        $result = parent::DBSearch("Select ID, name FROM users WHERE rank = 2");
+        $result = parent::DBSearch("SELECT ID,name,user,rank FROM users WHERE rank = 2");
 
-        foreach ($result as $item) {
-            $intern[$item["ID"]] = new obj($item);
-        }
+        //Générer un tableau d'objet.
+        foreach ($result as $user)
+            $obj[$user['ID']] = new obj($user);
+
+        return $obj;
     }
-
+    
 }
+
+?>
