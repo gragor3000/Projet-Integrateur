@@ -43,7 +43,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/header");
             parent::view("advisor/menu");
 
-            parent::model("models");
             parent::model("projects");
 
             $projects = new projects();
@@ -54,49 +53,52 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //valide une entreprise
-        public function ValidateBusiness()
+        public function ValidateBusiness($_CieID)
         {
-            parent::model("models");
             parent::model("business");
 
             $cie = new business();
-            $cie->AuthCie($_POST["businessID"]);
+            $cie->AuthCie($_CieID[0]);
+			
+			index();
         }
 
         //refuse une entreprise
-        public function DenyBusiness()
+        public function DenyBusiness($_CieID)
         {
-            parent::model("models");
             parent::model("business");
 
             $cie = new business();
-            $cie->DenyCie($_POST["businessID"]);
+            $cie->DenyCie($_CieID[0]);
+			
+			index();
         }
 
         //valide un projet
-        public function ValidateProject()
+        public function ValidateProject($_ProjID)
         {
-            parent::model("models");
             parent::model("projects");
 
             $projects = new projects();
-            $projects->ValidateProject($_POST["projectID"]);
+            $projects->ValidateProject($_ProjID[0]);
+			
+			index();
         }
 
         //refuse un projet
-        public function DenyProject()
+        public function DenyProject($_ProjID)
         {
-            parent::model("models");
             parent::model("projects");
 
             $projects = new projects();
-            $projects->DenyProject($_POST["projectID"]);
+            $projects->DenyProject($_ProjID[0]);
+			
+			index();
         }
 
         //ajoute un compte dans la bd
         public function CreateUser()
         {
-            parent::model("models");
             parent::model("accounts");
 
             $account = new accounts();
@@ -105,8 +107,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
         //affiche tous les comptes
         public function ShowUsers()
-        {			
-            parent::model("models");
+        {
             parent::model("accounts");
 
             $account = new accounts();
@@ -122,7 +123,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //supprime un compte
         public function DeleteUser()
         {
-            parent::model("models");
             parent::model("accounts");
 
             $account = new accounts();
@@ -180,7 +180,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //update le mot de passe d'un compte
         public function UpdatePw()
         {
-            parent::model("models");
             parent::model("accounts");
 
             $account = new accounts();
@@ -190,7 +189,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //montre ses infos
         public function ShowMyInfo()
         {
-            parent::model("models");
             parent::model("accounts");
 
             $account = new accounts();
@@ -203,7 +201,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //affiche les notes misent par les étudiants
         public function ShowInternsRatings()
         {
-            parent::model("models");
             parent::model("ratings");
 
             $ratings = new ratings();
@@ -217,7 +214,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //jumelle un stagiaire à un projet
         public function PairInternProject()
         {
-            parent::model("models");
             parent::model("projects");
             $projects = new projects();
 
@@ -227,7 +223,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //affiche tous les stagiaires
         public function ShowInterns()
         {
-            parent::model("models");
             parent::model("interns");
 
             $interns = new interns();
@@ -240,7 +235,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //affiche les évaluations d'un étudiant
         public function review($_review)
         {
-            parent::model("models");
             parent::model("interns");
 
             $interns = new interns();
@@ -255,7 +249,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //met à jour l'évaluation d'un stagiaire
         public function UpdateEval()
         {
-            parent::model("models");
             parent::model("interns");
 
             $interns = new interns();

@@ -98,17 +98,17 @@ class projects extends models
     {
         parent::DBExecute("UPDATE projects SET status = 1 WHERE ID = ".$_projectID);
 
-        $projectTitle = parent::DBQuery("SELECT title FROM project
-                                       WHERE project.ID = " . $_projectID);
+        $projectTitle = parent::DBQuery("SELECT title FROM projects
+                                       WHERE projects.ID = " . $_projectID);
 
         $businessID = parent::DBQuery("SELECT business.ID FROM business
-                                       INNER JOIN projects ON business.ID = project.businessID
-                                       WHERE project.ID = " . $_projectID);
+                                       INNER JOIN projects ON business.ID = projects.businessID
+                                       WHERE projects.ID = " . $_projectID);
 
         $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
-        $msg = "Votre projet, " . $projectTitle[0][0] . ", de l'entreprise,". $user["name"] .",à été autorisé";
+        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",à été autorisé";
 
         //Envoi du courriel de confirmation.
         mail($result['email'], $user["name"] . " projet validée", $msg);
@@ -117,19 +117,19 @@ class projects extends models
     //refuse un projet
     public function DenyProject($_projectID)
     {
-        $projectTitle = parent::DBQuery("SELECT title FROM project
-                                       WHERE project.ID = " . $_projectID);
+        $projectTitle = parent::DBQuery("SELECT title FROM projects
+                                       WHERE projects.ID = " . $_projectID);
 
         $businessID = parent::DBQuery("SELECT business.ID FROM business
-                                       INNER JOIN projects ON business.ID = project.businessID
-                                       WHERE project.ID = " . $_projectID);
+                                       INNER JOIN projects ON business.ID = projects.businessID
+                                       WHERE projects.ID = " . $_projectID);
 
-        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
+        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID['ID']);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
         parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
 
-        $msg = "Votre projet, " . $projectTitle[0][0] . ", de l'entreprise,". $user["name"] .",à été refusé";
+        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",à été refusé";
 
         //Envoi du courriel de confirmation.
         mail($result['email'], $user["name"] . " projet validée", $msg);

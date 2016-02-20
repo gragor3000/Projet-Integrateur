@@ -84,7 +84,7 @@ class business extends Models {
     public function DenyCie($_businessID)
     {
         $user = parent::DBQuery("SELECT userID, users.name,business.email FROM business
-                                 INNER JOIN users ON users.ID = business.userID WHERE ID =" . $_businessID);
+                                 INNER JOIN users ON users.ID = business.userID WHERE business.ID =" . $_businessID);
         parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
         parent::DBExecute("DELETE FROM users WHERE ID =" .$user["userID"]);
 
