@@ -1,5 +1,9 @@
 Journal de Bord
 
+2016-02-20 [38a9487589d0f48f2c2918557fcc239757799182]
++Modification des contrôles des carousels.
++Correction d'erreur de syntax php.
+
 2016-02-15 []
 +Mise à jour avec l'équipe sur les tâches à accomplir.
 
