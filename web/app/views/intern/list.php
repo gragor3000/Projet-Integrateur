@@ -29,14 +29,13 @@
 		<div id="carousel-projects" data-interval="false" class="carousel slide">
 		  <div class="carousel-inner">
             <?php if($data['projects'] != null){
-			
 				$count = 0; foreach ($data['projects'] as $project) { ?>
 				 <div class="item <?php if ($count == $data["carousel-index"]) echo('active'); ?>">
 				  <div class="row">
 					<div class="col-md-6">
 					  <div class="panel panel-default">
 						<div class="panel-heading">
-						  <h3 class="panel-title"><?= $project->name;?></h3>
+						  <h3 class="panel-title"><?= $project->title;?></h3>
 						</div>
 						<div class="scrollable-project">
 						<div class="panel-body">
@@ -49,7 +48,7 @@
 						</div>
 						<div class="panel-body">
 						  <b>Exigences particulières</b>
-						  <p><?= $project->name;?></p>
+						  <p><?= $project->extra;?></p>
 						</div>
 						<div class="panel-body">
 						  <b>Commentaires et informations complémentaires</b>
@@ -63,7 +62,7 @@
 						<div class="row">
 						  <div class="col-md-12">
 							<b>Nom de l'entreprise</b>
-							p><<?= $data['cie'][$project->businessID]->name; ?></p>
+							<p><?= $data['cie'][$project->businessID]->name; ?></p>
 						  </div>
 						</div>
 						<div class="row">
@@ -91,21 +90,21 @@
 						<div class="row">
 						  <div class="col-md-7">
 							<b>Nom du superviseur</b>
-							<p><?= $data["projects"][0]->supName;?></p>
+							<p><?= $project->supName;?></p>
 						  </div>
 						  <div class="col-md-5">
 							<b>Titre</b>
-							<p><?= $data["projects"][0]->supTitle;?></p>
+							<p><?= $project->supTitle;?></p>
 						  </div>
 						</div>
 						<div class="row">
 						  <div class="col-md-6">
 							<b>Numéro de téléphone</b>
-							<p><?= $data["projects"][0]->supTel;?></p>
+							<p><?= $project->supTel;?></p>
 						  </div>
 						  <div class="col-md-6">
 							<b>Adresse courriel</b>
-							<p><?= $data["projects"][0]->supEmail;?></p>
+							<p><?= $project->supEmail;?></p>
 						  </div>
 						</div>
 					  </div>

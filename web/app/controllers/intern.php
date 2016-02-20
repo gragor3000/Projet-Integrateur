@@ -34,16 +34,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $data['projects'] = $model->ShowProjectByStatus(1);
 				
                 parent::model("business");
-                $model = new business;
-				
-				//S'il existe des projet que l'étudiant peut évaluer, les lister
-				if($data['projects'] != null){
-					foreach ($data['projects'] as $project) {
-						//Obtenir les informations de l'entreprise.
-						$data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
-					}
-				}
-				
+				$model = new business;
+
+				foreach ($data['projects'] as $project) {
+					//Obtenir les informations de l'entreprise.
+					$data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
+				}				
 
                 parent::view("intern/list", $data);
             } else {
