@@ -16,7 +16,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/header");
             parent::view("advisor/menu");
 
-            parent::model("models");
             parent::model("projects");
             $projects = new projects();
             $data["projects"] = $projects->ShowProjectByStatus(0);
@@ -47,8 +46,30 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             $projects = new projects();
             $data["projects"] = $projects->ShowProjectByStatus(1);
+			
+			//Récupère les informations des compagnies reliées aux projets accepté
+			parent::model("business");
+            $model = new business;
+            foreach ($data['projects'] as $project) {
+                //Obtenir les informations de l'entreprise.
+                $data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
+            }
 
             parent::view("advisor/projects", $data);
+            parent::view("shared/footer");
+        }
+		
+		//appelle la page pour afficher tous les projets validés
+        public function cie()
+        {
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+
+            parent::model("business");
+            $model = new business();
+            $data["cie"] = $model->ShowCieByStatus(1);
+
+            parent::view("advisor/business", $data);
             parent::view("shared/footer");
         }
 
@@ -154,7 +175,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('shared/footer');
         }
 		
-                //update les infos d'un compte
+        //update les infos d'un compte
         public function UpdateUser()
         {
 			parent::view("shared/header");
