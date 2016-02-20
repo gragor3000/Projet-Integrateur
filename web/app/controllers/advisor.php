@@ -18,22 +18,24 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             parent::model("projects");
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(0);
-                
+
+            $data['projects'] = $projects->ShowProjectByStatus(0);
+
             parent::model("business");
             $model = new business;
-                
-            if($data['projects'] != null){
-            foreach ($data['projects'] as $project) {
-                //Obtenir les informations de l'entreprise.
-                $data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
-            }
-            }
-                
+
+			//S'il y a des projets à afficher, récupérer l'information de leur compagnie
+			if($data['projects'] != null){
+				foreach ($data['projects'] as $project) {
+					//Obtenir les informations de l'entreprise.
+					$data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
+				}
+			}
+
             parent::model("business");
             $cie = new business();
-            $data["cie"] = $cie->ShowCieByStatus(0);
-                
+            $data['cie'] = $cie->ShowCieByStatus(0);
+
             parent::view("advisor/index", $data);
             parent::view("shared/footer");
         }
@@ -47,16 +49,19 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("projects");
                 
             $projects = new projects();
-            $data["projects"] = $projects->ShowProjectByStatus(1);
-                
+
+            $data['projects'] = $projects->ShowProjectByStatus(1);
+			
 			//Récupère les informations des compagnies reliées aux projets accepté
 			parent::model("business");
             $model = new business;
-            foreach ($data['projects'] as $project) {
-                //Obtenir les informations de l'entreprise.
-                $data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
-            }
-                
+			if($data['projects'] != null){
+				foreach ($data['projects'] as $project) {
+					//Obtenir les informations de l'entreprise.
+					$data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
+				}
+			}
+
             parent::view("advisor/projects", $data);
             parent::view("shared/footer");
         }

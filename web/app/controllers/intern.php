@@ -35,11 +35,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				
                 parent::model("business");
 				$model = new business;
+				parent::model("ratings");
+				$rating = new ratings;
 
 				foreach ($data['projects'] as $project) {
 					//Obtenir les informations de l'entreprise.
 					$data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
-				}				
+					$data['ratings'][$project->businessID] = $rating->FindRateByID($_SESSION['ID'],$project->businessID);
+				}
 
                 parent::view("intern/list", $data);
             } else {
@@ -148,10 +151,16 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('intern/log', $data['logs']);
 			parent::view('shared/footer');
         }
-
 		
+		//Enregistre la note que le stagiaire attribut à un stage
+		public function rate($_Parameter){
+			
+			parent::model("ratings");
+			$model = new ratings;
+			
+			$model->RatingProject($_SESSION['ID'], $_Parameter[0], $_POST['rateProject']);
+		}
     }
-
 } else {
     //Rediriger vers l'acceuil.
     session_unset();

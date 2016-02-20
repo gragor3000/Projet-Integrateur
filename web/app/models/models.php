@@ -23,7 +23,8 @@ class obj {
 class Models {
 
     //Chemin des fichiers XML.
-    const DefaultXMLPath = "../app/models/xml/";
+    //const DefaultXMLPath = "../app/models/xml/";
+	const DefaultXMLPath = "";
 
     //Connexion à la BD.
     protected function DBConnect() {
