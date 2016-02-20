@@ -23,6 +23,8 @@ PHP complété. [sauf exception voir 'actions']
 </div>
 <div class="section">
     <div class="container">
+        <a class="left carousel-control" href="#carousel-projects" role="button" data-slide="prev"><i class="icon-left fa fa-3x fa-arrow-circle-left text-success"></i></a>
+        <a class="right carousel-control" href="#carousel-projects" role="button" data-slide="next"><i class="icon-right fa fa-3x fa-arrow-circle-right text-success"></i></a>
         <?php if (isset($data['projects'])) { ?>
             <div id="carousel-projects" data-interval="false" class="carousel slide">
                 <div class="carousel-inner">
@@ -118,8 +120,6 @@ PHP complété. [sauf exception voir 'actions']
                     <?php $count++; } ?>
                 </div>
             </div>
-            <a class="left carousel-control" href="#carousel-projects" data-slide="prev"><i class="icon-prev  fa fa-angle-left"></i></a>
-            <a class="right carousel-control" href="#carousel-projects" data-slide="next"><i class="fa fa-angle-right icon-next"></i></a>
         <?php } ?>
     </div>
 </div>

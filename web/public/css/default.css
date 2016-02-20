@@ -6785,6 +6785,13 @@ body {
 #info {
   height: 175px;
 }
+.carousel-control {
+  width: 10%;
+}
+.carousel-control .icon-left,
+.carousel-control .icon-right {
+  margin-top: 200px;
+}
 textarea {
   resize: vertical;
 }

@@ -56,7 +56,7 @@
                                     foreach ($data['cie'] as $cie) { ?>
                             <form>
                                 <tr id="business<?= $cie->id ?>">
-                                    <td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $cie->name; ?><br />Email : <?= $cie->email; ?>"><?= $cie->name; ?></a></td>
+                                    <td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $cie->tel; ?><br />Email : <?= $cie->email; ?>"><?= $cie->name; ?></a></td>
                                     <td><?= $cie->address; ?></td>
                                     <td><?= $cie->city; ?></td>
                                     <td><input type="text" name="user<?php $cie->ID ?>" value="<?= $cie->user; ?>" /></td>

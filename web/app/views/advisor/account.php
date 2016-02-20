@@ -96,13 +96,9 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        <?php }
-                                    else
-                                        {
-                                            ?>
+                                        <?php }} else { ?>
                                             <td colspan="6">Aucun utilisateur enregistré</td>
-                                        <?php }
-                                    } ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </form>

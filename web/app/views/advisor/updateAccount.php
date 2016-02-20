@@ -1,5 +1,5 @@
 <?php
-	//Générer un token d'identification.
+	//Gï¿½nï¿½rer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
@@ -44,9 +44,9 @@
                   <div class="form-group col-md-6">
                     <label class="control-label" for="userRank">Rang</label>
                     <select class="form-control" id="userRank" name="rank" >
-					  <option value = 0 <?=if($data["user"]->rank == 0)? selected: ''?>>Coordonnateur</option>
-					  <option value = 1 <?=if($data["user"]->rank == 1)? selected: ''?>>Entreprise</option>
-					  <option value = 2 <?=if($data["user"]->rank == 2)? selected: ''?>>Stagiaire</option>
+					  <option value = 0 <?= ($data["user"]->rank == 0) ? selected : '' ?>>Coordonnateur</option>
+					  <option value = 1 <?= ($data["user"]->rank == 1) ? selected : '' ?>>Entreprise</option>
+					  <option value = 2 <?= ($data["user"]->rank == 2) ? selected : '' ?>>Stagiaire</option>
 					</select>
                   </div>                
                 </div>
