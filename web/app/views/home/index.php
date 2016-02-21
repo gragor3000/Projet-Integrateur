@@ -42,7 +42,7 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label class="control-label" for="cieEmail">Adresse courriel</label>
-								<input class="form-control" id="cieEmail" name="email" placeholder="contact@entreprise.tld" pattern="" type="email" required />
+								<input class="form-control" id="cieEmail" name="email" placeholder="contact@entreprise.tld" type="email" required />
 							</div>
 						</div>
 						<div class="row">

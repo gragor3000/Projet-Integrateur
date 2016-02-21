@@ -36,7 +36,7 @@
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label class="control-label" for="cieTel">Numéro de téléphone</label>
-                    <input class="form-control" id="cieTel" name="tel" placeholder="(450)555-5555 #1234" type="text" required value="<?=$data["cie"]->tel; ?>">
+                    <input class="form-control" id="cieTel" name="tel" placeholder="(450)555-5555 #1234" pattern="\(\d{3}\)\d{3}\-\d{4}( #\d{1,4})?" type="text" required value="<?=$data["cie"]->tel; ?>">
                   </div>
                   <div class="form-group col-md-6">
                     <label class="control-label" for="cieEmail">Adresse courriel</label>

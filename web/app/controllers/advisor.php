@@ -18,12 +18,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             parent::model("projects");
             $projects = new projects();
-
+                
             $data['projects'] = $projects->ShowProjectByStatus(0);
-
+                
             parent::model("business");
             $model = new business;
-
+                
 			//S'il y a des projets à afficher, récupérer l'information de leur compagnie
 			if($data['projects'] != null){
 				foreach ($data['projects'] as $project) {
@@ -31,11 +31,11 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					$data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
 				}
 			}
-
+                            
             parent::model("business");
             $cie = new business();
             $data['cie'] = $cie->ShowCieByStatus(0);
-
+                
             parent::view("advisor/index", $data);
             parent::view("shared/footer");
         }
@@ -49,9 +49,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("projects");
                 
             $projects = new projects();
-
+                
             $data['projects'] = $projects->ShowProjectByStatus(1);
-			
+                
 			//Récupère les informations des compagnies reliées aux projets accepté
 			parent::model("business");
             $model = new business;
@@ -61,7 +61,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					$data['cieP'][$project->businessID] = $model->ShowCieByID($project->businessID);
 				}
 			}
-
+                            
             parent::view("advisor/projects", $data);
             parent::view("shared/footer");
         }
@@ -88,7 +88,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $cie = new business();
             $cie->AuthCie($_CieID[0]);
                 
-			index();
+            ///////Modifier le nom d'utilisateur.
+                
+            $this->index();
         }
             
         //refuse une entreprise
@@ -99,7 +101,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $cie = new business();
             $cie->DenyCie($_CieID[0]);
                 
-			index();
+            $this->index();
         }
             
         //valide un projet
@@ -176,7 +178,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 }
             }
                 
-			parent::view("shared/header");
+	    parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view('advisor/pass', $data);
             parent::view('shared/footer');
@@ -185,7 +187,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //update les infos d'un compte
         public function UpdateUser()
         {
-			parent::view("shared/header");
+            parent::view("shared/header");
             parent::view("advisor/menu");
                 
 			//Modification du mot de passe.
@@ -233,17 +235,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $ratings = new ratings();
             //Obtenir toutes les évaluations.
             $data["ratings"] = $ratings->ShowAllRatings();
-            
+                
             parent::model("projects");
             $projects = new projects();
             //Obtenir tous les projets autorisés.
             $data["projects"] = $projects->ShowProjectByStatus(true);
-            
+                
             parent::model("interns");
             $interns = new interns();
             //Obtenir tous les stagiaires.
             $data["interns"] = $interns->ShowInterns();
-            
+                
             parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view("advisor/assign", $data);

@@ -22,6 +22,10 @@
                             class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="/advisor/index"><i class="fa fa-fw fa-home"></i> Autorisation en attente</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
                             <a href="/advisor/cie"><i class="fa fa-fw fa-building"></i> Entreprises autorisées</a>
                         </li>
                         <li>

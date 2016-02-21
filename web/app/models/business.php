@@ -1,8 +1,7 @@
 <?php
 
 /*
-  2016-02-10 Marc Lauzon, Sam Baker
-  RÉVISÉ.
+  DEBUG : Envoi de courriel désactivé pour test.
  */
 
 class business extends Models {	
@@ -77,7 +76,7 @@ class business extends Models {
         d'utilisateur et un mot de passe :\n Nom d'utilisateur : " . $user['user'] . "\n Mot de passe: " . $user['pw'];
 
         //Envoi du courriel de confirmation.
-        mail($result['email'], $user["name"] . " Compte validée", $msg);
+        //mail($result['email'], $user["name"] . " Compte validée", $msg);
     }
 
     //refuse une entreprise
@@ -90,7 +89,8 @@ class business extends Models {
 
         $msg = "Votre entreprise, " . $user["name"] . ", à été refusée";
 
-        mail($user["email"],$user["name"]."Compte refusé",$msg);
+        //Envoi du courriel de refus.
+        //mail($user["email"],$user["name"]."Compte refusé",$msg);
 
     }
 

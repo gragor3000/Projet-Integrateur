@@ -73,8 +73,8 @@ class projects extends models
     public function CreateProject($_title, $_supName, $_supTitle, $_supEmail, $_supTel, $_desc, $_equip, $_extra, $_info, $_cieID)
     {
         parent::DBExecute("INSERT INTO projects (title, supName, supTitle, supEmail, supTel, descr, equip, extra, info, businessID) 
-				Values  ('" . $_title . "','" . $_supName . "','" . $_supTitle . "','" . $_supEmail . "','" . $_supTel . "',
-				'" . $_desc . "','" . $_equip . "','" . $_extra . "','" . $_info . "'," . $_cieID . ");");
+				Values  ('" . addslashes($_title) . "','" . addslashes($_supName) . "','" . addslashes($_supTitle) . "','" . $_supEmail . "','" . $_supTel . "',
+				'" . addslashes($_desc) . "','" . addslashes($_equip) . "','" . addslashes($_extra) . "','" . addslashes($_info) . "'," . $_cieID . ");");
     }
 
     //Fonction permenttant de modifier un projet dans la base de donnée

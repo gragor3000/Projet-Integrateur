@@ -15,6 +15,11 @@ class ratings extends models {
 	
     //Permet de notez un stage
     public function RatingProject($_internID, $_projectID, $_value){
-		
+        // À FAIRE.
+    }
+    
+    //retourne la note mit par un étudiant pour un stage particulier
+    public function FindRateByID($_internID, $_projectID){
+	return parent::DBQuery("SELECT * FROM ratings WHERE internID=" . $_internID . " and projectID=".$_projectID);
     }
 }

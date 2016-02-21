@@ -133,7 +133,7 @@ COMPLÉTÉ.
 						<div class="row">
 							<div class="form-group col-md-6">
 								<label for="pjtSupTel">Numéro de téléphone</label>
-								<input id="pjtSupTel" class="form-control" name="supTel" placeholder="(450)555-5555 #1234" type="text" required />
+								<input id="pjtSupTel" class="form-control" name="supTel" placeholder="(450)555-5555 #1234" pattern="\(\d{3}\)\d{3}\-\d{4}( #\d{1,4})?" type="text" required />
 							</div>
 							<div class="col-md-6">
 								<label for="pjtSupEmail">Adresse courriel</label>

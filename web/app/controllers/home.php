@@ -98,7 +98,7 @@ class home extends Controller {
 
         //// VÉRIFIER SI CIE AVEC EMAIL EXISTE. ////
         
-        if ($user->UsernameExist($_POST["user"]))
+        if ($user->UsernameExist($_POST["user"]) || $_POST["user"] == "")
             $_POST["user"] = $user->PassGen();
 
         try {
