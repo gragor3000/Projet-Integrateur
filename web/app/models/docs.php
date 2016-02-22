@@ -18,28 +18,26 @@
 			/*if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml')){
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml',0,true);*/
 				
-			if (file_exists(parent::DefaultXMLPath.$_IDIntern.'_JDB.xml')){
+			if (file_exists($_IDIntern.'_JDB.xml')){
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.$_IDIntern.'_JDB.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
-					$_Log = $_Root->createElement($Enfant->getName(),$Enfant);
+					$_Log = $_Xml->createElement($Enfant->getName(),$Enfant);
 					$_Root->appendChild($_Log);
 				}
 			}
 			
 			//Obtenir la date et l'heure courante, pour s'en servire comme balise.
-			$_Date = date('M_dS_Y_H:i:s');
+			$_Date = date('M_dS_Y_H_i_s');
 				
 			//Ajoute le log au fichier xml et le sauvegarde
 			$_Log = $_Xml->createElement($_Date, $_Entry);
 			$_Root->appendChild($_Log);
 			
-			var_dump($_Root);
-			
 			//Enregistre le fichier fichier.
 			//$_Xml->save(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml');
-			$_Xml->save(parent::DefaultXMLPath.$_IDIntern.'_JDB.xml');
+			$_Xml->save($_IDIntern.'_JDB.xml');
 		}
 		
 		//Charge les journaux d'un étudiant particulier
@@ -52,8 +50,8 @@
 			/*if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml')){
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml',0,true);*/
 				
-			if (file_exists(parent::DefaultXMLPath.$_IDIntern.'_JDB.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.$_IDIntern.'_JDB.xml',0,true);
+			if (file_exists($_IDIntern.'_JDB.xml')){
+				$_Simple = new SimpleXmlElement($_IDIntern.'_JDB.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le tableau $obj
 				foreach($_Simple->children() as $Enfant){

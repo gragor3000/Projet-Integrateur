@@ -41,10 +41,10 @@
                 </div>
                 <div class="scrollable-project">
 				 <?php if($data['logs'] != null){
-					$count = 0; foreach ($data['logs'] as $log) { ?>
+					$count = 0; foreach ($data['logs'] as $log) {; ?>
 					  <div class="panel-body">
-						<b><?=$log->dates?></b>
-						<p><?=$log->info?></p>
+						<b><?=array_search($log, $data['logs'])?></b>
+						<p><?=$log?></p>
 						<br/>
 					  </div>
 				 <?php }

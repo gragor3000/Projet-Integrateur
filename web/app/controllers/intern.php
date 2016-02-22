@@ -154,8 +154,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			$data = array();
 
             if (isset($_POST["logText"])) {
-
+				if($_POST["logText"] != "")
                 $_model->SaveLog($_SESSION['ID'], $_POST["logText"]);
+				$_POST["logText"] = "";
             }
 			
 			$data['logs'] = $_model->LoadLog($_SESSION['ID']);
@@ -164,7 +165,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 			parent::view("shared/header");
 			parent::view("intern/menu");
-            parent::view('intern/log', $data['logs']);
+            parent::view('intern/log', $data);
 			parent::view('shared/footer');
         }
 		
