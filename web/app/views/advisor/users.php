@@ -1,18 +1,4 @@
 <html>
-
-<head>
-    <meta name="description"
-          content="Ce site a pour objectif de permettre aux entreprises de soumettre des projets de stage à destination des étudiants en technique informatique et à ceux-ci de soumettre leur journal de bord. Il permet aussi aux coordonnateurs de gerer les comptes d'accès et de soumettre des documents d'évaluation.">
-    <title>CEGEP de Joliette | 420.AA | Gesion de Stage</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-          rel="stylesheet" type="text/css">
-    <link href="../../../public/css/default.css" rel="stylesheet" type="text/css">
-</head>
-
 <body>
 <div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -24,15 +10,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Département de la Technique de l'Informatique</h1>
-
-                <p>vous acceuille sur son site de gestion de stage. Sur ce site une entreprise
-                    peut soumettre un projet de stage qui sera étudié par les coordonnateurs
-                    de stage. Ceux-ci évaluront les stages qui pourront être choisi par les
-                    finissants de la technique. Avant tout chose, l'entreprise qui n'a pas
-                    de compte devra s'inscrire en utilisant le formulaire ci-dessous et être
-                    autorisé à soumettre un projet. Un fois autorisé celui-ci recevera un courriel
-                    contenant un nom d'utilisateur si la suggestion n'est pas retenue et un
-                    mot de passe.</p>
             </div>
         </div>
     </div>
