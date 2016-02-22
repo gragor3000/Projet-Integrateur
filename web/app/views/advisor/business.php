@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Entreprises acceptée</h3>
+                        <h3 class="panel-title">Entreprises acceptées</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover">
@@ -68,7 +68,7 @@
                                 </tr>
                             </form>
                                     <?php }} else { ?>
-                            <td colspan="6">Aucune entreprise à été acceptée</td>
+                            <td colspan="6">Aucune entreprise a été acceptée</td>
                                 <?php } ?>
                             </tbody>
                         </table>                            

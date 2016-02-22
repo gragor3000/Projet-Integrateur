@@ -15,7 +15,11 @@ class ratings extends models {
 	
     //Permet de notez un stage
     public function RatingProject($_internID, $_projectID, $_value){
-        // À FAIRE.
+        parent::DBExecute("INSERT INTO ratings (score,internID, projectID)
+							VALUES(
+							'" . $_value . "',
+							'" . $_internID . "',
+							" . $_projectID . ")");
     }
     
     //retourne la note mit par un étudiant pour un stage particulier

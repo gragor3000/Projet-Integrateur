@@ -281,9 +281,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				{
 					foreach ($_POST as $projectID => $internID)
 					{
-						projects->PairInternProject($projectID ,$internID);
+						$projects->PairInternProject($projectID ,$internID);
 					}
-					projects->PairInternProject( ,);
 
 					$data['alert'] = "alert-success";
                     $data['message'] = "L'étudiant a bien été jumelé à ce projet!";
