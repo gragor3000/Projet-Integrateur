@@ -1,5 +1,11 @@
 Journal de Bord
 
+2016-02-22 [e2b4b2dfcdeed51dbb7512e499a27d859d32a022]
++Tentative de debug :
+-Les clés générés pour autentifier les formulaires changent
+entre l'envoi du formulaire et la réception de celui-ci dans
+le contrôleur ce qui fait que l'envoi est ignoré comme invalide.
+
 2016-02-20 [38a9487589d0f48f2c2918557fcc239757799182]
 +Modification des contrôles des carousels.
 +Correction d'erreur de syntax php.
