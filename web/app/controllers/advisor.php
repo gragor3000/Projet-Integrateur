@@ -152,11 +152,22 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             
         //supprime un compte
         public function DeleteUser()
-        {
-            parent::model("accounts");
+        {         
+            if (isset($_POST['deleteUser']) && $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) 
+			{
+				parent::model("accounts");
                 
-            $account = new accounts();
-            $account->DeleteUser($_POST["userID"]);
+                $account = new accounts();
+                try 
+				{
+                    $account->DeleteUser($_POST["userID"]);		
+					$data['alert'] = "alert-success";
+                    $data['message'] = "Les nouvelles informations ont été enregistrées.";
+                } catch (exception $ex) {
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                }
+            }			
         }
             
 	//Modifier mot de passe.
@@ -201,10 +212,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new accounts();
                 try {
                     $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"], $_POST["rank"]);
-					$data['alert'] = "success";
+					$data['alert'] = "alert-success";
                     $data['message'] = "Les nouvelles informations ont été enregistrées.";
                 } catch (exception $ex) {
-					$data['alert'] = "warning";
+					$data['alert'] = "alert-warning";
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
             }
@@ -261,9 +272,28 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function PairInternProject()
         {
             parent::model("projects");
-            $projects = new projects();
-                
-            $projects->PairInternProject($_POST["internID"], $_POST["projectID"]);
+            $projects = new projects();             
+			
+			//jumeller un stagiaire à un projet 
+            if (isset($_POST['setAssign']) && $_POST['setAssign'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time())
+			{              
+                try 
+				{
+					foreach ($_POST as $projectID => $internID)
+					{
+						projects->PairInternProject($projectID ,$internID);
+					}
+					projects->PairInternProject( ,);
+
+					$data['alert'] = "alert-success";
+                    $data['message'] = "L'étudiant a bien été jumelé à ce projet!";
+                } 
+				catch (exception $ex) 
+				{
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "L'étudiant n'a pu être jumelé à ce projet.";
+                }
+            }
         }
             
         //affiche tous les stagiaires
@@ -291,7 +321,39 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $data["review"] = $interns->logbook($_POST["internID"]); 		 
             }
                 
-            //parent::view("advisor/Evals", $data);
+			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
+			switch($_review[0])
+			{
+				case "advMid": //Evaluation de mi-stage
+				{
+					$data = $_model->LoadAdvisor($_SESSION['ID'],"review1");
+					
+					parent::view("intern/reviewAdv", $data);
+					break;
+				}
+				case "advFinale": //Evaluation finale
+				{
+					$data = $_model->LoadAdvisor($_SESSION['ID'],"review2");
+					
+					parent::view("intern/reviewAdv", $data);
+					break;
+				}
+				case "interview": //Entrevue avec l'employeur
+				{
+					$data = $_model->LoadCie($_SESSION['ID'],"interview");
+					
+					parent::view("intern/interview", $data);
+					break;
+				}
+				case "sup": //Évaluation du superviseur
+				{
+					$data = $_model->LoadCie($_SESSION['ID'],"reviewSup");
+					
+					parent::view("intern/reviewSup", $data);
+					break;
+				}
+			}
+			
             parent::view("shared/footer");
         }
             
@@ -303,6 +365,49 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $interns = new interns();
             $interns->UpdateEval($_POST["EvalID"]);
         }
+		
+		//Évaluer un stagiaire à la mi et à la fin de la session
+		public function eval()
+		{
+			parent::model("accounts");
+			parent::model("docs");
+			
+			$data = null;
+			$model1 = new accounts();
+			$model2 = new docs();
+			
+			//Modification du mot de passe.
+            if (isset($_POST['evalInter']) && $_POST['evalInter'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time())
+			{              
+                try 
+				{
+					if($account->ReadOnlyAdvisor($_POST["intern"],"review1")) //si un formulaire d'évaluation existe déjà
+					{
+						$account->SaveAdvisor( $_POST["intern"],"review2",$_POST);
+					}
+					else
+					{
+						$account->SaveAdvisor( $_POST["intern"],"review1",$_POST);
+					}
+
+					$data['alert'] = "alert-success";
+                    $data['message'] = "Le formulaire a été enregistré avec succès!";
+                } 
+				catch (exception $ex) 
+				{
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "L'enregistrement du formulaire a échoué.";
+                }
+            }
+			
+			$data['advisors'] = $model1-> ShowUsersByRank(0);
+			$data['interns'] = 	$model1-> ShowUsersByRank(2);	
+			
+			parent::view("shared/header");
+            parent::view("advisor/menu");
+            parent::view("advisor/eval", $data);
+            parent::view("shared/footer");
+		}
     }
         
 } else {

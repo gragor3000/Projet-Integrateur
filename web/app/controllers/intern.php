@@ -104,26 +104,38 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			
 			$data = array();		//Contient les informations à afficher au stagiaire
 		   
+		   parent::model("docs");
+		   $_model = new docs();
+		   
+		   
 			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
 			switch($_review[0])
 			{
 				case "advMid": //Evaluation de mi-stage
 				{
+					$data = $_model->LoadAdvisor($_SESSION['ID'],"review1");
+					
 					parent::view("intern/reviewAdv", $data);
 					break;
 				}
 				case "advFinale": //Evaluation finale
 				{
+					$data = $_model->LoadAdvisor($_SESSION['ID'],"review2");
+					
 					parent::view("intern/reviewAdv", $data);
 					break;
 				}
 				case "interview": //Entrevue avec l'employeur
 				{
+					$data = $_model->LoadCie($_SESSION['ID'],"interview");
+					
 					parent::view("intern/interview", $data);
 					break;
 				}
-				case "sup": //
+				case "sup": //Évaluation du superviseur
 				{
+					$data = $_model->LoadCie($_SESSION['ID'],"reviewSup");
+					
 					parent::view("intern/reviewSup", $data);
 					break;
 				}

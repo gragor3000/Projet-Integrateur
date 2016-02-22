@@ -88,11 +88,11 @@
                                                 <td><?= $user->user; ?></td>
                                                 <td><?= $user->rank; ?></td>
                                                 <td>
-                                                    <button class="btn btn-link" formaction="advisor/UpdateUser" formmethod="post">
+                                                    <button class="btn btn-link" name="updateUser" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/UpdateUser" formmethod="post">
                                                     </button>
                                                 </td>
 												<td>
-                                                    <button class="btn btn-link" formaction="advisor/DeleteUser" formmethod="post">
+                                                    <button class="btn btn-link" name="deleteUser" value="<?= $_SESSION['form_token']; ?>" formaction="advisor/DeleteUser" formmethod="post">
                                                     </button>
                                                 </td>
                                             </tr>

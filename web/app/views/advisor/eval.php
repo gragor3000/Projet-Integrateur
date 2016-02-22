@@ -15,9 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Formulaire d'évaluation du stagiaire</h1>
-				<?php if (!(isset($data['readOnly']) && $data['readOnly'])) { ?>
 					<p>Sur cette page vous pourrez évaluer un stagiaire à la moitié et à la fin du stage.</p>
-				<?php } ?>
 			</div>
 		</div>
 	</div>
