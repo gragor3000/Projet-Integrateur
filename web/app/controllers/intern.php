@@ -72,7 +72,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         public function pass() {
             $data = NULL;
             //Modification du mot de passe.
-            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){
+
+            //if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){
                 if($_SESSION['form_timer'] + 600 > time()){
                     parent::model('accounts');
                     $model = new accounts();
@@ -84,10 +85,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $data['alert'] = "alert-warning";
                         $data['message'] = $ex;
                     }
-                } else {
+               /* } else {
                     $data['alert'] = "alert-warning";
                     $data['message'] = "La permission du formulaire a expiré.";
-                }
+                }*/
             }
             
             parent::view("shared/header");
