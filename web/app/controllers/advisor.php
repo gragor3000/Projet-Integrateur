@@ -366,7 +366,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 		
 		//Évaluer un stagiaire à la mi et à la fin de la session
-		public function eval()
+		public function evalAdv()
 		{
 			parent::model("accounts");
 			parent::model("docs");

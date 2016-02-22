@@ -172,9 +172,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		public function rate($_Parameter){
 			
 			parent::model("ratings");
-			$model = new ratings;
+			parent::model("projects");
 			
-			$model->RatingProject($_SESSION['ID'], $_Parameter[0], $_POST['rateProject']);
+			$model1 = new ratings();	
+            $model2 = new projects();	
+			
+			$model1->PairProjectToIntern($_Parameter[0] ,$_SESSION['ID']);
+			$model2->RatingProject($_SESSION['ID'], $_Parameter[0], $_POST['rating']);
 		}
     }
 } else {

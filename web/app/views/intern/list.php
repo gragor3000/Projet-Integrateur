@@ -117,7 +117,7 @@
 																<option value = 4 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 4) ? 'selected' : ''; ?>>4 - Favorable</option>
 																	<option value = 5 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 5) ? 'selected' : ''; ?>>5 - Préférence</option>
 																	</select>
-																	<button type = "submit" class="btn btn-success" name = "id" value = "<?=$project->ID; ?>" class="btn btn-link" formaction = "/intern/list/<?=$count; ?>"><i class="fa fa-fw fa-star"></i></button>
+																	<button type = "submit" class="btn btn-success" name = "id" value = "<?=$project->ID; ?>" class="btn btn-link" formaction = "/intern/rate/<?=$count; ?>"><i class="fa fa-fw fa-star"></i></button>
 																	</div>
 																</form>
 															</div>

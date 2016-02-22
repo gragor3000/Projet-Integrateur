@@ -46,7 +46,7 @@
                             <a href="/advisor/review"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>
                         </li>
 						<li>
-                            <a href="/advisor/eval"><i class="fa fa-fw fa-comment"></i> Évaluer un stagiaire</a>
+                            <a href="/advisor/evalAdv"><i class="fa fa-fw fa-comment"></i> Évaluer un stagiaire</a>
                         </li>
                         <li class="divider"></li>
                         <li>
