@@ -61,7 +61,7 @@
         </table>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <button class="btn btn-primary btn-block" type="submit" formaction="/advisor/" formmethod="post">Assigner</button>
+                <button class="btn btn-primary btn-block" name="setAssign" value="<?= $_SESSION['form_token']; ?>" type="submit" formaction="/advisor/" formmethod="post">Assigner</button>
             </div>
         </div>
     </div>

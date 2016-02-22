@@ -142,8 +142,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $cie = $business->ShowCieByID($project->businessID);
                     
                 //Si cie propriétaire du projet.
-                if($business->userID = $_SESSION['ID'])
+                if($business->userID == $_SESSION['ID']){
                     $projects->DeleteProject($_projectID[0]);
+                }
                         
             }
                 
@@ -154,7 +155,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //Modifier mot de passe.
         public function pass() {
             
-			$data = array();
+			$data = NULL;
                             
             //Modification du mot de passe.
             if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){

@@ -1,15 +1,14 @@
-<!--
-2016-02-08 Marc Lauzon.
-=======================
-HTML/CSS complété.
-FORMULAIRE complété.
-PHP complété. [sauf exception voir 'actions']
--->
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
 <?php if (isset($data['alert'])) { ?>
-    <div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <?= $data['message']; ?>
-    </div>
+</div>
 <?php } ?>
 <div class="section section-info">
     <div class="container">
@@ -26,100 +25,105 @@ PHP complété. [sauf exception voir 'actions']
         <a class="left carousel-control" href="#carousel-projects" role="button" data-slide="prev"><i class="icon-left fa fa-3x fa-arrow-circle-left text-success"></i></a>
         <a class="right carousel-control" href="#carousel-projects" role="button" data-slide="next"><i class="icon-right fa fa-3x fa-arrow-circle-right text-success"></i></a>
         <?php if (isset($data['projects'])) { ?>
-            <div id="carousel-projects" data-interval="false" class="carousel slide">
-                <div class="carousel-inner">
+        <div id="carousel-projects" data-interval="false" class="carousel slide">
+            <div class="carousel-inner">
                     <?php $count = 0; foreach ($data['projects'] as $project) { ?>
-                        <div class="item <?php if ($count == 0) echo('active'); ?>">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title"><?= $project->title; ?></h3>
-                                        </div>
-                                        <div class="scrollable-project">
-                                            <div class="panel-body">
-                                                <b>Description</b>
-                                                <p><?= $project->descr; ?></p>
-                                            </div>
-                                            <div class="panel-body">
-                                                <b>Matériels et logiciels prévus</b>
-                                                <p><?= $project->equip; ?></p>
-                                            </div>
-                                            <div class="panel-body">
-                                                <b>Exigences particulières</b>
-                                                <p><?= $project->extra; ?></p>
-                                            </div>
-                                            <div class="panel-body">
-                                                <b>Commentaires et informations complémentaires</b>
-                                                <p><?= $project->info; ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="item <?php if ($count == 0) echo('active'); ?>">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><?= $project->title; ?></h3>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="well">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <b>Nom de l'entreprise</b>
-                                                <p><?=$data["cie"]->name; ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <b>Numéro de téléphone</b>
-                                                <p><?=$data["cie"]->tel; ?></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>Adresse courriel</b>
-                                                <p><?=$data["cie"]->email?></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <b>Adresse de l'entreprise</b>
-                                                <p><?=$data["cie"]->address?></p>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <b>Ville</b>
-                                                <p><?=$data["cie"]->city?></p>
-                                            </div>
-                                        </div>
+                                <div class="scrollable-project">
+                                    <div class="panel-body">
+                                        <b>Description</b>
+                                        <p><?= $project->descr; ?></p>
                                     </div>
-                                    <div class="well">
-                                        <div class="row">
-                                            <div class="col-md-7">
-                                                <b>Nom du superviseur</b>
-                                                <p><?= $project->supName; ?></p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <b>Titre</b>
-                                                <p><?= $project->supTitle; ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <b>Numéro de téléphone</b>
-                                                <p><?= $project->supTel; ?></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>Adresse courriel</b>
-                                                <p><?= $project->supEmail; ?></p>
-                                            </div>
-                                        </div>
+                                    <div class="panel-body">
+                                        <b>Matériels et logiciels prévus</b>
+                                        <p><?= $project->equip; ?></p>
                                     </div>
-                                    <form role="form" class="form-inline text-center well">
-                                        <div class="form-group">
-                                            <!-- MODIFIER SELON LE STATUS -->
-                                            <a class="btn btn-primary" formaction="cie/editProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</a>
-                                            <a class="btn btn-primary" formaction="cie/delProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</a>
-                                        </div>
-                                    </form>
+                                    <div class="panel-body">
+                                        <b>Exigences particulières</b>
+                                        <p><?= $project->extra; ?></p>
+                                    </div>
+                                    <div class="panel-body">
+                                        <b>Commentaires et informations complémentaires</b>
+                                        <p><?= $project->info; ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    <?php $count++; } ?>
+                        <div class="col-md-6">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>Nom de l'entreprise</b>
+                                        <p><?=$data["cie"]->name; ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>Numéro de téléphone</b>
+                                        <p><?=$data["cie"]->tel; ?></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Adresse courriel</b>
+                                        <p><?=$data["cie"]->email?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <b>Adresse de l'entreprise</b>
+                                        <p><?=$data["cie"]->address?></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <b>Ville</b>
+                                        <p><?=$data["cie"]->city?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <b>Nom du superviseur</b>
+                                        <p><?= $project->supName; ?></p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <b>Titre</b>
+                                        <p><?= $project->supTitle; ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>Numéro de téléphone</b>
+                                        <p><?= $project->supTel; ?></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Adresse courriel</b>
+                                        <p><?= $project->supEmail; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <form role="form" class="form-inline text-center well">
+                                <div class="form-group">
+                                    <?php if($project->internID != null){ ?>
+                                    <b>Stagiaire : </b> <?php $data['interns'][$project->internID]->name; ?> <a class="btn btn-primary" formaction="/cie/review/<?php $data['interns'][$project->internID]->ID; ?>" formmethod="post"><i class="fa fa-fw fa-pencil"></i> Évaluer</a>
+                                    <?php }else if($project->status){ ?>
+                                    <p class="text-success">Le projet a été autorisé.</p>
+                                    <?php } else { ?>
+                                    <button class="btn btn-primary" name="editProject" value="<?= $_SESSION['form_token']; ?>" formaction="/cie/edit/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</button>
+                                    <button class="btn btn-primary" name="delProject" value="<?= $_SESSION['form_token']; ?>" formaction="/cie/delProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</button>
+                                    <?php } ?>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                <?php $count++; } ?>
             </div>
+        </div>
         <?php } ?>
     </div>
 </div>

@@ -159,26 +159,31 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $account->DeleteUser($_POST["userID"]);
         }
             
-		//Modifier mot de passe.
+	//Modifier mot de passe.
         public function pass() {
             
-			$data = array();
+			$data = NULL;
                             
             //Modification du mot de passe.
-            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
+            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){
+                if($_SESSION['form_timer'] + 600 > time()){
                 parent::model('accounts');
                 $model = new accounts();
                 try {
                     $model->UpdatePw($_SESSION['ID'], $_POST['password']);
-					$data['alert'] = "success";
+                    $data['alert'] = "alert-success";					
                     $data['message'] = "Le mot de passe a été changé.";
                 } catch (exception $ex) {
-					$data['alert'] = "warning";
+                    $data['alert'] = "alert-warning";
                     $data['message'] = "Le changement a échoué.";
                 }
+            } else {
+                $data['alert'] = "alert-warning";
+                $data['message'] = "La permission du formulaire a expiré.";
             }
-                
-	    parent::view("shared/header");
+        }
+            
+            parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view('advisor/pass', $data);
             parent::view('shared/footer');

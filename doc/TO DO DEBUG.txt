@@ -13,3 +13,12 @@ Autorisation projet | Erreur PDO.
 Formulaire d'entrevue.
 Gestion des usagers
 Évaluation de projet par stagiaire
+Javascript validation entre mot de passe et verification sur les pages PASS.PHP
+
+
+BUG MAJEUR
+==================
+Entreprise : Edit projet - Token change entre soumission et reaffichage.
+Entreprise : Submit projet - Token change entre soumission et reaffichage. (Ça marchait!?)
+Coordonateur : Changer MdP - Token change entre soumission et reaffichage.
+Stagiaire : Changer MdP - Token change entre soumission et reaffichage.

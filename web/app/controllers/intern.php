@@ -70,24 +70,28 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		
         //Modifier mot de passe.
         public function pass() {
-            parent::view("shared/header");
-            parent::view("intern/menu");
-			
-			$data = array();
-
+            $data = NULL;
             //Modification du mot de passe.
-            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
-                parent::model('accounts');
-                $model = new accounts();
-                try {
-                    $model->UpdatePw($_SESSION['ID'], $_POST['password']);
-					$data['alert'] = "success";
-                    $data['message'] = "Le mot de passe a été changé.";
-                } catch (exception $ex) {
-					$data['alert'] = "warning";
-                    $data['message'] = "Le changement a échoué.";
+            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){
+                if($_SESSION['form_timer'] + 600 > time()){
+                    parent::model('accounts');
+                    $model = new accounts();
+                    try {
+                        $model->UpdatePw($_SESSION['ID'], $_POST['password']);
+                        $data['alert'] = "alert-success";					
+                        $data['message'] = "Le mot de passe a été changé.";
+                    } catch (PDOexception $ex) {
+                        $data['alert'] = "alert-warning";
+                        $data['message'] = $ex;
+                    }
+                } else {
+                    $data['alert'] = "alert-warning";
+                    $data['message'] = "La permission du formulaire a expiré.";
                 }
             }
+            
+            parent::view("shared/header");
+            parent::view("intern/menu");
             parent::view('intern/pass', $data);
             parent::view('shared/footer');
         }
