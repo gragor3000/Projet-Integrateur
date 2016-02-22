@@ -5,11 +5,11 @@
 	$_SESSION['form_timer'] = time();
 ?>
 <?php if (isset($data['alert'])) { ?>
-<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+	<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<?= $data['message']; ?>
 	</div>
-	<?php } ?>
+<?php } ?>
 	<div class="section section-info">
 		<div class="container">
 			<div class="row">
@@ -111,21 +111,21 @@
 											<label for="rateProject">Évaluation du projet de stage :</label>
 											<select class="form-control" id="rateProject" name = "rating">
 												<option value = 0 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 0) ? 'selected' : ''; ?>>0 - Impossible</option>
-													<option value = 1 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 1) ? 'selected' : ''; ?>>1 - Complication</option>
-														<option value = 2 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 2) ? 'selected' : ''; ?>>2 - Difficile</option>
-															<option value = 3 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 3) ? 'selected' : ''; ?>>3 - Acceptable</option>
-																<option value = 4 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 4) ? 'selected' : ''; ?>>4 - Favorable</option>
-																	<option value = 5 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 5) ? 'selected' : ''; ?>>5 - Préférence</option>
-																	</select>
-																	<button type = "submit" class="btn btn-success" name = "id" value = "<?=$project->ID; ?>" class="btn btn-link" formaction = "/intern/list/<?=$count; ?>"><i class="fa fa-fw fa-star"></i></button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>	
-													<?php $count++; } } ?>
-												</div>    
-											</div>
+												<option value = 1 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 1) ? 'selected' : ''; ?>>1 - Complication</option>
+												<option value = 2 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 2) ? 'selected' : ''; ?>>2 - Difficile</option>
+												<option value = 3 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 3) ? 'selected' : ''; ?>>3 - Acceptable</option>
+												<option value = 4 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 4) ? 'selected' : ''; ?>>4 - Favorable</option>
+												<option value = 5 <?= (isset($data['ratings'][$project->ID]) && $data['ratings'][$project->ID]->score = 5) ? 'selected' : ''; ?>>5 - Préférence</option>
+											</select>
+											<button type = "submit" class="btn btn-success" name = "id" value = "<?=$project->ID; ?>" class="btn btn-link" formaction = "/intern/index/<?=$count; ?>"><i class="fa fa-fw fa-star"></i></button>
 										</div>
-									</div>
+									</form>
+								</div>
+							</div>
+						</div>	
+					<?php $count++; } } ?>
+				</div>    
+			</div>
+		</div>
+	</div>
 									

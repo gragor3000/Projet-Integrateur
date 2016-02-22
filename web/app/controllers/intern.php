@@ -18,11 +18,19 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Index par défaut.
-        public function index() {
+        public function index($_Rating) {
             parent::view("shared/header");
             parent::view("intern/menu");   
 
 			$data = array();
+			
+			//Si l'usager à envoyer une évaluation, l'enregistrer
+			if(!empty($_Rating)){
+				parent::model("ratings");
+				$rating = new ratings();
+				
+				$rating->RatingProject($_SESSION['ID'], $_GET['id'], $_GET['rating']);
+			}
 
             parent::model("projects");
             $model = new projects();
@@ -167,15 +175,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view('intern/log', $data);
 			parent::view('shared/footer');
         }
-		
-		//Enregistre la note que le stagiaire attribut à un stage
-		public function rate($_Parameter){
-			
-			parent::model("ratings");
-			$model = new ratings;
-			
-			$model->RatingProject($_SESSION['ID'], $_Parameter[0], $_POST['rateProject']);
-		}
     }
 } else {
     //Rediriger vers l'acceuil.
