@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php session_start(); 
-var_dump($_SESSION["form_token"]);
+//var_dump($_SESSION["form_token"]);
 ?>
 <html>
     <!-- Application. -->
@@ -8,4 +8,4 @@ var_dump($_SESSION["form_token"]);
     $app = new App(); ?>
     
 </html>
-<?php var_dump($_SESSION["form_token"]); ?>
+<?php //var_dump($_SESSION["form_token"]); ?>
