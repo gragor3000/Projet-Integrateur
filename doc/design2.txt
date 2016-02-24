@@ -1,115 +1,207 @@
 ===========================
 HOME
 ===========================
--> menu [ALL] (VIEW)
-	FORM -> home/login
-	
--> index [ALL] (VIEW/CTRL)
-	TokenLogin
-		? location(home/login)
-		: parent::view("business/create");
-		
--> login [!VISITOR] (CTRL)
-	switch($_SESSION['group'])
-		[INTERN] location(intern/index)
-		[BUSINESS] location(business/index)
-		[ADVISOR] location(advisor/index)
-		
--> logout [ALL] (CTRL)
-	clear cookie
-	session_unset();
-	location (home/index);
+[DONE] index;
+[DONE]AccountLogin;
+[DONE] AccountLogout;
+[DONE] CreateBusiness;
 	
 ===========================
 INTERN
 ===========================
--> menu [INTERN] (VIEW)
-	link[projet de stage] -> intern/index
-	link[journal de bord] -> logbook/index
-	link[évaluations] -> review/index
-	link[changer de mot de passe] -> account/pass
-	link[déconnexion] -> home/logout
-	
--> index [INTERN] (CTRL)
-	Count($projects->ShowProjectByIntern($_SESSION['id'])) > 0
-		? 	$data['project'] = $projects->ShowProjectByIntern($_SESSION['id']);
-			$data['business'] =  $cie->ShowCieByID($data['project'])
-			parent::view("project/view", $data);
-		: 	$data['projects'] = $projects->ShowProjectsByStatus(available);
-			parent::view("project/list", $data);
+VIEW :
+index;
+-
+logbook/read/internID;
+logbook/create;
+-
+interview/read/internID;
+-
+survey/read/internID;
+-
+review/read/internID/half;
+review/read/internID/final;
+-
+pass/accountID;
+
+//CTRL :
+RateProject/projectID;
+CreateLog;
+EditLog/logID;
+DeleteLog/logID;
+UpdatePass/accountID;
 		
 ===========================	
 BUSINESS
--> menu [BUSINESS] (VIEW)
-	link[projets de stage] -> project/list/businessID
-	link[soumettre un projet] -> project/index/new
-	link[formulaire d'entrevue] -> document/interview
-	link[changer les infromations] -> business/edit/businessID
-	link[changer de mot de passe] -> account/pass
--> index [!INTERN] (CTRL)
-	Count($projects->ShowProjectsByBusiness($_SESSION['id'])) > 0
-		? location(project/list/)
-		: location(project/index/) ;
--> view	[!VISITOR] (VIEW)
-	switch($_SESSION['group'])
-		[INTERN] cie->ShowCieByID($project->businessID);
-		[BUSINESS] cie->ShowCieByUser($_SESSION['id']);
-		[ADVISOR] cie->ShowCieByID($business->ID);
--> list [ADVISOR] (VIEW)
-	cie->ShowCieByStatus(available|waiting);
--> create [ALL] (CTRL)
-	account->CreateUser(...)
-	cie->CreateBusiness(...)
-	location (home/index)
--> edit [BUSINESS|ADVISOR] (VIEW)
-	[BUSINESS] (is Self) cie->ShowCieByUser(_userID);
--> save [BUSINESS|ADVISOR] (CTRL)
-	
+===========================	
+//VIEW :
+index; //project/show.
+-
+project/create;
+project/edit/projectID;
+-
+interview/businessID
+interview/create;
+interview/edit/interviewID;
+interview/read/interviewID;
+-
+survey/businessID
+survey/create;
+survey/edit/surveyID;
+survey/read/surveyID;
+-
+business/edit/businessID;
+-
+pass/accountID;
+
+//CTRL :
+CreateProject;
+UpdateProject/projectID;
+DeleteProject/projectID;
+CreateInterview;
+UpdateInterview/interviewID;
+DeleteInterview/interviewID;
+CreateSurvey;
+UpdateSurvey/surveyID;
+DeleteSurvey/surveyID;
+UpdateBusiness/businessID;
+UpdatePass/accountID;
+
+===========================	
 ADVISOR
--> menu [ADVISOR] (VIEW)
-	link[entreprises en attente] -> business/list/waiting
-	link[entreprises autorisées] -> business/list/available
-	link[projets en attente] -> project/list/waiting
-	link[projets autorisées] -> project/list/available
-	link[comptes utilisateurs] -> account/list
-	link[changer de mot de passe] -> account/index
-	link[panneau de jumelage] -> project/assign
-	link[formulaires d'évaluations]
-	
--> index [ADVISOR] (CTRL)
-	/** Affiche les entreprises en attente ou les projets en attente ou la liste des comptes. **/
-	(has waitingCie) ? waiting/list/Businesses
-	(has waitingPjt) ? waiting/list/Projects
-	else : account/list/all
-account
--> index (VIEW)
-	[!VISITOR] account->ChangePassword(...)
--> create
--> list
-	[ADVISOR]
--> change
-project
--> index [!VISITOR] :
--> view [!VISITOR] : ShowProjectByID(_projectID)
--> list [!VISITOR]
-	(is Intern && project->internID == NULL) ? project->ShowProjectsByStatus(Available)
-	(is Business) ? ShowProjectsByCie(_businessID)
-	(is Advisor)
--> create [BUSINESS|ADVISOR] :
--> edit [BUSINESS|ADVISOR] : 
--> delete
--> assign
-logbook
--> index
--> submit
--> delete
-document
--> index
--> intereview
--> review
--> midterm
--> final
--> write
-shared
--> header
--> footer
+===========================	
+[DONE] index;
+[DONE] businesses/waiting;
+[DONE] projects/waiting;
+-
+[DONE] business/businessID;
+[DONE] businesses/accepted;
+-
+[DONE] project/projectID;
+[DONE] projects/accepted;
+-
+[DONE] accounts/intern;
+[DONE] accounts/business;
+[DONE] accounts/advisor;
+-
+[DONE] assign;
+-
+[DONE] interns;
+-
+interview/interviewID;
+-
+survey/internID;
+-
+review/internID/half;
+review/internID/final;
+-
+[DONE] pass;
+
+//CTRL :
+CreateAccount;
+UpdateAccount/accountID;
+DeleteAccount/accountID;
+[DONE] UpdateBusiness/businessID;
+[DONE] DeleteBusiness/businessID;
+[DONE] AcceptBusiness/businessID;
+[DONE] RefuseBusiness/businessID;
+[DONE] UpdateProject/projectID;
+[DONE] DeleteProject/projectID;
+[DONE] AcceptProject/projectID;
+[DONE] RefuseProject/projectID;
+[DONE] AssignProject/projectID/internID;
+[DONE] UnassignProject/projectID;
+DeleteInterview/interviewID;
+UpdateSurvey/surveyID;
+DeleteSurvey/surveyID;
+UpdateReview/reviewID;
+DeleteReview/reviewID;
+
+
+
+
+++++++++++++++++++++++++++++++
+ACCOUNT
+++++++++++++++++++++++++++++++
+create;
+edit;
+[DONE] list;
+[DONE] pass;
+
+++++++++++++++++++++++++++++++
+ADVISOR
+++++++++++++++++++++++++++++++
+[DONE] menu;
+
+++++++++++++++++++++++++++++++
+BUSINESS
+++++++++++++++++++++++++++++++
+[DONE] create;
+[DONE] edit;
+[DONE] list;
+[DONE] menu;
+
+++++++++++++++++++++++++++++++
+INTERN
+++++++++++++++++++++++++++++++
+[DONE] list;
+[DONE] menu;
+
+++++++++++++++++++++++++++++++
+INTERVIEW
+++++++++++++++++++++++++++++++
+create;
+read;
+list;
+edit;
+
+++++++++++++++++++++++++++++++
+LOGBOOK
+++++++++++++++++++++++++++++++
+create;
+read;
+edit;
+
+++++++++++++++++++++++++++++++
+PROJECT
+++++++++++++++++++++++++++++++
+create;
+detail;
+[DONE] edit;
+[DONE] list;
+show;
+
+++++++++++++++++++++++++++++++
+REVIEW
+++++++++++++++++++++++++++++++
+create;
+read;
+list;
+edit;
+
+++++++++++++++++++++++++++++++
+SHARED
+++++++++++++++++++++++++++++++
+[DONE] alert;
+[DONE] footer;
+[DONE] head;
+[DONE] header;
+
+++++++++++++++++++++++++++++++
+SURVEY
+++++++++++++++++++++++++++++++
+create;
+read;
+list;
+edit;
+
+++++++++++++++++++++++++++++++
+VISITOR
+++++++++++++++++++++++++++++++
+[DONE] menu;
+
+##############################
+INSTALL
+##############################
+[DONE] install.html
+[DONE] install.php
