@@ -98,10 +98,9 @@
                                                     </button>
                                                 </td>
                                                 <td class="text-center" name="userID" value="<?= $user->ID; ?>">
-                                                    <button type="submit" class="btn btn-link" name="userID"
-                                                            value="<?= $user->ID; ?>"
-                                                            formaction="/advisor/DeleteUser/"
-                                                            formmethod="post">
+                                                    <button type="button" id="btnModIntern<?= $user->ID; ?>" class="btn btn-link"
+                                                            name="modifyUser" value="<?= $_SESSION['form_token']; ?>"
+                                                            onclick="deleteUser(<?= $user->ID ?>) ">
                                                         <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
                                                     </button>
                                                 </td>
@@ -256,6 +255,35 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="myDelModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Supprimer utilisateur</h4>
+            </div>
+            <form action="/advisor/DeleteUser" method="post">
+                <div class="modal-body">
+                    <input hidden id="deleteID" name="userID">
+                    <label>Nom:&emsp;</label><span id="deleteName"></span>
+                    <br/>
+                    <label>Nom d'utilisateur:&emsp;</label><span id="deleteUser"></span>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" name="modify"
+                           formaction="/advisor/DeleteUser" formmethod="post" value="Confimer"/>
+                    <button type="button" class="btn btn-danger" name="modify" data-dismiss="modal">Annuler</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
         $("#myBtn").click(function () {
@@ -283,6 +311,25 @@
 
         $("#myModal").modal();
     }
+
+    function deleteUser(ID)
+    {
+        var tdName = document.getElementById("name" + ID.toString());
+        var tdUser = document.getElementById("user" + ID.toString());
+
+        var name = tdName.innerHTML;
+        var user = tdUser.innerHTML;
+
+        document.getElementById("deleteID").value = ID;
+        var spanName = document.getElementById("deleteName");
+        var spanUser = document.getElementById("deleteUser");
+
+        spanName.innerHTML = name;
+        spanUser.innerHTML = user;
+
+        $("#myDelModal").modal();
+    }
+
 </script>
 
 </body>
