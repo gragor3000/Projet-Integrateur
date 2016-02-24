@@ -231,23 +231,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("accounts");
             $model2 = new accounts();
 
-            var_dump($_POST);
-
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
 
-            $data['readOnly'] = (Count($_internID) > 0) ? $model1->ReadOnlyCie($_internID, 'interview') : false;
+            $data['readOnly'] = (Count($_internID) > 0) ? $model1->ReadOnlyCie($_internID[0], 'interview') : false;
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
 
-                var_dump($data['readOnly']);
-
-                echo("doit lire");/////////////////////////////////////////////3
                 //Enregistrer l'entrevue.
                 if (isset($_POST['sendInterview']) /*&& $_POST['sendInterview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) {
-
-                    echo("peut envoyé");////////////////////////////////////3
+					echo("Après le send");
                     try {
-                        $model->SaveCie($_SESSION['ID'], $_POST['intern'], $_POST['docName'], $_POST['intTimestamp'], $_POST['intDept'], $_POST['intPosition'], $_POST['communication'], $_POST['enthusiams'], $_POST['selfesteem'], $_POST['appearance'], $_POST['answers'], $_POST['comments'], $_POST['interviewer']);
+                        $model1->SaveCie($_SESSION['ID'], 'interview', $_POST);
                         $data['alert'] = "alert-success";
                         $data['message'] = "L'entrevue a été sauvegardée avec succès.";
                     } catch (exception $ex) {
@@ -259,9 +253,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 }
             } else {   //si le formulaire existe
 
-                echo("existe");///////////////////////////////////////////3
-
-                $data['interview'] = $model1->LoadCie($_internID, 'interview');
+                $data['interview'] = $model1->LoadCie($_internID[0], 'interview');
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['interview']->cieId == $_SESSION['ID']) {

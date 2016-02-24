@@ -35,7 +35,7 @@ COMPLÉTÉ... j'espère.
 </div>
 <div class="section">
     <div class="container">
-        <form role="form">
+        <form role="form" METHOD="POST">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">
@@ -145,7 +145,7 @@ COMPLÉTÉ... j'espère.
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label" for="intInterviewer">Responsable de l'entrevue</label>
-                            <input class="form-control" id="intInterviewer" name="interviewer placeholder="Prénom Nom" type="text" value="<?= (isset($data['interview'])) ?  $data['interview']->interviewer : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
+                            <input class="form-control" id="intInterviewer" name="interviewer" placeholder="Prénom Nom" type="text" value="<?= (isset($data['interview'])) ?  $data['interview']->interviewer : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
                         </div>
                     </div>
                     <?php if (!$data['readOnly']){ ?>
