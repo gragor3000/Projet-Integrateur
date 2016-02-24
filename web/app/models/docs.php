@@ -131,12 +131,18 @@
 				
 				//Pour tout les éléments contenu dans le fichier XML, sous la balise passé en paramètre, l'ajouter dans le tableau $obj
 				foreach($_Simple->children() as $Enfant){
-					$obj[$Enfant->getName()] = (string)$Enfant;
+					if($Enfant->getName() == $_BaliseName){
+						foreach($Enfant->children() as $Info){
+							$obj[$Info->getName()] = (string)$Info;
+						}
+					}
 				}
 			}
 			
+			$Result = new obj($obj);
+			
 			//Transforme les journeaux en objet utilisable et les retourne
-			return $obj;
+			return $Result;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

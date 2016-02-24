@@ -136,7 +136,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				}
 				case "interview": //Entrevue avec l'employeur
 				{
-					$data = $_model->LoadCie($_SESSION['ID'],"interview");
+					
+					$data['interview'] = $_model->LoadCie($_SESSION['ID'],'interview');
 					
 					parent::view("intern/interview", $data);
 					break;

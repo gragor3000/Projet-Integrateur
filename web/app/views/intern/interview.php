@@ -5,7 +5,7 @@
 					<div class="row">
 					<div class="form-group col-md-6">
 						<label class="control-label" for="intTimestamp">Date et heure d'arrivé</label>
-						<p style="margin-top:7px;"><?= (isset($data['interview'])) ? $data['interview']->date : ''; ?></p>
+						<p style="margin-top:7px;"><?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?></p>
 					</div>
 				</div>
 				<div class="row">
