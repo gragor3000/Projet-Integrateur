@@ -23,10 +23,11 @@
 </div>
     
 <div class="section">
-    <h3 class="panel-title">Liste des stagiaires</h3>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 ">
+            <div class="col-md-9 col-md-offset-1 ">
+					<h3 class="panel-title">Liste des stagiaires</h3>
+					<br />
                 <div class="well">
                     <form>
                         <table class="table table-hover">
@@ -47,8 +48,8 @@
                                     if (isset($data['interns'])) {
                                         foreach ($data['interns'] as $intern) { ?>
                                 <tr id="intern<?= $intern->id ?>">
-                                    <td><?= $user->name; ?></td>
-                                    <td><?= $user->user; ?></td>
+                                    <td><?= $intern->name; ?></td>
+                                    <td><?= $intern->user; ?></td>
                                         
                                     <td>
                                         <button class="btn btn-link" formaction="advisor/review/logbook" formmethod="post">Visualiser</button>

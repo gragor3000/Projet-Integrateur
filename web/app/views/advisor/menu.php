@@ -32,7 +32,7 @@
                             <a href="/advisor/projects"><i class="fa fa-fw fa-briefcase"></i> Projets autorisés</a>
                         </li>
                         <li>
-                            <a href="/advisor/ShowUsers"><i class="fa fa-fw fa-book"></i> Comptes utilisateurs</a>
+                            <a href="/advisor/showUsers"><i class="fa fa-fw fa-book"></i> Comptes utilisateurs</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -43,7 +43,7 @@
                             <a href="/advisor/assign"><i class="fa fa-fw fa-hand-o-right"></i> Panneau de jumelage</a>
                         </li>
                         <li>
-                            <a href="/advisor/review"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>
+                            <a href="/advisor/ShowInterns"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>
                         </li>
 						<li>
                             <a href="/advisor/evalAdv"><i class="fa fa-fw fa-comment"></i> Évaluer un stagiaire</a>

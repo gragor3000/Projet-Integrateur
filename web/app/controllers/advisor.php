@@ -133,8 +133,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             $account = new accounts();
             $account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);
-
-            $this->ShowUsers();
         }
             
         //affiche tous les comptes
@@ -148,19 +146,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			//Affiche tout les éléments de la page
 			parent::view("shared/header");
             parent::view("advisor/menu");
-            parent::view("advisor/users", $data);
+            parent::view("advisor/account", $data);
             parent::view("shared/footer");
         }
             
         //supprime un compte
         public function DeleteUser()
-        {
-            if (isset($_POST["userID"]) /*&& $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()*/)
+        {         
+            if (isset($_POST['deleteUser']) && $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) 
 			{
 				parent::model("accounts");
                 
                 $account = new accounts();
-
                 try 
 				{
                     $account->DeleteUser($_POST["userID"]);		
@@ -170,8 +167,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					$data['alert'] = "alert-warning";
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
-            }
-            $this->ShowUsers();
+            }			
         }
             
 	//Modifier mot de passe.
@@ -207,12 +203,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //update les infos d'un compte
         public function UpdateUser()
         {
+            parent::view("shared/header");
+            parent::view("advisor/menu");
+                
 			//Modification du mot de passe.
-            if (isset($_POST["userID"]) && isset($_POST["name"]) && isset($_POST["user"]) /*&& $_POST['updateUser'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 300 > time()) {
+            if (isset($_POST['updateUser']) && $_POST['updateUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) {
                 parent::model('accounts');
-                $account = new accounts();
+                $model = new accounts();
                 try {
-                    $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"]);
+                    $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"], $_POST["rank"]);
 					$data['alert'] = "alert-success";
                     $data['message'] = "Les nouvelles informations ont été enregistrées.";
                 } catch (exception $ex) {
@@ -220,8 +219,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
             }
-
-            $this->ShowUsers();
+            parent::view('advisor/updateAccount', $data);
+            parent::view('shared/footer');			
         }
             
         //update le mot de passe d'un compte
@@ -303,14 +302,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             $interns = new interns();
             $data["interns"] = $interns->ShowInterns();
-
-            parent::view("shared/header");
+                
+			parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view("advisor/viewInterns", $data);
             parent::view("shared/footer");
         }
-
-
+            
         //affiche les évaluations d'un étudiant
         public function review($_review)
         {

@@ -96,7 +96,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev11">Note</label>
-							<select id = "advRev11" class="form-control" name = "advRev11" required>
+							<select id = "advRev11" class="form-control" name = "advRev11" required >
 		                     <option value = 0 selected >0</option>
 		                     <option value = 1 >1</option>
 		                     <option value = 2 >2</option>
@@ -146,7 +146,7 @@
 											<p>L&apos;&eacute;tudiant(e) s&apos;adapte aux technologies en place et propose les choix des technologies &agrave; utiliser.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
@@ -171,7 +171,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev21">Note</label>
-							<select id = "advRev21" class="form-control" name = "advRev21" required>
+							<select id = "advRev21" class="form-control" name = "advRev21" required >
 		                     <option value = 0 selected>0</option>
 		                     <option value = 1 >1</option>
 		                     <option value = 2 >2</option>
@@ -240,7 +240,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev22">Note</label>
-							<select id = "advRev22" class="form-control" name = "advRev22" required>
+							<select id = "advRev22" class="form-control" name = "advRev22" required >
 		                     <option value = 0 selected>0</option>
 		                     <option value = 1>1</option>
 		                     <option value = 2 >2</option>
@@ -269,7 +269,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev2">Commentaires</label>
-							<textarea class="form-control" id="advRev2" name="advRev2" required></textarea>
+							<textarea class="form-control" id="advRev2" name="advRev2" required ></textarea>
 						</div>
 					</div>		
 					
@@ -301,7 +301,7 @@
 											<p>L&apos;&eacute;tudiant(e) fait preuve d&apos;une autonomie dans la r&eacute;alisation de ses activit&eacute;s et est r&eacute;aliste dans la planification de ses t&acirc;ches.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
@@ -370,7 +370,7 @@
 											<p>L&apos;&eacute;tudiant(e) s&apos;adapte &agrave; des situations de travail vari&eacute;es et communique de fa&ccedil;on ad&eacute;quate ses solutions.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
@@ -417,7 +417,13 @@
 							<label class="control-label" for="advRev3">Commentaires</label>
 							<textarea class="form-control" id="advRev3" name="advRev3" required ></textarea>
 						</div>
-					</div>						
+					</div>	
+					
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button name="evalInter" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/advisor/evalAdv/">Soumettre</button>
+                        </div>
+                    </div>	
 				</div>
 			</div>
 	    </form>
