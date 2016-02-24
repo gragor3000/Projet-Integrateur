@@ -96,7 +96,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev11">Note</label>
-							<select id = "advRev11" class="form-control" name = "advRev11" required>
+							<select id = "advRev11" class="form-control col-md-2" name = "advRev11" required>
 		                     <option value = 0 selected >0</option>
 		                     <option value = 1 >1</option>
 		                     <option value = 2 >2</option>
@@ -146,7 +146,7 @@
 											<p>L&apos;&eacute;tudiant(e) s&apos;adapte aux technologies en place et propose les choix des technologies &agrave; utiliser.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
@@ -301,7 +301,7 @@
 											<p>L&apos;&eacute;tudiant(e) fait preuve d&apos;une autonomie dans la r&eacute;alisation de ses activit&eacute;s et est r&eacute;aliste dans la planification de ses t&acirc;ches.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
@@ -370,7 +370,7 @@
 											<p>L&apos;&eacute;tudiant(e) s&apos;adapte &agrave; des situations de travail vari&eacute;es et communique de fa&ccedil;on ad&eacute;quate ses solutions.</p>
 										</td>
 										<td>
-                                            <p>9-10</p>
+                                            <p>7-8</p>
 										</td>
 									</tr>
 									<tr>
