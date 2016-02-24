@@ -255,7 +255,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="myDelModal" role="dialog">
     <div class="modal-dialog">
 
@@ -282,7 +281,6 @@
 
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {
