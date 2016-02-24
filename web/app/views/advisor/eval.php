@@ -96,7 +96,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev11">Note</label>
-							<select id = "advRev11" class="form-control col-md-2" name = "advRev11" required>
+							<select id = "advRev11" class="form-control" name = "advRev11" required >
 		                     <option value = 0 selected >0</option>
 		                     <option value = 1 >1</option>
 		                     <option value = 2 >2</option>
@@ -171,7 +171,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev21">Note</label>
-							<select id = "advRev21" class="form-control" name = "advRev21" required>
+							<select id = "advRev21" class="form-control" name = "advRev21" required >
 		                     <option value = 0 selected>0</option>
 		                     <option value = 1 >1</option>
 		                     <option value = 2 >2</option>
@@ -240,7 +240,7 @@
 							</table>
 							
 							<label class="control-label" for="advRev22">Note</label>
-							<select id = "advRev22" class="form-control" name = "advRev22" required>
+							<select id = "advRev22" class="form-control" name = "advRev22" required >
 		                     <option value = 0 selected>0</option>
 		                     <option value = 1>1</option>
 		                     <option value = 2 >2</option>
@@ -269,7 +269,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev2">Commentaires</label>
-							<textarea class="form-control" id="advRev2" name="advRev2" required></textarea>
+							<textarea class="form-control" id="advRev2" name="advRev2" required ></textarea>
 						</div>
 					</div>		
 					
