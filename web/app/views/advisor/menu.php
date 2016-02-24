@@ -32,7 +32,7 @@
                             <a href="/advisor/projects"><i class="fa fa-fw fa-briefcase"></i> Projets autorisés</a>
                         </li>
                         <li>
-                            <a href="/advisor/users"><i class="fa fa-fw fa-book"></i> Comptes utilisateurs</a>
+                            <a href="/advisor/ShowUsers"><i class="fa fa-fw fa-book"></i> Comptes utilisateurs</a>
                         </li>
                         <li class="divider"></li>
                         <li>
