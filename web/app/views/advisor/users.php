@@ -34,18 +34,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (isset($data['users'])) {
-                                    foreach ($data['users'] as $user) {
-                                        if ($user->Role == 2) {
+                                <?php if (isset($data["users"])) {
+                                    foreach ($data["users"] as $user) {
+                                        if ($user->rank == 2) {
                                             ?>
-                                            <tr>
+                                            <tr id="<?= $user->ID ?>">
                                                 <td id="name<?= $user->ID; ?>"><?= $user->name; ?></td>
                                                 <td id="user<?= $user->ID; ?>"><?= $user->user; ?></td>
                                                 <td class="text-center">
                                                     <!-- TODO:// changer les appels pour modifier et supprimer -->
-                                                    <button id="btnModIntern<?= $user->ID; ?>" class="btn btn-link"
+                                                    <button type="button" id="btnModIntern<?= $user->ID; ?>" class="btn btn-link"
                                                             name="modifyUser" value="<?= $_SESSION['form_token']; ?>"
-                                                            onclick="modify(<?= $user->ID ?>)">
+                                                            onclick="modify(<?= $user->ID ?>) ">
                                                         <i class="-circle fa fa-fw fa-lg fa-pencil-square text-success"></i>
                                                     </button>
                                                 </td>
@@ -90,15 +90,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (isset($data['users'])) {
-                                    foreach ($data['users'] as $user) {
-                                        if ($user->Role == 1) {
+                                <?php if (isset($data["users"])) {
+                                    foreach ($data["users"] as $user) {
+                                        if ($user->rank == 1) {
                                             ?>
-                                            <tr>
-                                                <td><?= $user->name; ?></td>
-                                                <td><?= $user->user; ?></td>
+                                            <tr id="<?= $user->ID ?>">
+                                                <td id="name<?= $user->ID ?>"><?= $user->name; ?></td>
+                                                <td id="user<?= $user->ID ?>"><?= $user->user; ?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-link" name="denyProject"
+                                                    <button type="button" class="btn btn-link" name="denyProject"
                                                             value="<?= $_SESSION['form_token']; ?>"
                                                             onclick="modify(<?= $user->ID ?>)">
                                                         <i class="-circle fa fa-fw fa-lg fa-pencil-square text-success"></i>
@@ -145,15 +145,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (isset($data['users'])) {
-                                    foreach ($data['users'] as $user) {
-                                        if ($user->Role == 0) {
+                                <?php if (isset($data["users"])) {
+                                    foreach ($data["users"] as $user) {
+                                        if ($user->rank == 0) {
                                             ?>
-                                            <tr>
-                                                <td><?= $user->name; ?></td>
-                                                <td><?= $user->user; ?></td>
+                                            <tr id="<?= $user->ID ?>">
+                                                <td id="name<?= $user->ID ?>"><?= $user->name; ?></td>
+                                                <td id="user<?= $user->ID ?>"><?= $user->user; ?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-link" name="denyProject"
+                                                    <button type="button" class="btn btn-link" name="denyProject"
                                                             value="<?= $_SESSION['form_token']; ?>"
                                                             onclick="modify(<?= $user->ID ?>)">
                                                         <i class="-circle fa fa-fw fa-lg fa-pencil-square text-success"></i>
@@ -181,10 +181,6 @@
     </div>
 </div>
 
-<!-- boutons pour tester le modal -->
-<button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
-<button type="button" class="btn btn-info btn-lg" id="myBtn" onclick="modify(1)">Open Modal</button>
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -194,16 +190,16 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Modifier utilisateur</h4>
             </div>
-            <form>
+            <form action="/advisor/UpdateUser" method="post">
                 <div class="modal-body">
-                    <input hidden id="modifyID" name="ID">
+                    <input hidden id="modifyID" name="userID">
                     <label>Nom:</label><input id="modifyName" name="name">
                     <label>Nom d'utilisateur:</label><input id="modifyUser" name="user">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" name="modify" data-dismiss="modal"
-                            formaction="UpdateUser/&lt;" formmethod="post">Modifier
-                    </button>
+                    <input type="submit" class="btn btn-primary" name="modify"
+                            formaction="/advisor/UpdateUser" formmethod="post" value="Modifier"/>
+
                     <button type="button" class="btn btn-danger" name="modify" data-dismiss="modal">Annuler</button>
                 </div>
             </form>
@@ -215,25 +211,27 @@
 <script>
     $(document).ready(function () {
         $("#myBtn").click(function () {
-            $("#myModal").modal();
+            $("#myModal").modal("show");
         });
     });
 
     function modify(ID) {
-        var txtName = document.getElementById("name" + ID.toString());
-        var txtUser = document.getElementById("user" + ID.toString());
+        var tdName = document.getElementById("name" + ID.toString());
+        var tdUser = document.getElementById("user" + ID.toString());
 
         var name = tdName.innerHTML;
-        var user = tdName.innerHTML;
+        var user = tdUser.innerHTML;
 
         var txtModID = document.getElementById("modifyID");
-        txtModID.setAttribute("name", ID.toString());
+        txtModID.value = ID;
 
         var txtModName = document.getElementById("modifyName");
         txtModName.setAttribute("placeholder", name);
+        txtModName.value = name;
 
         var txtModUser = document.getElementById("modifyUser");
         txtModUser.setAttribute("placeholder", user);
+        txtModUser.value = user;
 
         $("#myModal").modal();
     }
