@@ -133,6 +133,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             $account = new accounts();
             $account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);
+
+            $this->ShowUsers();
         }
             
         //affiche tous les comptes

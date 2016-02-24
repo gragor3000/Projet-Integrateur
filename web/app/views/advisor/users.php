@@ -15,6 +15,54 @@
     </div>
 </div>
 <div class="section">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 ">
+                    <h3 class="panel-title">Création de comptes</h3>
+                    <br/>
+                    <div class="well">
+                        <form role="form">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label" for="userName">Nom</label>
+                                    <input class="form-control" id="userName" name="name" placeholder="Sam Baker"
+                                           type="text" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="userUser">Nom d'utilisateur</label>
+                                    <input class="form-control" id="userUser" name="user" placeholder="sBaker" type="text"
+                                           required/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="userPass">Mot de passe</label>
+                                    <input class="form-control" id="userPass" name="pw"
+                                           type="password" placeholder="******" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="userRank">Rang</label>
+                                    <select class="form-control" id="userRank" name="rank">
+                                        <option value=2>Stagiaire</option>
+                                        <option value=0>Coordonnateur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" name="createUser" value="<?= $_SESSION['form_token']; ?>"
+                                    class="btn btn-block btn-primary" formaction="/advisor/createUser" formmethod="post">
+                                Ajouter
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br/>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
