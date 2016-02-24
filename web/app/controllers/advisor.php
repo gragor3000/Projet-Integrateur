@@ -152,12 +152,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             
         //supprime un compte
         public function DeleteUser()
-        {         
-            if (isset($_POST['deleteUser']) && $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()) 
+        {
+            if (isset($_POST["userID"]) /*&& $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()*/)
 			{
 				parent::model("accounts");
                 
                 $account = new accounts();
+
                 try 
 				{
                     $account->DeleteUser($_POST["userID"]);		
@@ -167,7 +168,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					$data['alert'] = "alert-warning";
                     $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
                 }
-            }			
+            }
+            $this->ShowUsers();
         }
             
 	//Modifier mot de passe.

@@ -23,7 +23,7 @@
                         <h3 class="panel-title">Liste des étudiants</h3>
                     </div>
                     <div class="panel-body">
-                        <form>
+                        <form action="/advisor/DeleteUser/" method="post">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -38,7 +38,7 @@
                                     foreach ($data["users"] as $user) {
                                         if ($user->rank == 2) {
                                             ?>
-                                            <tr id="<?= $user->ID ?>">
+                                            <tr id="<?= $user->ID; ?>"">
                                                 <td id="name<?= $user->ID; ?>"><?= $user->name; ?></td>
                                                 <td id="user<?= $user->ID; ?>"><?= $user->user; ?></td>
                                                 <td class="text-center">
@@ -49,10 +49,10 @@
                                                         <i class="-circle fa fa-fw fa-lg fa-pencil-square text-success"></i>
                                                     </button>
                                                 </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-link" name="deleteUser"
-                                                            value="<?= $_SESSION['form_token']; ?>"
-                                                            formaction="DeleteUser/&lt;?= $user-&gt;ID ?&gt;"
+                                                <td class="text-center" name="userID" value="<?= $user->ID; ?>">
+                                                    <button type="submit" class="btn btn-link" name="userID"
+                                                            value="<?= $user->ID; ?>"
+                                                            formaction="/advisor/DeleteUser/"
                                                             formmethod="post">
                                                         <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
                                                     </button>
