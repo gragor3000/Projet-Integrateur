@@ -47,8 +47,8 @@
                                     if (isset($data['interns'])) {
                                         foreach ($data['interns'] as $intern) { ?>
                                 <tr id="intern<?= $intern->id ?>">
-                                    <td><?= $user->name; ?></td>
-                                    <td><?= $user->user; ?></td>
+                                    <td><?= $intern->name; ?></td>
+                                    <td><?= $intern->user; ?></td>
                                         
                                     <td>
                                         <button class="btn btn-link" formaction="advisor/review/logbook" formmethod="post">Visualiser</button>

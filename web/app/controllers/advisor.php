@@ -303,7 +303,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $interns = new interns();
             $data["interns"] = $interns->ShowInterns();
                 
-            parent::view("advisor/interns", $data);
+			parent::view("shared/header");
+            parent::view("advisor/menu");
+            parent::view("advisor/viewInterns", $data);
             parent::view("shared/footer");
         }
             

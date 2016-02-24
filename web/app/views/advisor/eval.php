@@ -417,7 +417,13 @@
 							<label class="control-label" for="advRev3">Commentaires</label>
 							<textarea class="form-control" id="advRev3" name="advRev3" required ></textarea>
 						</div>
-					</div>						
+					</div>	
+					
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button name="evalInter" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/advisor/evalAdv/">Soumettre</button>
+                        </div>
+                    </div>	
 				</div>
 			</div>
 	    </form>
