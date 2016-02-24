@@ -53,17 +53,18 @@ class accounts extends models {
     }
 
     //Mise à jour des information d'un compte.
-    public function UpdateUser($_id, $_name, $_user, $_rank) {
+    public function UpdateUser($_id, $_name, $_user) {
         parent::DBExecute("UPDATE users SET 
 							name = '" . addslashes($_name) . "', 
-							user ='" . addslashes($_user) . "',
-							rank =" . $_rank . "
+							user ='" . addslashes($_user) . "'
 							WHERE ID =" . $_id);
     }
 
     //Retourne tous les comptes.
     public function ShowAllUsers() {
         $result = parent::DBSearch("SELECT ID, name, user, rank FROM users");
+
+        $obj = null;
 
         //Générer un tableau d'objet.
         foreach ($result as $user)
