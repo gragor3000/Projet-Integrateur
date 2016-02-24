@@ -231,15 +231,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("accounts");
             $model2 = new accounts();
 
+            var_dump($_POST);
+
             //Vérifié l'existence d'une entrevue entre l'entreprise et le stagiaire.
 
             $data['readOnly'] = (Count($_internID) > 0) ? $model1->ReadOnlyCie($_internID[0], 'interview') : false;
 
             if (!$data['readOnly']) {   //Si le formulaire n'existe pas
 
+                var_dump($data['readOnly']);
+
                 //Enregistrer l'entrevue.
                 if (isset($_POST['sendInterview']) /*&& $_POST['sendInterview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) {
-					echo("Après le send");
                     try {
                         $model1->SaveCie($_SESSION['ID'], 'interview', $_POST);
                         $data['alert'] = "alert-success";

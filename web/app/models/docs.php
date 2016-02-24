@@ -164,8 +164,9 @@
 		}
 		
 		
-		//Fonction permettant de sauvegarde un document du superviseur
-		public function SaveAdvisor($_IDIntern, $_BaliseName, $_Data){
+		//Ajoute des élément au rapport d'un étudiant.
+		public function SaveAdvisor($_IDEmployeur, $_BaliseName, $_Entry)
+		{
 			
 			//Crée le domDocument qui contiendra les informations du fichier XML
 			$_Xml = new DomDocument("1.0", "ISO-8859-15");
@@ -173,43 +174,64 @@
 			$_Xml->appendChild($_Root);
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
-					$_Report = $_Root->createElement($Enfant->getName(),$Enfant);
+					
+					$_Report = $_Xml->createElement($Enfant);
+					
+					//Pour tout ce que contienne les éléments
+					foreach($Enfant->children() as $Contenu){
+						$_Content = $_Xml->createElement($Contenu->getName(), $Contenu);
+						$_Report->appendChild($_Content);
+					}
 					$_Root->appendChild($_Report);
 				}
 			}
-			
-			//Ajoute le nouveau raport dans le fichier					
-			$_Report = $_Root->createElement($_BaliseName, $_Data);
+				
+			//Ajoute le nouveau raport au fichier xml et le sauvegarde OK
+			$_Report = $_Xml->createElement($_BaliseName);
+			$_Content = $_Xml->createElement("Employeur", $_IDEmployeur);
+			$_Report->appendChild($_Content);
+			current($_Entry);
+			for($iTour = 0; $iTour < count($_Entry)-1; $iTour++){
+				$_Content = $_Xml->createElement(key($_Entry), $_Entry[key($_Entry)]);
+				$_Report->appendChild($_Content);
+				next($_Entry);
+			}			
 			$_Root->appendChild($_Report);
 			
-			//Enregistre le fichier
-			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml');
+			//Enregistre le fichier fichier.
+			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml');
 		}
 		
 		
-		/*À faire*/
-		//Fonction permettant de charger un document du superviseur
-		public function LoadAdvisor($_IDIntern, $_BaliseName){
-			
-			$_ArraysResult = Array();		//Contient les informations contenue dans le fichier XML
+		//Charge les rapports d'un étudiant particulier
+		public function LoadCie($_IDIntern, $_BaliseName)
+		{		
+			//Déclaration du tableau dans lequelle sera stoqué tous les rapports
+			$obj = array();
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);				
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml',0,true);
 				
-				//Recupère toute les informations
-				foreach($_Xml->children() as $_Element){
-								
-					$_ArraysResult[$_Element->getName()] = (string) $_Element;
+				//Pour tout les éléments contenu dans le fichier XML, sous la balise passé en paramètre, l'ajouter dans le tableau $obj
+				foreach($_Simple->children() as $Enfant){
+					if($Enfant->getName() == $_BaliseName){
+						foreach($Enfant->children() as $Info){
+							$obj[$Info->getName()] = (string)$Info;
+						}
+					}
 				}
 			}
 			
-			return ($_ArraysResult);
+			$Result = new obj($obj);
+			
+			//Transforme les journeaux en objet utilisable et les retourne
+			return $Result;
 		}
 	}
 ?>
