@@ -12,7 +12,7 @@ class ratings extends models {
         $result = parent::DBSearch("SELECT score, projectID, internID FROM ratings");
         return $result;
     }
-	
+    	
     //Permet de notez un stage
     public function RatingProject($_internID, $_projectID, $_value){
 		
@@ -29,13 +29,13 @@ class ratings extends models {
 								SET
 								score = " . $_value . "
 								WHERE
-								internID = " . $_internID . ",
+								internID = " . $_internID . " AND
 								projectID = " . $_projectID . ";");
 		}
     }
     
     //retourne la note mit par un étudiant pour un stage particulier
     public function FindRateByID($_internID, $_projectID){
-		return parent::DBQuery("SELECT * FROM ratings WHERE internID=" . $_internID . " and projectID=".$_projectID);
+		return parent::DBQuery("SELECT * FROM ratings WHERE internID=" . $_internID . " AND projectID=".$_projectID);
     }
 }

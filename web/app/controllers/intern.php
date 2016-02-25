@@ -22,15 +22,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/header");
             parent::view("intern/menu");   
 
-			$data = array();
-			
-			//Si l'usager à envoyer une évaluation, l'enregistrer
-			if(!empty($_Rating)){
-				parent::model("ratings");
-				$rating = new ratings();
-				
-				$rating->RatingProject($_SESSION['ID'], $_GET['id'], $_GET['rating']);
-			}
+            $data = array();
+
+            //Si l'usager à envoyer une évaluation, l'enregistrer
+            if(isset($_POST['id'])){
+                    parent::model("ratings");
+                    $rating = new ratings();
+
+                    $rating->RatingProject($_SESSION['ID'], $_POST['id'], $_POST['rating']);
+            }
 
             parent::model("projects");
             $model = new projects();
@@ -42,15 +42,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $data['projects'] = $model->ShowProjectByStatus(1);
 				
                 parent::model("business");
-				$model = new business;
-				parent::model("ratings");
-				$rating = new ratings;
+                $model = new business;
+                parent::model("ratings");
+                $rating = new ratings;
 
-				foreach ($data['projects'] as $project) {
-					//Obtenir les informations de l'entreprise.
-					$data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
-					$data['ratings'][$project->businessID] = $rating->FindRateByID($_SESSION['ID'],$project->businessID);
-				}
+                foreach ($data['projects'] as $project) {
+                        //Obtenir les informations de l'entreprise.
+                        $data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
+                        //Obtenir le rating.
+                        $data['ratings'][$project->projectID] = $rating->FindRateByID($_SESSION['ID'],$project->ID);
+                }
+                
+                var_dump($data['ratings']);
 
                 parent::view("intern/list", $data);
             } else {
@@ -58,8 +61,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 $model = new business;
                 //Obtenir les informations de l'entreprise.
                 $data['cie'][$data['project']->ID] = $model->ShowCieByID($data['project']->businessID);
-				
-				var_dump($data);
 
                 parent::view("intern/index", $data);
             }
@@ -67,14 +68,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
 
-		 //Voir le menu des évaluations d'un stagiaire
-		public function info()
-		{
-		   parent::view("shared/header");
-		   parent::view("intern/menu");
-		   parent::view("intern/info");
-		   parent::view('shared/footer');		
-		}
+        //Voir le menu des évaluations d'un stagiaire
+       public function info()
+       {
+          parent::view("shared/header");
+          parent::view("intern/menu");
+          parent::view("intern/info");
+          parent::view('shared/footer');		
+       }
 		
         //Modifier mot de passe.
         public function pass() {
