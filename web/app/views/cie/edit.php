@@ -47,7 +47,7 @@ PHP complété.
 							</div>
 							<div id="colDesc" class="panel-collapse collapse in">
 								<div class="panel-body">
-									<textarea class="form-control" id="desc" name="desc" required><?= $data['project']->descr; ?></textarea>
+									<textarea class="form-control" id="desc" name="desc" required ><?= $data['project']->descr; ?></textarea>
 								</div>
 							</div>
 						</div>

@@ -77,7 +77,7 @@ class Models {
     }
 
     //Requête avec le retour d'une ligne unique.
-    protected function DBExecute($Command) {
+    protected function DBExecute($Command) {	
         //Connexion à la BD.
         $pdo = $this->DBConnect();
 

@@ -62,18 +62,16 @@
 		
 		//Fonction qui vérifie que le supervisseur peut modifier une section precise
 		public function ReadOnlyCie($_IDIntern, $_BaliseName){
-			
 			//Si le fichier existe vérifier que la section n'est pas déjà rempli
 			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml')){
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
-				return !($_Simple->children()->getName($_BaliseName) == $_BaliseName);
+				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
 			}else{
-				return true;
+				return false;
 			}	
 		}
-		
 		
 		//Ajoute des élément au rapport d'un étudiant.
 		public function SaveCie($_IDEmployeur, $_BaliseName, $_Entry)
@@ -153,13 +151,16 @@
 		public function ReadOnlyAdvisor($_IDIntern, $_BaliseName){
 			
 			//Si le fichier existe vérifier que la section n'est pas déjà rempli
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml'))
+			{
 				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
-				return !($_Simple->children()->getName($_BaliseName) == $_BaliseName);
-			}else{
-				return true;
+				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
+			}
+			else
+			{
+				return false;
 			}	
 		}
 		
@@ -209,14 +210,14 @@
 		
 		
 		//Charge les rapports d'un étudiant particulier
-		public function LoadCie($_IDIntern, $_BaliseName)
+		public function LoadAdvisor($_IDIntern, $_BaliseName)
 		{		
 			//Déclaration du tableau dans lequelle sera stoqué tous les rapports
 			$obj = array();
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml',0,true);
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, sous la balise passé en paramètre, l'ajouter dans le tableau $obj
 				foreach($_Simple->children() as $Enfant){

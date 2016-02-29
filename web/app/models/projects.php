@@ -77,20 +77,23 @@ class projects extends models
 				'" . addslashes($_desc) . "','" . addslashes($_equip) . "','" . addslashes($_extra) . "','" . addslashes($_info) . "'," . $_cieID . ");");
     }
 
-    //Fonction permenttant de modifier un projet dans la base de donnée
-    public function UpdateProject($_projectID, $_title, $_supName, $_supTitle, $_supTel, $_supEmail, $_desc, $_equip, $_extra, $_info, $_cieID)
+    //Fonction permettant de modifier un projet dans la base de donnée
+    public function UpdateProject($_projectID, $_title, $_supName, $_supTitle, $_supTel, $_supEmail, $_desc, $_equip, $_extra, $_info)
     {
-        parent::DBExecute("UPDATE projects SET title=" . $_title .
-            ", supName=" . $_supName .
-            ", supTitle=" . $_supTitle .
-            ", supEmail=" . $_supEmail .
-            ", supTel=" . $_supTel .
-            ", descr=" . $_desc .
-            ", equip=" . $_equip .
-            ", extra=" . $_extra .
-            ", info=" . $_info .
-            " WHERE ID=" . $_projectID .
-            " AND businessID=" . $_cieID);
+        parent::DBExecute
+		("UPDATE projects 
+		    SET 
+			title='" . $_title . 
+            "', supName='" . addslashes($_supName) .
+            "', supTitle= '" . addslashes($_supTitle) .
+            "', supEmail= '" . addslashes($_supEmail) .
+            "', supTel= '" . addslashes($_supTel) .
+            "', descr= '" . addslashes($_desc) .
+            "', equip= '" . addslashes($_equip) .
+            "', extra= '" . addslashes($_extra) .
+            "', info= '" . addslashes($_info) . 
+            "'WHERE ID =" . $_projectID . ";"
+		);
     }
 
     //valide un projet
@@ -108,10 +111,10 @@ class projects extends models
         $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
-        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",à été autorisé";
+        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été autorisé";
 
         //Envoi du courriel de confirmation.
-        mail($result['email'], $user["name"] . " projet validée", $msg);
+        mail($result['email'], $user["name"] . " projet validé", $msg);
     }
 
     //refuse un projet
@@ -141,7 +144,11 @@ class projects extends models
         parent::DBExecute("UPDATE projects SET internID = " . $_internId . "WHERE ID = " . $_projectId);
     }
 
-
+	//Supprimer un projet de stage par un superviseur
+    public function DeleteProject($_projectId)
+	{
+		parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectId);
+	}
 }
 
 ?>

@@ -113,7 +113,7 @@
                                     <?php }else if($project->status){ ?>
                                     <p class="text-success">Le projet a été autorisé.</p>
                                     <?php } else { ?>
-                                    <button class="btn btn-primary" name="editProject" value="<?= $_SESSION['form_token']; ?>" formaction="/cie/edit/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</button>
+                                    <button class="btn btn-primary"  value="<?= $_SESSION['form_token']; ?>" formaction="/cie/edit/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</button>
                                     <button class="btn btn-primary" name="delProject" value="<?= $_SESSION['form_token']; ?>" formaction="/cie/delProject/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-eraser"></i> Supprimer</button>
                                     <?php } ?>
                                 </div>

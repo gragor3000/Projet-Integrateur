@@ -29,7 +29,11 @@
                         <li>
                             <a href="/cie/interview"><i class="fa fa-fw fa-pencil"></i> Formulaire d'entrevue</a>
                         </li>
+						<li>
+                            <a href="/cie/review"><i class="fa fa-fw fa-pencil"></i> Formulaire d'évaluation</a>
+                        </li>
                         <li class="divider"></li>
+                        <li>
                         <li>
                             <a href="/cie/info"><i class="fa fa-fw fa-key"></i> Changer les informations</a>
                         </li>

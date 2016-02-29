@@ -35,15 +35,16 @@ COMPLÉTÉ... j'espère.
 </div>
 <div class="section">
     <div class="container">
-        <form role="form" METHOD="POST">
+        <form id = "form" role="form" METHOD="POST">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="control-label" for="intIntern">Nom de l'interviewé</label>
                             <select class="form-control" id="intIntern" name="intern" required>
+							<option value = "" selected >Veuillez sélectionner un stagiaire</option>
 				<?php foreach($data['interns'] as $intern) { ?>
-                                <option value="<?= $intern->ID; ?>" <?= (isset($data['interview']) && $data['interview']->intern = $intern->ID) ? 'selected' : ''; ?>><?= $intern->name; ?></option>
+                                <option value="<?= $intern->ID; ?>" <?=((isset($data['interview']) && $data['interview']->intern == $intern->ID) || (isset($data['internActive']) && $data['internActive'] == $intern->ID)) ? 'selected' : ''; ?>><?= $intern->name; ?></option>
 				<?php } ?>
                             </select>
                         </div>
@@ -76,11 +77,11 @@ COMPLÉTÉ... j'espère.
                                         <td>Communication orale</td>
                                         <td>
                                             <select class="form-control" id="communication" name="communication" <?= ($data['readOnly']) ? 'disabled' : ''; ?>>
-                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->communication="4") ? 'selected' : ''; ?>>Excellent</option>
-                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->communication="3") ? 'selected' : ''; ?>>Très bien</option>
-                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->communication="2") ? 'selected' : ''; ?>>Acceptable</option>
-                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->communication="1") ? 'selected' : ''; ?>>Insatisfait</option>
-                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->communication="0") ? 'selected' : ''; ?>>Médiocre</option>
+                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->communication=="4") ? 'selected' : ''; ?>>Excellent</option>
+                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->communication=="3") ? 'selected' : ''; ?>>Très bien</option>
+                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->communication=="2") ? 'selected' : ''; ?>>Acceptable</option>
+                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->communication=="1") ? 'selected' : ''; ?>>Insatisfait</option>
+                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->communication=="0") ? 'selected' : ''; ?>>Médiocre</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -88,11 +89,11 @@ COMPLÉTÉ... j'espère.
                                         <td>Enthousiasme et motivation</td>
                                         <td>
                                             <select class="form-control" id="motivation" name="motivation" <?= ($data['readOnly']) ? 'disabled' : ''; ?>>
-                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->motivation="4") ? 'selected' : ''; ?>>Excellent</option>
-                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->motivation="3") ? 'selected' : ''; ?>>Très bien</option>
-                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->motivation="2") ? 'selected' : ''; ?>>Acceptable</option>
-                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->motivation="1") ? 'selected' : ''; ?>>Insatisfait</option>
-                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->motivation="0") ? 'selected' : ''; ?>>Médiocre</option>
+                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->motivation=="4") ? 'selected' : ''; ?>>Excellent</option>
+                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->motivation=="3") ? 'selected' : ''; ?>>Très bien</option>
+                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->motivation=="2") ? 'selected' : ''; ?>>Acceptable</option>
+                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->motivation=="1") ? 'selected' : ''; ?>>Insatisfait</option>
+                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->motivation=="0") ? 'selected' : ''; ?>>Médiocre</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -100,11 +101,11 @@ COMPLÉTÉ... j'espère.
                                         <td>Assurance et confiance en soi</td>
                                         <td>
                                             <select class="form-control" id="selfesteem" name="selfesteem" <?= ($data['readOnly']) ? 'disabled' : ''; ?>>
-                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->selfesteem="4") ? 'selected' : ''; ?>>Excellent</option>
-                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->selfesteem="3") ? 'selected' : ''; ?>>Très bien</option>
-                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->selfesteem="2") ? 'selected' : ''; ?>>Acceptable</option>
-                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->selfesteem="1") ? 'selected' : ''; ?>>Insatisfait</option>
-                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->selfesteem="0") ? 'selected' : ''; ?>>Médiocre</option>
+                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->selfesteem=="4") ? 'selected' : ''; ?>>Excellent</option>
+                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->selfesteem=="3") ? 'selected' : ''; ?>>Très bien</option>
+                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->selfesteem=="2") ? 'selected' : ''; ?>>Acceptable</option>
+                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->selfesteem=="1") ? 'selected' : ''; ?>>Insatisfait</option>
+                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->selfesteem=="0") ? 'selected' : ''; ?>>Médiocre</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -112,11 +113,11 @@ COMPLÉTÉ... j'espère.
                                         <td>Présentation soignée</td>
                                         <td>
                                             <select class="form-control" id="appearance" name="appearance" <?= ($data['readOnly']) ? 'disabled' : ''; ?>>
-                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->appearance="4") ? 'selected' : ''; ?>>Excellent</option>
-                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->appearance="3") ? 'selected' : ''; ?>>Très bien</option>
-                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->appearance="2") ? 'selected' : ''; ?>>Acceptable</option>
-                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->appearance="1") ? 'selected' : ''; ?>>Insatisfait</option>
-                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->appearance="0") ? 'selected' : ''; ?>>Médiocre</option>
+                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->appearance=="4") ? 'selected' : ''; ?>>Excellent</option>
+                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->appearance=="3") ? 'selected' : ''; ?>>Très bien</option>
+                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->appearance=="2") ? 'selected' : ''; ?>>Acceptable</option>
+                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->appearance=="1") ? 'selected' : ''; ?>>Insatisfait</option>
+                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->appearance=="0") ? 'selected' : ''; ?>>Médiocre</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -124,11 +125,11 @@ COMPLÉTÉ... j'espère.
                                         <td>Qualité des réponses</td>
                                         <td>
                                             <select class="form-control" id="answers" name="answers" <?= ($data['readOnly']) ? 'disabled' : ''; ?>>
-                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->answers="4") ? 'selected' : ''; ?>>Excellent</option>
-                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->answers="3") ? 'selected' : ''; ?>>Très bien</option>
-                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->answers="2") ? 'selected' : ''; ?>>Acceptable</option>
-                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->answers="1") ? 'selected' : ''; ?>>Insatisfait</option>
-                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->answers="0") ? 'selected' : ''; ?>>Médiocre</option>
+                                                <option value="4" <?= (isset($data['interview']) && $data['interview']->answers=="4") ? 'selected' : ''; ?>>Excellent</option>
+                                                <option value="3" <?= (isset($data['interview']) && $data['interview']->answers=="3") ? 'selected' : ''; ?>>Très bien</option>
+                                                <option value="2" <?= (isset($data['interview']) && $data['interview']->answers=="2") ? 'selected' : ''; ?>>Acceptable</option>
+                                                <option value="1" <?= (isset($data['interview']) && $data['interview']->answers=="1") ? 'selected' : ''; ?>>Insatisfait</option>
+                                                <option value="0" <?= (isset($data['interview']) && $data['interview']->answers=="0") ? 'selected' : ''; ?>>Médiocre</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -160,3 +161,7 @@ COMPLÉTÉ... j'espère.
         </div>
     </div>
 </div>
+
+<script>
+$('#intIntern').change(function() { document.location = "/cie/interview/" + $('#intIntern option:selected').val(); });
+</script>
