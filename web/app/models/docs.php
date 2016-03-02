@@ -149,11 +149,15 @@
 				
 		//Fonction qui vérifie que le supervisseur peut modifier une section precise
 		public function ReadOnlyAdvisor($_IDIntern, $_BaliseName){
+			$extension = null; //extension
+		    if($_BaliseName == "cieReview"){$extension = '_CieEVL.xml'; }
+			if($_BaliseName == "review1"){$extension = '_AdvRev1EVL.xml';}
+			if($_BaliseName == "review2"){$extension = '_AdvRev2EVL.xml';}
 			
 			//Si le fichier existe vérifier que la section n'est pas déjà rempli
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml'))
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.$extension))
 			{
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.$extension,0,true);
 				
 				//trouve la balise spécifié en paramètre et s'assure que la balise retourner porte le bon nom
 				return ($_Simple->children()->getName($_BaliseName) == $_BaliseName);
@@ -164,10 +168,15 @@
 			}	
 		}
 		
-		
-		//Ajoute des élément au rapport d'un étudiant.
-		public function SaveAdvisor($_IDEmployeur, $_BaliseName, $_Entry)
-		{
+				//Ajoute des élément au rapport d'un étudiant pour un coordonnateur.
+		public function SaveAdvisor($_ID, $_BaliseName, $_Entry)
+		{		
+		    $extension = null; //extension
+			$Nom = null;   //nom de la balise
+			
+		    if($_BaliseName == "cieReview"){$extension = '_CieEVL.xml'; $Nom = "Employeur";}
+			if($_BaliseName == "review1"){$extension = '_AdvRev1EVL.xml';$Nom = "Coordonnateur";}
+			if($_BaliseName == "review2"){$extension = '_AdvRev2EVL.xml';$Nom = "Coordonnateur";}
 			
 			//Crée le domDocument qui contiendra les informations du fichier XML
 			$_Xml = new DomDocument("1.0", "ISO-8859-15");
@@ -176,7 +185,7 @@
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
 			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml',0,true);
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].$extension,0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, l'ajouter dans le prochain fichier XMl
 				foreach($_Simple->children() as $Enfant){
@@ -192,9 +201,9 @@
 				}
 			}
 				
-			//Ajoute le nouveau raport au fichier xml et le sauvegarde OK
+			//Ajoute le nouveau rapport au fichier xml et le sauvegarde OK
 			$_Report = $_Xml->createElement($_BaliseName);
-			$_Content = $_Xml->createElement("Employeur", $_IDEmployeur);
+			$_Content = $_Xml->createElement($Nom, $_ID);
 			$_Report->appendChild($_Content);
 			current($_Entry);
 			for($iTour = 0; $iTour < count($_Entry)-1; $iTour++){
@@ -204,20 +213,25 @@
 			}			
 			$_Root->appendChild($_Report);
 			
-			//Enregistre le fichier fichier.
-			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].'_EVL.xml');
+			//Enregistre le fichier.
+			$_Xml->save(parent::DefaultXMLPath.'evaluation/'.$_Entry['intern'].$extension);
 		}
-		
+				
 		
 		//Charge les rapports d'un étudiant particulier
 		public function LoadAdvisor($_IDIntern, $_BaliseName)
 		{		
+		    $extension = null; //extension
+		    if($_BaliseName == "cieReview"){$extension = '_CieEVL.xml'; }
+			if($_BaliseName == "review1"){$extension = '_AdvRev1EVL.xml';}
+			if($_BaliseName == "review2"){$extension = '_AdvRev2EVL.xml';}
+			
 			//Déclaration du tableau dans lequelle sera stoqué tous les rapports
 			$obj = array();
 			
 			//Si le fichier souhaiter existe le charge en mémoire et récupère toute les informations
-			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml')){
-				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_EVL.xml',0,true);
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.$extension)){
+				$_Simple = new SimpleXmlElement(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.$extension,0,true);
 				
 				//Pour tout les éléments contenu dans le fichier XML, sous la balise passé en paramètre, l'ajouter dans le tableau $obj
 				foreach($_Simple->children() as $Enfant){
@@ -230,7 +244,6 @@
 			}
 			
 			$Result = new obj($obj);
-			
 			//Transforme les journeaux en objet utilisable et les retourne
 			return $Result;
 		}

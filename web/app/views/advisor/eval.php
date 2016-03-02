@@ -1,5 +1,5 @@
 <?php
-	//GÈnÈrer un token d'identification.
+	//G√©n√©rer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
 	$_SESSION['form_timer'] = time();
@@ -14,35 +14,46 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Formulaire d'Èvaluation du stagiaire</h1>
-					<p>Sur cette page vous pourrez Èvaluer un stagiaire ‡ la moitiÈ et ‡ la fin du stage.</p>
+				<h1>Formulaire d'√©valuation du stagiaire</h1>
+					<p>Sur cette page vous pourrez √©valuer un stagiaire √† la moiti√© et √† la fin du stage.</p>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="section">
 	<div class="container">
-	 <form role="form">
+	 <form role="form" METHOD="POST">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row well">
 					    <div class="form-group col-md-6">
 							<label class="control-label" for="advIntern">Nom du stagiaire</label>
 							<select class="form-control" id="advIntern" name="intern" required >
+							    <option value = "" selected >Veuillez s√©lectionner un stagiaire</option>
 								<?php foreach($data['interns'] as $intern) { //Liste des stagiaires pas encore ÈvaluÈs?>
-									<option value="<?= $intern->ID; ?>"><?= $intern->name; ?></option>
+									<option value="<?= $intern->ID; ?>" <?= ((isset($data['review']) && $data['review']->intern == $intern->ID) || (isset($data['internActive']) && $data['internActive'] == $intern->ID)) ? "selected" : '' ?> ><?= $intern->name; ?></option>
 								<?php } ?>
 							</select>
 					    </div>
 						<div class="form-group col-md-6">
+							<label class="control-label">√âvaluation:</label>
+							<select class="form-control" id="review" name="review" required >
+							   <option value = "" selected >Veuillez s√©lectionner une √©valuation</option>
+							   <option value = "review1" <?= ((isset($data['review']) && $data['review']->review == 'review1') || (isset($data['reviewActive']) && $data['reviewActive'] == 'review1')) ? "selected" : '' ?>>Mi-Stage</option>
+							   <option value = "review2" <?= ((isset($data['review']) && $data['review']->review == 'review2') || (isset($data['reviewActive']) && $data['reviewActive'] == 'review2')) ? "selected" : '' ?>>Fin-Stage</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
 							<label class="control-label">Nom du coordonnateur:</label>
+							
 							<select class="form-control" id="advName" name="advisor" required >
-								<?php foreach($data['advisors'] as $advisor) { //Liste des coordonnateurs du systËme?>
-									<option value="<?= $advisor->ID; ?>"><?= $advisor->name; ?></option>
+							<option value = "" selected >Veuillez s√©lectionner un coordonnateur</option>
+								<?php foreach($data['advisors'] as $advisor) { //Liste des coordonnateurs du syst√®me?>
+									<option value="<?= $advisor->ID; ?>" <?= ((isset($data['review']) && $data['review']->advisor == $advisor->ID) || ($_SESSION['ID'] == $advisor->ID)) ? "selected" : '' ?>><?= $advisor->name; ?></option>
 								<?php } ?>
 							</select>
 						</div>
-					</div>
+					</div>						
 					<h3 class="page-header">L&apos;&eacute;tudiant(e) participe ad&eacute;quatement aux diff&eacute;rentes &eacute;tapes de d&eacute;veloppement d&apos;une application informatique.</h3>
 					<h4>Capacit&eacute; d&apos;analyse et de synth&egrave;se et application juste de la d&eacute;marche de d&eacute;veloppement de syst&egrave;me (/10)</h4>
 					<div class="row">
@@ -50,8 +61,8 @@
 							<table class="table well">
 								<thead>
 									<tr>
-										<th>CritËre</th>
-										<th class="text-center">…valuation</th>
+										<th>Crit√®re</th>
+										<th class="text-center">√âvaluation</th>
 										<th class="text-center">Cote</th>
 									</tr>
 								</thead>
@@ -96,18 +107,18 @@
 							</table>
 							
 							<label class="control-label" for="advRev11">Note</label>
-							<select id = "advRev11" class="form-control" name = "advRev11" required>
-		                     <option value = 0 selected >0</option>
-		                     <option value = 1 >1</option>
-		                     <option value = 2 >2</option>
-		                     <option value = 3 >3</option>
-		                     <option value = 4 >4</option>
-		                     <option value = 5 >5</option>
-		                     <option value = 6 >6</option>
-		                     <option value = 7 >7</option>
-		                     <option value = 8 >8</option>
-		                     <option value = 9 >9</option>
-		                     <option value = 10 >10</option>
+							<select id = "advRev11" class="form-control" name = "advRev11" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
+		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev11=="0") ? 'selected' : ''; ?>>0</option>
+		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev11=="1") ? 'selected' : ''; ?>>1</option>
+		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev11=="2") ? 'selected' : ''; ?>>2</option>
+		                     <option value = 3 <?= (isset($data['review']) && $data['review']->advRev11=="3") ? 'selected' : ''; ?>>3</option>
+		                     <option value = 4 <?= (isset($data['review']) && $data['review']->advRev11=="4") ? 'selected' : ''; ?>>4</option>
+		                     <option value = 5 <?= (isset($data['review']) && $data['review']->advRev11=="5") ? 'selected' : ''; ?>>5</option>
+		                     <option value = 6 <?= (isset($data['review']) && $data['review']->advRev11=="6") ? 'selected' : ''; ?>>6</option>
+		                     <option value = 7 <?= (isset($data['review']) && $data['review']->advRev11=="7") ? 'selected' : ''; ?>>7</option>
+		                     <option value = 8 <?= (isset($data['review']) && $data['review']->advRev11=="8") ? 'selected' : ''; ?>>8</option>
+		                     <option value = 9 <?= (isset($data['review']) && $data['review']->advRev11=="9") ? 'selected' : ''; ?>>9</option>
+		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev11=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
 						</div>
@@ -115,7 +126,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev1">Commentaires</label>
-							<textarea class="form-control" id="advRev1" name="advRev1" required ></textarea>
+							<textarea class="form-control" id="advRev1" name="advRev1" <?= ($data['readOnly']) ? 'readonly' : 'required'; ?>><?= (isset($data['review'])) ? $data['review']->advRev1 : ''; ?></textarea>
 						</div>
 					</div>
 					<h3 class="page-header">L&apos;&eacute;tudiant(e) applique judicieusement les principes, techniques et les m&eacute;thodes propres au domaine informatique.</h3>
@@ -125,8 +136,8 @@
 							<table class="table well">
 								<thead>
 									<tr>
-										<th>CritËre</th>
-										<th class="text-center">…valuation</th>
+										<th>Crit√®re</th>
+										<th class="text-center">√âvaluation</th>
 										<th class="text-center">Cote</th>
 									</tr>
 								</thead>
@@ -171,18 +182,18 @@
 							</table>
 							
 							<label class="control-label" for="advRev21">Note</label>
-							<select id = "advRev21" class="form-control" name = "advRev21" required>
-		                     <option value = 0 selected>0</option>
-		                     <option value = 1 >1</option>
-		                     <option value = 2 >2</option>
-		                     <option value = 3 >3</option>
-		                     <option value = 4 >4</option>
-		                     <option value = 5 >5</option>
-		                     <option value = 6 >6</option>
-		                     <option value = 7 >7</option>
-		                     <option value = 8 >8</option>
-		                     <option value = 9 >9</option>
-		                     <option value = 10>10</option>
+							<select id = "advRev21" class="form-control" name = "advRev21" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
+		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev21=="0") ? 'selected' : ''; ?>>0</option>
+		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev21=="1") ? 'selected' : ''; ?>>1</option>
+		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev21=="2") ? 'selected' : ''; ?>>2</option>
+		                     <option value = 3 <?= (isset($data['review']) && $data['review']->advRev21=="3") ? 'selected' : ''; ?>>3</option>
+		                     <option value = 4 <?= (isset($data['review']) && $data['review']->advRev21=="4") ? 'selected' : ''; ?>>4</option>
+		                     <option value = 5 <?= (isset($data['review']) && $data['review']->advRev21=="5") ? 'selected' : ''; ?>>5</option>
+		                     <option value = 6 <?= (isset($data['review']) && $data['review']->advRev21=="6") ? 'selected' : ''; ?>>6</option>
+		                     <option value = 7 <?= (isset($data['review']) && $data['review']->advRev21=="7") ? 'selected' : ''; ?>>7</option>
+		                     <option value = 8 <?= (isset($data['review']) && $data['review']->advRev21=="8") ? 'selected' : ''; ?>>8</option>
+		                     <option value = 9 <?= (isset($data['review']) && $data['review']->advRev21=="9") ? 'selected' : ''; ?>>9</option>
+		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev21=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
 						</div>
@@ -194,8 +205,8 @@
 							<table class="table well">
 								<thead>
 									<tr>
-										<th>CritËre</th>
-										<th class="text-center">…valuation</th>
+										<th>Crit√®re</th>
+										<th class="text-center">√âvaluation</th>
 										<th class="text-center">Cote</th>
 									</tr>
 								</thead>
@@ -240,28 +251,28 @@
 							</table>
 							
 							<label class="control-label" for="advRev22">Note</label>
-							<select id = "advRev22" class="form-control" name = "advRev22" required>
-		                     <option value = 0 selected>0</option>
-		                     <option value = 1>1</option>
-		                     <option value = 2 >2</option>
-		                     <option value = 3 >3</option>
-		                     <option value = 4 >4</option>
-		                     <option value = 5>5</option>
-		                     <option value = 6 >6</option>
-		                     <option value = 7 >7</option>
-		                     <option value = 8 >8</option>
-		                     <option value = 9 >9</option>
-		                     <option value = 10 >10</option>
-		                     <option value = 11 >11</option>
-		                     <option value = 12 >12</option>
-		                     <option value = 13 >13</option>
-		                     <option value = 14 >14</option>
-		                     <option value = 15 >15</option>
-		                     <option value = 16 >16</option>
-		                     <option value = 17 >17</option>
-		                     <option value = 18 >18</option>
-		                     <option value = 19 >19</option>
-		                     <option value = 20>20</option>
+							<select id = "advRev22" class="form-control" name = "advRev22" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
+		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev22=="0") ? 'selected' : ''; ?>>0</option>
+		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev22=="1") ? 'selected' : ''; ?>>1</option>
+		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev22=="2") ? 'selected' : ''; ?>>2</option>
+		                     <option value = 3 <?= (isset($data['review']) && $data['review']->advRev22=="3") ? 'selected' : ''; ?>>3</option>
+		                     <option value = 4 <?= (isset($data['review']) && $data['review']->advRev22=="4") ? 'selected' : ''; ?>>4</option>
+		                     <option value = 5 <?= (isset($data['review']) && $data['review']->advRev22=="5") ? 'selected' : ''; ?>>5</option>
+		                     <option value = 6 <?= (isset($data['review']) && $data['review']->advRev22=="6") ? 'selected' : ''; ?>>6</option>
+		                     <option value = 7 <?= (isset($data['review']) && $data['review']->advRev22=="7") ? 'selected' : ''; ?>>7</option>
+		                     <option value = 8 <?= (isset($data['review']) && $data['review']->advRev22=="8") ? 'selected' : ''; ?>>8</option>
+		                     <option value = 9 <?= (isset($data['review']) && $data['review']->advRev22=="9") ? 'selected' : ''; ?>>9</option>
+		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev22=="10") ? 'selected' : ''; ?>>10</option>
+		                     <option value = 11 <?= (isset($data['review']) && $data['review']->advRev22=="11") ? 'selected' : ''; ?>>11</option>
+		                     <option value = 12 <?= (isset($data['review']) && $data['review']->advRev22=="12") ? 'selected' : ''; ?>>12</option>
+		                     <option value = 13 <?= (isset($data['review']) && $data['review']->advRev22=="13") ? 'selected' : ''; ?>>13</option>
+		                     <option value = 14 <?= (isset($data['review']) && $data['review']->advRev22=="14") ? 'selected' : ''; ?>>14</option>
+		                     <option value = 15 <?= (isset($data['review']) && $data['review']->advRev22=="15") ? 'selected' : ''; ?>>15</option>
+		                     <option value = 16 <?= (isset($data['review']) && $data['review']->advRev22=="16") ? 'selected' : ''; ?>>16</option>
+		                     <option value = 17 <?= (isset($data['review']) && $data['review']->advRev22=="17") ? 'selected' : ''; ?>>17</option>
+		                     <option value = 18 <?= (isset($data['review']) && $data['review']->advRev22=="18") ? 'selected' : ''; ?>>18</option>
+		                     <option value = 19 <?= (isset($data['review']) && $data['review']->advRev22=="19") ? 'selected' : ''; ?>>19</option>
+		                     <option value = 20 <?= (isset($data['review']) && $data['review']->advRev22=="20") ? 'selected' : ''; ?>>20</option>
 		                    </select>
 		                   <br/>
 						</div>
@@ -269,7 +280,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev2">Commentaires</label>
-							<textarea class="form-control" id="advRev2" name="advRev2" required></textarea>
+							<textarea class="form-control" id="advRev2" name="advRev2" <?= ($data['readOnly']) ? 'readonly' : 'required'; ?> ><?= (isset($data['review'])) ? $data['review']->advRev2 : ''; ?></textarea>
 						</div>
 					</div>		
 					
@@ -280,8 +291,8 @@
 							<table class="table well">
 								<thead>
 									<tr>
-										<th>CritËre</th>
-										<th class="text-center">…valuation</th>
+										<th>Crit√®re</th>
+										<th class="text-center">√âvaluation</th>
 										<th class="text-center">Cote</th>
 									</tr>
 								</thead>
@@ -326,18 +337,18 @@
 							</table>
 							
 							<label class="control-label" for="advRev31">Note</label>
-							<select id = "advRev31" class="form-control" name = "advRev31" required >
-		                     <option value = 0 selected >0</option>
-		                     <option value = 1 >1</option>
-		                     <option value = 2 >2</option>
-		                     <option value = 3 >3</option>
-		                     <option value = 4 >4</option>
-		                     <option value = 5 >5</option>
-		                     <option value = 6 >6</option>
-		                     <option value = 7 >7</option>
-		                     <option value = 8 >8</option>
-		                     <option value = 9 >9</option>
-		                     <option value = 10 >10</option>
+							<select id = "advRev31" class="form-control" name = "advRev31" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
+		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev31=="0") ? 'selected' : ''; ?>>0</option>
+		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev31=="1") ? 'selected' : ''; ?>>1</option>
+		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev31=="2") ? 'selected' : ''; ?>>2</option>
+		                     <option value = 3 <?= (isset($data['review']) && $data['review']->advRev31=="3") ? 'selected' : ''; ?>>3</option>
+		                     <option value = 4 <?= (isset($data['review']) && $data['review']->advRev31=="4") ? 'selected' : ''; ?>>4</option>
+		                     <option value = 5 <?= (isset($data['review']) && $data['review']->advRev31=="5") ? 'selected' : ''; ?>>5</option>
+		                     <option value = 6 <?= (isset($data['review']) && $data['review']->advRev31=="6") ? 'selected' : ''; ?>>6</option>
+		                     <option value = 7 <?= (isset($data['review']) && $data['review']->advRev31=="7") ? 'selected' : ''; ?>>7</option>
+		                     <option value = 8 <?= (isset($data['review']) && $data['review']->advRev31=="8") ? 'selected' : ''; ?>>8</option>
+		                     <option value = 9 <?= (isset($data['review']) && $data['review']->advRev31=="9") ? 'selected' : ''; ?>>9</option>
+		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev31=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
 						</div>
@@ -349,8 +360,8 @@
 							<table class="table well">
 								<thead>
 									<tr>
-										<th>CritËre</th>
-										<th class="text-center">…valuation</th>
+										<th>Crit√®re</th>
+										<th class="text-center">√âvaluation</th>
 										<th class="text-center">Cote</th>
 									</tr>
 								</thead>
@@ -395,18 +406,18 @@
 							</table>
 							
 							<label class="control-label" for="advRev32">Note</label>
-							<select id = "advRev32" class="form-control" name = "advRev32" required >
-		                     <option value = 0 selected >0</option>
-		                     <option value = 1> 1</option>
-		                     <option value = 2 >2</option>
-		                     <option value = 3 >3</option>
-		                     <option value = 4 >4</option>
-		                     <option value = 5 >5</option>
-		                     <option value = 6 >6</option>
-		                     <option value = 7 >7</option>
-		                     <option value = 8 >8</option>
-		                     <option value = 9 >9</option>
-		                     <option value = 10 >10</option>
+							<select id = "advRev32" class="form-control" name = "advRev32" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
+		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev32=="0") ? 'selected' : ''; ?>>0</option>
+		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev32=="1") ? 'selected' : ''; ?>>1</option>
+		                     <option value = 2 <?= (isset($data['review']) && $data['review']->advRev32=="2") ? 'selected' : ''; ?>>2</option>
+		                     <option value = 3 <?= (isset($data['review']) && $data['review']->advRev32=="3") ? 'selected' : ''; ?>>3</option>
+		                     <option value = 4 <?= (isset($data['review']) && $data['review']->advRev32=="4") ? 'selected' : ''; ?>>4</option>
+		                     <option value = 5 <?= (isset($data['review']) && $data['review']->advRev32=="5") ? 'selected' : ''; ?>>5</option>
+		                     <option value = 6 <?= (isset($data['review']) && $data['review']->advRev32=="6") ? 'selected' : ''; ?>>6</option>
+		                     <option value = 7 <?= (isset($data['review']) && $data['review']->advRev32=="7") ? 'selected' : ''; ?>>7</option>
+		                     <option value = 8 <?= (isset($data['review']) && $data['review']->advRev32=="8") ? 'selected' : ''; ?>>8</option>
+		                     <option value = 9 <?= (isset($data['review']) && $data['review']->advRev32=="9") ? 'selected' : ''; ?>>9</option>
+		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev32=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
 						</div>
@@ -415,11 +426,23 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev3">Commentaires</label>
-							<textarea class="form-control" id="advRev3" name="advRev3" required ></textarea>
+							<textarea class="form-control" id="advRev3" name="advRev3" <?= ($data['readOnly']) ? 'readonly' : 'required'; ?> ><?= (isset($data['review'])) ? $data['review']->advRev3 : ''; ?></textarea>
 						</div>
-					</div>						
+					</div>
+					
+				   <?php if (!$data['readOnly']){ ?>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button name="evalIntern" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/advisor/evalAdv/">Soumettre</button>
+                        </div>
+                    </div>
+                    <?php } ?>					
 				</div>
 			</div>
 	    </form>
 	</div>
 </div>
+<script>
+$('#review').change(function() { if($('#advIntern option:selected').val() != ""){document.location = "/advisor/evalAdv/"+ $('#advIntern option:selected').val() + "/" + $('#review option:selected').val();}});
+$('#advIntern').change(function() { if($('#review option:selected').val() != "") {document.location = "/advisor/evalAdv/"+ $('#advIntern option:selected').val() + "/" + $('#review option:selected').val();}});
+</script>

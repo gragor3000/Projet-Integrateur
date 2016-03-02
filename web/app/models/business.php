@@ -67,8 +67,10 @@ class business extends Models {
     //Valider une entreprise et envoyer un courriel.
     public function AuthCie($_businessID) {
         parent::DBExecute("UPDATE business SET status=1 WHERE ID =" . $_businessID);
+		
         //Obtenir l'ID de compte et courriel.
         $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $_businessID);
+		
         //Obtenir le nom d'utilisateur et mot de passe.
         $user = parent::DBQuery("SELECT user,pw,name FROM users WHERE ID=" . $result['userID']);
 
@@ -82,21 +84,24 @@ class business extends Models {
     //refuse une entreprise
     public function DenyCie($_businessID)
     {
-        $user = parent::DBQuery("SELECT userID, users.name,business.email FROM business
-                                 INNER JOIN users ON users.ID = business.userID WHERE business.ID =" . $_businessID);
-        parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
+        $user = parent::DBQuery("SELECT business.userID, users.name, business.email FROM business
+                                 INNER JOIN users ON business.userID = users.ID WHERE business.ID =" . $_businessID);
+        
+		parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
         parent::DBExecute("DELETE FROM users WHERE ID =" .$user["userID"]);
 
-        $msg = "Votre entreprise, " . $user["name"] . ", à été refusée";
-
+        $msg = "Votre entreprise, " . $user["name"] . ", a été refusée.";
+        var_dump($msg);
         //Envoi du courriel de refus.
         //mail($user["email"],$user["name"]."Compte refusé",$msg);
 
     }
 
     //Supprimer une entreprise.
-    public function DeleteCie($_userID) {
-        parent::DBExecute("DELETE FROM business WHERE userID = " . $_userID);
+    public function DeleteCie($_userID) 
+	{
+        parent::DBExecute("DELETE FROM business WHERE userID =" . $_userID);
+        parent::DBExecute("DELETE FROM users WHERE ID =" .$_userID);
     }
 
 }

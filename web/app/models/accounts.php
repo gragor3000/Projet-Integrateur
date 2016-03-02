@@ -83,18 +83,6 @@ class accounts extends models {
 
         return $obj;
     }
-
-	//Retourne tous les stagiaires d'une compagnie.
-    public function ShowInternsByCie($_cieID) {
-        $result = parent::DBSearch("SELECT users.ID,users.name,users.user,users.rank FROM users inner join projects ON users.ID = projects.internID WHERE projects.businessID = " . $_cieID);
-        $obj = null;
-        var_dump($result);
-        //Générer un tableau d'objet.
-        foreach ($result as $intern)
-            $obj[$user['ID']] = new obj($intern);
-
-        return $obj;
-    }
 	
     //Retourne les infos d'un compte par ID
     public function ShowUserByID($_userID) {

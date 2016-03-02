@@ -1,3 +1,14 @@
+<!--
+2016-02-08 Marc Lauzon
+Formulaire d'entrevue du superviseur.
+Soumission uniquement par entreprise.
+Consultation par tous. [readOnly] à true.
+    
+COMPLÉTÉ... j'espère.
+    
+    
+///***ATTENTION PATRICK L'UTILISE, LUI PARLER AVANT DE TOUTES SCRAPPER****////
+-->
 <?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
@@ -28,8 +39,15 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">
-                        <h3><?= $data['intern']->name; ?></h3>
-						<br/>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="intIntern">Nom de l'interviewé</label>
+                            <select class="form-control" id="intIntern" name="intern" required>
+							<option value = "" selected >Veuillez sélectionner un stagiaire</option>
+				<?php foreach($data['interns'] as $intern) { ?>
+                                <option value="<?= $intern->ID; ?>" <?=((isset($data['interview']) && $data['interview']->intern == $intern->ID) || (isset($data['internActive']) && $data['internActive'] == $intern->ID)) ? 'selected' : ''; ?>><?= $intern->name; ?></option>
+				<?php } ?>
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label class="control-label" for="intTimestamp">Date et heure d'arrivé</label>
                             <input class="form-control" id="intTimestamp" name="timestamp" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['interview'])) ? $data['interview']->timestamp : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
@@ -143,3 +161,7 @@
         </div>
     </div>
 </div>
+
+<script>
+$('#intIntern').change(function() { document.location = "/cie/interview/" + $('#intIntern option:selected').val(); });
+</script>

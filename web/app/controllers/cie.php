@@ -34,22 +34,30 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("accounts");
             $model = new accounts();
+			
+			$data['interns'] = null;
+			
             //Déterminer l'assignation du projet.
             if (isset($data['projects'])) {
-                foreach ($data['projects'] as $project) {
-                    if (isset($project->internID) && $project->internID != null) {
-                        $data['intern'][$project->ID] = $model->ShowUserByID($project->internID);
+                foreach ($data['projects'] as $project) 
+				{
+                    if ($project->internID != null) 
+					{
+                        $data['interns'][$project->ID] = $model->ShowUserByID($project->internID);
                     }
                 }
-            } else {
+            } 
+			else 
+			{
                 header('location:/cie/submit');
             }
-
+			
+            var_dump($data['interns']);
             //récupère les informations de la compagnie
             parent::model('business');
             $model = new business();
             $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
-
+			
             //Ouvre l'index du superviseur
             parent::view("shared/header");
             parent::view("cie/menu");
@@ -233,24 +241,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("accounts");
             $model2 = new accounts();
-            
-			$intern = array(); //stagiaire 
-			$data['interns'] = $model2->ShowUsersByRank(2);
-
-        if(($data['interns'] != null)&&(($_internID != null) || (isset($_POST['intern']))))
-		{
-			$intern = null;
+		
+         if($_internID != null)
+		 {
+            $data['intern'] = $model2->ShowUserByID($_internID[0]);
 			
-			if(isset($_POST['intern']))
-				//Vérifier l'existence d'une entrevue entre l'entreprise et le stagiaire sélectionné
-                $intern = $_POST['intern'];
-			else if($_internID != null)
-			{
-				$intern = $_internID;
-			}
-                $data['internActive'] = $intern[0];
+		 if ($data['intern'] != null)
+		 {
 				
-				$data['readOnly'] = $model1->ReadOnlyCie($intern[0], 'interview');		
+			$data['readOnly'] = $model1->ReadOnlyCie($_internID[0], 'interview');		
 			
             if (!$data['readOnly']) 
 			{   //Si le formulaire n'existe pas
@@ -261,7 +260,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     try 
 					{
                         $model1->SaveCie($_SESSION['ID'], 'interview', $_POST);
-						$data['interview'] = $model1->LoadCie($_POST['intern'], 'interview');
+						$data['interview'] = $model1->LoadCie($_internID[0], 'interview');
                         $data['alert'] = "alert-success";
                         $data['message'] = "L'entrevue a été sauvegardée avec succès.";
 						$data['readOnly'] = true;
@@ -276,7 +275,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			else 
 			{   //si le formulaire existe
 		
-		         $data['interview'] = $model1->LoadCie($intern[0] , 'interview');
+		         $data['interview'] = $model1->LoadCie($_internID[0] , 'interview');
 				 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['interview']->Employeur != $_SESSION['ID']) 
@@ -289,14 +288,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				$data['alert'] = "alert-warning";
                 $data['message'] = "L'entrevue pour ce stagiaire existe déjà.";
             }
-		}
-        else
-		{
-			$data['readOnly'] = $data['interns'] == null;
-		}
-		
-            parent::view("cie/interview", $data);
+			parent::view("cie/interview", $data);
             parent::view("shared/footer");		
+		 }
+		 else
+		 {
+			 $this->index();
+		 }
+		}
+         else
+         {
+	       $this->index();
+          }	
         }
 
         //Formulaire d'évaluation de stage.
@@ -307,33 +310,25 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 			parent::model("projects");
             $model = new projects();
-
-			//tableau de tous les projets d'une compagnie
-			$data['projects'] = $model->ShowProjectsByCie($_SESSION['ID']);
 			
-		if(($data['projects'] != null) && (($_projectID != null) || (isset($_POST['project']))))
+		if($_projectID != null)
 		{
-			$project = null;
-			
             parent::model("docs");
             $model1 = new docs();
 
             parent::model("projects");
-            $model2 = new projects();
-            
-			if(isset($_POST['project']))
-                $project = $_POST['project'];
-			else if($_projectID != null)
-			{
-				$project = $_projectID;
-			}
-                $data['projectActive'] = $project[0];
+            $model2 = new projects();         
 				
-			$project = $model2->ShowProjectByID($project[0]);
+			$project = $model2->ShowProjectByID($_projectID[0]);
+			
+		  if($project != null)
+		  {
             $data['title'] = $project->title;
-
-			$internId = 18;
-			//$internId = $project->internID;  //à changer pour version finale
+            $data['projectID']= $project->ID;
+			$internId = $project->internID;
+			
+		  if($internId != null)		  
+		  {			
 			
             //Vérifier l'existence d'une évaluation de stage
             $data['readOnly'] = $model1->ReadOnlyAdvisor($internId, 'cieReview');
@@ -361,7 +356,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			else 
 			{ //si le formulaire n'existe pas
                 //Enregistrer le formulaire d'évaluation.
-
+                var_dump($internId);
                 if (isset($_POST['sendReview']) /*&& $_POST['sendReview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
 				{
                     try 
@@ -381,17 +376,25 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     
                 } 
             }
+			parent::view("cie/review", $data);
+			parent::view("shared/footer");
+		 }
+		 else
+		 {
+			 $this->index();
+		 }
 		}
 		else
 		{
-			$data['readOnly'] = $data['projects'] == null;
+			$this->index();
 		}
-            parent::view("cie/review", $data);
-            parent::view("shared/footer");
+	   }
+	   else
+		{
+			$this->index();
+		}
         }
-    }
-
-
+  }
 } else {
     //Rediriger vers l'acceuil.
     session_unset();

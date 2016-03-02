@@ -1,31 +1,15 @@
-<?php
-	//Générer un token d'identification.
-	$token = md5(uniqid(rand(), TRUE));
-	$_SESSION['form_token'] = $token;
-	$_SESSION['form_timer'] = time();
-?>
-<?php if (isset($data['alert'])) { ?>
-<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <?= $data['message']; ?>
-</div>
-<?php } ?>
-<div class="section section-info">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h1>Évaluation de fin de stage</h1>
-				<?php if(isset($data['readOnly']) && $data['readOnly']) { ?>
-					<p>Sur cette page vous pourrez évaluer trois champs de compétences du stagiaire à la fin de son stage.</p>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="section">
 	<div class="container">
 		<form class="form-vertical" role="form">		
 			<div class="row">
+			   <div class="form-group col-md-6">
+                    <label class="control-label" for="revProject">Nom du projet</label>
+                    <select class="form-control" id="revProject" name="project" disabled >
+				     <?php foreach($data['projects'] as $project) { ?>
+                                <option value="<?= $project->ID; ?>" <?=((isset($data['review']) && $data['review']->project == $project->ID) || (isset($data['projectActive']) && $data['projectActive'] == $project->ID)) ? 'selected' : ''; ?>><?= $project->title; ?></option>
+				     <?php } ?>
+                    </select>
+                        </div>
 				<div class="col-md-12">
 					<div class="row well">
 						<div class="form-group col-md-4">
@@ -34,7 +18,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label class="control-label" for="revTitle">Titre du projet</label>
-							<input class="form-control" id="revtitle"  type="text" value="<?= (isset($data['title']) )? $data['title'][0] : ''; ?>" disabled />
+							<input class="form-control" id="revtitle"  type="text" value="<?= (isset($data['title']) )? $data['title'] : ''; ?>" disabled />
 						</div>
 						<div class="form-group col-md-2">
 						 <label class="control-label" for="revDate">Date</label>
@@ -477,34 +461,6 @@
 							</table>
 						</div>
 					</div>
-					<br />
-					<?php if (!(isset($data['readOnly']) && $data['readOnly'])) { ?>
-						<div class="well col-md-6 col-md-offset-3">
-							<div class="row">
-								<div class="col-md-12">
-									<i>
-										<p>Nous tenons à vous rappeler que le présent projet de fin d'études est une activité pédagogique dans le cade du programme d'Informatique de Gestion.</p>
-										<p>Comme pour tous les autres cours, le projet fera donc l'objet d'une évaluation. Les coordonnateurs en demeurent les principaux responsables. Toutefois, une partie de cette évaluation sera faite en fonction de votre perception de la performance globale du stagiaire que vous accuueillez.</p>
-										<p>Nous vous demandons de remplir ce document ves la toute fin du projet de façon à pouvoir en discuter avec le coordonnateur lors de sa dernière visite en milieu de travail.</p>
-									</i>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 text-center">
-									<div class="form-group checkbox">
-										<label class="checkbox-inline">
-											<input type="checkbox" required />J'ai lu et compris les informations ci-dessus.
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<button name="sendReview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/review/<?=$data['projectID']?>" formmethod="post">Soumettre</button>
-								</div>
-							</div>
-						</div>
-					<?php } ?>
 				</div>
 			</div>
 		</form>

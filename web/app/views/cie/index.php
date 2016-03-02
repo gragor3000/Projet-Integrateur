@@ -109,8 +109,11 @@
                             <form role="form" class="form-inline text-center well">
                                 <div class="form-group">
                                     <?php if($project->internID != null){ ?>
-                                    <b>Stagiaire : </b> <?php $data['interns'][$project->internID]->name; ?> <a class="btn btn-primary" formaction="/cie/review/<?php $data['interns'][$project->internID]->ID; ?>" formmethod="post"><i class="fa fa-fw fa-pencil"></i> Évaluer</a>
-                                    <?php }else if($project->status){ ?>
+                                    <b>Stagiaire : </b> <?=$data['interns'][$project->ID]->name; ?> 
+									<br/> 
+									<a class="btn btn-primary" href="/cie/review/<?=$project->ID; ?>"><i class="fa fa-fw fa-pencil"></i> Évaluer</a>
+                                    <a class="btn btn-primary" href="/cie/interview/<?=$data['interns'][$project->ID]->ID; ?>"><i class="fa fa-fw fa-pencil"></i> Entrevue</a>
+									<?php }else if($project->status){ ?>
                                     <p class="text-success">Le projet a été autorisé.</p>
                                     <?php } else { ?>
                                     <button class="btn btn-primary"  value="<?= $_SESSION['form_token']; ?>" formaction="/cie/edit/<?= $project->ID; ?>" formmethod="post"><i class="fa fa-fw fa-edit"></i> Éditer</button>

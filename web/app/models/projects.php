@@ -108,40 +108,41 @@ class projects extends models
                                        INNER JOIN projects ON business.ID = projects.businessID
                                        WHERE projects.ID = " . $_projectID);
 
-        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID);
+        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID['ID']);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
-        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été autorisé";
+        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été autorisé.";
 
         //Envoi du courriel de confirmation.
-        mail($result['email'], $user["name"] . " projet validé", $msg);
+        //mail($result['email'], $user["name"] . " projet validé", $msg);
     }
 
     //refuse un projet
     public function DenyProject($_projectID)
     {
         $projectTitle = parent::DBQuery("SELECT title FROM projects
-                                       WHERE projects.ID = " . $_projectID);
+                                       WHERE ID = " . $_projectID);
 
         $businessID = parent::DBQuery("SELECT business.ID FROM business
                                        INNER JOIN projects ON business.ID = projects.businessID
                                        WHERE projects.ID = " . $_projectID);
 
-        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID =" . $businessID['ID']);
+        $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID = " . $businessID['ID']);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
         parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
 
-        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",à été refusé";
+        $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été refusé.";
 
+		var_dump($msg);
         //Envoi du courriel de confirmation.
-        mail($result['email'], $user["name"] . " projet validée", $msg);
+        //mail($result['email'], $user["name"] . " projet non validé", $msg);
     }
 
     //Jumeller un stagiaire à un projet
     public function PairProjectToIntern($_projectId, $_internId)
     {
-        parent::DBExecute("UPDATE projects SET internID = " . $_internId . "WHERE ID = " . $_projectId);
+        parent::DBExecute("UPDATE projects SET internID = " . $_internId . " WHERE ID = " . $_projectId);
     }
 
 	//Supprimer un projet de stage par un superviseur

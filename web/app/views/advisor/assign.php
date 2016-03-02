@@ -34,10 +34,11 @@
 </div>
 <div class="section">
     <div class="container">
+	<form role="form" method = "post">
         <table class="table table-condensed table-hover">
             <thead>
                 <th>Projet de stage</th>
-                <th class="text-center" width="25px">NULL</th>
+                <th class="text-center" width="25px">Aucun</th>
                 <?php foreach($data['interns'] as $intern){ ?>
                 <th class="text-center"><?= $intern->name; ?></th>
                 <?php } ?>
@@ -61,8 +62,9 @@
         </table>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <button class="btn btn-primary btn-block" name="setAssign" value="<?= $_SESSION['form_token']; ?>" type="submit" formaction="/advisor/PairInternProject" formmethod="post">Assigner</button>
+                <button class="btn btn-primary btn-block" name="setAssign" value="<?= $_SESSION['form_token']; ?>" type="submit" formaction="/advisor/PairInternProject/">Assigner</button>
             </div>
         </div>
+	 </form>
     </div>
 </div>

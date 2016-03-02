@@ -23,20 +23,20 @@
 </div>
     
 <div class="section">
-    <h3 class="panel-title">Liste des stagiaires</h3>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 ">
+            <div class="col-md-9 col-md-offset-2 ">
+			<h3 class="panel-title">Liste des stagiaires</h3>
+			</br>
+			<form>
                 <div class="well">
-                    <form>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Nom Pr�nom</th>
                                     <th>login</th>
                                     <th>Journal de bord</th>
-                                    <th>Entrevue #1</th>
-                                    <th>Entrevue #2</th>
+                                    <th>Entrevue</th>
                                     <th>�valuation mi-stage</th>
                                     <th>�valuation fin-stage</th>
                                     <th>�valuation du superviseur</th>
@@ -46,27 +46,24 @@
                                     <?php
                                     if (isset($data['interns'])) {
                                         foreach ($data['interns'] as $intern) { ?>
-                                <tr id="intern<?= $intern->id ?>">
-                                    <td><?= $user->name; ?></td>
-                                    <td><?= $user->user; ?></td>
+                                <tr>
+                                    <td><?= $intern->name; ?></td>
+                                    <td><?= $intern->user; ?></td>
                                         
                                     <td>
-                                        <button class="btn btn-link" formaction="advisor/review/logbook" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/logbook/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="advisor/review/interview1" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/interview/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="advisor/review/interview2" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvMid/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="advisor/review/advMid" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvFinale/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="advisor/review/advFinale" formmethod="post">Visualiser</button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-link" formaction="advisor/review/sup" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/evalSup/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                 </tr>
                                 <?php }} else { ?>
@@ -74,8 +71,8 @@
                                 <?php } ?>
                             </tbody>
                         </table>
-                    </form>
                 </div>
+				</form>
             </div>
         </div>
     </div>

@@ -15,8 +15,10 @@
           <div class="row">
             <div class="col-md-12">
               <h1>Journal de bord</h1>
-              <p>Sur cette page vous pourrez soumettre une entrée à votre journal de bord ou consulter les entrées précédentes.</p>
-            </div>
+
+               <p>Sur cette page vous pourrez soumettre une entrée à votre journal de bord ou consulter les entrées précédentes.</p>
+
+		   </div>
           </div>
         </div>
       </div>
@@ -24,6 +26,8 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
+			
+
               <div class="well">
                 <form role="form">
                   <div class="form-group">
@@ -34,6 +38,8 @@
                 </form>
               </div>
             </div>
+
+			
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -54,4 +60,4 @@
           </div>
         </div>
       </div>
-	  </div>
+</div>
