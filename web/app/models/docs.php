@@ -3,7 +3,7 @@
 	class docs extends models{
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////// Log ///////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////// Intern ///////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//Ajoute des élément au journal de bord d'un étudiant.
@@ -60,6 +60,31 @@
 		public function ReadOnlyLog($_IDIntern){		
 			return (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml'));
 		}
+		
+		//Fonction permetant de suprimer tous les dossiers reliés à un étudiant
+		public function DeleteXML($_IDIntern){
+			
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml')){
+				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml');
+			}
+			
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_CieEVL.xml')){
+				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_CieEVL.xml');
+			}
+			
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev1EVL.xml')){
+				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev1EVL.xml');
+			}
+			
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev2EVL.xml')){
+				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev2EVL.xml');
+			}
+			
+			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_JDB.xml')){
+				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_JDB.xml');
+			}
+		}
+		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////// Rapport ////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,6 +275,6 @@
 			$Result = new obj($obj);
 			//Transforme les journeaux en objet utilisable et les retourne
 			return $Result;
-		}
+		}		
 	}
 ?>
