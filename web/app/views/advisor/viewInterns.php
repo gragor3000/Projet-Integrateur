@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Liste des stagiaires</h1>
-                <p>Sur cette page vous trouverez la liste des stagiaires du site ainsi que leurs évaluations respectives.</p>
+                <p>Sur cette page vous trouverez la liste des stagiaires du site ainsi que leur journal de bord et leurs évaluations respectives.</p>
             </div>
         </div>
     </div>
