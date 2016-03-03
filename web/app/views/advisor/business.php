@@ -1,9 +1,4 @@
 <?php
-/*
- * 2016-02-19 : COMPLÉTÉ
- */
-?>
-<?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
@@ -26,8 +21,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Listes des entreprises acceptée</h1>
-                <p>Sur cette page vous trouverez les informations concernant les entreprises acceptée dans le système.</p>
+                <h1>Listes des entreprises acceptées</h1>
+                <p>Sur cette page vous trouverez les informations concernant les entreprises acceptées dans le système.</p>
             </div>
         </div>
     </div>
@@ -63,7 +58,7 @@
                                 </tr>
                             </form>
                                     <?php }} else { ?>
-                            <td colspan="6">Aucune entreprise a été acceptée</td>
+                            <td colspan="6">Aucune entreprise a été acceptée.</td>
                                 <?php } ?>
                             </tbody>
                         </table>                            

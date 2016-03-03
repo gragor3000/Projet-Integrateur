@@ -1,13 +1,4 @@
 <?php
-
-/*
-  2016-02-09 Marc Lauzon
-  À FAIRE
-  - Soumission d'entrevue.
-  - Soumission d'évaluation.
-  - Soumission de MaJ d'info.
- */
-
 //Validation de l'identité.
 if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 1) {
 
@@ -20,7 +11,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Accueil par défaut.
-        public function index()
+        public function index($_message)
         {
             parent::model("business");
             $model = new business;
@@ -57,6 +48,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model('business');
             $model = new business();
             $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+			
+			if($_message != null)
+			{
+				$data['message']= $_message['message'];
+				$data['alert']= $_message['alert'];
+			}
 			
             //Ouvre l'index du superviseur
             parent::view("shared/header");
@@ -127,7 +124,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				catch (exception $ex) 
 				{
                     $data['alert'] = "alert-danger";
-                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                    $data['message'] = "Le projet n'a pas été mis à jour.";
                 }
             }
 
@@ -166,13 +163,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                   }
             }
 
-            $this->index();
+            $this->index($data);
         }
 
         //Modifier mot de passe.
         public function pass()
         {
-
             $data = NULL;
 
             //Modification du mot de passe.
@@ -186,7 +182,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $data['message'] = "Le mot de passe a été changé.";
                     } catch (exception $ex) {
                         $data['alert'] = "alert-warning";
-                        $data['message'] = "Le changement a échoué.";
+                        $data['message'] = "Le changement de mot de mot de passe a échoué.";
                     }
                 } else {
                     $data['alert'] = "alert-warning";
@@ -215,10 +211,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 try {
                     $model->UpdateBusiness($_SESSION['ID'], $_POST['address'], $_POST['city'], $_POST['tel'], $_POST['email']);
                     $data['alert'] = "alert-success";
-                    $data['message'] = "Les informations ont été changées.";
+                    $data['message'] = "Les informations de l'entreprise ont été changées.";
                 } catch (Exception $e) {
                     $data['alert'] = "alert-warning";
-                    $data['message'] = "Les changements ont échoués.";
+                    $data['message'] = "Les modifications de l'entreprise ont échouées.";
                 }
             }
 
@@ -246,16 +242,16 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model3 = new projects();
 
 			
-         if(($_internID != null) || (isset($_POST['intern'])))
+         if(($_internID != null) || (isset($_POST['intern']))) //Si un id de stagiaire est passé en paramètre
 		 {
 			 if(isset($_POST['intern']))$data['intern'] = $model2->ShowUserByID($_POST['intern']);
 			 else $data['intern'] = $model2->ShowUserByID($_internID[0]);			
 
 			 if ($data['intern'] != null)$project = $model3->ShowProjectByIntern($data['intern']->ID);
 			 			 
-		 if ($project != null) 
+		 if ($project != null) //Si le projet associé à ce stagiaire existe
 		 {
-				if($project->businessID == $_SESSION['ID'])
+				if(($project->businessID == $_SESSION['ID']) && ($project->statuts == 1)) //Si le projet fait parti de cette entreprise connectée
 				{
 					
 
@@ -272,7 +268,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $model1->SaveCie($_SESSION['ID'], 'interview', $_POST);
 						$data['interview'] = $model1->LoadCie($_POST['intern'], 'interview');
                         $data['alert'] = "alert-success";
-                        $data['message'] = "L'entrevue a été sauvegardée avec succès.";
+                        $data['message'] = "L'entrevue a été enregistrée avec succès.";
 						$data['readOnly'] = true;
                     } 
 					catch (exception $ex) 
@@ -285,16 +281,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			else 
 			{   //si le formulaire existe
 		
-		         $data['interview'] = $model1->LoadCie($_internID[0] , 'interview');
-				 
-                //Si les id sont les mêmes, afficher le formulaire d'évaluation
-                if ($data['interview']->Employeur != $_SESSION['ID']) 
-				{				
-                    $data['alert'] = "alert-warning";
-                    $data['message'] = "Il vous est interdit de visualiser ce formulaire.";				
-					$data['interview'] = null;
-					$this->index();
-                }
+		        $data['interview'] = $model1->LoadCie($_internID[0] , 'interview');
+
 				$data['alert'] = "alert-warning";
                 $data['message'] = "L'entrevue pour ce stagiaire existe déjà.";
             }
@@ -303,17 +291,21 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		 }
 		 else
 		 {
-			 $this->index();
+			 $data['alert'] = "alert-warning";
+             $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
+			 $this->index($data);
 		 }
 		 }
 		 else
 		 {
-			 $this->index();
+			 $data['alert'] = "alert-warning";
+             $data['message'] = "Le projet et/ou le stagiaire n'existe pas.";
+			 $this->index($data);
 		 }
 		}
          else
          {
-	       $this->index();
+	       $this->index(null);
           }	
         }
 
@@ -327,7 +319,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $model = new projects();
 			
 
-		if(($_projectID != null) || (isset($_POST['project'])))
+		if(($_projectID != null) || (isset($_POST['project']))) //Si un id de projet est passé en paramètre ou en post
 		{
             parent::model("docs");
             $model1 = new docs();
@@ -337,15 +329,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				
 			if(isset($_POST['project']))$project = $model2->ShowProjectByID($_POST['project']);
 			else $project = $model2->ShowProjectByID($_projectID[0]);
-														
-		  if(($project != null) && ($project->status == '1') && ($project->businessID == $_SESSION['ID']))
+			
+          if($project != null)	 //Si le projet en question existe
+		  {
+			  		  
+		  if(($project->status == 1) && ($project->businessID == $_SESSION['ID'])) //Si le projet est validé et appartient à la compagnie connectée
 		  {
             $data['title'] = $project->title;
             $data['projectID']= $project->ID;
 			$internId = $project->internID;
 
-		  if($internId != null)		  
-		  {			
+		   if($internId != null)  //Si le stagiaire existe pour ce projet 
+		   {			
 			
             //Vérifier l'existence d'une évaluation de stage
             $data['readOnly'] = $model1->ReadOnlyAdvisor($internId, 'cieReview');
@@ -358,15 +353,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			{ //si le formulaire existe
                 $data['review'] = $model1->LoadAdvisor($internId, "cieReview");
 
-                //Si les id sont les mêmes, afficher le formulaire d'évaluation
-                if ($data['review']->Employeur != $_SESSION['ID']) 
-				{					
-					$data['review'] = null;
-					$data['intern'] = null;
-                    $data['alert'] = "alert-warning";
-                    $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
-                    $this->index();
-                }
 				$data['alert'] = "alert-warning";
                 $data['message'] = "L'évaluation pour ce stagiaire et pour ce projet existe déjà.";
             } 
@@ -383,7 +369,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $model1->SaveAdvisor($_SESSION['ID'], "cieReview", $_POST);
 						$data['review'] = $model1->LoadAdvisor($internId, 'cieReview');
                         $data['alert'] = "alert-success";
-                        $data['message'] = "L'évaluation a été sauvegardée avec succès.";
+                        $data['message'] = "L'évaluation a été enregistrée avec succès.";
 						$data['readOnly'] = true;
                     } 
 					catch (Exception $e) 
@@ -399,17 +385,28 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		 }
 		 else
 		 {
-			 $this->index();
+			 $data['alert'] = "alert-warning";
+             $data['message'] = "Aucun stagiaire associé à ce projet.";
+			 $this->index($data);
 		 }
 		}
 		else
 		{
-			$this->index();
+			$data['alert'] = "alert-warning";
+            $data['message'] = "Il vous est interdit de visualiser ce formulaire.";
+			$this->index($data);
 		}
+		  }
+		  else
+		  {
+			$data['alert'] = "alert-warning";
+            $data['message'] = "Ce projet n'existe pas.";
+			$this->index($data);
+		  }
 	   }
 	   else
 		{
-			$this->index();
+			$this->index(null);
 		}
     }
   }

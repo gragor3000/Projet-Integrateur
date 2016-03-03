@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1>Évaluation des projets de stage</h1>
-					<p>Sur cette page vous trouverez les différents projets de stage qui vous sont suggéré. Vous devez les noter de 0 (Impossible) à 5 (Préférence) pour faciliter l'assignation d'un projet de stage par votre coordonnateur. Vous pourrez en tout temps modifier votre sélection avant qu'un projet de stage vous soit assigner.</p>
+					<p>Sur cette page vous trouverez les différents projets de stage qui vous sont suggérés. Vous devez les noter de 0 (Impossible) à 5 (Préférence) pour faciliter l'assignation d'un projet de stage par votre coordonnateur. Vous pourrez en tout temps modifier votre sélection avant qu'un projet de stage vous soit assigné.</p>
 				</div>
 			</div>
 		</div>

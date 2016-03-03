@@ -1,10 +1,4 @@
 <?php
-
-/*
-  2016-02-10 Marc Lauzon, Sam Baker
-  RÉVISÉ.
- */
-
 class projects extends models
 {
 

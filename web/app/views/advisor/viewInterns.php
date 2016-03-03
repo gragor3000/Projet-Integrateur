@@ -67,7 +67,7 @@
                                     </td>
                                 </tr>
                                 <?php }} else { ?>
-                                <td colspan="6">Aucun stagiaire enregistré</td>
+                                <td colspan="6">Aucun stagiaire enregistré.</td>
                                 <?php } ?>
                             </tbody>
                         </table>

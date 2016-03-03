@@ -1,13 +1,4 @@
 <?php
-
-/*
-  2016-02-09 Marc Lauzon
-  À FAIRE
-  - Soumission de journal de bord.
-  - Visualisation des évaluations.
- */
-
-
 //Validation de l'identité.
 if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 2) {
 
@@ -104,7 +95,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         $data['message'] = "Le mot de passe a été changé.";
                     } catch (PDOexception $ex) {
                         $data['alert'] = "alert-warning";
-                        $data['message'] = $ex;
+                        $data['message'] = "Le mot de passe n'a pas été changé.";
                     }
                 } else {
                     $data['alert'] = "alert-warning";

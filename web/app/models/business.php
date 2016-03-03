@@ -1,9 +1,4 @@
 <?php
-
-/*
-  DEBUG : Envoi de courriel désactivé pour test.
- */
-
 class business extends Models {	
 
     //Création d'un entreprise.

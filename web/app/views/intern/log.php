@@ -15,9 +15,7 @@
           <div class="row">
             <div class="col-md-12">
               <h1>Journal de bord</h1>
-
                <p>Sur cette page vous pourrez soumettre une entrée à votre journal de bord ou consulter les entrées précédentes.</p>
-
 		   </div>
           </div>
         </div>

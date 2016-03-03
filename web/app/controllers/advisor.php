@@ -1,6 +1,5 @@
 <?php
-    
-if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
+    if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
     
     class advisor extends Controller
     {
@@ -11,7 +10,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
             
         //appelle la page d'accueil qui as projets et entreprises non validée
-        public function index()
+        public function index($_message)
         {
             parent::view("shared/header");
             parent::view("advisor/menu");
@@ -36,12 +35,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $cie = new business();
             $data['cie'] = $cie->ShowCieByStatus(0);
                 
+			if($_message != null)
+			{
+				$data['message']= $_message['message'];
+				$data['alert']= $_message['alert'];
+			}
+			
 			
             parent::view("advisor/index", $data);
             parent::view("shared/footer");
         }
             
-        //appelle la page pour afficher tous les projets validés
+        //appelle la page pour afficher tous les projets validÃ©s
         public function projects()
         {
             parent::view("shared/header");
@@ -53,9 +58,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 
             $data['projects'] = $projects->ShowProjectByStatus(1);
                 
-			//Récupère les informations des compagnies reliées aux projets accepté
+			//RÃ©cupÃ¨re les informations des compagnies reliÃ©es aux projets acceptÃ©s
 			parent::model("business");
             $model = new business;
+			
 			if($data['projects'] != null){
 				foreach ($data['projects'] as $project) {
 					//Obtenir les informations de l'entreprise.
@@ -67,7 +73,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
             
-		//appelle la page pour afficher tous les projets validés
+		//appelle la page pour afficher tous les projets validÃ©s
         public function cie()
         {
             parent::view("shared/header");
@@ -91,12 +97,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			{
                     $cie->AuthCie($_CieID[0]); 
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Cette entreprise a bien été acceptée.";
+                    $data['message'] = "Cette entreprise a bien Ã©tÃ© acceptÃ©e.";
             } 
 			catch (exception $ex) 
 			{
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Cette entreprise n'a pu être acceptée.";
+                    $data['message'] = "Cette entreprise n'a pu Ãªtre acceptÃ©e.";
              }
 			 
                              
@@ -111,17 +117,17 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             $cie = new business();
 			
 			if(isset($_POST['cieID']))
-			{
+			{	
 			 try 
 			 {
                     $cie->DeleteCie($_POST['cieID']);
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Cette entreprise a bien été refusée.";
+                    $data['message'] = "Cette entreprise a bien Ã©tÃ© refusÃ©e.";
              } 
 			 catch (exception $ex) 
 			 {
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Cette entreprise n'a pu être refusée.";
+                    $data['message'] = "Cette entreprise n'a pu Ãªtre refusÃ©e.";
              }
 
 				$this->ShowUsers($data);
@@ -132,15 +138,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			   {
                     $cie->DenyCie($_CieID[0]);
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Cette entreprise a bien été refusée.";
+                    $data['message'] = "Cette entreprise a bien Ã©tÃ© refusÃ©e.";
                } 
 			  catch (exception $ex) 
 			  {
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Cette entreprise n'a pu être refusée.";
+                    $data['message'] = "Cette entreprise n'a pu Ãªtre refusÃ©e.";
               }
 				
-			  $this->index();
+			  $this->index($data);
 			}                           
         }
             
@@ -154,12 +160,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			{
                     $projects->ValidateProject($_ProjID[0]);
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Ce projet a bien été accepté.";
+                    $data['message'] = "Ce projet a bien Ã©tÃ© acceptÃ©.";
             } 
 			catch (exception $ex) 
 			{
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Ce projet n'a pu être accepté.";
+                    $data['message'] = "Ce projet n'a pu Ãªtre acceptÃ©.";
              }
 			$this->index();
         }
@@ -175,12 +181,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			{
                     $projects->DenyProject($_ProjID[0]);		
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Ce projet a bien été refusé.";
+                    $data['message'] = "Ce projet a bien Ã©tÃ© refusÃ©.";
             } 
 			catch (exception $ex) 
 			{
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Ce projet n'a pu être refusé.";
+                    $data['message'] = "Ce projet n'a pu Ãªtre refusÃ©.";
              }
 				
                 
@@ -190,7 +196,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //ajoute un compte dans la bd
         public function CreateUser()
         {          			
-			if (isset($_POST["createUser"]) /*&& $_POST['createUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()*/)
+			if (isset($_POST["createUser"]) /*&& $_POST['createUser'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 300 > time())
 			{
 				parent::model("accounts");              
                 $account = new accounts();
@@ -199,10 +205,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				{
                     $account->CreateUser($_POST["name"], $_POST["user"], $_POST["pw"], $_POST["rank"]);		
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Cet utilisateur a bien été enregistré.";
+                    $data['message'] = "Cet utilisateur a bien Ã©tÃ© crÃ©Ã©.";
                 } catch (exception $ex) {
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                    $data['message'] = "Cet utilisateur n'a pas Ã©tÃ© crÃ©Ã©.";
                 }
             }
 			$this->ShowUsers($data);
@@ -222,7 +228,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				$data['message']= $_message["message"];
 				$data['alert']= $_message["alert"];
 			}
-			//Affiche tout les éléments de la page
+			//Affiche tout les Ã©lÃ©ments de la page
 			parent::view("shared/header");
             parent::view("advisor/menu");
             parent::view("advisor/users", $data);
@@ -232,7 +238,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         //supprime un compte
         public function DeleteUser()
         {
-            if (isset($_POST["userID"]) /*&& $_POST['deleteUser'] == $_SESSION['form_token'] && $_SESSION['form_timer'] + 300 > time()*/)
+            if (isset($_POST["userID"]) /*&& $_POST['deleteUser'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 300 > time())
 			{
 				parent::model("accounts");
                 
@@ -242,12 +248,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				{
                     $account->DeleteUser($_POST["userID"]);		
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Cet utilisateur a bien été supprimé.";
+                    $data['message'] = "Cet utilisateur a bien Ã©tÃ© supprimÃ©.";
                 } 
 				catch (exception $ex) 
 				{
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Cet utilisateur n'a pu être supprimé.";
+                    $data['message'] = "Cet utilisateur n'a pu Ãªtre supprimÃ©.";
                 }
             }
             $this->ShowUsers($data);
@@ -259,21 +265,21 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			$data = NULL;
                             
             //Modification du mot de passe.
-            if (isset($_POST['editPass']) && $_POST['editPass'] == $_SESSION['form_token']){
+            if (isset($_POST['editPass']) /*&& $_POST['editPass'] == $_SESSION['form_token']*/){
                 if($_SESSION['form_timer'] + 600 > time()){
                 parent::model('accounts');
                 $model = new accounts();
                 try {
                     $model->UpdatePw($_SESSION['ID'], $_POST['password']);
                     $data['alert'] = "alert-success";					
-                    $data['message'] = "Le mot de passe a été changé.";
+                    $data['message'] = "Le mot de passe a Ã©tÃ© changÃ©.";
                 } catch (exception $ex) {
                     $data['alert'] = "alert-warning";
-                    $data['message'] = "Le changement a échoué.";
+                    $data['message'] = "Le changement de mot de passe a Ã©chouÃ©.";
                 }
             } else {
                 $data['alert'] = "alert-warning";
-                $data['message'] = "La permission du formulaire a expiré.";
+                $data['message'] = "La permission du formulaire a expirÃ©.";
             }
         }
             
@@ -293,54 +299,33 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 try {
                     $account->UpdateUser($_POST["userID"], $_POST["name"], $_POST["user"]);
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Les nouvelles informations ont été enregistrées.";
+                    $data['message'] = "Cet utilisateur a bien Ã©tÃ© modifiÃ©.";
                 } catch (exception $ex) {
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Le(s) changement(s) a(ont) échoué(s).";
+                    $data['message'] = "Cet utilisateur n'a pas Ã©tÃ© modifiÃ©.";
                 }
             }
 
             $this->ShowUsers($data);
         }
-            
-        //update le mot de passe d'un compte
-        public function UpdatePw()
-        {
-            parent::model("accounts");
-                
-            $account = new accounts();
-            $account->UpdatePw($_POST["userID"], $_POST["pw"]);
-        }
-            
-        //montre ses infos
-        public function ShowMyInfo()
-        {
-            parent::model("accounts");
-                
-            $account = new accounts();
-            $data["info"] = $account->ShowUserByToken($_COOKIE["token"]);
-                
-            parent::view("advisor/info", $data);
-            parent::view("shared/footer");
-        }
-            
-        //affiche les notes misent par les étudiants
+                                  
+        //affiche les notes misent par les Ã©tudiants
         public function assign()
         {
             parent::model("ratings");
             $ratings = new ratings();
-            //Obtenir toutes les évaluations.
+            //Obtenir toutes les Ã©valuations.
             $ratings = $ratings->ShowAllRatings();
                 											
             parent::model("projects");
             $projects = new projects();
-            //Obtenir tous les projets autorisés.
+            //Obtenir tous les projets autorisÃ©s.
             $data["projects"] = $projects->ShowProjectByStatus(true);
                 
 
-			if (isset($ratings) && isset($data["projects"]))
+			if (isset($ratings) && isset($data["projects"])) //si le tableau des ratings et des projets existent
 			{
-                foreach ($ratings as $rating) 
+                foreach ($ratings as $rating) //ajouter les ratings selon le id du projet
 				{
                     $data['ratings'][$rating['projectID']] = $rating;
                 }
@@ -358,18 +343,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
             
-        //jumelle un stagiaire à un projet
+        //jumelle un stagiaire Ã  un projet
         public function PairInternProject()
         {
             parent::model("projects");
             $projects = new projects();             
 
-			//jumeller un stagiaire à un projet 
+			//jumeller un stagiaire Ã  un projet pouir chaque projet
             if (isset($_POST['setAssign']) && /*$_POST['setAssign'] == $_SESSION['form_token'] &&*/ $_SESSION['form_timer'] + 300 > time())
 			{              
 					foreach ($_POST as $projectID => $internID)
 					{
-						if($projectID != "setAssign") $projects->PairProjectToIntern($projectID ,$internID);
+						if(($projectID != "setAssign") && ($internID != -1)) $projects->PairProjectToIntern($projectID ,$internID);
 					}
             }
 			
@@ -396,7 +381,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::view("shared/footer");
         }
 
-        //affiche les évaluations d'un étudiant
+        //affiche les Ã©valuations d'un Ã©tudiant
         public function review($_review)
         {
 			parent::view("shared/header");
@@ -415,7 +400,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			$projectIntern = null;
             if(ctype_digit($_review[1]))$projectIntern = $project->ShowProjectByIntern($_review[1]);
 			
-			if($projectIntern !=null)
+			if($projectIntern !=null)//S'il existe bien un projet pour ce stagiaire...
 			{
 			$data["interns"] = $interns->ShowUsersByRank(2);
 			$data['intern'] = $interns->ShowUserByID($_review[1]);
@@ -429,7 +414,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			  if(!($model->ReadOnlyLog($_review[1])))
 				{
 						$data['alert'] = "alert-warning";
-						$data['message'] = "Il n'y a pas de journal de bord associé à ce stagiaire pour le moment.";
+						$data['message'] = "Il n'y a pas de journal de bord associÃ© Ã  ce stagiaire pour le moment.";
 						$this->ShowInterns($data);
 				}
 				else
@@ -439,7 +424,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				}
             }
                 
-			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
+			//Tout dÃ©pendant du premier paramÃ¨tre passer en paramÃ¨tre, choisir la bonne page
 			switch($_review[0])
 			{
 				case "evalAdvMid": //Evaluation de mi-stage
@@ -491,7 +476,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					if(!$exist)
 					{
 						$data['alert'] = "alert-warning";
-						$data['message'] = "Aucune entrevue évaluée pour le moment.";
+						$data['message'] = "Aucune entrevue Ã©valuÃ©e pour le moment.";
 						$this->ShowInterns($data);
 					}
 					else
@@ -501,14 +486,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					}
 					break;
 				}
-				case "evalSup": //Évaluation du superviseur
+				case "evalSup": //Ã©valuation du superviseur
 				{
 					$exist = $model->ReadOnlyAdvisor($_review[1],"cieReview");
 
 					if(!$exist)
 					{
 						$data['alert'] = "alert-warning";
-						$data['message'] = "Aucune évaluation du superviseur pour le moment.";
+						$data['message'] = "Aucune Ã©valuation du superviseur pour le moment.";
 						$this->ShowInterns($data);
 					}
 					else
@@ -529,7 +514,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			else
 			{
 				$data['alert'] = "alert-warning";
-				$data['message'] = "Ce stagiaire n'a pas encore été jumelé à un projet.";
+				$data['message'] = "Ce stagiaire n'a pas encore Ã©tÃ© jumelÃ© Ã  un projet.";
 				$this->ShowInterns($data);
 			}
 			}
@@ -540,7 +525,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
            
         }           
 		
-		//Évaluer un stagiaire à la mi et à la fin de la session
+		//Ã‰valuer un stagiaire Ã  la mi et Ã  la fin de la session
 		public function evalAdv($_review)
 		{
 			parent::model("accounts");
@@ -549,7 +534,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			$model1 = new accounts();
 			$model2 = new docs();						
 			
-			if(((isset($_review["intern"]) && isset ($_review["#review"]))) || (isset($_POST["intern"])))
+			if(((isset($_review["intern"][1])&& isset ($_review["#review"]))) || (isset($_POST["intern"])))
 			{
 			  $data['advisors'] = $model1-> ShowUsersByRank(0);
 			  $data['interns'] = $model1-> ShowUsersByRank(2);			
@@ -578,7 +563,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                if(ctype_digit($intern))$projectIntern = $project->ShowProjectByIntern($intern);
 			
 
-				if($projectIntern != null)
+				if($projectIntern != null) //S'il existe bien un projet pour ce stagiaire...
 				{
 						
 		           if (!$data['readOnly']) //Si le formulaire n'existe pas
@@ -589,14 +574,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 				        {
 							$model2->SaveAdvisor( $_SESSION['ID'],$review,$_POST);
 							$data['alert'] = "alert-success";
-                            $data['message'] = "L'évaluation a été enregistrée avec succès!";
+                            $data['message'] = "L'Ã©valuation a Ã©tÃ© enregistrÃ©e avec succÃ¨s!";
 							$data['review'] = $model2->LoadAdvisor($intern ,$review);
 							$data['readOnly'] = true;
 				        }
 						catch (exception $ex) 
 						{
 							$data['alert'] = "alert-warning";
-                            $data['message'] = "L'enregistrement de l'évaluation a échoué.";
+                            $data['message'] = "L'enregistrement de l'Ã©valuation a Ã©chouÃ©.";
 							$this->ShowInterns($data);
 						}  
 			          }
@@ -604,7 +589,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		            else
 		           {
 			    	$data['alert'] = "alert-warning";
-                    $data['message'] = "Cette évaluation existe déjà pour ce stagiaire.";
+                    $data['message'] = "Cette Ã©valuation existe dÃ©jÃ  pour ce stagiaire.";
 			    	$data['review'] = $model2->LoadAdvisor($intern,$review);
 		           }
 		            $data['intern'] = $intern;
@@ -618,13 +603,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			    else
 			    {
 					$data['alert'] = "alert-warning";
-				    $data['message'] = "Ce stagiaire n'a pas encore été jumelé à un projet.";
+				    $data['message'] = "Ce stagiaire n'a pas encore Ã©tÃ© jumelÃ© Ã  un projet.";
 				    $this->ShowInterns( $data);
 			    }
 			}
 			else
 			{
-				$this->index();
+				$this->ShowInterns(null);
 			}			
 		}
     }

@@ -484,7 +484,7 @@
 								<div class="col-md-12">
 									<i>
 										<p>Nous tenons à vous rappeler que le présent projet de fin d'études est une activité pédagogique dans le cade du programme d'Informatique de Gestion.</p>
-										<p>Comme pour tous les autres cours, le projet fera donc l'objet d'une évaluation. Les coordonnateurs en demeurent les principaux responsables. Toutefois, une partie de cette évaluation sera faite en fonction de votre perception de la performance globale du stagiaire que vous accuueillez.</p>
+										<p>Comme pour tous les autres cours, le projet fera donc l'objet d'une évaluation. Les coordonnateurs en demeurent les principaux responsables. Toutefois, une partie de cette évaluation sera faite en fonction de votre perception de la performance globale du stagiaire que vous accueillez.</p>
 										<p>Nous vous demandons de remplir ce document ves la toute fin du projet de façon à pouvoir en discuter avec le coordonnateur lors de sa dernière visite en milieu de travail.</p>
 									</i>
 								</div>

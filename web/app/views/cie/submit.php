@@ -1,11 +1,3 @@
-<!--
-2016-02-09 Marc Lauzon
-Formulaire de soumission de projet.
-Formulaire vide seulement, affiche l'entreprise.
-Accès possible aux entreprises seulement.
-
-COMPLÉTÉ.
--->
 <?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
@@ -23,7 +15,7 @@ COMPLÉTÉ.
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Soumettre un projet de stage</h1>
-				<p>Sur cette page vous pourrez soumettre un porjet de stage au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pourrez modifier celui-ci avant qu'il soit accepté. Si le projet est accepté ou refusé par les coordonnateurs, un courriel vous sera envoyé.</p>
+				<p>Sur cette page vous pourrez soumettre un projet de stage au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pourrez modifier celui-ci avant qu'il soit accepté. Si le projet est accepté ou refusé par les coordonnateurs, un courriel vous sera envoyé.</p>
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,4 @@
 <?php
-/*
- *2016-02-19 : COMPLÉTÉ
- */
-
 //Contrôleur d'acceuil.
 class home extends Controller {
 
@@ -106,7 +102,7 @@ class home extends Controller {
             $business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastInsertedID('users'));
             
             $data['alert'] = "alert-success";
-            $data['message'] = "L'entreprise a été soumis aux coordonnateurs de stage. Merci de votre participation.";
+            $data['message'] = "L'entreprise a été soumise aux coordonnateurs de stage. Merci de votre participation.";
         } catch (PDOException $e) {
             $data['alert'] = "alert-warning";
             $data['message'] = "L'entreprise n'a pu être soumise aux coordonnateurs de stage. Veuillez réessayer.";;

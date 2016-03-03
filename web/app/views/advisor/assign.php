@@ -1,9 +1,4 @@
 <?php
-/*
- * 2016-02-19 : COMPLÉTÉ
- */
-?>
-<?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
@@ -27,7 +22,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Assignation des stages</h1>
-                <p>Sur cette page vous pourrez visualiser les évaluations des stages par les stagiaires et assigner ceuxi-ci selon votre choix.</p>
+                <p>Sur cette page vous pourrez visualiser les évaluations des stages par les stagiaires et assigner ceux-ci selon votre choix.</p>
             </div>
         </div>
     </div>

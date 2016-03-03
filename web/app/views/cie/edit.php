@@ -1,10 +1,3 @@
-<!--
-2016-02-08 Marc Lauzon.
-=======================
-HTML/CSS complété.
-FORMULAIRE complété.
-PHP complété.
--->
 <?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
@@ -22,7 +15,7 @@ PHP complété.
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Éditer un projet de stage</h1>
-				<p>Sur cette page vous pouvez éditer un projet de stage ayant déja été soumis au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pouvez modifier autant de fois que désiré avant qu'il soit accepté. Une fois accepté il ne sera plus possible de le modfier.</p>
+				<p>Sur cette page vous pouvez éditer un projet de stage ayant déja été soumis au département de technique de l'informatique. Celui-ci devra être autorisé avant d'être proposé aux stagiaires. Vous pouvez modifier autant de fois que désiré avant qu'il soit accepté. Une fois accepté il ne sera plus possible de le modifier.</p>
 			</div>
 		</div>
 	</div>

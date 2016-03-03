@@ -1,9 +1,4 @@
 <?php
-/*
- * 2016-02-19 : COMPLÉTÉ
- */
-?>
-<?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
@@ -27,7 +22,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Listes des projets de stage</h1>
-                <p>Sur cette page vous trouverez les informations concernant les projets de stage validé.</p>
+                <p>Sur cette page vous trouverez les informations concernant les projets de stage validés.</p>
             </div>
         </div>
     </div>
@@ -92,7 +87,7 @@
 											</div>
 									</tr>
 									<?php }} else { ?>
-								<td colspan="6">Aucun projet n'a été accepté</td>
+								<td colspan="6">Aucun projet n'a été accepté.</td>
 										<?php } ?>
 								</tbody>
 							</table>

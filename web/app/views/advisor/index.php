@@ -1,9 +1,4 @@
 <?php
-/*
- * 2016-02-19 : COMPLÉTÉ
- */
-?>
-<?php
 	//Générer un token d'identification.
 	$token = md5(uniqid(rand(), TRUE));
 	$_SESSION['form_token'] = $token;
@@ -96,7 +91,7 @@
                                             <th width="15px"></th>
                                             <th>Titre</th>
                                             <th>Entreprise</th>
-                                            <th>Nom superviseur</th>
+                                            <th>Nom du superviseur</th>
                                             <th class="text-center" width="125px">Validation</th>
                                         </tr>
                                     </thead>
@@ -143,7 +138,7 @@
                                                 </div>
                                         </tr>
                                         <?php }} else { ?>
-                                    <td colspan="6">Aucun projet à valider</td>
+                                    <td colspan="6">Aucun projet à valider.</td>
                                             <?php } ?>
                                     </tbody>
                                 </table>

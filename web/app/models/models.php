@@ -1,10 +1,4 @@
 <?php
-
-/*
-  2016-02-10 Marc Lauzon, Baker
-  RÉVISÉ
- */
-
 //transformation de tableau à objet.
 class obj {
 

@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Formulaire d'évaluation du stagiaire</h1>
-                <p>Sur cette page, vous pourrez visualiser votre formulaire d'évaluation du coordonnateur.</p>
+                <p>Sur cette page vous pourrez visualiser votre formulaire d'évaluation du coordonnateur.</p>
 			</div>
 		</div>
 	</div>
