@@ -429,6 +429,7 @@
 				else
 				{
 					    $data["logs"] = $model->LoadLog($_review[1]);
+						$data['logs']= array_reverse($data['logs']);
 						parent::view("advisor/log", $data);
 				}
             }

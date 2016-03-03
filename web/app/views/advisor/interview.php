@@ -12,7 +12,6 @@
     <div class="container">
 	 <form id = "form" role="form" METHOD="POST">
             <div class="row">
-			<h3>
                 <div class="col-md-6 col-md-offset-3">
                     <div class="row">    
                         <div class="form-group col-md-6">
