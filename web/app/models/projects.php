@@ -106,7 +106,7 @@ class projects extends models
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
         $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été autorisé.";
-var_dump($msg);
+
         //Envoi du courriel de confirmation.
         //mail($result['email'], $user["name"] . " projet validé", $msg);
     }
@@ -129,7 +129,7 @@ var_dump($msg);
 
         $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été refusé.";
 
-		var_dump($msg);
+
         //Envoi du courriel de confirmation.
         //mail($result['email'], $user["name"] . " projet non validé", $msg);
     }

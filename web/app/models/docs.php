@@ -68,20 +68,20 @@
 				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_RPT.xml');
 			}
 			
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_CieEVL.xml')){
-				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_CieEVL.xml');
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_CieEVL.xml')){
+				unlink(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_CieEVL.xml');
 			}
 			
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev1EVL.xml')){
-				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev1EVL.xml');
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_AdvRev1EVL.xml')){
+				unlink(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_AdvRev1EVL.xml');
 			}
 			
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev2EVL.xml')){
-				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_AdvRev2EVL.xml');
+			if (file_exists(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_AdvRev2EVL.xml')){
+				unlink(parent::DefaultXMLPath.'evaluation/'.$_IDIntern.'_AdvRev2EVL.xml');
 			}
 			
-			if (file_exists(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_JDB.xml')){
-				unlink(parent::DefaultXMLPath.'rapport/'.$_IDIntern.'_JDB.xml');
+			if (file_exists(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml')){
+				unlink(parent::DefaultXMLPath.'journal_de_bord/'.$_IDIntern.'_JDB.xml');
 			}
 		}
 		

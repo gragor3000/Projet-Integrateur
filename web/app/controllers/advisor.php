@@ -245,7 +245,7 @@
 						   
                 try 
 				{
-					$user = $account->ShowUserByID($_id);	
+					$user = $account->ShowUserByID($_POST["userID"]);	
                     $account->DeleteUser($_POST["userID"]);					
 		            
 					if($user->rank == 2) //si c'est un stagiaire, supprimer tous ses fichiers xml correspondant.
@@ -253,7 +253,7 @@
 			          parent::model("docs");
 			          $model = new docs();
 					  	
-					  $model->DeleteXML($_id);
+					  $model->DeleteXML($_POST["userID"]);
 		            }
 
 				  	$data['alert'] = "alert-success";
