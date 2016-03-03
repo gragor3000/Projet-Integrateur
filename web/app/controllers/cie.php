@@ -52,7 +52,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 header('location:/cie/submit');
             }
 			
-            var_dump($data['interns']);
+
             //récupère les informations de la compagnie
             parent::model('business');
             $model = new business();
@@ -241,26 +241,36 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("accounts");
             $model2 = new accounts();
-		
-         if($_internID != null)
-		 {
-            $data['intern'] = $model2->ShowUserByID($_internID[0]);
+
+			parent::model("projects");
+            $model3 = new projects();
+
 			
-		 if ($data['intern'] != null)
+         if(($_internID != null) || (isset($_POST['intern'])))
 		 {
-				
-			$data['readOnly'] = $model1->ReadOnlyCie($_internID[0], 'interview');		
-			
+			 if(isset($_POST['intern']))$data['intern'] = $model2->ShowUserByID($_POST['intern']);
+			 else $data['intern'] = $model2->ShowUserByID($_internID[0]);			
+
+			 if ($data['intern'] != null)$project = $model3->ShowProjectByIntern($data['intern']->ID);
+			 			 
+		 if ($project != null) 
+		 {
+				if($project->businessID == $_SESSION['ID'])
+				{
+					
+
+			$data['readOnly'] = $model1->ReadOnlyCie($data['intern']->ID, 'interview');		
+
             if (!$data['readOnly']) 
 			{   //Si le formulaire n'existe pas
 
                 //Enregistrer l'entrevue.
-                if (isset($_POST['sendInterview']) /*&& $_POST['sendInterview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
+                if (isset($_POST['sendInterview']) && isset($_POST['intern'])/*&& $_POST['sendInterview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
 				{
                     try 
 					{
                         $model1->SaveCie($_SESSION['ID'], 'interview', $_POST);
-						$data['interview'] = $model1->LoadCie($_internID[0], 'interview');
+						$data['interview'] = $model1->LoadCie($_POST['intern'], 'interview');
                         $data['alert'] = "alert-success";
                         $data['message'] = "L'entrevue a été sauvegardée avec succès.";
 						$data['readOnly'] = true;
@@ -295,6 +305,11 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		 {
 			 $this->index();
 		 }
+		 }
+		 else
+		 {
+			 $this->index();
+		 }
 		}
          else
          {
@@ -311,7 +326,8 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			parent::model("projects");
             $model = new projects();
 			
-		if($_projectID != null)
+
+		if(($_projectID != null) || (isset($_POST['project'])))
 		{
             parent::model("docs");
             $model1 = new docs();
@@ -319,14 +335,15 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("projects");
             $model2 = new projects();         
 				
-			$project = $model2->ShowProjectByID($_projectID[0]);
-			
-		  if($project != null)
+			if(isset($_POST['project']))$project = $model2->ShowProjectByID($_POST['project']);
+			else $project = $model2->ShowProjectByID($_projectID[0]);
+														
+		  if(($project != null) && ($project->status == '1') && ($project->businessID == $_SESSION['ID']))
 		  {
             $data['title'] = $project->title;
             $data['projectID']= $project->ID;
 			$internId = $project->internID;
-			
+
 		  if($internId != null)		  
 		  {			
 			
@@ -343,7 +360,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
                 //Si les id sont les mêmes, afficher le formulaire d'évaluation
                 if ($data['review']->Employeur != $_SESSION['ID']) 
-				{
+				{					
 					$data['review'] = null;
 					$data['intern'] = null;
                     $data['alert'] = "alert-warning";
@@ -356,9 +373,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			else 
 			{ //si le formulaire n'existe pas
                 //Enregistrer le formulaire d'évaluation.
-                var_dump($internId);
-                if (isset($_POST['sendReview']) /*&& $_POST['sendReview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
+
+                if (isset($_POST['sendReview']) && isset($_POST['project']) /*&& $_POST['sendReview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
 				{
+					var_dump($_POST['revDate']);
                     try 
 					{
 						$_POST['intern'] = $internId;
@@ -393,7 +411,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		{
 			$this->index();
 		}
-        }
+    }
   }
 } else {
     //Rediriger vers l'acceuil.

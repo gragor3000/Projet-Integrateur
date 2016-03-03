@@ -43,10 +43,7 @@
                             <a href="/advisor/assign"><i class="fa fa-fw fa-hand-o-right"></i> Panneau de jumelage</a>
                         </li>
                         <li>
-                            <a href="/advisor/viewInterns"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>
-                        </li>
-						<li>
-                            <a href="/advisor/evalAdv/"><i class="fa fa-fw fa-comment"></i> Évaluer un stagiaire</a>
+                            <a href="/advisor/ShowInterns"><i class="fa fa-fw fa-comment"></i> Formulaires d'évaluations</a>
                         </li>
                         <li class="divider"></li>
                         <li>

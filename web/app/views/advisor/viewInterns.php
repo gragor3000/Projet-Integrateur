@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Liste des stagiaires</h1>
-                <p>Sur cette page vous trouverez la liste des stagiaires du site ainsi que leurs �valuations respectives.</p>
+                <p>Sur cette page vous trouverez la liste des stagiaires du site ainsi que leurs évaluations respectives.</p>
             </div>
         </div>
     </div>
@@ -33,13 +33,13 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Nom Pr�nom</th>
+                                    <th>Nom Prénom</th>
                                     <th>login</th>
                                     <th>Journal de bord</th>
                                     <th>Entrevue</th>
-                                    <th>�valuation mi-stage</th>
-                                    <th>�valuation fin-stage</th>
-                                    <th>�valuation du superviseur</th>
+                                    <th>Évaluation mi-stage</th>
+                                    <th>Évaluation fin-stage</th>
+                                    <th>Évaluation du superviseur</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,17 +57,17 @@
                                         <button class="btn btn-link" formaction="/advisor/review/interview/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvMid/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvMid/<?= $intern->ID ?>" formmethod="post">Évaluer</button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvFinale/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
+                                        <button class="btn btn-link" formaction="/advisor/review/evalAdvFinale/<?= $intern->ID ?>" formmethod="post">Évaluer</button>
                                     </td>
                                     <td>
                                         <button class="btn btn-link" formaction="/advisor/review/evalSup/<?= $intern->ID ?>" formmethod="post">Visualiser</button>
                                     </td>
                                 </tr>
                                 <?php }} else { ?>
-                                <td colspan="6">Aucun stagiaire enregistr�</td>
+                                <td colspan="6">Aucun stagiaire enregistré</td>
                                 <?php } ?>
                             </tbody>
                         </table>

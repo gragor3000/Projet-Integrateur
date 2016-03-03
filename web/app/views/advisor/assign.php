@@ -48,12 +48,12 @@
                 <tr>
                     <td><?= $project->title; ?></td>
                     <td class="text-center">
-                        <input type="radio" name="<?= $project->ID; ?>" value="-1" checked />
+                        <input type="radio" name="<?= $project->ID; ?>" value="-1" checked <?= ($project->internID != null) ? 'disabled' : ''; ?>/>
                     </td>
                     <?php foreach($data['interns'] as $intern){ ?>
                     <td class="text-center">
-                        <?= (isset($data['ratings'][$project->ID][$intern->ID])) ? $data['ratings'][$project->ID][$intern->ID] : "N/D"; ?> <i class="fa fa-fw fa-star text-success"></i>
-                        <input type="radio" name="<?= $project->ID; ?>" value="<?= $intern->ID; ?>" <?= ($project->internID == $intern->ID) ? 'checked' : ''; ?> />
+                        <?= (isset($data['ratings'][$project->ID]) && ($data['ratings'][$project->ID]['internID'] == $intern->ID)) ? $data['ratings'][$project->ID]['score'] : "N/D"; ?> <i class="fa fa-fw fa-star text-success"></i>
+                        <input type="radio" name="<?= $project->ID; ?>" value="<?= $intern->ID; ?>" <?= ($project->internID == $intern->ID) ? 'checked' : ''; ?> <?= ($project->internID != null) ? 'disabled' : ''; ?>/>
                     </td>
                     <?php } ?>
                 </tr>

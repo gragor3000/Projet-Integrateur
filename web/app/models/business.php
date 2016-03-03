@@ -85,23 +85,32 @@ class business extends Models {
     public function DenyCie($_businessID)
     {
         $user = parent::DBQuery("SELECT business.userID, users.name, business.email FROM business
-                                 INNER JOIN users ON business.userID = users.ID WHERE business.ID =" . $_businessID);
+                                 INNER JOIN users ON business.userID = users.ID WHERE business.ID =" . $_businessID['ID']);
         
-		parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
+		$projects = parent::DBSearch("SELECT * FROM projects WHERE businessID =".$user['userID']);
+		
+		foreach($projects as $project)
+		{
+			parent::DBExecute("DELETE FROM ratings WHERE projectID =" . $project->ID);
+		}
+		
+		parent::DBExecute("DELETE FROM projects WHERE businessID =" . $user['userID']);
+		
+		parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID['ID']);
         parent::DBExecute("DELETE FROM users WHERE ID =" .$user["userID"]);
 
         $msg = "Votre entreprise, " . $user["name"] . ", a été refusée.";
-        var_dump($msg);
+        
         //Envoi du courriel de refus.
-        //mail($user["email"],$user["name"]."Compte refusé",$msg);
-
+        //mail($user["email"],$user["name"]."Compte refusé",$msg);		
     }
 
     //Supprimer une entreprise.
     public function DeleteCie($_userID) 
 	{
-        parent::DBExecute("DELETE FROM business WHERE userID =" . $_userID);
-        parent::DBExecute("DELETE FROM users WHERE ID =" .$_userID);
+        $business = parent::DBQuery("SELECT ID FROM business WHERE userID=" . $_userID);
+		var_dump($business);
+        $this->DenyCie($business);
     }
 
 }

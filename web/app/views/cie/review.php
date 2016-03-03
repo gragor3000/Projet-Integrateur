@@ -34,11 +34,11 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label class="control-label" for="revTitle">Titre du projet</label>
-							<input class="form-control" id="revtitle"  type="text" value="<?= (isset($data['title']) )? $data['title'][0] : ''; ?>" disabled />
+							<input class="form-control" id="revtitle"  type="text" value="<?= (isset($data['title']) )? $data['title'] : ''; ?>" disabled />
 						</div>
 						<div class="form-group col-md-2">
 						 <label class="control-label" for="revDate">Date</label>
-							<input class="form-control" id="revDate" type="text" value="<?= date("Y-m-d"); ?>" disabled />
+							<input class="form-control" name="revDate" id="revDate" placeholder="YYYY-MM-DD --:--" type="datetime-local" value="<?= (isset($data['review'])) ? $data['review']->revDate : ''; ?>" <?= ($data['readOnly']) ? "readonly" : "required"; ?> />
 						</div>
 					</div>
 					<h3 class="page-header">Comportement et éthique nécessaire à l'exercice de la profession.</h3>
@@ -500,7 +500,8 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<button name="sendReview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/review/<?=$data['projectID']?>" formmethod="post">Soumettre</button>
+								    <input type="hidden" name = "project" value ="<?=$data['projectID'];?>">
+									<button name="sendReview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/review/" formmethod="post">Soumettre</button>
 								</div>
 							</div>
 						</div>

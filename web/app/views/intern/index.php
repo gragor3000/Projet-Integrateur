@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Information du projet de stage</h1>
-				<p>Sur cette page vous trouverez les informations concernant le projet de stage qui vous a été assigné.</p>
+				<p>Sur cette page vous trouverez les informations concernant le projet de stage qui vous a Ã©tÃ© assignÃ©.</p>
 			</div>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?= $data["project"]->name;?></h3>
+						<h3 class="panel-title"><?= $data["project"]->title;?></h3>
 					</div>
 					<div class="scrollable-project">
 						<div class="panel-body">
@@ -34,15 +34,15 @@
 							<p><?= $data["project"]->descr; ?></p>
 						</div>
 						<div class="panel-body">
-							<b>Matériels et logiciels prévus</b>
+							<b>MatÃ©riels et logiciels prÃ©vus</b>
 							<p><?= $data["project"]->equip; ?></p>
 						</div>
 						<div class="panel-body">
-							<b>Exigences particulières</b>
+							<b>Exigences particuliÃ¨res</b>
 							<p><?= $data["project"]->extra; ?></p>
 						</div>
 						<div class="panel-body">
-							<b>Commentaires et informations complémentaires</b>
+							<b>Commentaires et informations complÃ©mentaires</b>
 							<p><?= $data["project"]->info; ?></p>
 						</div>
 					</div>
@@ -53,27 +53,27 @@
 					<div class="row">
 						<div class="col-md-12">
 							<b>Nom de l'entreprise</b>
-							<p><?= $data["cie"]->name; ?></p>
+							<p><?= $data["cie"][$data["project"]->ID]->name; ?></p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<b>Numéro de téléphone</b>
-							<p><?= $data["cie"]->tel; ?></p>
+							<b>NumÃ©ro de tÃ©lÃ©phone</b>
+							<p><?= $data["cie"][$data["project"]->ID]->tel; ?></p>
 						</div>
 						<div class="col-md-6">
 							<b>Adresse courriel</b>
-							<p><?= $data["cie"]->email; ?></p>
+							<p><?= $data["cie"][$data["project"]->ID]->email; ?></p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-8">
 							<b>Adresse de l'entreprise</b>
-							<p><?= $data["cie"]->address; ?></p>
+							<p><?= $data["cie"][$data["project"]->ID]->address; ?></p>
 						</div>
 						<div class="col-md-4">
 							<b>Ville</b>
-							<p><?= $data["cie"]->city; ?></p>
+							<p><?= $data["cie"][$data["project"]->ID]->city; ?></p>
 						</div>
 					</div>
 				</div>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<b>Numéro de téléphone</b>
+							<b>NumÃ©ro de tÃ©lÃ©phone</b>
 							<p><?= $data["project"]->supTel; ?></p>
 						</div>
 						<div class="col-md-6">

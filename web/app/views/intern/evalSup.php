@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Formulaire d'évaluation du superviseur</h1>
-				<p>Sur cette page vous pourrez visualiser un formulaire d'évaluation du superviseur d'un stagiaire.</p>
+				<p>Sur cette page vous pourrez visualiser votre formulaire d'évaluation du superviseur.</p>
             </div>
         </div>
     </div>

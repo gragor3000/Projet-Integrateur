@@ -15,11 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Formulaire d'évaluation du stagiaire</h1>
-				<?php if (!$data['readOnly']) { ?>
-					<p>Sur cette page vous pourrez évaluer un stagiaire à la moitié et à la fin du stage.</p>
-				<?php }else{?>
-					<p>Sur cette page vous pouvez visualiser un formulaire d'évaluation d'un coodonnateur du stagiaire.</p>
-				<?php } ?>
+                <p>Sur cette page, vous pourrez visualiser votre formulaire d'évaluation du coordonnateur.</p>
 			</div>
 		</div>
 	</div>
@@ -32,32 +28,19 @@
 					<div class="row well">
 					    <div class="form-group col-md-6">
 							<label class="control-label" for="advIntern">Nom du stagiaire</label>
-							<select class="form-control" id="advIntern" name="intern" readOnly >
-								<?php foreach($data['interns'] as $intern) { //Liste des stagiaires pas encore �valu�s?>
-									<option value="<?= $intern->ID; ?>" <?= (isset($data['intern']) && $data['intern'] == $intern->ID) ? "selected" : '' ?> ><?= $intern->name; ?></option>
-								<?php } ?>
-							</select>
+                            <input class="form-control" id="advIntern" name="intern" placeholder="Prénom Nom" type="text" value="<?= (isset($data['intern'])) ?  $data['intern']->name : ''; ?>" readOnly />
 					    </div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Évaluation:</label>
-							<select class="form-control" id="review" name="review" readOnly>
-							   <option value = "review1" <?= (isset($data['#review']) && $data['#review'] == 'review1') ? "selected" : '' ?>>Mi-Stage</option>
-							   <option value = "review2" <?= (isset($data['#review']) && $data['#review'] == 'review2') ? "selected" : '' ?>>Fin-Stage</option>
+							<select class="form-control" id="review" name="review" >
+							   <option value = "" selected >Veuillez sélectionner une évaluation</option>
+							   <option value = "review1" <?= ((isset($data['review']) && $data['review']->review == 'review1')) ? "selected" : '' ?>>Mi-Stage</option>
+							   <option value = "review2" <?= ((isset($data['review']) && $data['review']->review == 'review2')) ? "selected" : '' ?>>Fin-Stage</option>
 							</select>
 						</div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Nom du coordonnateur:</label>
-							
-							<select class="form-control" id="advName" name="advisor" <?= ($data['readOnly']) ? 'readOnly' : ''; ?>>
-							<option value = "" selected >Veuillez sélectionner un coordonnateur</option>
-								<?php foreach($data['advisors'] as $advisor) { //Liste des coordonnateurs du système?>
-									<option value="<?= $advisor->ID; ?>" <?= ((isset($data['review']) && $data['review']->Coordonnateur == $advisor->ID) || (!isset($data['review']) && ($_SESSION['ID'] == $advisor->ID))) ? "selected" : '' ?>><?= $advisor->name; ?></option>
-								<?php } ?>
-							</select>
-						</div>
-						<div class="form-group col-md-6">
-							<label class="control-label">Note:</label>
-							<input class="form-control" id="note" type="text" value="<?=(isset($data['review']))? intval($data['review']->advRev11) + intval($data['review']->advRev21) + intval($data['review']->advRev22) + intval($data['review']->advRev31) + intval($data['review']->advRev32): ""?>/60" disabled />
+                            <input class="form-control" id="advName" name="advisor" placeholder="Prénom Nom" type="text" value="<?= (isset($data['advisor'])) ?  $data['advisor']->name : ''; ?>" readOnly />
 						</div>
 					</div>						
 					<h3 class="page-header">L&apos;&eacute;tudiant(e) participe ad&eacute;quatement aux diff&eacute;rentes &eacute;tapes de d&eacute;veloppement d&apos;une application informatique.</h3>
@@ -110,12 +93,9 @@
 										</td>
 									</tr>
 								</tbody>
-							</table>							
-						</div>
-					</div>
-					<div class="row">
-						 <div class="form-group col-md-1">
-						 <label class="control-label" for="advRev11">Note</label>
+							</table>
+							
+							<label class="control-label" for="advRev11">Note</label>
 							<select id = "advRev11" class="form-control" name = "advRev11" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev11=="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev11=="1") ? 'selected' : ''; ?>>1</option>
@@ -130,8 +110,8 @@
 		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev11=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
-						   </div>
 						</div>
+					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev1">Commentaires</label>
@@ -189,12 +169,8 @@
 									</tr>
 								</tbody>
 							</table>
-														
-						</div>
-					</div>
-					<div class="row">
-					<div class="form-group col-md-1">
-					<label class="control-label" for="advRev21">Note</label>
+							
+							<label class="control-label" for="advRev21">Note</label>
 							<select id = "advRev21" class="form-control" name = "advRev21" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev21=="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev21=="1") ? 'selected' : ''; ?>>1</option>
@@ -211,6 +187,7 @@
 		                   <br/>
 						</div>
 					</div>
+					
 					<h4>Capacit&eacute; &agrave; produire des solutions informatiques (/20)</h4>
 						<div class="row">
 						<div class="col-md-12">
@@ -261,12 +238,8 @@
 									</tr>
 								</tbody>
 							</table>
-														
-						</div>
-					</div>	
-					<div class="row">
-					<div class="form-group col-md-1">
-                          <label class="control-label" for="advRev22">Note</label>
+							
+							<label class="control-label" for="advRev22">Note</label>
 							<select id = "advRev22" class="form-control" name = "advRev22" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev22=="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev22=="1") ? 'selected' : ''; ?>>1</option>
@@ -291,8 +264,8 @@
 		                     <option value = 20 <?= (isset($data['review']) && $data['review']->advRev22=="20") ? 'selected' : ''; ?>>20</option>
 		                    </select>
 		                   <br/>
-					</div>
-					</div>
+						</div>
+					</div>																
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev2">Commentaires</label>
@@ -351,12 +324,8 @@
 									</tr>
 								</tbody>
 							</table>
-														
-						</div>
-					</div>
-					<div class="row">
-					<div class="form-group col-md-1">
-					<label class="control-label" for="advRev31">Note</label>
+							
+							<label class="control-label" for="advRev31">Note</label>
 							<select id = "advRev31" class="form-control" name = "advRev31" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev31=="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev31=="1") ? 'selected' : ''; ?>>1</option>
@@ -371,8 +340,9 @@
 		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev31=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
-				</div>
-				</div>
+						</div>
+					</div>
+					
 					<h4>Qualit&eacute; des relations interpersonnelles et communication(/10)</h4>
 					<div class="row">
 						<div class="col-md-12">
@@ -423,12 +393,8 @@
 									</tr>
 								</tbody>
 							</table>
-														
-						</div>
-					</div>
-					<div class="row">
-					<div class="form-group col-md-1">
-					<label class="control-label" for="advRev32">Note</label>
+							
+							<label class="control-label" for="advRev32">Note</label>
 							<select id = "advRev32" class="form-control" name = "advRev32" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>>
 		                     <option value = 0 <?= (isset($data['review']) && $data['review']->advRev32=="0") ? 'selected' : ''; ?>>0</option>
 		                     <option value = 1 <?= (isset($data['review']) && $data['review']->advRev32=="1") ? 'selected' : ''; ?>>1</option>
@@ -443,8 +409,9 @@
 		                     <option value = 10 <?= (isset($data['review']) && $data['review']->advRev32=="10") ? 'selected' : ''; ?>>10</option>
 		                    </select>
 		                   <br/>
-						   </div>
-						   </div>
+						</div>
+					</div>
+					
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev3">Commentaires</label>

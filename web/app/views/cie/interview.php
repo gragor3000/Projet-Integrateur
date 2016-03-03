@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <h1>Formulaire d'entrevue</h1>
 		<?php if (!(isset($data['readOnly']) && $data['readOnly'])) { ?>
-                <p>Sur cette page vous pourrez évaluer votre entretien d'embauche avec un stagiaire potentiel.</p>
+                <p>Sur cette page vous pourrez évaluer votre entretien d'embauche avec un stagiaire.</p>
 		<?php } ?>
             </div>
         </div>
@@ -134,6 +134,7 @@
                     <?php if (!$data['readOnly']){ ?>
                     <div class="row">
                         <div class="col-md-12">
+						    <input type="hidden" name="intern" value ="<?=$data['intern']->ID;?>" />
                             <button name="sendInterview" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/cie/interview/">Soumettre</button>
                         </div>
                     </div>

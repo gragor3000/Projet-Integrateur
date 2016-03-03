@@ -18,14 +18,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Index par défaut.
-        public function index($_Rating) {
+        public function index() {
             parent::view("shared/header");
             parent::view("intern/menu");   
 
-            $data = array();
-
             //Si l'usager à envoyer une évaluation, l'enregistrer
-            if(isset($_POST['id'])){
+            if(isset($_POST['id']))
+			{
                     parent::model("ratings");
                     $rating = new ratings();
 
@@ -34,11 +33,13 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
             parent::model("projects");
             $model = new projects();
+			
             //Obtenir le projet assigné.
             $data['project'] = $model->ShowProjectByIntern($_SESSION['ID']);
 
             //Sinon obtenir tous les projets.
-            if ($data['project'] == null) {
+            if ($data['project'] == null) 
+			{
                 $data['projects'] = $model->ShowProjectByStatus(1);
 				
                 parent::model("business");
@@ -46,19 +47,23 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 parent::model("ratings");
                 $rating = new ratings;
 
-                foreach ($data['projects'] as $project) {
+                foreach ($data['projects'] as $project) 
+				{
                         //Obtenir les informations de l'entreprise.
                         $data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
+						
                         //Obtenir le rating.
-                        $data['ratings'][$project->projectID] = $rating->FindRateByID($_SESSION['ID'],$project->ID);
-                }
-                
-                var_dump($data['ratings']);
+                        $data['ratings'][$project->ID] = $rating->FindRateByID($_SESSION['ID'],$project->ID);
+
+                }               
 
                 parent::view("intern/list", $data);
-            } else {
+            } 
+			else 
+			{
                 parent::model("business");
                 $model = new business;
+				
                 //Obtenir les informations de l'entreprise.
                 $data['cie'][$data['project']->ID] = $model->ShowCieByID($data['project']->businessID);
 
@@ -69,11 +74,18 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
         }
 
         //Voir le menu des évaluations d'un stagiaire
-       public function info()
+       public function info($_message)
        {
+		   $data = null;
+		   	if($_message != null)
+			{
+				$data['message']= $_message['message'];
+				$data['alert']= $_message['alert'];
+			}
+			
           parent::view("shared/header");
           parent::view("intern/menu");
-          parent::view("intern/info");
+          parent::view("intern/info",$data);
           parent::view('shared/footer');		
        }
 		
@@ -111,48 +123,97 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 		{
 			parent::view("shared/header");
 			parent::view("intern/menu");
+			parent::model("accounts");
+                
+            $intern = new accounts();
+			$data['intern'] = $intern->ShowUserByID($_SESSION['ID']);
 			
-			$data = array();		//Contient les informations à afficher au stagiaire
-		   
-		   parent::model("docs");
-		   $_model = new docs();
-		   
-		   
+            parent::model("docs");              
+            $model = new docs();
+            $data['readOnly'] = true;
+			
 			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
 			switch($_review[0])
 			{
-				case "advMid": //Evaluation de mi-stage
+				case "evalAdvMid": //Evaluation de mi-stage
 				{
-					$data = $_model->LoadAdvisor($_SESSION['ID'],"review1");
+					$exist = $model->ReadOnlyAdvisor($_SESSION['ID'],"review1");	
 					
-					parent::view("intern/reviewAdv", $data);
+					if(!$exist)
+					{
+						$data['alert'] = "alert-warning";
+						$data['message'] = "Aucune évaluation de mi-stage pour le moment.";
+						$this->info($data);
+					}
+					else
+					{
+						$data["review"] = $model->LoadAdvisor($_SESSION['ID'],"review1");
+						$data['advisor'] = $intern->ShowUserByID($data["review"]->Coordonnateur);
+						parent::view("intern/eval", $data);
+					}
+
 					break;
 				}
-				case "advFinale": //Evaluation finale
+				case "evalAdvFinale": //Evaluation finale
 				{
-					$data = $_model->LoadAdvisor($_SESSION['ID'],"review2");
-					
-					parent::view("intern/reviewAdv", $data);
+                    $exist = $model->ReadOnlyAdvisor($_SESSION['ID'],"review2");
+					if(!$exist)
+					{
+						$data['alert'] = "alert-warning";
+						$data['message'] = "Aucune évaluation de fin de stage pour le moment.";
+						$this->info($data);
+					}
+					else
+					{
+						$data["review"] = $model->LoadAdvisor($_SESSION['ID'],"review2");
+						$data['advisor'] = $intern->ShowUserByID($data["review"]->Coordonnateur);
+						parent::view("intern/eval", $data);
+					}
+
 					break;
 				}
 				case "interview": //Entrevue avec l'employeur
 				{
-					
-					$data['interview'] = $_model->LoadCie($_SESSION['ID'],'interview');
-					
-					parent::view("intern/interview", $data);
+					$exist = $model->ReadOnlyCie($_SESSION['ID'],"interview");
+										
+					if(!$exist)
+					{
+						$data['alert'] = "alert-warning";
+						$data['message'] = "Aucune entrevue évaluée pour le moment.";
+						$this->info($data);
+					}
+					else
+					{						
+						$data["interview"] = $model->LoadCie($_SESSION['ID'],"interview");
+						parent::view("intern/interview", $data);
+					}
 					break;
 				}
-				case "sup": //Évaluation du superviseur
+				case "evalSup": //Évaluation du superviseur
 				{
-					$data = $_model->LoadCie($_SESSION['ID'],"reviewSup");
-					
-					parent::view("intern/reviewSup", $data);
-					break;
+					$exist = $model->ReadOnlyAdvisor($_SESSION['ID'],"cieReview");
+
+					if(!$exist)
+					{
+						$data['alert'] = "alert-warning";
+						$data['message'] = "Aucune évaluation du superviseur pour le moment.";
+						$this->info($data);
+					}
+					else
+					{
+						$data["review"] = $model->LoadAdvisor($_SESSION['ID'],"cieReview");
+						
+						parent::model("projects");              
+                        $model = new projects();
+
+						$data['project'] = $model->ShowProjectByID($data["review"]->project);
+						parent::view("intern/evalSup", $data);
+					}
+   				    break;
 				}
 			}
-		   		   	   		   
-			parent::view('shared/footer');			
+			
+            parent::view("shared/footer");
         }
 
         //Enregistre un log et ouvre la page réservé au log de l'étudiant
@@ -171,6 +232,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             }
 			
 			$data['logs'] = $_model->LoadLog($_SESSION['ID']);
+            $data['logs']= array_reverse($data['logs']);
 
 			parent::view("shared/header");
 			parent::view("intern/menu");

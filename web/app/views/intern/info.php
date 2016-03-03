@@ -1,3 +1,15 @@
+<?php
+	//Générer un token d'identification.
+	$token = md5(uniqid(rand(), TRUE));
+	$_SESSION['form_token'] = $token;
+	$_SESSION['form_timer'] = time();
+?>
+<?php if (isset($data['alert'])) { ?>
+<div class="col-md-12 alert <?= $data['alert']; ?>" style="position:fixed;z-index:999">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?= $data['message']; ?>
+</div>
+<?php } ?>
 <div class="section section-info">
         <div class="container">
           <div class="row">
@@ -13,10 +25,10 @@
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
               <div class="lead list-group text-center">
-                <a href = "review/interview" class="list-group-item">Entretien d'embauche</a>
-                <a href = "review/advMid" class="list-group-item">Évaluation de stage mi-session</a>
-                <a href = "review/Sup" class="list-group-item">Évaluation de stage du superviseur</a>
-                <a href = "review/advSup" class="list-group-item">Évaluation de stage finale</a>
+                <a href = "/intern/review/interview" class="list-group-item">Entretien d'embauche</a>
+                <a href = "/intern/review/evalAdvMid" class="list-group-item">Évaluation de stage mi-session</a>
+                <a href = "/intern/review/evalSup" class="list-group-item">Évaluation de stage du superviseur</a>
+                <a href = "/intern/review/evalAdvFinale" class="list-group-item">Évaluation de stage finale</a>
               </div>
             </div>
           </div>

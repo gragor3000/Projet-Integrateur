@@ -130,6 +130,7 @@ class projects extends models
         $result = parent::DBQuery("SELECT email,userID FROM business WHERE ID = " . $businessID['ID']);
         $user = parent::DBQuery("SELECT name FROM users WHERE ID=" . $result['userID']);
 
+		parent::DBExecute("DELETE FROM ratings WHERE projectID = ".$_projectID);
         parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectID);
 
         $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été refusé.";
