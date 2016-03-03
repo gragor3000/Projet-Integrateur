@@ -245,16 +245,26 @@
 						   
                 try 
 				{
-					$user = $account->ShowUserByID($_POST["userID"]);	
-                    $account->DeleteUser($_POST["userID"]);					
+					$user = $account->ShowUserByID($_POST["userID"]);	                 				
 		            
 					if($user->rank == 2) //si c'est un stagiaire, supprimer tous ses fichiers xml correspondant.
 		            {
 			          parent::model("docs");
 			          $model = new docs();
 					  	
+					  parent::model("ratings");
+			          $model1 = new ratings();
+					  
+					  $model1->DeleteRatingsIntern($_POST["userID"]);
+					  
+					  $account->DeleteUser($_POST["userID"]);	
+					  
 					  $model->DeleteXML($_POST["userID"]);
 		            }
+					else
+					{
+						$account->DeleteUser($_POST["userID"]);	
+					}
 
 				  	$data['alert'] = "alert-success";
                     $data['message'] = "Cet utilisateur a bien été supprimé.";

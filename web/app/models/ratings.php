@@ -6,7 +6,12 @@ class ratings extends models {
         $result = parent::DBSearch("SELECT score, projectID, internID FROM ratings");
         return $result;
     }
-    	
+	
+    //Supprimer tous les ratings d'un stagiaire
+    public function DeleteRatingsIntern($_internID){
+        parent::DBExecute("DELETE FROM ratings WHERE internID=".$_internID);
+    }
+	
     //Permet de notez un stage
     public function RatingProject($_internID, $_projectID, $_value){
 		
