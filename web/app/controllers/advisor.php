@@ -23,7 +23,7 @@
             parent::model("business");
             $model = new business;
                 
-			//S'il y a des projets � afficher, r�cup�rer l'information de leur compagnie
+			//S'il y a des projets à afficher, récupérer l'information de leur compagnie
 			if($data['projects'] != null){
 				foreach ($data['projects'] as $project) {
 					//Obtenir les informations de l'entreprise.
@@ -106,7 +106,7 @@
              }
 			 
                              
-            $this->index();
+            $this->index($data);
         }
             
         //refuse une entreprise
@@ -167,7 +167,7 @@
 					$data['alert'] = "alert-warning";
                     $data['message'] = "Ce projet n'a pu être accepté.";
              }
-			$this->index();
+			$this->index($data);
         }
             
         //refuse un projet
@@ -240,14 +240,23 @@
         {
             if (isset($_POST["userID"]) /*&& $_POST['deleteUser'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 300 > time())
 			{
-				parent::model("accounts");
-                
+				parent::model("accounts");                
                 $account = new accounts();
-
+						   
                 try 
 				{
-                    $account->DeleteUser($_POST["userID"]);		
-					$data['alert'] = "alert-success";
+					$user = $account->ShowUserByID($_id);	
+                    $account->DeleteUser($_POST["userID"]);					
+		            
+					if($user->rank == 2) //si c'est un stagiaire, supprimer tous ses fichiers xml correspondant.
+		            {
+			          parent::model("docs");
+			          $model = new docs();
+					  	
+					  $model->DeleteXML($_id);
+		            }
+
+				  	$data['alert'] = "alert-success";
                     $data['message'] = "Cet utilisateur a bien été supprimé.";
                 } 
 				catch (exception $ex) 
@@ -454,11 +463,11 @@
                     $exist = $model->ReadOnlyAdvisor($_review[1],"review2");
 					if(!$exist)
 					{
-						$data = array();
+						$review = array();
 						$review["intern"] = $_review[1];
 						$review["#review"] = "review2";
 						
-						$this->evalAdv($data);
+						$this->evalAdv($review);
 					}
 					else
 					{
@@ -615,7 +624,7 @@
     }
         
 } else {
-    //Redirige vers l'acceuil.
+    //Redirige vers l'accueuil.
     session_unset();
     session_destroy();
     header("location:/home/index");

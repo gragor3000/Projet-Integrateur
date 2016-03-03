@@ -202,6 +202,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 					}
    				    break;
 				}
+				default:
+				{
+					$this->index();
+				}
 			}
 			
             parent::view("shared/footer");

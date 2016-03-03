@@ -92,21 +92,31 @@ class home extends Controller {
         $business = new business();
         $user = new accounts();
 
-        //// VÉRIFIER SI CIE AVEC EMAIL EXISTE. ////
-        
-        if ($user->UsernameExist($_POST["user"]) || $_POST["user"] == "")
+          
+		if(!($business->EmailExist($_POST["email"]))) //Vérifier que le email n'existe pas déjà
+		{
+			if (($user->UsernameExist($_POST["user"]) || $_POST["user"] == ""))
             $_POST["user"] = $user->PassGen();
 
-        try {
-            $user->CreateUser($_POST["name"], $_POST["user"], $user->PassGen(), 1);
-            $business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastInsertedID('users'));
+            try 
+			{
+                $user->CreateUser($_POST["name"], $_POST["user"], $user->PassGen(), 1);
+                $business->CreateBusiness($_POST["address"], $_POST["city"], $_POST["tel"], $_POST["email"], $user->DBLastInsertedID('users'));
             
-            $data['alert'] = "alert-success";
-            $data['message'] = "L'entreprise a été soumise aux coordonnateurs de stage. Merci de votre participation.";
-        } catch (PDOException $e) {
-            $data['alert'] = "alert-warning";
-            $data['message'] = "L'entreprise n'a pu être soumise aux coordonnateurs de stage. Veuillez réessayer.";;
-        }
+                $data['alert'] = "alert-success";
+                $data['message'] = "L'entreprise a été soumise aux coordonnateurs de stage. Merci de votre participation.";
+            } 
+			catch (PDOException $e) 
+			{
+               $data['alert'] = "alert-warning";
+               $data['message'] = "L'entreprise n'a pu être soumise aux coordonnateurs de stage. Veuillez réessayer.";
+            }
+		}
+		else			
+		{
+			$data['alert'] = "alert-warning";
+            $data['message'] = "Une entreprise avec ce même email existe déjà.";
+		}
 
         parent::view('shared/header');
         parent::view('home/menu');

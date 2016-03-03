@@ -32,7 +32,7 @@
 					    </div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Évaluation:</label>
-							<select class="form-control" id="review" name="review" >
+							<select class="form-control" id="review" name="review" readOnly>
 							   <option value = "" selected >Veuillez sélectionner une évaluation</option>
 							   <option value = "review1" <?= ((isset($data['review']) && $data['review']->review == 'review1')) ? "selected" : '' ?>>Mi-Stage</option>
 							   <option value = "review2" <?= ((isset($data['review']) && $data['review']->review == 'review2')) ? "selected" : '' ?>>Fin-Stage</option>

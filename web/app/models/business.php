@@ -1,6 +1,12 @@
 <?php
 class business extends Models {	
 
+    //Valider l'existence du email d'une compagnie
+    public function EmailExist($_email) {
+        $result = parent::DBQuery("SELECT email FROM business WHERE email='" . $_email."'");
+        return ($result != NULL);
+    }
+	
     //Création d'un entreprise.
     public function CreateBusiness($_address, $_city, $_tel, $_email, $_account) {
         parent::DBExecute("INSERT INTO business (address, city, tel, email, userID)

@@ -251,7 +251,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			 			 
 		 if ($project != null) //Si le projet associé à ce stagiaire existe
 		 {
-				if(($project->businessID == $_SESSION['ID']) && ($project->statuts == 1)) //Si le projet fait parti de cette entreprise connectée
+				if(($project->businessID == $_SESSION['ID']) && ($project->status == 1)) //Si le projet fait parti de cette entreprise connectée
 				{
 					
 
@@ -362,7 +362,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
                 if (isset($_POST['sendReview']) && isset($_POST['project']) /*&& $_POST['sendReview'] == $_SESSION['form_token']*/ && $_SESSION['form_timer'] + 1200 > time()) 
 				{
-					var_dump($_POST['revDate']);
+
                     try 
 					{
 						$_POST['intern'] = $internId;

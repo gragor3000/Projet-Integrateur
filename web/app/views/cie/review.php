@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Évaluation de fin de stage</h1>
-				<?php if(isset($data['readOnly']) && $data['readOnly']) { ?>
+				<?php if(isset($data['readOnly']) && !$data['readOnly']) { ?>
 					<p>Sur cette page vous pourrez évaluer trois champs de compétences du stagiaire à la fin de son stage.</p>
 				<?php } ?>
 			</div>
