@@ -48,7 +48,6 @@
                                     <th>Adresse</th>
                                     <th>Ville</th>
                                     <th width="200px">Nom d'utilisateur</th>
-                                    <th class="text-center" width="125px">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,10 +60,6 @@
                                     <td><?= $cie->city; ?></td>
                                     <td><?= $cie->user; ?></td>
                                     <td class="text-center">
-                                        <button class="btn btn-link" name="denyCie" value="<?= $_SESSION['form_token']; ?>" formaction="DenyBusiness/<?= $cie->ID ?>" formmethod="post">
-                                            <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
-                                        </button>
-                                    </td>
                                 </tr>
                             </form>
                                     <?php }} else { ?>
@@ -78,3 +73,4 @@
         </div>
     </div>
 </div>
+

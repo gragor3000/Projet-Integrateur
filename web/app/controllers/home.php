@@ -109,7 +109,7 @@ class home extends Controller {
             $data['message'] = "L'entreprise a été soumis aux coordonnateurs de stage. Merci de votre participation.";
         } catch (PDOException $e) {
             $data['alert'] = "alert-warning";
-            $data['message'] = $e;
+            $data['message'] = "L'entreprise n'a pu être soumise aux coordonnateurs de stage. Veuillez réessayer.";;
         }
 
         parent::view('shared/header');
@@ -126,7 +126,7 @@ class home extends Controller {
 
         //Message d'alerte.
         $data['alert'] = "alert-success";
-        $data['message'] = "Vous avez été déconnecté avec succès.";
+        $data['message'] = "Vous avez été déconnectés avec succès.";
         
         parent::view('shared/header');
         parent::view('home/menu');

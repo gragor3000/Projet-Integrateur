@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Département de la Technique de l'Informatique</h1>
+				<p>Sur cette page, vous pouvez ajouter, modifier, supprimer un utilisateur et aussi une entreprise.</p>
             </div>
         </div>
     </div>
@@ -376,6 +377,3 @@
         $("#myDelCieModal").modal();
     }
 </script>
-
-</body>
-</html>
