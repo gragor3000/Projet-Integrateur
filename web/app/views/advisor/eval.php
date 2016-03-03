@@ -32,7 +32,7 @@
 					<div class="row well">
 					    <div class="form-group col-md-6">
 							<label class="control-label" for="advIntern">Nom du stagiaire</label>
-							<select class="form-control" id="advIntern" name="intern" readOnly >
+							<select class="form-control" id="advIntern" name="intern" disabled >
 								<?php foreach($data['interns'] as $intern) { //Liste des stagiaires pas encore ÈvaluÈs?>
 									<option value="<?= $intern->ID; ?>" <?= (isset($data['intern']) && $data['intern'] == $intern->ID) ? "selected" : '' ?> ><?= $intern->name; ?></option>
 								<?php } ?>
@@ -40,7 +40,7 @@
 					    </div>
 						<div class="form-group col-md-6">
 							<label class="control-label">√âvaluation:</label>
-							<select class="form-control" id="review" name="review" readOnly>
+							<select class="form-control" id="review" name="review" disabled>
 							   <option value = "review1" <?= (isset($data['#review']) && $data['#review'] == 'review1') ? "selected" : '' ?>>Mi-Stage</option>
 							   <option value = "review2" <?= (isset($data['#review']) && $data['#review'] == 'review2') ? "selected" : '' ?>>Fin-Stage</option>
 							</select>
@@ -48,7 +48,7 @@
 						<div class="form-group col-md-6">
 							<label class="control-label">Nom du coordonnateur:</label>
 							
-							<select class="form-control" id="advName" name="advisor" <?= ($data['readOnly']) ? 'readOnly' : ''; ?>>
+							<select class="form-control" id="advName" name="advisor" disabled>
 							<option value = "" selected >Veuillez s√©lectionner un coordonnateur</option>
 								<?php foreach($data['advisors'] as $advisor) { //Liste des coordonnateurs du syst√®me?>
 									<option value="<?= $advisor->ID; ?>" <?= ((isset($data['review']) && $data['review']->Coordonnateur == $advisor->ID) || (!isset($data['review']) && ($_SESSION['ID'] == $advisor->ID))) ? "selected" : '' ?>><?= $advisor->name; ?></option>

@@ -17,6 +17,8 @@
 				<h1>Évaluation de fin de stage</h1>
 				<?php if(isset($data['readOnly']) && !$data['readOnly']) { ?>
 					<p>Sur cette page vous pourrez évaluer trois champs de compétences du stagiaire à la fin de son stage.</p>
+				<?php }else{?>
+					<p>Sur cette page vous pouvez visualiser le formulaire d'évaluation du stagiaire.</p>
 				<?php } ?>
 			</div>
 		</div>

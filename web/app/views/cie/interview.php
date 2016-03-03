@@ -17,7 +17,9 @@
                 <h1>Formulaire d'entrevue</h1>
 		<?php if (!(isset($data['readOnly']) && $data['readOnly'])) { ?>
                 <p>Sur cette page vous pourrez évaluer votre entretien d'embauche avec un stagiaire.</p>
-		<?php } ?>
+			<?php }else{?>
+					<p>Sur cette page vous pouvez visualiser un formulaire d'entrevue du stagiaire.</p>
+			<?php } ?>
             </div>
         </div>
     </div>

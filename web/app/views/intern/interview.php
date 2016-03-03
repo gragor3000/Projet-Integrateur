@@ -12,7 +12,7 @@
     <div class="container">
 	 <form id = "form" role="form" METHOD="POST">
             <div class="row">
-			<h3>
+
                 <div class="col-md-6 col-md-offset-3">
 					<div class="row">    			
                         <div class="form-group col-md-6">
@@ -24,12 +24,12 @@
                             <label class="control-label" for="intDept">Service / Département</label>
                             <input class="form-control" id="intDept" name="department" type="text" value="<?=$data['interview']->department; ?>" readOnly />
                         </div>
-                    </div>						                      
                     </div>
-                     <div class="form-group col-md-6">
+					 <div class="form-group col-md-6">
                             <label class="control-label" for="intPos">Poste concerné</label>
                             <input class="form-control" id="intPosition" name="position" type="text" value="<?=$data['interview']->position; ?>" readOnly />
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table well">
@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>Communication orale</td>
                                         <td>
-                                            <select class="form-control" id="communication" name="communication" readOnly>
+                                            <select class="form-control" id="communication" name="communication" disabled>
                                                 <option value="4" <?= ($data['interview']->communication=="4") ? 'selected' : ''; ?>>Excellent</option>
                                                 <option value="3" <?= ($data['interview']->communication=="3") ? 'selected' : ''; ?>>Très bien</option>
                                                 <option value="2" <?= ($data['interview']->communication=="2") ? 'selected' : ''; ?>>Acceptable</option>
@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>Enthousiasme et motivation</td>
                                         <td>
-                                            <select class="form-control" id="motivation" name="motivation" readOnly>
+                                            <select class="form-control" id="motivation" name="motivation" disabled>
                                                 <option value="4" <?= ($data['interview']->motivation=="4") ? 'selected' : ''; ?>>Excellent</option>
                                                 <option value="3" <?= ($data['interview']->motivation=="3") ? 'selected' : ''; ?>>Très bien</option>
                                                 <option value="2" <?= ($data['interview']->motivation=="2") ? 'selected' : ''; ?>>Acceptable</option>
@@ -67,7 +67,7 @@
                                     <tr>
                                         <td>Assurance et confiance en soi</td>
                                         <td>
-                                            <select class="form-control" id="selfesteem" name="selfesteem" readOnly>
+                                            <select class="form-control" id="selfesteem" name="selfesteem" disabled>
                                                 <option value="4" <?= ($data['interview']->selfesteem=="4") ? 'selected' : ''; ?>>Excellent</option>
                                                 <option value="3" <?= ($data['interview']->selfesteem=="3") ? 'selected' : ''; ?>>Très bien</option>
                                                 <option value="2" <?= ($data['interview']->selfesteem=="2") ? 'selected' : ''; ?>>Acceptable</option>
@@ -79,7 +79,7 @@
                                     <tr>
                                         <td>Présentation soignée</td>
                                         <td>
-                                            <select class="form-control" id="appearance" name="appearance" readOnly>
+                                            <select class="form-control" id="appearance" name="appearance" disabled>
                                                 <option value="4" <?= ($data['interview']->appearance=="4") ? 'selected' : ''; ?>>Excellent</option>
                                                 <option value="3" <?= ($data['interview']->appearance=="3") ? 'selected' : ''; ?>>Très bien</option>
                                                 <option value="2" <?= ($data['interview']->appearance=="2") ? 'selected' : ''; ?>>Acceptable</option>
@@ -91,7 +91,7 @@
                                     <tr>
                                         <td>Qualité des réponses</td>
                                         <td>
-                                            <select class="form-control" id="answers" name="answers" readOnly>
+                                            <select class="form-control" id="answers" name="answers" disabled>
                                                 <option value="4" <?= ($data['interview']->answers=="4") ? 'selected' : ''; ?>>Excellent</option>
                                                 <option value="3" <?= ($data['interview']->answers=="3") ? 'selected' : ''; ?>>Très bien</option>
                                                 <option value="2" <?= ($data['interview']->answers=="2") ? 'selected' : ''; ?>>Acceptable</option>

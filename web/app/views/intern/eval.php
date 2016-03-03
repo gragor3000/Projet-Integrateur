@@ -32,7 +32,7 @@
 					    </div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Évaluation:</label>
-							<select class="form-control" id="review" name="review" readOnly>
+							<select class="form-control" id="review" name="review" disabled>
 							   <option value = "" selected >Veuillez sélectionner une évaluation</option>
 							   <option value = "review1" <?= ((isset($data['review']) && $data['review']->review == 'review1')) ? "selected" : '' ?>>Mi-Stage</option>
 							   <option value = "review2" <?= ((isset($data['review']) && $data['review']->review == 'review2')) ? "selected" : '' ?>>Fin-Stage</option>
@@ -115,7 +115,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="control-label" for="advRev1">Commentaires</label>
-							<textarea class="form-control" id="advRev1" name="advRev1" <?= ($data['readOnly']) ? 'readonly' : 'required'; ?>><?= (isset($data['review'])) ? $data['review']->advRev1 : ''; ?></textarea>
+							<textarea class="form-control" id="advRev1" name="advRev1" <?= ($data['readOnly']) ? 'disabled' : 'required'; ?>><?= (isset($data['review'])) ? $data['review']->advRev1 : ''; ?></textarea>
 						</div>
 					</div>
 					<h3 class="page-header">L&apos;&eacute;tudiant(e) applique judicieusement les principes, techniques et les m&eacute;thodes propres au domaine informatique.</h3>
