@@ -443,19 +443,19 @@
 						parent::view("advisor/log", $data);
 				}
             }
-                
+            $data['intern'] = $_review[1];
+			 
 			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
 			switch($_review[0])
 			{
 				case "evalAdvMid": //Evaluation de mi-stage
 				{
 					$exist = $model->ReadOnlyAdvisor($_review[1],"review1");	
-					
+					$data["#review"] = "review1";
 					if(!$exist)
 					{
 						$review = array();
-						$review["intern"] = $_review[1];
-						$review["#review"] = "review1";
+						
 						
 						$this->evalAdv($review);
 					}
@@ -472,16 +472,14 @@
 				case "evalAdvFinale": //Evaluation finale
 				{
                     $exist = $model->ReadOnlyAdvisor($_review[1],"review2");
+					$data["#review"] = "review2";
 					if(!$exist)
 					{
 						$review = array();
-						$review["intern"] = $_review[1];
-						$review["#review"] = "review2";
-						
 						$this->evalAdv($review);
 					}
 					else
-					{
+					{				
 						$data['advisors'] = $interns->ShowUsersByRank(0);
 						$data["review"] = $model->LoadAdvisor($_review[1],"review2");
 						$data['advisor'] = $interns->ShowUserByID($data["review"]->Coordonnateur);
@@ -553,8 +551,8 @@
 			
 			$model1 = new accounts();
 			$model2 = new docs();						
-			
-			if(((isset($_review["intern"][1])&& isset ($_review["#review"]))) || (isset($_POST["intern"])))
+
+			if(((isset($_review["intern"])&& isset ($_review["#review"]))) || (isset($_POST["intern"])))
 			{
 			  $data['advisors'] = $model1-> ShowUsersByRank(0);
 			  $data['interns'] = $model1-> ShowUsersByRank(2);			
@@ -573,7 +571,7 @@
 				  $intern = $_review["intern"];
 				  $review = $_review["#review"];
 			  }			  
-				
+
 				$data['readOnly'] = $model2->ReadOnlyAdvisor($intern, $review);
 				
 			   parent::model("projects");               
@@ -615,6 +613,7 @@
 		            $data['intern'] = $intern;
 		            $data['#review'] = $review;
 		  
+	
 		        	parent::view("shared/header");
                     parent::view("advisor/menu");
                     parent::view("advisor/eval", $data);
