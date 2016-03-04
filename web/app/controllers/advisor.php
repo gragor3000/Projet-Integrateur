@@ -455,9 +455,9 @@
 					if(!$exist)
 					{
 						$review = array();
+
 						
-						
-						$this->evalAdv($review);
+						$this->evalAdv($data);
 					}
 					else
 					{
@@ -476,7 +476,7 @@
 					if(!$exist)
 					{
 						$review = array();
-						$this->evalAdv($review);
+						$this->evalAdv($data);
 					}
 					else
 					{				
