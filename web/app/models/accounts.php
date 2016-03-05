@@ -77,6 +77,7 @@ class accounts extends models {
     public function ShowUsersByRank($_rank) {
         $result = parent::DBSearch("SELECT ID,name,user,rank FROM users WHERE rank =" . $_rank);
 
+		$obj = null;
         //Générer un tableau d'objet.
         foreach ($result as $user)
             $obj[$user['ID']] = new obj($user);

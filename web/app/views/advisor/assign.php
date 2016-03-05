@@ -34,7 +34,7 @@
             <thead>
                 <th>Projet de stage</th>
                 <th class="text-center" width="25px">Aucun</th>
-                <?php foreach($data['interns'] as $intern){ ?>
+                <?php if(isset($data['interns']))foreach($data['interns'] as $intern){ ?>
                 <th class="text-center"><?= $intern->name; ?></th>
                 <?php } ?>
             </thead>
@@ -45,9 +45,9 @@
                     <td class="text-center">
                         <input type="radio" name="<?= $project->ID; ?>" value="-1" checked <?= ($project->internID != null) ? 'disabled' : ''; ?>/>
                     </td>
-                    <?php foreach($data['interns'] as $intern){ ?>
+                    <?php if(isset($data['interns'])) foreach($data['interns'] as $intern){ ?>
                     <td class="text-center">
-                        <?= (isset($data['ratings'][$project->ID]) && ($data['ratings'][$project->ID]['internID'] == $intern->ID)) ? $data['ratings'][$project->ID]['score'] : "N/D"; ?> <i class="fa fa-fw fa-star text-success"></i>
+                        <?= (isset($data['ratings'][$project->ID]) && (isset ($data['ratings'][$project->ID][$intern->ID]))) ? $data['ratings'][$project->ID][$intern->ID] : "N/D"; ?> <i class="fa fa-fw fa-star text-success"></i>
                         <input type="radio" name="<?= $project->ID; ?>" value="<?= $intern->ID; ?>" <?= ($project->internID == $intern->ID) ? 'checked' : ''; ?> <?= ($project->internID != null) ? 'disabled' : ''; ?>/>
                     </td>
                     <?php } ?>

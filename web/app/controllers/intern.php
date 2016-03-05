@@ -38,8 +38,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 parent::model("ratings");
                 $rating = new ratings;
 
-				if($data['project'] != null)
-                 foreach ($data['projects'] as $project) 
+				if($data['projects'] != null)
+				{
+				 foreach ($data['projects'] as $project) 
 				 {
                         //Obtenir les informations de l'entreprise.
                         $data['cie'][$project->businessID] = $model->ShowCieByID($project->businessID);
@@ -47,7 +48,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                         //Obtenir le rating.
                         $data['ratings'][$project->ID] = $rating->FindRateByID($_SESSION['ID'],$project->ID);
 
-                 }               
+                 } 
+				}
+                               
 
                 parent::view("intern/list", $data);
             } 

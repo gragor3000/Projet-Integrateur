@@ -379,10 +379,12 @@
 			{
                 foreach ($ratings as $rating) //ajouter les ratings selon le id du projet
 				{
-                    $data['ratings'][$rating['projectID']] = $rating;
+                    $data['ratings'][$rating['projectID']][$rating['internID']] = $rating['score'];
                 }
+				$data['alert'] = "alert-success";
+                $data['message'] = "Le jumelage a bien été fait.";
             }
-				
+
             parent::model("accounts");
             $interns = new accounts();
 			

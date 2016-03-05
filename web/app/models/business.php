@@ -43,14 +43,24 @@ class business extends Models {
     //Retourne une entreprise selon l'ID.
     public function ShowCieByID($_businessID) {
         //Obtenir l'entreprise.
-        $result = parent::DBQuery("SELECT * FROM business WHERE userID = " . $_businessID);
+        $result = parent::DBQuery("SELECT * FROM business WHERE ID = " . $_businessID);
         //Obtenir le nom de l'entreprise.
         $name = parent::DBQuery("SELECT name FROM users WHERE ID = " . $result['userID']);
         $result['name'] = $name['name'];
 
         return new obj($result);
     }
-
+	
+	//Retourne une entreprise selon l'utilisateurID.
+    public function ShowCieByUserID($_userID) {
+        //Obtenir l'entreprise.
+        $result = parent::DBQuery("SELECT * FROM business WHERE userID = " . $_userID);
+		
+        //Obtenir le nom de l'entreprise.
+        $name = parent::DBQuery("SELECT name FROM users WHERE ID = " . $_userID);
+        $result['name'] = $name['name'];
+        return new obj($result);
+    }
     //Retourne les entreprises selon le status.
     public function ShowCieByStatus($_status) {
         $result = parent::DBSearch("SELECT users.name, users.user, business.ID, business.address, business.city,

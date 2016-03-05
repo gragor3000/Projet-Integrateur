@@ -1,0 +1,12 @@
+MDP entreprise:
+Culture lanaudiere - cultLanaud
+logiq it - logiq123
+Devolution - 807cda3a37 (pas encore validé)
+
+MDP - stagiaires:
+Michael Lamarre - lam123
+Samuel - samAbc
+Charles - dup1a2
+
+Coordonnateur:
+admin -test

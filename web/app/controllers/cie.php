@@ -16,12 +16,12 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("business");
             $model = new business;
             //Obtenir les informations de l'entreprise.
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+            $data['cie'] = $model->ShowCieByUserID($_SESSION['ID']);
 
             parent::model("projects");
             $model = new projects();
             //Obtenir les projets de l'entreprise.
-            $data['projects'] = $model->ShowProjectsByCie($_SESSION['ID']);
+            $data['projects'] = $model->ShowProjectsByCie($data['cie']->ID);
 
             parent::model("accounts");
             $model = new accounts();
@@ -43,12 +43,6 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                 header('location:/cie/submit');
             }
 			
-
-            //récupère les informations de la compagnie
-            parent::model('business');
-            $model = new business();
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
-			
 			if($_message != null)
 			{
 				$data['message']= $_message['message'];
@@ -68,7 +62,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("business");
             $model = new business;
             //Obtenir les informations de l'entreprise.
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+            $data['cie'] = $model->ShowCieByUserID($_SESSION['ID']);
 
             //Soumission du projet.
             if (isset($_POST['sendProject'])/* && $_POST['sendProject'] == $_SESSION['form_token']*/) {
@@ -76,13 +70,14 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
                     parent::model("projects");
                     $model = new projects();
 
+					
                     try {
-                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $_SESSION['ID']);
+                        $model->CreateProject($_POST['title'], $_POST['supName'], $_POST['supTitle'], $_POST['supTel'], $_POST['supEmail'], $_POST['desc'], $_POST['equip'], $_POST['extra'], $_POST['info'], $data['cie']->ID);
                         $data['alert'] = "alert-success";
                         $data['message'] = "Le projet a été soumis pour une validation.";
-                    } catch (PDOexception $e) {
+                    } catch (exception $e) {
                         $data['alert'] = "alert-warning";
-                        $data['message'] = $e;
+                        $data['message'] = "Le projet n'a pu être soumis pour une validation.";
                     }
                 } else {
                     $data['alert'] = "alert-warning";
@@ -105,7 +100,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             parent::model("business");
             $model = new business;
             //Obtenir les informations de l'entreprise.
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+            $data['cie'] = $model->ShowCieByUserID($_SESSION['ID']);
 
             //Obtenir les informations du projet.
             parent::model("projects");
@@ -131,7 +126,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             //Obtenir les informations du projet.
             $data['project'] = $model1->ShowProjectByID(intval($_projectID[0]));
 
-            if ($data['project']->status == '0' && $data['project']->businessID == $_SESSION['ID']) {
+            if ($data['project']->status == '0' && $data['project']->businessID == $data['cie']->ID) {
                 parent::view('cie/edit', $data);
             } else {
                 $data['alert'] = "alert-warning";
@@ -219,7 +214,7 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
             }
 
             //récupère les informations de la compagnie
-            $data['cie'] = $model->ShowCieByID($_SESSION['ID']);
+            $data['cie'] = $model->ShowCieByUserID($_SESSION['ID']);
 
             //vues associées aux mises à jour????
             parent::view('cie/info', $data);
@@ -240,7 +235,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 
 			parent::model("projects");
             $model3 = new projects();
-
+			
+            parent::model("business");
+            $model4 = new business();
 			
          if(($_internID != null) || (isset($_POST['intern']))) //Si un id de stagiaire est passé en paramètre
 		 {
@@ -251,7 +248,9 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			 			 
 		 if ($project != null) //Si le projet associé à ce stagiaire existe
 		 {
-				if(($project->businessID == $_SESSION['ID']) && ($project->status == 1)) //Si le projet fait parti de cette entreprise connectée
+			 $cie = $model4->ShowCieByUserID($_SESSION['ID']);
+			 
+				if(($project->businessID == $cie->ID) && ($project->status == 1)) //Si le projet fait parti de cette entreprise connectée
 				{
 					
 
@@ -332,8 +331,10 @@ if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"
 			
           if($project != null)	 //Si le projet en question existe
 		  {
-			  		  
-		  if(($project->status == 1) && ($project->businessID == $_SESSION['ID'])) //Si le projet est validé et appartient à la compagnie connectée
+			 parent::model("business");
+             $model4 = new business();
+			 $cie = $model4->ShowCieByUserID($_SESSION['ID']); 		  
+		  if(($project->status == 1) && ($project->businessID == $cie->ID)) //Si le projet est validé et appartient à la compagnie connectée
 		  {
             $data['title'] = $project->title;
             $data['projectID']= $project->ID;
