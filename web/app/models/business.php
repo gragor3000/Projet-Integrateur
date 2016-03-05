@@ -88,14 +88,14 @@ class business extends Models {
         $user = parent::DBQuery("SELECT business.userID, users.name, business.email FROM business
                                  INNER JOIN users ON business.userID = users.ID WHERE business.ID =" . $_businessID);
         
-		$projects = parent::DBSearch("SELECT * FROM projects WHERE businessID =".$user['userID']);
+		$projects = parent::DBSearch("SELECT * FROM projects WHERE businessID =" .$_businessID);
 		
 		foreach($projects as $project)
 		{
-			parent::DBExecute("DELETE FROM ratings WHERE projectID =" . $project->ID);
+			    parent::DBExecute("DELETE FROM ratings WHERE projectID =" . $project['ID']);
 		}
-		
-		parent::DBExecute("DELETE FROM projects WHERE businessID =" . $user['userID']);
+				
+		parent::DBExecute("DELETE FROM projects WHERE businessID =" . $_businessID);
 		
 		parent::DBExecute("DELETE FROM business WHERE ID =" . $_businessID);
         parent::DBExecute("DELETE FROM users WHERE ID =" .$user["userID"]);

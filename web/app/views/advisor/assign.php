@@ -39,7 +39,7 @@
                 <?php } ?>
             </thead>
             <tbody>
-            <?php foreach($data['projects'] as $project){ ?>
+            <?php if(isset($data['projects'])) foreach($data['projects'] as $project){ ?>
                 <tr>
                     <td><?= $project->title; ?></td>
                     <td class="text-center">
@@ -55,11 +55,13 @@
             <?php } ?>
             </tbody>
         </table>
+		<?php if(isset($data['projects'])){ ?>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <button class="btn btn-primary btn-block" name="setAssign" value="<?= $_SESSION['form_token']; ?>" type="submit" formaction="/advisor/PairInternProject/">Assigner</button>
             </div>
         </div>
+	 <?php } ?>
 	 </form>
     </div>
 </div>

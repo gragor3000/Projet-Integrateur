@@ -48,7 +48,7 @@
 						<div class="form-group col-md-6">
 							<label class="control-label">Nom du coordonnateur:</label>
 							
-							<select class="form-control" id="advName" name="advisor" readOnly>
+							<select class="form-control" id="advName" name="advisor" disabled>
 							<option value = "" selected >Veuillez sélectionner un coordonnateur</option>
 								<?php foreach($data['advisors'] as $advisor) { //Liste des coordonnateurs du système?>
 									<option value="<?= $advisor->ID; ?>" <?= ((isset($data['review']) && $data['review']->Coordonnateur == $advisor->ID) || (!isset($data['review']) && ($_SESSION['ID'] == $advisor->ID))) ? "selected" : '' ?>><?= $advisor->name; ?></option>

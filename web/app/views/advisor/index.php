@@ -56,10 +56,10 @@
                                     <td><?= $cie->city; ?></td>
                                     <td><input type="text" name="user<?php $cie->ID ?>" value="<?= $cie->user; ?>" /></td>
                                     <td class="text-center">
-                                        <button class="btn btn-link" name="valCie" value="<?= $_SESSION['form_token']; ?>" formaction="ValidateBusiness/<?= $cie->ID ?>" formmethod="post">
+                                        <button class="btn btn-link" name="valCie" value="<?= $_SESSION['form_token']; ?>" formaction="/advisor/ValidateBusiness/<?= $cie->ID ?>" formmethod="post">
                                             <i class="fa fa-check-circle fa-fw fa-lg text-success"></i>
                                         </button>
-                                        <button class="btn btn-link" name="denyCie" value="<?= $_SESSION['form_token']; ?>" formaction="DenyBusiness/<?= $cie->ID ?>" formmethod="post">
+                                        <button class="btn btn-link" name="denyCie" value="<?= $_SESSION['form_token']; ?>" formaction="/advisor/DenyBusiness/<?= $cie->ID ?>" formmethod="post">
                                             <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
                                         </button>
                                     </td>
@@ -109,10 +109,10 @@
                                             <td><?= $data['cieP'][$project->businessID]->name; ?></td>
                                             <td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $project->supTel; ?><br />Email : <?= $project->supEmail; ?>"><?= $project->supName; ?></a></td>
                                             <td class="text-center">
-                                                <button class="btn btn-link" name="valProject" value="<?= $_SESSION['form_token']; ?>" formaction="ValidateProject/<?= $project->ID ?>" formmethod="post">
+                                                <button class="btn btn-link" name="valProject" value="<?= $_SESSION['form_token']; ?>" formaction="/advisor/ValidateProject/<?= $project->ID ?>" formmethod="post">
                                                     <i class="fa fa-check-circle fa-fw fa-lg text-success"></i>
                                                 </button>
-                                                <button class="btn btn-link" name="denyProject" value="<?= $_SESSION['form_token']; ?>" formaction="DenyProject/<?= $project->ID ?>" formmethod="post">
+                                                <button class="btn btn-link" name="denyProject" value="<?= $_SESSION['form_token']; ?>" formaction="/advisor/DenyProject/<?= $project->ID ?>" formmethod="post">
                                                     <i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
                                                 </button>
                                             </td>

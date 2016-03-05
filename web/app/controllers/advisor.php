@@ -118,6 +118,7 @@
 			
 			if(isset($_POST['cieID']))
 			{	
+		   var_dump($_POST['cieID']);
 			 try 
 			 {
                     $cie->DeleteCie($_POST['cieID']);
@@ -265,11 +266,14 @@
 			{
 				parent::model("accounts");                
                 $account = new accounts();
-						   
-                try 
+
+				$user = $account->ShowUserByID($_POST["userID"]);		
+				$advisors = $account->ShowUsersByRank(0);
+				
+				if((($user->rank == 0) && (Count($advisors) >= 2)) || ($user->rank == 2))
 				{
-					$user = $account->ShowUserByID($_POST["userID"]);	                 				
-		            
+                 try 
+				 {                 						            
 					if($user->rank == 2) //si c'est un stagiaire, supprimer tous ses fichiers xml correspondant.
 		            {
 			          parent::model("docs");
@@ -286,17 +290,23 @@
 		            }
 					else
 					{
-						$account->DeleteUser($_POST["userID"]);	
+						 $account->DeleteUser($_POST["userID"]);	
 					}
 
 				  	$data['alert'] = "alert-success";
                     $data['message'] = "Cet utilisateur a bien été supprimé.";
-                } 
-				catch (exception $ex) 
-				{
+                 } 
+				 catch (exception $ex) 
+				 {
 					$data['alert'] = "alert-warning";
                     $data['message'] = "Cet utilisateur n'a pu être supprimé.";
-                }
+                 }
+				}
+				else
+				{
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "Il ne reste qu'un coordonnateur: vous ne pouvez le supprimer.";
+				}
             }
             $this->ShowUsers($data);
         }
