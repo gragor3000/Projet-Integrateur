@@ -466,5 +466,10 @@
 				</div>
 			</div>
 		</form>
+							<form>
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/intern/info/">Revenir à la liste des évaluations</button>
+                        </div>
+					</form>
 	</div>
 </div>

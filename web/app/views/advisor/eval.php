@@ -458,9 +458,17 @@
                             <button name="evalIntern" value="<?= $_SESSION['form_token']; ?>" class="btn btn-block btn-primary" formaction="/advisor/evalAdv/">Soumettre</button>
                         </div>
                     </div>
-                    <?php } ?>					
+					<br/>
+                    <?php } ?>	
 				</div>
 			</div>
 	    </form>
+		<form>
+						<div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/advisor/ShowInterns/">Revenir à la liste des stagiaires</button>
+                        </div>
+                    </div>
+					</form>
 	</div>
 </div>

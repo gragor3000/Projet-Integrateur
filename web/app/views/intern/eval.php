@@ -32,15 +32,15 @@
 					    </div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Évaluation:</label>
-							<select class="form-control" id="review" name="review" disabled>
-							   <option value = "" selected >Veuillez sélectionner une évaluation</option>
-							   <option value = "review1" <?= ((isset($data['review']) && $data['review']->review == 'review1')) ? "selected" : '' ?>>Mi-Stage</option>
-							   <option value = "review2" <?= ((isset($data['review']) && $data['review']->review == 'review2')) ? "selected" : '' ?>>Fin-Stage</option>
-							</select>
+<input class="form-control"   type="text" value="<?= ($data['review']->review == "review1") ?  "Mi-Stage" : "Fin-Stage"; ?>" readOnly />
 						</div>
 						<div class="form-group col-md-6">
 							<label class="control-label">Nom du coordonnateur:</label>
                             <input class="form-control" id="advName" name="advisor" placeholder="Prénom Nom" type="text" value="<?= (isset($data['advisor'])) ?  $data['advisor']->name : ''; ?>" readOnly />
+						</div>
+						<div class="form-group col-md-6">
+							<label class="control-label">Note:</label>
+							<input class="form-control" id="note" type="text" value="<?=(isset($data['review']))? intval($data['review']->advRev11) + intval($data['review']->advRev21) + intval($data['review']->advRev22) + intval($data['review']->advRev31) + intval($data['review']->advRev32): ""?>/60" disabled />
 						</div>
 					</div>						
 					<h3 class="page-header">L&apos;&eacute;tudiant(e) participe ad&eacute;quatement aux diff&eacute;rentes &eacute;tapes de d&eacute;veloppement d&apos;une application informatique.</h3>
@@ -429,5 +429,10 @@
 				</div>
 			</div>
 	    </form>
+							<form>
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/intern/info/">Revenir à la liste des évaluations</button>
+                        </div>
+					</form>
 	</div>
 </div>

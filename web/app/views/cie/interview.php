@@ -141,7 +141,13 @@
                         </div>
                     </div>
                     <?php } ?>
+					<form>
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/cie/index/">Revenir à la liste des projets</button>
+                        </div>
+					</form>
                 </div>
+
             </form>
         </div>
     </div>

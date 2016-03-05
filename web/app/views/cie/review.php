@@ -511,5 +511,12 @@
 				</div>
 			</div>
 		</form>
+				<form>
+						<div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/cie/index/">Revenir à la liste des projets</button>
+                        </div>
+                    </div>
+					</form>
 	</div>
 </div>

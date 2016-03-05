@@ -3,6 +3,7 @@
           <div class="row">
             <div class="col-md-12">
               <h1>Journal de bord</h1>
+			  <p>Sur cette page vous pouvez visualiser le journal de bord d'un stagiaire.</p>
 		   </div>
           </div>
         </div>
@@ -29,4 +30,10 @@
             </div>
         </div>
       </div>
+		<form>
+						<div class="col-md-6">
+                            <button class="btn btn-block btn-primary" formaction="/advisor/ShowInterns/">Revenir à la liste des stagiaires</button>
+                        </div>
+		</form>
+</div>
 </div>

@@ -116,6 +116,11 @@
                             <input class="form-control" id="intInterviewer" name="interviewer" type="text" value="<?=$data['interview']->interviewer; ?>" readOnly/>
                         </div>
                     </div>
+					<form>
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-primary" formaction="/intern/info/">Revenir à la liste des évaluations</button>
+                        </div>
+					</form>
                 </div>
         </div>
 		</form>

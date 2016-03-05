@@ -442,21 +442,18 @@
 						$data['logs']= array_reverse($data['logs']);
 						parent::view("advisor/log", $data);
 				}
-            }
-            $data['intern'] = $_review[1];
+            }            
 			 
 			//Tout dépendant du premier paramètre passer en paramètre, choisir la bonne page
 			switch($_review[0])
 			{
 				case "evalAdvMid": //Evaluation de mi-stage
 				{
+					$data['intern'] = $_review[1];
 					$exist = $model->ReadOnlyAdvisor($_review[1],"review1");	
 					$data["#review"] = "review1";
 					if(!$exist)
-					{
-						$review = array();
-
-						
+					{					
 						$this->evalAdv($data);
 					}
 					else
@@ -471,11 +468,11 @@
 				}
 				case "evalAdvFinale": //Evaluation finale
 				{
+					$data['intern'] = $_review[1];
                     $exist = $model->ReadOnlyAdvisor($_review[1],"review2");
 					$data["#review"] = "review2";
 					if(!$exist)
 					{
-						$review = array();
 						$this->evalAdv($data);
 					}
 					else
