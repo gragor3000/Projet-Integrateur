@@ -143,7 +143,8 @@ class projects extends models
 	//Supprimer un projet de stage par un superviseur
     public function DeleteProject($_projectId)
 	{
-		parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectId);
+		parent::DBExecute("DELETE FROM ratings WHERE projectID = ".$_projectId);
+        parent::DBExecute("DELETE FROM projects WHERE ID = ".$_projectId);
 	}
 }
 

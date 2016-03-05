@@ -61,7 +61,7 @@
 										<td><?= $data['cieP'][$project->businessID]->name; ?></td>
 										<td><a href="#" title="Contact:" data-html="true" data-toggle="popover" data-trigger="hover" data-content="Tel: <?= $project->supTel; ?><br />Email : <?= $project->supEmail; ?>"><?= $project->supName; ?></a></td>
 										<td class="text-center">
-											<button class="btn btn-link" name="denyProject" value="<?= $_SESSION['form_token']; ?>" formaction="DenyProject/<?= $project->ID ?>" formmethod="post">
+											<button class="btn btn-link" name="denyProject" value="<?= $_SESSION['form_token']; ?>" formaction="/advisor/DeleteProject/<?= $project->ID ?>" formmethod="post">
 												<i class="fa fa-times-circle fa-fw fa-lg text-danger"></i>
 											</button>
 										</td>

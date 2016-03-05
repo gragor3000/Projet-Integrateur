@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Département de la Technique de l'Informatique</h1>
-				<p>vous accueuille sur son site de gestion de stage. Sur ce site une entreprise peut soumettre un projet de stage qui sera étudié par les coordonnateurs de stage. Ceux-ci évaluront les stages qui pourront être choisi par les finissants de la technique. Avant tout chose, l'entreprise qui n'a pas de compte devra s'inscrire en utilisant le formulaire ci-dessous et être autorisé à soumettre un projet. Un fois autorisé, celui-ci recevra un courriel contenant un nom d'utilisateur si la suggestion n'est pas retenue et un mot de passe.</p>
+				<p>vous accueille sur son site de gestion de stage. Sur ce site une entreprise peut soumettre un projet de stage qui sera étudié par les coordonnateurs de stage. Ceux-ci évaluront les stages qui pourront être choisi par les finissants de la technique. Avant tout chose, l'entreprise qui n'a pas de compte devra s'inscrire en utilisant le formulaire ci-dessous et être autorisé à soumettre un projet. Un fois autorisé, celui-ci recevra un courriel contenant un nom d'utilisateur si la suggestion n'est pas retenue et un mot de passe.</p>
 			</div>
 		</div>
 	</div>

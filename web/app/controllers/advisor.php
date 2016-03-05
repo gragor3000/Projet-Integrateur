@@ -190,9 +190,32 @@
              }
 				
                 
-			$this->cie();
+			$this->index($data);
         }
-            
+		
+         //supprimer un projet lorsque terminé
+        public function DeleteProject($_ProjID)
+        {
+            parent::model("projects");
+                
+            $projects = new projects();
+			
+			try 
+			{
+                    $projects->DeleteProject($_ProjID[0]);		
+					$data['alert'] = "alert-success";
+                    $data['message'] = "Ce projet a bien Ã©tÃ© supprimé.";
+            } 
+			catch (exception $ex) 
+			{
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "Ce projet n'a pu Ãªtre supprimé.";
+             }
+				
+                
+			$this->projects($data);
+        }
+		
         //ajoute un compte dans la bd
         public function CreateUser()
         {          			
