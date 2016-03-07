@@ -37,7 +37,7 @@ class accounts extends models {
     public function PassGen() {
         //Création du token.
         $pass = md5(uniqid(rand(), TRUE));
-        var_dump(substr($pass, -10));
+        //var_dump(substr($pass, -10));
         return substr($pass, -10);
     }
 
