@@ -107,8 +107,10 @@ class projects extends models
 
         $msg = "Votre projet, " . $projectTitle['title'] . ", de l'entreprise,". $user["name"] .",a été autorisé.";
 
+        var_dump($result['email']);
+
         //Envoi du courriel de confirmation.
-        //mail($result['email'], $user["name"] . " projet validé", $msg);
+        $mail = mail($result['email'], $user["name"] . " projet validé", $msg);
     }
 
     //refuse un projet
@@ -131,7 +133,7 @@ class projects extends models
 
 
         //Envoi du courriel de confirmation.
-        //mail($result['email'], $user["name"] . " projet non validé", $msg);
+        $mail = mail($result['email'], $user["name"] . " projet non validé", $msg);
     }
 
     //Jumeller un stagiaire à un projet
