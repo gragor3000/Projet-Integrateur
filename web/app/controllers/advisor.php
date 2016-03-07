@@ -1,5 +1,26 @@
 <?php
-    if (isset($_COOKIE['token']) && isset($_SESSION['ID']) && isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
+if(isset($_COOKIE['token']))
+{
+	 parent::model("accounts");
+     $model = new accounts;
+			
+	  $user = $model ->ShowUserByToken($_COOKIE['token']);
+	  if($user) // si l'utilisateur existe
+	  {
+		  $_SESSION["role"] = $user->rank;
+          $_SESSION['ID'] = $user->ID;
+	  }
+	  else
+     {
+	    unset($_SESSION["role"]);
+     }	  	  
+}
+else
+{
+	unset($_SESSION["role"]);
+}
+
+    if (isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
     
     class advisor extends Controller
     {
