@@ -1,4 +1,9 @@
 Journal de Bord
+2016-03-07
++Révision du projet avec l'équipe.
+
+2016-02-24
++Évaluation du niveau d'accomplissement du projet.
 
 2016-02-22 [e2b4b2dfcdeed51dbb7512e499a27d859d32a022]
 +Tentative de debug :
