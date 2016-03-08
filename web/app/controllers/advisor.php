@@ -1,33 +1,39 @@
 <?php
-if(isset($_COOKIE['token']))
-{
-	 parent::model("accounts");
-     $model = new accounts;
-			
-	  $user = $model ->ShowUserByToken($_COOKIE['token']);
-	  if($user) // si l'utilisateur existe
-	  {
-		  $_SESSION["role"] = $user->rank;
-          $_SESSION['ID'] = $user->ID;
-	  }
-	  else
-     {
-	    unset($_SESSION["role"]);
-     }	  	  
-}
-else
-{
-	unset($_SESSION["role"]);
-}
-
-    if (isset($_SESSION["role"]) && $_SESSION["role"] == 0) {
-    
     class advisor extends Controller
     {
         
         public function __construct()
         {
-            parent::model("models");
+          parent::model("models");
+          
+		  if(isset($_COOKIE['token'])) //Vérification de l'identité
+         {
+	      parent::model("accounts");
+          $model = new accounts();
+			
+	      $user = $model ->ShowUserByToken($_COOKIE['token']);
+	      if($user) // si l'utilisateur existe
+	      {
+		    $_SESSION["role"] = $user->rank;
+            $_SESSION['ID'] = $user->ID;					
+	      }
+	       else
+          {
+	        unset($_SESSION["role"]);
+          }	  	  
+        }
+        else
+        {
+	      unset($_SESSION["role"]);
+        }
+		
+		if ($_SESSION["role"] != 0) 
+			{
+				//Redirige vers l'accueuil.
+               session_unset();
+               session_destroy();
+               header("location:/home/index");
+			}
         }
             
         //appelle la page d'accueil qui as projets et entreprises non validée
@@ -402,8 +408,12 @@ else
 				{
                     $data['ratings'][$rating['projectID']][$rating['internID']] = $rating['score'];
                 }
-				$data['alert'] = "alert-success";
-                $data['message'] = "Le jumelage a bien Ã©tÃ© fait.";
+				
+				if(isset($_POST['setAssign']))
+				{
+					$data['alert'] = "alert-success";
+                    $data['message'] = "Le jumelage a bien Ã©tÃ© fait.";
+				}
             }
 
             parent::model("accounts");
@@ -684,13 +694,6 @@ else
 				$this->ShowInterns(null);
 			}			
 		}
-    }
-        
-} else {
-    //Redirige vers l'accueuil.
-    session_unset();
-    session_destroy();
-    header("location:/home/index");
-}
+    }     
     
 ?>

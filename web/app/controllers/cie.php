@@ -1,35 +1,39 @@
 <?php
-if(isset($_COOKIE['token']))
-{
-	 parent::model("accounts");
-     $model = new accounts;
-			
-	  $user = $model ->ShowUserByToken($_COOKIE['token']);
-	  if($user) // si l'utilisateur existe
-	  {
-		  $_SESSION["role"] = $user->rank;
-          $_SESSION['ID'] = $user->ID;
-	  }
-	  else
-     {
-	    unset($_SESSION["role"]);
-     }	  	  
-}
-else
-{
-	unset($_SESSION["role"]);
-}
-
-//Validation de l'identité.
-if (isset($_SESSION["role"]) && $_SESSION["role"] == 1) 
-{
-
     class cie extends Controller
     {
 
         public function __construct()
         {
             parent::model("models");
+			
+			 if(isset($_COOKIE['token'])) //Vérification de l'identité
+         {
+	      parent::model("accounts");
+          $model = new accounts();
+			
+	      $user = $model ->ShowUserByToken($_COOKIE['token']);
+	      if($user) // si l'utilisateur existe
+	      {
+		    $_SESSION["role"] = $user->rank;
+            $_SESSION['ID'] = $user->ID;					
+	      }
+	       else
+          {
+	        unset($_SESSION["role"]);
+          }	  	  
+        }
+        else
+        {
+	      unset($_SESSION["role"]);
+        }
+		
+		if ($_SESSION["role"] != 1) 
+			{
+				//Redirige vers l'accueuil.
+               session_unset();
+               session_destroy();
+               header("location:/home/index");
+			}
         }
 
         //Accueil par défaut.
@@ -433,10 +437,4 @@ if (isset($_SESSION["role"]) && $_SESSION["role"] == 1)
 		}
     }
   }
-} else {
-    //Rediriger vers l'acceuil.
-    session_unset();
-    session_destroy();
-    header("location:/home/index");
-}
 ?>

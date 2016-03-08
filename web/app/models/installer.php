@@ -1,10 +1,4 @@
 <?php
-
-/*
-  DeployDB : 	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  ---> Supprimer Install.html et rediriger vers l'acceuil (Location);
- */
-
 class installer extends models {
 
     //délpoie la base de donnée
@@ -98,9 +92,6 @@ class installer extends models {
         } catch (PDOException $e) {
             echo($e);
         }
-
-        //////SUPPRIMER INSTALL.HTML //////
-        //////REDIRIGER VERS INDEX.PHP /////
     }
 
 }

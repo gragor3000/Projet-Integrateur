@@ -1,9 +1,4 @@
 <?php
-
-/*
-  deploy :	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
- */
-
 class install extends Controller {
 
     private $installer; //pointe vers la classe model

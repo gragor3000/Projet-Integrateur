@@ -1,21 +1,4 @@
 <?php
-
-/*
-  TokenGen : 			TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  PassGen : 			TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  CreateUser : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  UpdateUser :
-  ShowAllUsers :
-  ShowUsersByRank :
-  ShowUserByID :
-  UsernameExists : 	TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  UpdatePW :
-  DeleteUser :
-  UserLogin : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  TokenLogin : 		TESTER | FONCTIONNEL -> 2016-02-11 Marc Lauzon
-  Logout :
- */
-
 class accounts extends models {
 
     //Génération de token.
@@ -92,7 +75,7 @@ class accounts extends models {
 
     //retourne les infos d'un compte par token
     public function ShowUserByToken($_userToken){
-        return new obj(parent::DBQuery("SELECT ID,name,user,rank FROM users WHERE token =" . $_userToken));
+        return new obj(parent::DBQuery("SELECT ID,name,user,rank FROM users WHERE token ='" . $_userToken."'"));
     }
 
     //Valider l'existence du nomd e compte.
