@@ -6,7 +6,7 @@
         {
           parent::model("models");
           
-		  if(isset($_COOKIE['token'])) //Vérification de l'identité
+		  if(isset($_COOKIE['token'])) //Vï¿½rification de l'identitï¿½
          {
 	      parent::model("accounts");
           $model = new accounts();
@@ -36,7 +36,7 @@
 			}
         }
             
-        //appelle la page d'accueil qui as projets et entreprises non validée
+        //appelle la page d'accueil qui as projets et entreprises non validï¿½e
         public function index($_message)
         {
             parent::view("shared/header");
@@ -144,8 +144,7 @@
             $cie = new business();
 			
 			if(isset($_POST['cieID']))
-			{	
-		   var_dump($_POST['cieID']);
+			{
 			 try 
 			 {
                     $cie->DeleteCie($_POST['cieID']);
@@ -221,7 +220,7 @@
 			$this->index($data);
         }
 		
-         //supprimer un projet lorsque terminé
+         //supprimer un projet lorsque terminï¿½
         public function DeleteProject($_ProjID)
         {
             parent::model("projects");
@@ -232,12 +231,12 @@
 			{
                     $projects->DeleteProject($_ProjID[0]);		
 					$data['alert'] = "alert-success";
-                    $data['message'] = "Ce projet a bien Ã©tÃ© supprimé.";
+                    $data['message'] = "Ce projet a bien Ã©tÃ© supprimï¿½.";
             } 
 			catch (exception $ex) 
 			{
 					$data['alert'] = "alert-warning";
-                    $data['message'] = "Ce projet n'a pu Ãªtre supprimé.";
+                    $data['message'] = "Ce projet n'a pu Ãªtre supprimï¿½.";
              }
 				
                 
