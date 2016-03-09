@@ -1,6 +1,7 @@
-Journal de Bord
+﻿Journal de Bord
 2016-03-09
 +Présentation du projet aux clients.
++Nettoyage du dossier de projet.
 
 2016-03-07
 +Révision du projet avec l'équipe.
