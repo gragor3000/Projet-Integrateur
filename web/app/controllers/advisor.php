@@ -296,6 +296,9 @@
 				$user = $account->ShowUserByID($_POST["userID"]);		
 				$advisors = $account->ShowUsersByRank(0);
 				
+				if($_POST['userID'] != $_SESSION['ID'])
+				{
+					
 				if((($user->rank == 0) && (Count($advisors) >= 2)) || ($user->rank == 2))
 				{
                  try 
@@ -332,6 +335,12 @@
 				{
 					$data['alert'] = "alert-warning";
                     $data['message'] = "Il ne reste qu'un coordonnateur: vous ne pouvez le supprimer.";
+				}
+				}
+				else
+				{
+					$data['alert'] = "alert-warning";
+                    $data['message'] = "Vous ne pouvez pas vous supprimer.";
 				}
             }
             $this->ShowUsers($data);
